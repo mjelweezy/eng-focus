@@ -1,5 +1,76 @@
 {
-  "version": 1,
-  "title": "Eng Focus",
-  "sections": []
+  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view. Edit this file to change the curation (Now/Next/Later bucketing, descriptions, owner overrides). The engineer view is fully auto-generated from Linear and is NOT described here.",
+  "title": "Engineering Focus",
+  "merge_rules": {
+    "initiative_view": "Keep buckets and item order exactly as defined below. For items with a projectId, refresh the owner (project lead) and status label from Linear at run time. Do NOT re-bucket items automatically.",
+    "new_projects": "If a NEW project appears under one of the three initiatives in Linear that is not listed below, do NOT silently place it. Add it to a visible 'Needs triage' note at the bottom of that initiative card so Matthew can decide its bucket.",
+    "removed_projects": "If a listed projectId no longer exists or is completed/cancelled in Linear, render it struck-through with a '(check)' flag rather than deleting it.",
+    "engineer_view": "Fully regenerate from Linear each run: all non-archived issues with statusType 'started' (In Progress / In Review) that have an assignee, grouped assignee -> initiative -> project -> issue. Issues with no project, or projects with no initiative, go under 'Not belonging to an initiative'. Order engineers by Dima, Mark, Joel, David, Yaroslav, then any new engineers."
+  },
+  "initiatives": [
+    {
+      "id": "cb65425b-cc3d-4f8a-8164-5849f594d708",
+      "title": "Build data by onboarding 5 additional customers",
+      "accent": "accent",
+      "tags": ["Active", "Target 6 Jul"],
+      "blurb": "Get the system ready to run AP & AR reconciliation for 5 hand-picked customers. The team's real centre of gravity.",
+      "buckets": {
+        "now": [
+          {"type": "project", "projectId": "75e92a8b-6f94-4b72-aad3-1fccbe953d74", "label": "Connect external bank accounts (Open Banking)", "show_owner_status": true, "desc": "Rework the Money Management UI for multiple accounts and let customers link external banks to pull transactions and balances."},
+          {"type": "project", "projectId": "bdca02fc-e544-4715-85f2-d11798131506", "label": "Multi-Client Exact Online Connections", "show_owner_status": true, "desc": "Support a separate Exact connection per client workspace so accountants reconcile each client into their own Exact division."}
+        ],
+        "next": [
+          {"type": "project", "projectId": "c186341c-f7a8-4336-b973-f25ed6fd7afb", "label": "Present onboarding actions for the next 5 customers", "show_owner_status": true, "desc": "A Home dashboard with guided actions teaching the three bill-submission channels (email, WhatsApp, Vault) and routing customers to connect their bank."},
+          {"type": "project", "projectId": "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed", "label": "WhatsApp, Email forwarding & Vault re-provisioning", "show_owner_status": true, "desc": "Make the WhatsApp, email-forwarding and Vault bill-upload channels work for customers without a Swan bank account."}
+        ],
+        "later": [
+          {"type": "subhead", "label": "Final hardening & QA before onboarding"},
+          {"type": "text", "label": "Neno account testing", "desc": "QA the new authentication method for neno users without a Swan account."},
+          {"type": "text", "label": "Tasks permissions testing", "desc": "Review and test dynamic tasks against accounts without Swan's membership permissions."},
+          {"type": "text", "label": "End-to-end testing", "desc": null}
+        ]
+      }
+    },
+    {
+      "id": "fef38f90-b82c-4c47-b377-6dcb9b1a3020",
+      "title": "Enable accountants to complete VAT submissions via double-entry GL",
+      "accent": "amber",
+      "tags": ["Active", "Early spike", "Target 30 Sep"],
+      "blurb": "Begin writing to our own double-entry ledger so we can confidently file Q3 VAT for 5 neno customers.",
+      "buckets": {
+        "now": [
+          {"type": "project", "projectId": "0383a752-0a73-4bce-b0aa-77379e4f27cf", "label": "Spike: write into the neno GL (Ocean Ionics)", "show_owner_status": true, "desc": "Wire up the existing, unused double-entry ledger in the codebase and start writing entries into it for one customer."}
+        ],
+        "next": [
+          {"type": "text", "label": "Productionise writing to the double-entry GL for Ocean Ionics", "desc": "Move from spike to production — real ledger writes for Ocean Ionics, targeting the first live GL writes from 1 July."}
+        ],
+        "later": [
+          {"type": "text", "label": "Roll out GL writes beyond Ocean Ionics to the wider cohort", "desc": null, "muted": true}
+        ]
+      }
+    },
+    {
+      "id": "ce07f00e-b392-40bd-85fb-2a4a831c9c80",
+      "title": "Make neno the source of truth for all bookkeeping",
+      "accent": "pink",
+      "tags": ["Placeholder", "Target 30 Sep"],
+      "blurb": "Scale bookkeeping functionality to manage the books for 30 customers in Q3 and stay in sync with Exact.",
+      "buckets": {
+        "now": [],
+        "next": [
+          {"type": "text", "label": "End-to-end AR reconciliation", "owner_override": "David", "status_override": "Planned", "desc": "Enable end-to-end accounts receivable — reconciliation for incoming payments."}
+        ],
+        "later": [
+          {"type": "text", "label": "Credit note processing", "desc": "Process credit notes in both directions (AR & AP)."},
+          {"type": "text", "label": "Related-parties register", "desc": "A register of related parties, for intercompany payments."},
+          {"type": "text", "label": "Payroll (Numbrs)", "desc": "Payroll via a Numbrs integration."},
+          {"type": "text", "label": "Third-party wallet transaction import", "desc": "MVP to import third-party wallet transactions — Stripe plus additional channels."},
+          {"type": "text", "label": "Depreciation & accruals", "desc": "Support depreciation and accrual entries."},
+          {"type": "text", "label": "Native team features & permissions", "desc": "Native team features and membership permissions."},
+          {"type": "text", "label": "Customer project creation & management", "desc": null}
+        ],
+        "footnote": "Prioritised plan only — no projects or issues filed yet."
+      }
+    }
+  ]
 }

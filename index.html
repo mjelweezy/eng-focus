@@ -1,27 +1,220 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Eng Focus</title>
-  <style>
-    body { font-family: system-ui, sans-serif; margin: 2rem; color: #1a1a1a; }
-    pre { background: #f5f5f5; padding: 1rem; border-radius: 6px; overflow:auto; }
-    h1 { font-size: 1.4rem; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neno · Engineering Focus</title>
+<style>
+  :root{
+    --bg:#fbfbfd; --card:#ffffff; --ink:#1c1e26; --muted:#6b7280;
+    --line:#e7e8ee; --accent:#5e6ad2; --green:#4cb782; --amber:#f2994a; --pink:#e8857a;
+    --shadow:0 1px 3px rgba(20,22,40,.06),0 8px 28px rgba(20,22,40,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.45;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1320px;margin:0 auto;padding:32px 32px 56px;}
+  header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;
+    border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:22px;}
+  h1{font-size:25px;margin:0;letter-spacing:-.02em;}
+  .stamp{font-size:11.5px;color:var(--muted);text-align:right;}
+  .toggle{display:inline-flex;background:#eef0f4;border-radius:10px;padding:3px;gap:2px;margin-bottom:24px;}
+  .toggle button{border:none;background:transparent;font:inherit;font-size:13px;font-weight:600;color:#6b7280;
+    padding:7px 18px;border-radius:8px;cursor:pointer;transition:all .15s;}
+  .toggle button.active{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08);}
+  .view{display:none;} .view.active{display:block;}
+
+  .board{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;}
+  @media(max-width:980px){.board{grid-template-columns:1fr}}
+  .card{height:100%;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;overflow:hidden;}
+  .card .top{padding:18px 20px 16px;border-top:4px solid var(--accent);}
+  .card .top.amber{border-color:var(--amber);} .card .top.pink{border-color:var(--pink);}
+  .card h3{font-size:16px;margin:0 0 8px;letter-spacing:-.01em;line-height:1.3;}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;}
+  .tag{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;background:#f1f2f7;color:#4b4f5e;}
+  .tag.active{background:#eafaf2;color:#268a5d;} .tag.spike{background:#fce9e6;color:#c0564a;}
+  .tag.placeholder{background:#fdeee4;color:#b56b27;}
+  .blurb{font-size:12px;color:#6b6f7c;margin:10px 0 0;line-height:1.4;}
+  .phases{flex:1;padding:6px 20px 20px;display:flex;flex-direction:column;}
+  .phase{padding:14px 0 4px;border-top:1px solid var(--line);}
+  .phase:first-child{border-top:none;}
+  .phlabel{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.09em;
+    text-transform:uppercase;margin-bottom:9px;}
+  .pill{width:8px;height:8px;border-radius:50%;display:inline-block;}
+  .ph-now .pill{background:var(--green)} .ph-now .phlabel{color:#268a5d;}
+  .ph-next .pill{background:var(--accent)} .ph-next .phlabel{color:var(--accent);}
+  .ph-later .pill{background:#b9bdc9} .ph-later .phlabel{color:#8b8f9c;}
+  ul.items{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
+  ul.items li{font-size:12.5px;color:#3c404c;line-height:1.35;padding-left:14px;position:relative;}
+  ul.items li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:#c8ccd6;}
+  .ph-now ul.items li::before{background:var(--green);}
+  .ph-next ul.items li::before{background:var(--accent);}
+  ul.items li b{font-weight:650;color:var(--ink);}
+  ul.items li .desc{display:block;font-size:11px;color:var(--muted);font-weight:400;margin-top:3px;line-height:1.4;}
+  .who{color:var(--muted);font-size:11px;}
+  .empty{font-size:12px;color:#aeb2bd;font-style:italic;padding-left:14px;}
+  .note{font-size:11px;color:var(--muted);font-style:italic;margin-top:9px;padding-left:14px;}
+  .subhead{font-size:11px;font-weight:700;color:#5b5f6c;margin:10px 0 4px;}
+  .triage{margin-top:10px;font-size:11px;color:#b56b27;background:#fdf3e9;border:1px solid #f3d9bf;border-radius:8px;padding:8px 10px;}
+  .gone{text-decoration:line-through;opacity:.6;}
+
+  /* engineer view */
+  .eng-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;align-items:stretch;}
+  .eng-card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;
+    height:560px;display:flex;flex-direction:column;}
+  .ehead{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px;background:#fafbff;flex:none;}
+  .avatar{width:32px;height:32px;border-radius:50%;color:#fff;font-size:13px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;flex:none;}
+  .ehead h3{font-size:15px;margin:0;letter-spacing:-.01em;}
+  .ehead .count{margin-left:auto;font-size:11px;color:var(--muted);font-weight:600;}
+  .eng-body{padding:6px 18px 16px;flex:1;overflow-y:auto;}
+  .initgrp{padding:12px 0 2px;border-top:1px solid var(--line);}
+  .initgrp:first-child{border-top:none;}
+  .init-name{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+  .init-name.none{color:#9aa0ad;}
+  .proj-name{font-size:12px;font-weight:700;color:#50545f;margin:9px 0 5px;padding-left:2px;}
+  .proj-name.noproj{color:#9aa0ad;font-style:italic;font-weight:600;}
+  ul.eng-items{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;}
+  ul.eng-items li{font-size:12px;color:#3c404c;line-height:1.4;padding-left:13px;position:relative;}
+  ul.eng-items li::before{content:"";position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--green);}
+  ul.eng-items li.rev::before{background:var(--amber);}
+  .iid{font-variant-numeric:tabular-nums;color:var(--muted);font-size:10.5px;font-weight:700;margin-right:5px;}
+  .st{font-size:9.5px;font-weight:700;color:#268a5d;background:#eafaf2;border-radius:20px;padding:1px 6px;margin-left:5px;white-space:nowrap;}
+  .st.review{color:#8a6d1f;background:#fbf3da;}
+  .loading{padding:60px 0;text-align:center;color:var(--muted);font-size:14px;}
+  .err{padding:20px;background:#fce9e6;color:#c0564a;border-radius:10px;font-size:13px;}
+</style>
 </head>
 <body>
-  <h1>Eng Focus</h1>
-  <p>Placeholder page. Renders <code>layout.json</code> + <code>data.json</code>.</p>
-  <pre id="out">loading…</pre>
-  <script>
-    Promise.all([
-      fetch('layout.json').then(r => r.json()).catch(() => ({})),
-      fetch('data.json').then(r => r.json()).catch(() => ({}))
-    ]).then(([layout, data]) => {
-      document.getElementById('out').textContent =
-        JSON.stringify({ layout, data }, null, 2);
-    });
-  </script>
+<div class="wrap">
+
+  <header>
+    <div><h1>Engineering Focus</h1></div>
+    <div class="stamp" id="stamp"></div>
+  </header>
+
+  <div class="toggle">
+    <button data-v="initiative" class="active" onclick="showView('initiative')">By initiative</button>
+    <button data-v="engineer" onclick="showView('engineer')">By engineer</button>
+  </div>
+
+  <div id="view-initiative" class="view active"><div class="board" id="board"><div class="loading">Loading…</div></div></div>
+  <div id="view-engineer" class="view"><div class="eng-grid" id="eng-grid"></div></div>
+
+</div>
+
+<script>
+const ACCENT = {accent:'#5e6ad2', amber:'#f2994a', pink:'#e8857a'};
+const AV = ['#5e6ad2','#4cb782','#f2994a','#e8857a','#8b5cf6','#0ea5e9','#ec4899'];
+const esc = s => (s==null?'':String(s)).replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+function showView(v){
+  document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active', el.id==='view-'+v));
+  document.querySelectorAll('.toggle button').forEach(b=>b.classList.toggle('active', b.dataset.v===v));
+}
+
+function ownerStatus(item, data){
+  let owner=null, status=null;
+  if(item.projectId && data.projects && data.projects[item.projectId]){
+    status = data.projects[item.projectId].status;
+    owner = data.projects[item.projectId].owner;
+  }
+  if(item.status_override) status = item.status_override;
+  if(item.owner_override) owner = item.owner_override;
+  const bits = [status, owner].filter(Boolean);
+  return bits.length ? ' <span class="who">· '+bits.map(esc).join(' · ')+'</span>' : '';
+}
+
+function renderItem(item, data){
+  if(item.type==='subhead') return '<div class="subhead">'+esc(item.label)+'</div><ul class="items">';
+  const gone = (item.projectId && data.projects && data.projects[item.projectId] && data.projects[item.projectId].gone);
+  const label = (item.show_owner_status || item.type==='project') ? '<b'+(gone?' class="gone"':'')+'>'+esc(item.label)+'</b>' : esc(item.label);
+  const os = (item.show_owner_status || item.owner_override || item.status_override) ? ownerStatus(item, data) : '';
+  const desc = item.desc ? '<span class="desc">'+esc(item.desc)+'</span>' : '';
+  return '<li>'+label+os+desc+'</li>';
+}
+
+function renderBucket(name, label, cls, items, data){
+  let h = '<div class="phase '+cls+'"><div class="phlabel"><i class="pill"></i> '+label+'</div>';
+  if(!items || !items.length){ h += '<div class="empty">'+(name==='now'?'No work in progress.':name==='next'?'Nothing queued yet.':'Nothing here.')+'</div></div>'; return h; }
+  // group consecutive items; subheads open their own <ul>
+  let openUl=false, body='';
+  items.forEach(it=>{
+    if(it.type==='subhead'){ if(openUl){body+='</ul>';} body+=renderItem(it,data); openUl=true; }
+    else if(it.muted){ if(openUl){body+='</ul>'; openUl=false;} body+='<div class="empty">'+esc(it.label)+'</div>'; }
+    else { if(!openUl){body+='<ul class="items">'; openUl=true;} body+=renderItem(it,data); }
+  });
+  if(openUl) body+='</ul>';
+  h += body + '</div>';
+  return h;
+}
+
+function renderInitiatives(layout, data){
+  const board = document.getElementById('board');
+  board.innerHTML = layout.initiatives.map(ini=>{
+    const accentCls = ini.accent==='amber'?'amber':ini.accent==='pink'?'pink':'';
+    const tags = (ini.tags||[]).map(t=>{
+      let c='tag'; const tl=t.toLowerCase();
+      if(tl==='active') c='tag active'; else if(tl==='placeholder') c='tag placeholder'; else if(tl.includes('spike')) c='tag spike';
+      return '<span class="'+c+'">'+esc(t)+'</span>';
+    }).join('');
+    const b = ini.buckets||{};
+    let phases = renderBucket('now','Now','ph-now',b.now,data)
+               + renderBucket('next','Next','ph-next',b.next,data)
+               + renderBucket('later','Later','ph-later',b.later,data);
+    if(b.footnote) phases += '<div class="note">'+esc(b.footnote)+'</div>';
+    const triage = (data.needs_triage && data.needs_triage[ini.id] && data.needs_triage[ini.id].length)
+      ? '<div class="triage"><b>Needs triage:</b> new project'+(data.needs_triage[ini.id].length>1?'s':'')+' in Linear not yet placed — '
+        + data.needs_triage[ini.id].map(p=>esc(p.name)).join(', ')+'</div>' : '';
+    return '<div class="card"><div class="top '+accentCls+'"><h3>'+esc(ini.title)+'</h3>'
+      + '<div class="tags">'+tags+'</div>'
+      + (ini.blurb?'<p class="blurb">'+esc(ini.blurb)+'</p>':'')+'</div>'
+      + '<div class="phases">'+phases+triage+'</div></div>';
+  }).join('');
+}
+
+function renderEngineers(data){
+  const grid = document.getElementById('eng-grid');
+  grid.innerHTML = (data.engineers||[]).map((eng,i)=>{
+    const color = eng.color || AV[i % AV.length];
+    const initial = eng.initial || (eng.name||'?')[0];
+    let body = (eng.groups||[]).map(g=>{
+      const isNone = !g.initiative || g.initiative==='__none__';
+      const iname = '<div class="init-name'+(isNone?' none':'')+'">'+(isNone?'Not belonging to an initiative':esc(g.initiative))+'</div>';
+      const projs = (g.projects||[]).map(p=>{
+        const noproj = !p.name || p.name==='__none__';
+        const pname = '<div class="proj-name'+(noproj?' noproj':'')+'">'+(noproj?'No project':esc(p.name))+'</div>';
+        const lis = (p.issues||[]).map(it=>{
+          const rev = (it.status||'').toLowerCase().includes('review');
+          const stc = rev?'st review':'st';
+          return '<li'+(rev?' class="rev"':'')+'><span class="iid">'+esc(it.id)+'</span>'+esc(it.title)+'<span class="'+stc+'">'+esc(it.status||'In Progress')+'</span></li>';
+        }).join('');
+        return pname+'<ul class="eng-items">'+lis+'</ul>';
+      }).join('');
+      return '<div class="initgrp">'+iname+projs+'</div>';
+    }).join('');
+    const n = (eng.groups||[]).reduce((a,g)=>a+(g.projects||[]).reduce((b,p)=>b+(p.issues||[]).length,0),0);
+    return '<div class="eng-card"><div class="ehead"><span class="avatar" style="background:'+color+'">'+esc(initial)+'</span>'
+      + '<h3>'+esc(eng.name)+'</h3><span class="count">'+n+' in progress</span></div>'
+      + '<div class="eng-body">'+body+'</div></div>';
+  }).join('');
+}
+
+Promise.all([
+  fetch('layout.json').then(r=>r.json()),
+  fetch('data.json').then(r=>r.json())
+]).then(([layout,data])=>{
+  renderInitiatives(layout, data);
+  renderEngineers(data);
+  if(data.generated_at){
+    const d = new Date(data.generated_at);
+    document.getElementById('stamp').textContent = 'Live from Linear · updated '+d.toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'});
+  }
+}).catch(e=>{
+  document.getElementById('board').innerHTML = '<div class="err">Could not load data: '+esc(e.message)+'. Make sure layout.json and data.json are present.</div>';
+});
+</script>
 </body>
 </html>
