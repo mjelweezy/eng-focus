@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eng Focus</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; color: #1a1a1a; }
+    pre { background: #f5f5f5; padding: 1rem; border-radius: 6px; overflow:auto; }
+    h1 { font-size: 1.4rem; }
+  </style>
+</head>
+<body>
+  <h1>Eng Focus</h1>
+  <p>Placeholder page. Renders <code>layout.json</code> + <code>data.json</code>.</p>
+  <pre id="out">loading…</pre>
+  <script>
+    Promise.all([
+      fetch('layout.json').then(r => r.json()).catch(() => ({})),
+      fetch('data.json').then(r => r.json()).catch(() => ({}))
+    ]).then(([layout, data]) => {
+      document.getElementById('out').textContent =
+        JSON.stringify({ layout, data }, null, 2);
+    });
+  </script>
+</body>
+</html>
