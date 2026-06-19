@@ -58,7 +58,7 @@
       "buckets": {
         "now": [],
         "next": [
-          {"type": "text", "label": "End-to-end AR reconciliation", "owner_override": "David", "status_override": "Planned", "desc": "Enable end-to-end accounts receivable — reconciliation for incoming payments."}
+          {"type": "project", "projectId": "b2f06e1b-57d3-4ced-9a3c-daf042c02df0", "label": "End-to-end AR reconciliation", "show_owner_status": true, "desc": "Enable end-to-end accounts receivable — reconciliation for incoming payments."}
         ],
         "later": [
           {"type": "text", "label": "Credit note processing", "desc": "Process credit notes in both directions (AR & AP)."},

@@ -20,16 +20,13 @@
     "0383a752-0a73-4bce-b0aa-77379e4f27cf": {
       "status": "In Progress",
       "owner": "Mark"
+    },
+    "b2f06e1b-57d3-4ced-9a3c-daf042c02df0": {
+      "status": "Planned",
+      "owner": "David"
     }
   },
-  "needs_triage": {
-    "ce07f00e-b392-40bd-85fb-2a4a831c9c80": [
-      {
-        "id": "b2f06e1b-57d3-4ced-9a3c-daf042c02df0",
-        "name": "End-to-end AR reconciliation"
-      }
-    ]
-  },
+  "needs_triage": {},
   "engineers": [
     {
       "name": "Dima",
