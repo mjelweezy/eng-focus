@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T15:30:11.504Z",
+  "generated_at": "2026-06-22T06:58:40.225Z",
   "projects": {
     "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
       "status": "In Progress",
@@ -41,7 +41,7 @@
               "issues": [
                 {
                   "id": "NEO-1291",
-                  "title": "Open Banking: provider-agnostic transaction & balance ingestion wit...",
+                  "title": "Open Banking: provider-agnostic transaction & balance ingestion",
                   "status": "In Progress"
                 },
                 {
@@ -83,7 +83,7 @@
               "issues": [
                 {
                   "id": "NEO-1119",
-                  "title": "Direct-to-G/L booking for transactions without documents (bank char...",
+                  "title": "Direct-to-G/L booking for transactions without documents",
                   "status": "In Progress"
                 }
               ]
@@ -130,7 +130,7 @@
               "issues": [
                 {
                   "id": "NEO-1315",
-                  "title": "C6: Customer Transactions page - status grouping + reconciled flag...",
+                  "title": "C6: Customer Transactions page - status grouping + reconciled flag",
                   "status": "In Progress"
                 }
               ]
@@ -150,7 +150,7 @@
               "issues": [
                 {
                   "id": "NEO-766",
-                  "title": "Infrastructure: Sync Pulumi & GH Actions, reduce dev costs, add res...",
+                  "title": "Infrastructure: Sync Pulumi & GH Actions, reduce dev costs",
                   "status": "In Progress"
                 }
               ]
@@ -186,11 +186,6 @@
               "name": "Build, Send and Track Invoices",
               "issues": [
                 {
-                  "id": "NEO-588",
-                  "title": "Scheduled and recurring invoice sending with confirmation",
-                  "status": "In Progress"
-                },
-                {
                   "id": "NEO-773",
                   "title": "Fix missing Dutch locale keys and dead strings in scheduled invoice UI",
                   "status": "In Progress"
@@ -198,6 +193,11 @@
                 {
                   "id": "NEO-779",
                   "title": "Refactor scheduled invoice services to use ResultAsync chaining",
+                  "status": "In Progress"
+                },
+                {
+                  "id": "NEO-588",
+                  "title": "Scheduled and recurring invoice sending with confirmation",
                   "status": "In Progress"
                 }
               ]
@@ -234,12 +234,12 @@
                 },
                 {
                   "id": "NEO-1056",
-                  "title": "Bridge DocBldr incorporation documents into Swan supporting-documen...",
+                  "title": "Bridge DocBldr incorporation documents into Swan doc vault",
                   "status": "In Progress"
                 },
                 {
                   "id": "NEO-997",
-                  "title": "Fix Prisma 7 prisma.config.ts not auto-loading .env (breaks setup-w...",
+                  "title": "Fix Prisma 7 prisma.config.ts not auto-loading .env",
                   "status": "In Progress"
                 },
                 {
@@ -272,7 +272,23 @@
       "name": "Ihor",
       "initial": "I",
       "color": "#0ea5e9",
-      "groups": []
+      "groups": [
+        {
+          "initiative": "Build data by onboarding 5 additional customers on neno",
+          "projects": [
+            {
+              "name": "Multi-Client Exact Online Connections",
+              "issues": [
+                {
+                  "id": "NEO-1320",
+                  "title": "Build Ops Exact Connections page and per-workspace OAuth binding",
+                  "status": "In Review"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
