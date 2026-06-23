@@ -199,88 +199,10 @@
       ]
     },
     {
-      "name": "Yaroslav",
-      "initial": "Y",
-      "color": "#8b5cf6",
-      "groups": [
-        {
-          "initiative": "__none__",
-          "projects": [
-            {
-              "name": "Customer Admin Panel",
-              "issues": [
-                {
-                  "id": "NEO-1342",
-                  "title": "Onboarding dashboard redesign: priority queue with SLA + Swan detail",
-                  "status": "In Progress"
-                }
-              ]
-            },
-            {
-              "name": "__none__",
-              "issues": [
-                {
-                  "id": "NEO-1202",
-                  "title": "Promote Tasks to a primary top-level tab",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-1056",
-                  "title": "Bridge DocBldr incorporation documents into Swan vault",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-997",
-                  "title": "Fix Prisma 7 config not auto-loading .env",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-895",
-                  "title": "Fix react-email dev task failing under Deno",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-744",
-                  "title": "Migrate preview deployment to GCP Cloud Build",
-                  "status": "In Review"
-                },
-                {
-                  "id": "NEO-673",
-                  "title": "CDP-based e2e test pause/resume",
-                  "status": "In Review"
-                },
-                {
-                  "id": "NEO-632",
-                  "title": "Add base Docker image for Swan E2E",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Matthew",
-      "initial": "M",
-      "color": "#0ea5e9",
-      "groups": [
-        {
-          "initiative": "__none__",
-          "projects": [
-            {
-              "name": "Matthew's Vibe Coding",
-              "issues": [
-                {
-                  "id": "NEO-1319",
-                  "title": "Update the bill review interface",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "name": "Ihor",
+      "initial": "I",
+      "color": "#14b8a6",
+      "groups": []
     }
   ]
 }
