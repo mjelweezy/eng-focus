@@ -5,7 +5,8 @@
     "bdca02fc-e544-4715-85f2-d11798131506": {"status": "In Progress", "owner": "Ihor"},
     "c186341c-f7a8-4336-b973-f25ed6fd7afb": {"status": "Backlog", "owner": null},
     "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed": {"status": "Planned", "owner": null},
-    "0383a752-0a73-4bce-b0aa-77379e4f27cf": {"status": "In Progress", "owner": "Mark"}
+    "0383a752-0a73-4bce-b0aa-77379e4f27cf": {"status": "In Progress", "owner": "Mark"},
+    "b2f06e1b-57d3-4ced-9a3c-daf042c02df0": {"status": "Planned", "owner": "David"}
   },
   "needs_triage": {},
   "engineers": [
