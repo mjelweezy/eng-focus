@@ -7,6 +7,7 @@
       "owner": "Matthew",
       "target_date": "2026-07-06",
       "health": "At risk",
+      "notes": [],
       "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno by early July. Open Banking ingestion is the active build (Dima); per-client Exact connections are planned (Ihor). The guided onboarding home and the WhatsApp/email/Vault channels are queued next, then final QA. The main worry is timing: the onboarding-actions project is still in backlog against a 6 Jul target, and the open-banking provider decision is unconfirmed.",
       "whats_changed": [
         "Open Banking provider-agnostic ingestion (NEO-1291) and frontend rework (NEO-1115) are in progress (Dima).",
@@ -54,6 +55,7 @@
       "owner": "Matthew",
       "target_date": "2026-09-30",
       "health": "On track",
+      "notes": [],
       "exec_summary": "Standing up neno's own double-entry general ledger so we can file Q3 VAT for ~6 customers directly from neno. The spike that writes into the previously-unwired ledger is in progress (Mark), and after the 23 Jun design session with DP the core mechanics are now decided — VAT corrections post to the next period, closed periods lock with approval-gated inserts only, and FX is handled via month-end revaluation. Next is productionising GL writes for Ocean Ionics from ~1 July. The biggest risk remains the ~13k-line, agent-generated spike, which needs careful review for atomicity and correctness before any of it ships.",
       "whats_changed": [
         "Design session with DP (23 Jun) locked the core ledger mechanics: VAT corrections, period locking and multi-currency handling.",
@@ -111,6 +113,7 @@
       "owner": "Matthew",
       "target_date": "2026-09-30",
       "health": "Planning",
+      "notes": [],
       "exec_summary": "Still a planning-stage initiative: a prioritised feature plan (AR reconciliation, credit notes, related-parties register, payroll, third-party wallet import, depreciation/accruals, native team features) with no projects or issues filed yet. The first concrete signal came from the 23 Jun DP session — aged-receivables reporting (30/60/90/120+ day buckets by customer) is confirmed as a minimum requirement, and DP is compiling a full reporting requirements list that will frame this scope. End-to-end AR reconciliation is the first item queued (Planned, David).",
       "whats_changed": [
         "23 Jun DP session confirmed aged-receivables analysis (30/60/90/120+ buckets by customer) as a minimum reporting requirement.",

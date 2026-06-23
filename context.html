@@ -117,6 +117,13 @@ function render(layout, ctx){
   html += section('What changed (last '+ (ctx.lookback_days||14) +' days)',
     list(c.whats_changed, 'changed', x=>'<li>'+esc(x)+'</li>'));
 
+  // notes / manual context (from the running-context memory; only shown if present)
+  if(c.notes && c.notes.length){
+    html += section('Notes & context',
+      list(c.notes, '', n=>{ const t = (typeof n==='string')?n:n.text; const s=(n&&n.source)?n.source:null;
+        return '<li>'+esc(t)+(s?' <span class="tag">— '+esc(s)+'</span>':'')+'</li>'; }));
+  }
+
   // risks
   html += section('Risks & blockers',
     (c.risks&&c.risks.length)

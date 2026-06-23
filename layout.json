@@ -36,7 +36,8 @@
         "granola_folder_id": "3e5bf112-9006-4ba3-8f0b-7f1f1c5b30e5",
         "granola_keywords": ["onboarding", "open banking", "Exact", "WhatsApp", "email forwarding", "Vault", "reconciliation", "Ocean Ionics", "Roots & Bites", "SubsidAI", "Novem Studio", "AFP International", "QLever", "Escontrela"],
         "slack_channels": ["#accounting-mvp", "#tech-team"],
-        "slack_keywords": ["onboarding", "open banking", "Exact", "reconciliation", "WhatsApp", "Vault", "email forwarding", "transactions UI"]
+        "slack_keywords": ["onboarding", "open banking", "Exact", "reconciliation", "WhatsApp", "Vault", "email forwarding", "transactions UI"],
+        "memory_file": "memory/onboarding-5-customers.md"
       },
       "buckets": {
         "now": [
@@ -67,7 +68,8 @@
         "granola_folder_id": "bf3574d4-280e-4e6f-8733-72e752f9f626",
         "granola_keywords": ["ledger", "GL", "AGL", "double-entry", "VAT", "journal", "period close", "Nextens"],
         "slack_channels": ["#tech-team", "#accounting-mvp"],
-        "slack_keywords": ["ledger", "GL", "double-entry", "VAT", "journal", "Exact", "reconciliation"]
+        "slack_keywords": ["ledger", "GL", "double-entry", "VAT", "journal", "Exact", "reconciliation"],
+        "memory_file": "memory/double-entry-gl.md"
       },
       "buckets": {
         "now": [
@@ -93,7 +95,8 @@
         "granola_folder_id": "d99b2035-5b7f-4025-90cd-b3af6657e2ae",
         "granola_keywords": ["accounts receivable", "AR reconciliation", "credit note", "related parties", "payroll", "Numbrs", "Stripe", "depreciation", "accruals", "source of truth"],
         "slack_channels": ["#accounting-mvp", "#tech-team"],
-        "slack_keywords": ["accounts receivable", "credit note", "payroll", "Stripe", "depreciation", "source of truth"]
+        "slack_keywords": ["accounts receivable", "credit note", "payroll", "Stripe", "depreciation", "source of truth"],
+        "memory_file": "memory/source-of-truth.md"
       },
       "buckets": {
         "now": [],
