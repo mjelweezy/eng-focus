@@ -1,218 +1,102 @@
 {
-  "generated_at": "2026-06-23T06:20:02.255Z",
+  "generated_at": "2026-06-23T10:15:00Z",
   "projects": {
-    "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
-      "status": "In Progress",
-      "owner": "Dima"
-    },
-    "bdca02fc-e544-4715-85f2-d11798131506": {
-      "status": "In Progress",
-      "owner": "Ihor"
-    },
-    "c186341c-f7a8-4336-b973-f25ed6fd7afb": {
-      "status": "Planned",
-      "owner": null
-    },
-    "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed": {
-      "status": "Planned",
-      "owner": null
-    },
-    "0383a752-0a73-4bce-b0aa-77379e4f27cf": {
-      "status": "In Progress",
-      "owner": "Mark"
-    },
-    "b2f06e1b-57d3-4ced-9a3c-daf042c02df0": {
-      "status": "Planned",
-      "owner": "David"
-    }
+    "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {"status": "In Progress", "owner": "dima"},
+    "bdca02fc-e544-4715-85f2-d11798131506": {"status": "In Progress", "owner": "Ihor"},
+    "c186341c-f7a8-4336-b973-f25ed6fd7afb": {"status": "Backlog", "owner": null},
+    "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed": {"status": "Planned", "owner": null},
+    "0383a752-0a73-4bce-b0aa-77379e4f27cf": {"status": "In Progress", "owner": "Mark"}
   },
   "needs_triage": {},
   "engineers": [
     {
-      "name": "Dima",
-      "initial": "D",
-      "color": "#5e6ad2",
+      "name": "Dima", "initial": "D", "color": "#5e6ad2",
       "groups": [
-        {
-          "initiative": "Build data by onboarding 5 additional customers on neno",
-          "projects": [
-            {
-              "name": "Multi-Client Exact Online Connections",
-              "issues": [
-                {
-                  "id": "NEO-1328",
-                  "title": "Narrow + restyle the Swan transaction detail drawer (Ocean Ionics)",
-                  "status": "In Progress"
-                }
-              ]
-            },
-            {
-              "name": "Enable customers to connect external bank accounts and view their transactions",
-              "issues": [
-                {
-                  "id": "NEO-1291",
-                  "title": "Open Banking: provider-agnostic transaction and balance ingestion",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-1115",
-                  "title": "Open Banking: First Iteration Frontend Rework",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "initiative": "__none__",
-          "projects": [
-            {
-              "name": "Mobile App",
-              "issues": [
-                {
-                  "id": "NEO-1323",
-                  "title": "Mobile app v1 - implement all screens",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        }
+        {"initiative": "Build data by onboarding 5 additional customers", "projects": [
+          {"name": "Connect external bank accounts (Open Banking)", "issues": [
+            {"id": "NEO-1291", "title": "Open Banking: provider-agnostic transaction & balance ingestion", "status": "In Progress"},
+            {"id": "NEO-1115", "title": "Open Banking: first-iteration frontend rework", "status": "In Progress"}
+          ]}
+        ]},
+        {"initiative": "__none__", "projects": [
+          {"name": "Mobile App", "issues": [
+            {"id": "NEO-1323", "title": "Mobile app v1 - implement all screens", "status": "In Progress"}
+          ]},
+          {"name": "__none__", "issues": [
+            {"id": "NEO-1328", "title": "Narrow + restyle the Swan transaction detail drawer", "status": "In Progress"}
+          ]}
+        ]}
       ]
     },
     {
-      "name": "Mark",
-      "initial": "M",
-      "color": "#4cb782",
+      "name": "Mark", "initial": "M", "color": "#4cb782",
       "groups": [
-        {
-          "initiative": "Enable accountants to complete VAT submissions using neno double-entry GL",
-          "projects": [
-            {
-              "name": "Start writing to neno's double-entry GL",
-              "issues": [
-                {
-                  "id": "NEO-1302",
-                  "title": "Spike: Start writing into the Neno general ledger (Ocean Ionics)",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        }
+        {"initiative": "Enable VAT submissions via double-entry GL", "projects": [
+          {"name": "Start writing to neno's double-entry GL", "issues": [
+            {"id": "NEO-1302", "title": "Spike: write into the neno general ledger (Ocean Ionics)", "status": "In Progress"}
+          ]}
+        ]},
+        {"initiative": "__none__", "projects": [
+          {"name": "Flaky tests", "issues": [
+            {"id": "NEO-693", "title": "Fix flaky reconciliation tests", "status": "In Progress"}
+          ]}
+        ]}
       ]
     },
     {
-      "name": "Joel",
-      "initial": "J",
-      "color": "#f2994a",
+      "name": "Joel", "initial": "J", "color": "#f2994a",
       "groups": [
-        {
-          "initiative": "__none__",
-          "projects": [
-            {
-              "name": "Build, Send and Track Invoices",
-              "issues": [
-                {
-                  "id": "NEO-771",
-                  "title": "Add i18n support to API email templates (invoice emails)",
-                  "status": "In Progress"
-                }
-              ]
-            },
-            {
-              "name": "__none__",
-              "issues": [
-                {
-                  "id": "NEO-766",
-                  "title": "Infrastructure: Sync Pulumi and GH Actions, reduce dev costs",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        }
+        {"initiative": "__none__", "projects": [
+          {"name": "Build, Send and Track Invoices", "issues": [
+            {"id": "NEO-771", "title": "Add i18n support to API email templates", "status": "In Progress"}
+          ]},
+          {"name": "__none__", "issues": [
+            {"id": "NEO-766", "title": "Infrastructure: sync Pulumi & GH Actions, reduce dev costs", "status": "In Progress"}
+          ]}
+        ]}
       ]
     },
     {
-      "name": "David",
-      "initial": "D",
-      "color": "#e8857a",
+      "name": "David", "initial": "D", "color": "#e8857a",
       "groups": [
-        {
-          "initiative": "__none__",
-          "projects": [
-            {
-              "name": "__none__",
-              "issues": [
-                {
-                  "id": "NEO-1181",
-                  "title": "Invoice display breaks for amounts >= EUR 10,000",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        }
+        {"initiative": "__none__", "projects": [
+          {"name": "__none__", "issues": [
+            {"id": "NEO-1181", "title": "Invoice display breaks for amounts >= EUR 10,000", "status": "In Progress"}
+          ]}
+        ]}
       ]
     },
     {
-      "name": "Yaroslav",
-      "initial": "Y",
-      "color": "#8b5cf6",
+      "name": "Yaroslav", "initial": "Y", "color": "#8b5cf6",
       "groups": [
-        {
-          "initiative": "__none__",
-          "projects": [
-            {
-              "name": "__none__",
-              "issues": [
-                {
-                  "id": "NEO-1202",
-                  "title": "Promote Tasks to a primary top-level tab",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-1056",
-                  "title": "Bridge DocBldr incorporation docs into Swan supporting-doc vault",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-997",
-                  "title": "Fix Prisma 7 prisma.config.ts not auto-loading .env (setup-worktree)",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-895",
-                  "title": "Fix react-email dev task failing under Deno",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-744",
-                  "title": "Migrate preview deployment to GCP Cloud Build",
-                  "status": "In Review"
-                },
-                {
-                  "id": "NEO-673",
-                  "title": "CDP-based e2e test pause/resume for interactive debugging",
-                  "status": "In Review"
-                },
-                {
-                  "id": "NEO-632",
-                  "title": "Add base Docker image for Swan E2E to reduce CI setup overhead",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        }
+        {"initiative": "__none__", "projects": [
+          {"name": "Customer Admin Panel", "issues": [
+            {"id": "NEO-1342", "title": "Onboarding dashboard redesign: priority queue with SLA + Swan detail", "status": "In Progress"}
+          ]},
+          {"name": "Product Gaps & Polish", "issues": [
+            {"id": "NEO-827", "title": "Banking: prioritization & sorting", "status": "In Progress"}
+          ]},
+          {"name": "__none__", "issues": [
+            {"id": "NEO-1202", "title": "Promote Tasks to a primary top-level tab", "status": "In Progress"},
+            {"id": "NEO-1056", "title": "Bridge DocBldr incorporation documents into Swan vault", "status": "In Progress"},
+            {"id": "NEO-997", "title": "Fix Prisma 7 config not auto-loading .env", "status": "In Progress"},
+            {"id": "NEO-895", "title": "Fix react-email dev task failing under Deno", "status": "In Progress"},
+            {"id": "NEO-632", "title": "Add base Docker image for Swan E2E", "status": "In Progress"},
+            {"id": "NEO-744", "title": "Migrate preview deployment to GCP Cloud Build", "status": "In Review"},
+            {"id": "NEO-673", "title": "CDP-based e2e test pause/resume", "status": "In Review"}
+          ]}
+        ]}
       ]
     },
     {
-      "name": "Ihor",
-      "initial": "I",
-      "color": "#0ea5e9",
-      "groups": []
+      "name": "Matthew", "initial": "M", "color": "#0ea5e9",
+      "groups": [
+        {"initiative": "__none__", "projects": [
+          {"name": "Matthew's Vibe Coding", "issues": [
+            {"id": "NEO-1319", "title": "Update the bill review interface", "status": "In Progress"}
+          ]}
+        ]}
+      ]
     }
   ]
 }
