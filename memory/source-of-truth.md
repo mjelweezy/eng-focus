@@ -18,5 +18,10 @@ _Initiative: ce07f00e · maintained by the daily job + Matthew_
 - DP to compile the full reporting requirements list. (owner: DP, ASAP)
 - Define and file the remaining projects after AR reconciliation. (owner: Matthew)
 
+## Projects (filed in Linear)
+- [2026-06-23] Generated the initiative's feature set as Linear projects (Backlog), attached to the initiative, with summaries + DP-sourced requirements where available: Financial reporting, Credit note processing (AR & AP), Related-parties register, Payroll (Numbrs), Third-party wallet transaction import, Depreciation & accruals, Native team features & permissions, Customer project creation & management. End-to-end AR reconciliation already existed (David, Planned).
+- Requirements practice for now: update the Linear project **summary/description** directly when new requirements surface, marking the source. Future: append as project comments instead.
+
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->
+- [2026-06-23] (Source: DP design session, 23 Jun 2026) Aged-receivables reporting (30/60/90/120+ buckets by customer) is a minimum requirement → captured on the Financial reporting project. Depreciation/accruals and intercompany interest-accrual notes captured on their respective projects; payroll not yet discussed.

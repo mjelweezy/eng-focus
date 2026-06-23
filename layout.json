@@ -104,15 +104,16 @@
           {"type": "project", "projectId": "b2f06e1b-57d3-4ced-9a3c-daf042c02df0", "label": "End-to-end AR reconciliation", "show_owner_status": true, "desc": "Enable end-to-end accounts receivable — reconciliation for incoming payments."}
         ],
         "later": [
-          {"type": "text", "label": "Credit note processing", "desc": "Process credit notes in both directions (AR & AP)."},
-          {"type": "text", "label": "Related-parties register", "desc": "A register of related parties, for intercompany payments."},
-          {"type": "text", "label": "Payroll (Numbrs)", "desc": "Payroll via a Numbrs integration."},
-          {"type": "text", "label": "Third-party wallet transaction import", "desc": "MVP to import third-party wallet transactions — Stripe plus additional channels."},
-          {"type": "text", "label": "Depreciation & accruals", "desc": "Support depreciation and accrual entries."},
-          {"type": "text", "label": "Native team features & permissions", "desc": "Native team features and membership permissions."},
-          {"type": "text", "label": "Customer project creation & management", "desc": null}
+          {"type": "project", "projectId": "14c0164a-580a-4707-a6f6-039eb30c5969", "label": "Financial reporting", "show_owner_status": true, "desc": "Reporting on top of the ledger — aged receivables (30/60/90/120+) confirmed; full requirements list pending from DP."},
+          {"type": "project", "projectId": "6c262f19-7934-4641-ba14-6ff937127454", "label": "Credit note processing (AR & AP)", "show_owner_status": true, "desc": "Process credit notes in both directions (AR & AP)."},
+          {"type": "project", "projectId": "4ce20eb5-9845-4fa3-b1a9-8f9c8b949a3e", "label": "Related-parties register", "show_owner_status": true, "desc": "A register of related parties, for intercompany payments."},
+          {"type": "project", "projectId": "2731244b-71c8-44d1-b6bf-ae9434135d05", "label": "Payroll (Numbrs)", "show_owner_status": true, "desc": "Payroll via a Numbrs integration."},
+          {"type": "project", "projectId": "8e80b462-b77a-4479-b48e-8031bc8b6f11", "label": "Third-party wallet transaction import", "show_owner_status": true, "desc": "MVP to import third-party wallet transactions — Stripe plus additional channels."},
+          {"type": "project", "projectId": "9dead622-60da-42fc-b4a1-bbc3a2ce606b", "label": "Depreciation & accruals", "show_owner_status": true, "desc": "Support depreciation and accrual entries."},
+          {"type": "project", "projectId": "81f22936-e57a-4ecf-b68c-373967a9142c", "label": "Native team features & permissions", "show_owner_status": true, "desc": "Native team features and membership permissions."},
+          {"type": "project", "projectId": "8f6881bc-f28a-4b3e-a832-33e61ac1b235", "label": "Customer project creation & management", "show_owner_status": true, "desc": "Let customers create and manage projects."}
         ],
-        "footnote": "Prioritised plan only — no projects or issues filed yet."
+        "footnote": "Projects now filed in Linear (Backlog); requirements captured on each project as they surface."
       }
     }
   ]
