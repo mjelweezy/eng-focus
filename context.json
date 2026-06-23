@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T10:00:00Z",
+  "generated_at": "2026-06-23T12:42:42Z",
   "lookback_days": 14,
   "initiatives": {
     "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -8,103 +8,334 @@
       "target_date": "2026-07-06",
       "health": "At risk",
       "notes": [],
-      "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno by early July. Open Banking ingestion is the active build (Dima); per-client Exact connections are planned (Ihor). The guided onboarding home and the WhatsApp/email/Vault channels are queued next, then final QA. The main worry is timing: the onboarding-actions project is still in backlog against a 6 Jul target, and the open-banking provider decision is unconfirmed.",
+      "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno by early July. Open Banking ingestion is the active build (Dima); per-client Exact connections have moved into build (Ihor) with milestone 2 (per-workspace Exact reads/writes) now in review. The guided onboarding home and the WhatsApp/email/Vault channels are queued next, then final QA. The main worry is timing: the onboarding-actions project is still planned against a 6 Jul target and its stepper depends on the new transactions UI, and the open-banking provider decision is unconfirmed.",
       "whats_changed": [
         "Open Banking provider-agnostic ingestion (NEO-1291) and frontend rework (NEO-1115) are in progress (Dima).",
-        "Onboarding checklist scope locked: 6 hardcoded steps (connect Swan, connect external bank, view transactions, reconcile/respond to tasks, send first invoice, contact accountant); team invites, accounting menu, WhatsApp and credit-card steps deferred.",
-        "Exact matching (AR & AP) is complete; GL-account picker (David), VAT bracket, vendor selection and refunds still outstanding.",
-        "WhatsApp/email/Vault pipeline exists; the upload drawer is still missing WhatsApp + email options (flagged 22 Jun)."
+        "Multi-Client Exact Online Connections is now In Progress (Ihor); milestone 2 (per-workspace Exact reads/writes, NEO-1329) is in review.",
+        "Onboarding checklist scope locked: 6 self-reported steps (connect Swan, connect external bank, view transactions, reconcile/respond to tasks, send first invoice, contact accountant); team invites, accounting menu, WhatsApp and credit-card steps deferred.",
+        "Decided that open-banking-only users get a limited Home (no team invites, cards, transfers or manage-beneficiaries) and the Home is hidden after onboarding for now.",
+        "WhatsApp/email/Vault pipeline exists; the upload drawer is still missing WhatsApp + email options (flagged 22 Jun), and email forwarding needs feature-flagging plus the forwarding address shown in the Vault UI."
       ],
       "risks": [
-        {"severity": "high", "text": "6 Jul onboarding target is tight — the onboarding-actions project is still in backlog and its stepper depends on the new transactions UI."},
-        {"severity": "med", "text": "Open-banking provider decision unconfirmed (Plaid ~€2k/mo minimum); single- vs multi-provider still pending."},
-        {"severity": "med", "text": "Email forwarding only accepts workspace-member senders, has no UI yet, and the rejected-email auto-reply is still to be built."}
+        {
+          "severity": "high",
+          "text": "6 Jul onboarding target is tight - the onboarding-actions project is still planned and its stepper depends on the new transactions UI."
+        },
+        {
+          "severity": "med",
+          "text": "Open-banking provider decision unconfirmed (Plaid ~EUR 2k/mo minimum); single- vs multi-provider still pending."
+        },
+        {
+          "severity": "med",
+          "text": "Email forwarding only accepts workspace-member senders, has no UI yet, and the rejected-email auto-reply is still to be built."
+        }
       ],
       "projects": [
-        {"name": "Connect external bank accounts (Open Banking)", "status": "In Progress", "owner": "dima", "summary": "Provider-agnostic transaction/balance ingestion plus a multi-account Money Management UI rework.", "blockers": ["Open-banking provider decision unconfirmed"]},
-        {"name": "Multi-Client Exact Online Connections", "status": "Planned", "owner": "Ihor", "summary": "A separate Exact connection per client workspace so accountants reconcile each client into their own division.", "blockers": ["GL picker, VAT bracket, vendor selection and refunds still outstanding"]},
-        {"name": "Present onboarding actions for the next 5 customers", "status": "Backlog", "owner": null, "summary": "Home dashboard with guided steps teaching the three bill-submission channels and routing to bank connect.", "blockers": ["Depends on the new transactions UI"]},
-        {"name": "WhatsApp, Email forwarding & Vault re-provisioning", "status": "Planned", "owner": null, "summary": "Make the three bill-upload channels work for customers without a Swan account.", "blockers": []}
+        {
+          "name": "Connect external bank accounts (Open Banking)",
+          "status": "In Progress",
+          "owner": "dima",
+          "summary": "Provider-agnostic transaction/balance ingestion plus a multi-account Money Management UI rework.",
+          "blockers": [
+            "Open-banking provider decision unconfirmed"
+          ]
+        },
+        {
+          "name": "Multi-Client Exact Online Connections",
+          "status": "In Progress",
+          "owner": "Ihor",
+          "summary": "A separate Exact connection per client workspace so accountants reconcile each client into their own division.",
+          "blockers": [
+            "GL/VAT picker error states, dead-connection detection and Ops alerting still outstanding"
+          ]
+        },
+        {
+          "name": "Present onboarding actions for the next 5 customers",
+          "status": "Planned",
+          "owner": null,
+          "summary": "Home dashboard with guided steps teaching the three bill-submission channels and routing to bank connect.",
+          "blockers": [
+            "Depends on the new transactions UI"
+          ]
+        },
+        {
+          "name": "WhatsApp, Email forwarding & Vault re-provisioning",
+          "status": "Planned",
+          "owner": null,
+          "summary": "Make the three bill-upload channels work for customers without a Swan account.",
+          "blockers": []
+        }
       ],
       "decisions": [
-        {"date": "2026-06-22", "text": "Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete.", "source": "Granola"},
-        {"date": "2026-06-22", "text": "Onboarding fixed to 6 steps; team invites, accounting menu, WhatsApp and credit-card steps deferred.", "source": "Granola"},
-        {"date": null, "text": "Non-Swan customers must be able to connect to neno (bypassing the Swan requirement) — a prerequisite for the next 5.", "source": "Granola"},
-        {"date": null, "text": "Slack notifications required for all document uploads during the early phase.", "source": "Slack #accounting-mvp"}
+        {
+          "date": "2026-06-22",
+          "text": "Onboarding is a simple hardcoded checklist - a backend boolean/timestamp per step that hides when complete; completion is self-reported, with no auto-detection.",
+          "source": "Granola"
+        },
+        {
+          "date": "2026-06-22",
+          "text": "Onboarding fixed to 6 steps; team invites, accounting menu, WhatsApp and credit-card steps deferred.",
+          "source": "Granola"
+        },
+        {
+          "date": "2026-06-22",
+          "text": "Both the transactions drawer and the tasks/upload drawer should expose all three bill-submission options (WhatsApp, email forwarding, Vault); email forwarding must be feature-flagged and the forwarding address shown in the Vault UI.",
+          "source": "Granola"
+        },
+        {
+          "date": "2026-06-16",
+          "text": "Open-banking-only users get a limited Home (no team invites, card creation, transfers or manage-beneficiaries) and the Home is hidden after onboarding for now.",
+          "source": "Granola"
+        },
+        {
+          "date": null,
+          "text": "Non-Swan customers must be able to connect to neno (bypassing the Swan requirement) - a prerequisite for the next 5.",
+          "source": "Granola"
+        },
+        {
+          "date": null,
+          "text": "Slack notifications required for all document uploads during the early phase.",
+          "source": "Slack #accounting-mvp"
+        }
       ],
       "open_questions": [
-        {"text": "Onboarding stepper is a placeholder until the new transactions UI is ready.", "owner": "Euge"},
-        {"text": "Open-banking provider decision still unconfirmed — needs a status check.", "owner": null},
-        {"text": "Receipt upload drawer is missing WhatsApp + email options (flagged 22 Jun).", "owner": null}
+        {
+          "text": "Onboarding stepper is a placeholder until the new transactions UI is ready.",
+          "owner": "Euge"
+        },
+        {
+          "text": "Open-banking provider decision still unconfirmed - needs a status check.",
+          "owner": null
+        },
+        {
+          "text": "Receipt upload drawer is missing WhatsApp + email options (flagged 22 Jun).",
+          "owner": null
+        },
+        {
+          "text": "When will the new transactions UI (by-date/by-status switch + open-tasks section) be ready? The full WhatsApp/email/Vault walkthrough depends on it.",
+          "owner": null
+        }
       ],
       "next_steps": [
-        {"text": "Design the user-journey screens + an Ocean Ionics-specific homepage.", "owner": "Euge", "due": "was due 19 Jun"},
-        {"text": "WhatsApp messaging update + email reply automation.", "owner": "Ihor", "due": null},
-        {"text": "Check Swan drawer configurability; leave Linear tickets for Joel.", "owner": "Dima", "due": null},
-        {"text": "All team members test WhatsApp + email forwarding before Ocean Ionics rollout.", "owner": "Team", "due": null}
+        {
+          "text": "Design the user-journey screens + an Ocean Ionics-specific homepage.",
+          "owner": "Euge",
+          "due": "was due 19 Jun"
+        },
+        {
+          "text": "WhatsApp messaging update + email reply automation.",
+          "owner": "Ihor",
+          "due": null
+        },
+        {
+          "text": "Check Swan drawer configurability; leave Linear tickets for Joel.",
+          "owner": "Dima",
+          "due": null
+        },
+        {
+          "text": "Flag the missing email/WhatsApp options in the drawer to Joel (explanation required if intentionally absent).",
+          "owner": "Team",
+          "due": null
+        },
+        {
+          "text": "All team members test WhatsApp + email forwarding before Ocean Ionics rollout.",
+          "owner": "Team",
+          "due": null
+        }
       ],
       "meetings": [],
       "resources": [
-        {"label": "Linear initiative", "url": "https://linear.app/nenotechnology/initiative/build-data-by-onboarding-5-additional-customers-on-neno-16777b88b5d7"},
-        {"label": "Miro — onboarding journey", "url": "https://miro.com/app/board/uXjVHFXnKZk=/"}
+        {
+          "label": "Linear initiative",
+          "url": "https://linear.app/nenotechnology/initiative/build-data-by-onboarding-5-additional-customers-on-neno-16777b88b5d7"
+        },
+        {
+          "label": "Miro - onboarding journey",
+          "url": "https://miro.com/app/board/uXjVHFXnKZk=/"
+        }
       ],
-      "sources_note": "Granola folder 'Onboarding 5 additional customers' (currently empty) + #accounting-mvp / #tech-team. File onboarding meetings in the folder to populate the meetings list here."
+      "sources_note": "Granola folder 'Onboarding 5 additional customers' (empty) + 'User Journey for next 5 customers' (16 Jun) and the Matthew/Eugenia weekly sync (22 Jun); Slack #accounting-mvp / #tech-team (no new lookback hits). File onboarding meetings in the folder to populate the meetings list here."
     },
     "fef38f90-b82c-4c47-b377-6dcb9b1a3020": {
       "title": "Enable accountants to complete VAT submissions via double-entry GL",
       "owner": "Matthew",
       "target_date": "2026-09-30",
       "health": "On track",
-      "notes": [],
-      "exec_summary": "Standing up neno's own double-entry general ledger so we can file Q3 VAT for ~6 customers directly from neno. The spike that writes into the previously-unwired ledger is in progress (Mark), and after the 23 Jun design session with DP the core mechanics are now decided — VAT corrections post to the next period, closed periods lock with approval-gated inserts only, and FX is handled via month-end revaluation. Next is productionising GL writes for Ocean Ionics from ~1 July. The biggest risk remains the ~13k-line, agent-generated spike, which needs careful review for atomicity and correctness before any of it ships.",
+      "notes": [
+        {
+          "text": "Agentic-ledger idea: when a backdated entry is posted, automatically detect which reports are affected and surface the delta.",
+          "source": "Granola - DP session, 23 Jun"
+        }
+      ],
+      "exec_summary": "Standing up neno's own double-entry general ledger so we can file Q3 VAT for ~6 customers directly from neno. The spike that writes into the previously-unwired ledger is in progress (Mark), and after the 23 Jun design session with DP the core mechanics are now decided - VAT corrections post to the next period, closed periods lock with approval-gated inserts only, and FX is handled via month-end revaluation. The session also fixed VAT reporting to break down by rate and territory and confirmed the Nextens export path. Next is productionising GL writes for Ocean Ionics from ~1 July. The biggest risk remains the ~13k-line, agent-generated spike, which needs careful review for atomicity and correctness before any of it ships.",
       "whats_changed": [
         "Design session with DP (23 Jun) locked the core ledger mechanics: VAT corrections, period locking and multi-currency handling.",
+        "VAT reporting fixed to break down by rate and territory (21% / 9% / 0% Dutch, EU sales, non-EU sales; same for purchases), exported to Nextens.",
         "Spike (NEO-1302) writing into the neno GL for Ocean Ionics is in progress (Mark).",
         "Q3 target confirmed: VAT submission from neno for 6 customers (AR & AP), opening balance taken from the Q1/Q2 Exact close."
       ],
       "risks": [
-        {"severity": "high", "text": "The spike (~13k lines, Claude-generated) took liberties with DB writes — atomicity and no overlapping bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew)."},
-        {"severity": "med", "text": "Belgium gapless-ledger requirement still unconfirmed — does it constrain the day-to-day architecture or only closed-period reporting?"},
-        {"severity": "med", "text": "DP's full reporting requirements list (potentially 100+ items) is not yet compiled — could expand GL scope."}
+        {
+          "severity": "high",
+          "text": "The spike (~13k lines, Claude-generated) took liberties with DB writes - atomicity and no overlapping bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew)."
+        },
+        {
+          "severity": "med",
+          "text": "Belgium gapless-ledger requirement still unconfirmed - does it constrain the day-to-day architecture or only closed-period reporting?"
+        },
+        {
+          "severity": "med",
+          "text": "DP's full reporting requirements list (potentially 100+ items) is not yet compiled - could expand GL scope."
+        }
       ],
       "projects": [
-        {"name": "Start writing to neno's double-entry GL", "status": "In Progress", "owner": "Mark", "summary": "Wire up the unused ledger and write entries for Ocean Ionics; target real GL writes from 1 July.", "blockers": ["Spike code needs atomicity/correctness review before production"]}
+        {
+          "name": "Start writing to neno's double-entry GL",
+          "status": "In Progress",
+          "owner": "Mark",
+          "summary": "Wire up the unused ledger and write entries for Ocean Ionics; target real GL writes from 1 July.",
+          "blockers": [
+            "Spike code needs atomicity/correctness review before production"
+          ]
+        }
       ],
       "decisions": [
-        {"date": "2026-06-23", "text": "VAT corrections after a period close are booked in the next period (dated day 1); amounts under €1,000 fold into the next return without a supplemental filing. Balance sheet needs three VAT lines: receivable, payable, and a corrections/suspense account.", "source": "Granola: Double-Entry Bookkeeping Open Questions"},
-        {"date": "2026-06-23", "text": "Closed periods lock writes by default; unlocking is approval-gated and only for material post-close accruals. No editing existing entries — only inserting new journal entries dated in the closed period, with a full audit log.", "source": "Granola: Double-Entry Bookkeeping Open Questions"},
-        {"date": "2026-06-23", "text": "Multi-currency: store foreign amount + transaction-date rate, derive euro on demand; revalue FX assets/liabilities at month-end to an unrealized FX gains/losses account (P&L under Dutch GAAP, equity under IFRS).", "source": "Granola: Double-Entry Bookkeeping Open Questions"},
-        {"date": "2026-06-22", "text": "Insert-only architecture with reversals — no direct edits to journal entries; corrections reverse and rebook.", "source": "Granola: Next Steps AGL with Mark"},
-        {"date": "2026-06-22", "text": "Period closes define immutability; monitoring over rollback; Euro-only for now; Q3 VAT for 6 customers with opening balance from the Q1/Q2 Exact close.", "source": "Granola: Next Steps AGL with Mark"}
+        {
+          "date": "2026-06-23",
+          "text": "VAT corrections after a period close are booked in the next period (dated day 1); amounts under EUR 1,000 fold into the next return without a supplemental filing. Balance sheet needs three VAT lines: receivable, payable, and a corrections/suspense account.",
+          "source": "Granola: Double-Entry Bookkeeping Open Questions"
+        },
+        {
+          "date": "2026-06-23",
+          "text": "Closed periods lock writes by default; unlocking is approval-gated and only for material post-close accruals. No editing existing entries - only inserting new journal entries dated in the closed period, with a full audit log.",
+          "source": "Granola: Double-Entry Bookkeeping Open Questions"
+        },
+        {
+          "date": "2026-06-23",
+          "text": "Multi-currency: store foreign amount + transaction-date rate, derive euro on demand; revalue FX assets/liabilities at month-end to an unrealized FX gains/losses account (P&L under Dutch GAAP, equity under IFRS).",
+          "source": "Granola: Double-Entry Bookkeeping Open Questions"
+        },
+        {
+          "date": "2026-06-23",
+          "text": "VAT reporting must break down by rate and territory (21% / 9% / 0% Dutch, EU sales, non-EU sales; same for purchases); VAT export mapped to Nextens for submission.",
+          "source": "Granola: Double-Entry Bookkeeping Open Questions"
+        },
+        {
+          "date": "2026-06-22",
+          "text": "Insert-only architecture with reversals - no direct edits to journal entries; corrections reverse and rebook.",
+          "source": "Granola: Next Steps AGL with Mark"
+        },
+        {
+          "date": "2026-06-22",
+          "text": "Period closes define immutability; monitoring over rollback; Euro-only for now; Q3 VAT for 6 customers with opening balance from the Q1/Q2 Exact close.",
+          "source": "Granola: Next Steps AGL with Mark"
+        }
       ],
       "open_questions": [
-        {"text": "Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? (not resolved in the session)", "owner": null},
-        {"text": "Full reporting requirements list being compiled by DP (potentially 100+ items) — will frame future design.", "owner": "DP"},
-        {"text": "What must change in the current system to use double-entry bookkeeping for the Q3 VAT submission?", "owner": null}
+        {
+          "text": "Belgium gapless-ledger requirement - does it constrain day-to-day ledger architecture or only closed-period exports/reporting? (not resolved in the session)",
+          "owner": null
+        },
+        {
+          "text": "Full reporting requirements list being compiled by DP (potentially 100+ items) - will frame future design.",
+          "owner": "DP"
+        },
+        {
+          "text": "What must change in the current system to use double-entry bookkeeping for the Q3 VAT submission?",
+          "owner": null
+        },
+        {
+          "text": "VAT filing period must be configurable per customer/country (monthly, quarterly, or bi-monthly).",
+          "owner": null
+        }
       ],
       "next_steps": [
-        {"text": "Compile the full reporting requirements list.", "owner": "DP", "due": "ASAP"},
-        {"text": "Schedule the follow-up design session.", "owner": "Matthew", "due": "~1 week"},
-        {"text": "Compile outstanding open questions before the follow-up.", "owner": "Matthew / Mark", "due": "before follow-up"},
-        {"text": "Review spike code for atomicity, security and correctness.", "owner": "Mark (+Matthew)", "due": "this week"},
-        {"text": "Reproduce the balance check in production with periods.", "owner": "Engineering", "due": "by Wed 25 Jun"},
-        {"text": "Map the VAT export to Nextens for submission.", "owner": "TBD", "due": "Q3"}
+        {
+          "text": "Compile the full reporting requirements list.",
+          "owner": "DP",
+          "due": "ASAP"
+        },
+        {
+          "text": "Schedule the follow-up design session.",
+          "owner": "Matthew",
+          "due": "~1 week"
+        },
+        {
+          "text": "Compile outstanding open questions before the follow-up.",
+          "owner": "Matthew / Mark",
+          "due": "before follow-up"
+        },
+        {
+          "text": "Review spike code for atomicity, security and correctness.",
+          "owner": "Mark (+Matthew)",
+          "due": "this week"
+        },
+        {
+          "text": "Reproduce the balance check in production with periods.",
+          "owner": "Engineering",
+          "due": "by Wed 25 Jun"
+        },
+        {
+          "text": "Map the VAT export to Nextens for submission.",
+          "owner": "TBD",
+          "due": "Q3"
+        }
       ],
       "meetings": [
-        {"date": "2026-06-23", "title": "Double-Entry Bookkeeping Open Questions", "url": null,
-         "summary": "Design session with DP and Mark that resolved the core ledger mechanics ahead of productionising.",
-         "decisions": ["VAT corrections booked in the next period; <€1,000 folds in without a supplemental return; 3 VAT balance-sheet lines (receivable, payable, corrections/suspense)", "Closed periods lock; approval-gated insert-only changes with full audit log", "Multi-currency: store FX amount + date rate, month-end revaluation to an unrealized FX gains/losses account"],
-         "open_questions": ["Belgium gapless-ledger scope unconfirmed", "DP to compile full reporting requirements list"],
-         "next_steps": ["DP compiles reporting requirements", "Matthew schedules follow-up (~1 week)", "Confirm Belgium gapless-ledger scope"]},
-        {"date": "2026-06-22", "title": "Next Steps AGL with Mark", "url": null,
-         "summary": "Walked the double-entry GL design toward productionising for Ocean Ionics and the Q3 VAT submission.",
-         "decisions": ["Insert-only with reversals", "Period closes define immutability", "Euro-only for now", "Q1/Q2 Exact close as Q3 opening balance"],
-         "open_questions": ["VAT corrections in closed periods", "Edit permissions for humans vs agents", "Belgium gapless-ledger requirement"],
-         "next_steps": ["DP session 23 Jun", "Review spike code for atomicity", "Reproduce balance check in production by 25 Jun"]}
+        {
+          "date": "2026-06-23",
+          "title": "Double-Entry Bookkeeping Open Questions",
+          "url": null,
+          "summary": "Design session with DP and Mark that resolved the core ledger mechanics ahead of productionising.",
+          "decisions": [
+            "VAT corrections booked in the next period; <EUR 1,000 folds in without a supplemental return; 3 VAT balance-sheet lines (receivable, payable, corrections/suspense)",
+            "Closed periods lock; approval-gated insert-only changes with full audit log",
+            "Multi-currency: store FX amount + date rate, month-end revaluation to an unrealized FX gains/losses account",
+            "VAT reporting broken down by rate and territory; export mapped to Nextens"
+          ],
+          "open_questions": [
+            "Belgium gapless-ledger scope unconfirmed",
+            "DP to compile full reporting requirements list",
+            "VAT filing period flexibility per customer/country"
+          ],
+          "next_steps": [
+            "DP compiles reporting requirements",
+            "Matthew schedules follow-up (~1 week)",
+            "Confirm Belgium gapless-ledger scope"
+          ]
+        },
+        {
+          "date": "2026-06-22",
+          "title": "Next Steps AGL with Mark",
+          "url": null,
+          "summary": "Walked the double-entry GL design toward productionising for Ocean Ionics and the Q3 VAT submission.",
+          "decisions": [
+            "Insert-only with reversals",
+            "Period closes define immutability",
+            "Euro-only for now",
+            "Q1/Q2 Exact close as Q3 opening balance"
+          ],
+          "open_questions": [
+            "VAT corrections in closed periods",
+            "Edit permissions for humans vs agents",
+            "Belgium gapless-ledger requirement"
+          ],
+          "next_steps": [
+            "DP session 23 Jun",
+            "Review spike code for atomicity",
+            "Reproduce balance check in production by 25 Jun"
+          ]
+        }
       ],
       "resources": [
-        {"label": "Linear initiative", "url": "https://linear.app/nenotechnology/initiative/enable-accountants-to-complete-vat-submissions-using-neno-double-entry-089e47b575e8"},
-        {"label": "Granola folder — Nenos Double-Entry GL", "url": null}
+        {
+          "label": "Linear initiative",
+          "url": "https://linear.app/nenotechnology/initiative/enable-accountants-to-complete-vat-submissions-using-neno-double-entry-089e47b575e8"
+        },
+        {
+          "label": "Granola folder - Nenos Double-Entry GL",
+          "url": null
+        }
       ],
       "sources_note": "Granola folder 'Nenos Double-Entry GL' (2 notes) + #tech-team ledger threads."
     },
@@ -114,53 +345,203 @@
       "target_date": "2026-09-30",
       "health": "Planning",
       "notes": [
-        {"text": "Feature set filed as Linear projects (Backlog) with DP-sourced requirements; requirements are updated on each project's summary directly for now, with the source noted.", "source": "Matthew, 23 Jun"}
+        {
+          "text": "Feature set filed as Linear projects (Backlog) with DP-sourced requirements; requirements are updated on each project's summary directly for now, with the source noted.",
+          "source": "Matthew, 23 Jun"
+        }
       ],
-      "exec_summary": "The initiative is now filled out as a backlog: the full feature set has been filed as Linear projects (all Backlog), each with a summary and — where the 23 Jun DP session gave signal — initial requirements. End-to-end AR reconciliation is the one project further along (Planned, David). The 23 Jun DP session confirmed aged-receivables reporting (30/60/90/120+ buckets by customer) as a minimum requirement, captured on a new Financial reporting project; DP is compiling a full reporting requirements list (100+ items) that will frame the scope.",
+      "exec_summary": "The initiative is now filled out as a backlog: the full feature set has been filed as Linear projects (all Backlog), each with a summary and - where the 23 Jun DP session gave signal - initial requirements. End-to-end AR reconciliation is the one project further along (Planned, David). The DP session produced a detailed minimum reporting set (trial balance, full GL export, P&L, balance sheet, aged receivables, fixed-asset register, GL drill-down) plus richer requirements for related parties and depreciation/accruals, and restated the Q3 goal of 30 customers on neno feeding Exact. DP is still compiling a full reporting requirements list (100+ items) that will frame the scope.",
       "whats_changed": [
         "Filed the feature set as Linear projects (Backlog) attached to the initiative, with DP-sourced requirements where available.",
-        "23 Jun DP session confirmed aged-receivables analysis (30/60/90/120+ buckets by customer) as a minimum reporting requirement.",
+        "23 Jun DP session produced a minimum reporting set: trial balance, full GL export, P&L, balance sheet, aged receivables (30/60/90/120+ by customer), fixed-asset register with depreciation rates, and GL-account drill-down/export.",
+        "Related-parties requirement sharpened: every related-party transaction needs a counterparty tag/code and GL drill-down must show the related party per line.",
+        "Depreciation/accruals detail captured (asset-type grouping, fixed-asset register, annual review; accrual reverse-on-invoice workflow with an AI-assist opportunity).",
+        "Q3 goal restated: 30 customers running on neno for bookkeeping with neno as the single source of truth feeding Exact.",
         "DP is compiling a full reporting requirements list (potentially 100+ items) to frame future design."
       ],
       "risks": [
-        {"severity": "med", "text": "Scope is broad and unsequenced; nothing is staffed yet beyond AR reconciliation being earmarked for David."},
-        {"severity": "med", "text": "Full reporting requirements are not yet enumerated — scope could grow materially once DP's list lands."}
+        {
+          "severity": "med",
+          "text": "Scope is broad and unsequenced; nothing is staffed yet beyond AR reconciliation being earmarked for David."
+        },
+        {
+          "severity": "med",
+          "text": "Full reporting requirements are not yet enumerated - scope could grow materially once DP's list lands."
+        },
+        {
+          "severity": "med",
+          "text": "~EUR 15K in outstanding receivables flagged with no active debtor management yet."
+        }
       ],
       "projects": [
-        {"name": "End-to-end AR reconciliation", "status": "Planned", "owner": "David", "summary": "Match incoming payments to outbound invoices and close the open item in Exact; validated on seeded data first.", "blockers": []},
-        {"name": "Financial reporting", "status": "Backlog", "owner": null, "summary": "Reporting on the ledger; aged receivables (30/60/90/120+) confirmed, full requirements list pending from DP.", "blockers": []},
-        {"name": "Credit note processing (AR & AP)", "status": "Backlog", "owner": null, "summary": "Process credit notes both ways so reconciliation and the ledger reflect reversals/refunds.", "blockers": []},
-        {"name": "Related-parties register", "status": "Backlog", "owner": null, "summary": "Register of related parties for intercompany payments and bookings.", "blockers": []},
-        {"name": "Payroll (Numbrs integration)", "status": "Backlog", "owner": null, "summary": "Payroll via Numbrs; requirements not yet defined (not covered in the DP session).", "blockers": []},
-        {"name": "Third-party wallet transaction import (MVP)", "status": "Backlog", "owner": null, "summary": "Ingest third-party wallet/PSP transactions, Stripe first.", "blockers": []},
-        {"name": "Depreciation & accruals", "status": "Backlog", "owner": null, "summary": "Depreciation schedules and accrual/prepayment entries; post-close accruals via approval-gated inserts.", "blockers": []},
-        {"name": "Native team features & membership permissions", "status": "Backlog", "owner": null, "summary": "neno-native team/member management and permissions, independent of Swan.", "blockers": []},
-        {"name": "Customer project creation & management", "status": "Backlog", "owner": null, "summary": "Customer-defined projects for project-based cost/revenue tracking; scope TBD.", "blockers": []}
+        {
+          "name": "End-to-end AR reconciliation",
+          "status": "Planned",
+          "owner": "David",
+          "summary": "Match incoming payments to outbound invoices and close the open item in Exact; validated on seeded data first. ~EUR 15K outstanding receivables currently unmanaged - needs a debtor-management view.",
+          "blockers": []
+        },
+        {
+          "name": "Financial reporting",
+          "status": "Backlog",
+          "owner": null,
+          "summary": "Reporting on the ledger; minimum set = trial balance, full GL export, P&L, balance sheet, aged receivables (30/60/90/120+), fixed-asset register, GL drill-down; VAT breakdown by rate/territory to Nextens. Full list pending from DP.",
+          "blockers": []
+        },
+        {
+          "name": "Credit note processing (AR & AP)",
+          "status": "Backlog",
+          "owner": null,
+          "summary": "Process credit notes both ways so reconciliation and the ledger reflect reversals/refunds; still to be specced.",
+          "blockers": []
+        },
+        {
+          "name": "Related-parties register",
+          "status": "Backlog",
+          "owner": null,
+          "summary": "Register of related parties for intercompany payments; every related-party transaction carries a counterparty tag and GL drill-down shows the related party per line.",
+          "blockers": []
+        },
+        {
+          "name": "Payroll (Numbrs integration)",
+          "status": "Backlog",
+          "owner": null,
+          "summary": "Payroll via Numbrs; requirements not yet defined (not covered in the DP session).",
+          "blockers": []
+        },
+        {
+          "name": "Third-party wallet transaction import (MVP)",
+          "status": "Backlog",
+          "owner": null,
+          "summary": "Ingest third-party wallet/PSP transactions, Stripe first, so non-Swan banking customers feed transactions into neno.",
+          "blockers": []
+        },
+        {
+          "name": "Depreciation & accruals",
+          "status": "Backlog",
+          "owner": null,
+          "summary": "Depreciation by asset-type group with a fixed-asset register (annual review for now); accruals book expected expense and reverse on invoice arrival; post-close accruals via approval-gated inserts.",
+          "blockers": []
+        },
+        {
+          "name": "Native team features & membership permissions",
+          "status": "Backlog",
+          "owner": null,
+          "summary": "neno-native team/member management and permissions, independent of Swan.",
+          "blockers": []
+        },
+        {
+          "name": "Customer project creation & management",
+          "status": "Backlog",
+          "owner": null,
+          "summary": "Customer-defined projects for project-based cost/revenue tracking; scope TBD.",
+          "blockers": []
+        }
       ],
       "decisions": [
-        {"date": "2026-06-23", "text": "Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement.", "source": "Granola: Double-Entry Bookkeeping Open Questions"}
+        {
+          "date": "2026-06-23",
+          "text": "Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement.",
+          "source": "Granola: Double-Entry Bookkeeping Open Questions"
+        },
+        {
+          "date": "2026-06-23",
+          "text": "Q3 goal restated: 30 customers running on neno for bookkeeping, with neno as the single source of truth feeding Exact.",
+          "source": "Granola: Q2 Retro & Q3 Planning"
+        },
+        {
+          "date": "2026-06-23",
+          "text": "Intercompany interest auto-accrual deprioritised as a nice-to-have (currently tracked in Excel).",
+          "source": "Granola: DP session"
+        },
+        {
+          "date": "2026-06-23",
+          "text": "Depreciation review runs in July and annually for now; year-end balance correctness is the key requirement (monthly journals possible in Exact).",
+          "source": "Granola: DP session"
+        }
       ],
       "open_questions": [
-        {"text": "Payroll design not yet discussed — remains an open design area for a future session.", "owner": null},
-        {"text": "Full reporting requirements list still being compiled by DP.", "owner": "DP"},
-        {"text": "Feature sequencing and ownership for the post-GL bookkeeping scope is not yet decided.", "owner": "Matthew"}
+        {
+          "text": "Payroll design not yet discussed - remains an open design area for a future session.",
+          "owner": null
+        },
+        {
+          "text": "Full reporting requirements list still being compiled by DP.",
+          "owner": "DP"
+        },
+        {
+          "text": "Feature sequencing and ownership for the post-GL bookkeeping scope is not yet decided.",
+          "owner": "Matthew"
+        },
+        {
+          "text": "Ocean Ionics Espana: separate entity or a second bank account? Booking treatment (intercompany vs investment) depends on the answer.",
+          "owner": null
+        },
+        {
+          "text": "VAT filing period flexibility (monthly/quarterly/bi-monthly) must be configurable per customer and country.",
+          "owner": null
+        }
       ],
       "next_steps": [
-        {"text": "Compile the full reporting requirements list.", "owner": "DP", "due": "ASAP"},
-        {"text": "Define and file the first projects, starting with end-to-end AR reconciliation.", "owner": "Matthew", "due": null}
+        {
+          "text": "Compile the full reporting requirements list.",
+          "owner": "DP",
+          "due": "ASAP"
+        },
+        {
+          "text": "Define and file the remaining projects after end-to-end AR reconciliation.",
+          "owner": "Matthew",
+          "due": null
+        }
       ],
       "meetings": [
-        {"date": "2026-06-23", "title": "Double-Entry Bookkeeping Open Questions", "url": null,
-         "summary": "Primarily a GL design session; touched the bookkeeping roadmap — AR reporting requirements and future feature areas.",
-         "decisions": ["Aged-receivables reporting (30/60/90/120+ buckets) confirmed as a minimum requirement"],
-         "open_questions": ["Payroll design not discussed", "DP to compile full reporting requirements list"],
-         "next_steps": ["DP compiles reporting requirements", "Follow-up session in ~1 week"]}
+        {
+          "date": "2026-06-23",
+          "title": "Double-Entry Bookkeeping Open Questions",
+          "url": null,
+          "summary": "Primarily a GL design session; produced the minimum reporting set and sharpened related-parties and depreciation/accruals requirements.",
+          "decisions": [
+            "Minimum reporting set defined (trial balance, full GL export, P&L, balance sheet, aged receivables, fixed-asset register, GL drill-down)",
+            "Aged-receivables reporting (30/60/90/120+ buckets) confirmed as a minimum requirement",
+            "Intercompany interest auto-accrual deprioritised"
+          ],
+          "open_questions": [
+            "Payroll design not discussed",
+            "DP to compile full reporting requirements list",
+            "Ocean Ionics Espana: entity vs second bank account"
+          ],
+          "next_steps": [
+            "DP compiles reporting requirements",
+            "Follow-up session in ~1 week"
+          ]
+        },
+        {
+          "date": "2026-06-18",
+          "title": "Q2 Retro & Q3 Planning",
+          "url": null,
+          "summary": "Quarter retro and Q3 planning across P&E, Services, Commercial and Finance; restated the 30-customer source-of-truth goal and the Q3 bookkeeping feature set.",
+          "decisions": [
+            "Q3 goal: 30 customers running on neno with neno as the single source of truth feeding Exact"
+          ],
+          "open_questions": [
+            "Feature sequencing and ownership for the bookkeeping scope"
+          ],
+          "next_steps": [
+            "Define and file the remaining projects after AR reconciliation"
+          ]
+        }
       ],
       "resources": [
-        {"label": "Linear initiative", "url": "https://linear.app/nenotechnology/initiative/make-neno-the-source-of-truth-for-all-bookkeeping-activities-c2ef3f4b2ff8"},
-        {"label": "Granola folder — neno bookkeeping features", "url": null}
+        {
+          "label": "Linear initiative",
+          "url": "https://linear.app/nenotechnology/initiative/make-neno-the-source-of-truth-for-all-bookkeeping-activities-c2ef3f4b2ff8"
+        },
+        {
+          "label": "Granola folder - neno bookkeeping features",
+          "url": null
+        }
       ],
-      "sources_note": "Granola folder 'neno bookkeeping features' (1 note) + keyword search across #accounting-mvp / #tech-team. File the first Linear projects to enrich this page."
+      "sources_note": "Granola folder 'neno bookkeeping features' (1 note) + the 23 Jun DP session and 18 Jun Q2 retro/Q3 planning; keyword search across #accounting-mvp / #tech-team (no new lookback hits)."
     }
   }
 }
