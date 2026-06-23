@@ -1,0 +1,132 @@
+{
+  "generated_at": "2026-06-23T07:30:00Z",
+  "lookback_days": 14,
+  "initiatives": {
+    "cb65425b-cc3d-4f8a-8164-5849f594d708": {
+      "title": "Build data by onboarding 5 additional customers",
+      "owner": "Matthew",
+      "target_date": "2026-07-06",
+      "health": "At risk",
+      "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno by early July. Open Banking ingestion is the active build (Dima); per-client Exact connections are planned (Ihor). The guided onboarding home and the WhatsApp/email/Vault channels are queued next, then final QA. The main worry is timing: the onboarding-actions project is still in backlog against a 6 Jul target, and the open-banking provider decision is unconfirmed.",
+      "whats_changed": [
+        "Open Banking provider-agnostic ingestion (NEO-1291) and frontend rework (NEO-1115) are in progress (Dima).",
+        "Onboarding checklist scope locked: 6 hardcoded steps (connect Swan, connect external bank, view transactions, reconcile/respond to tasks, send first invoice, contact accountant); team invites, accounting menu, WhatsApp and credit-card steps deferred.",
+        "Exact matching (AR & AP) is complete; GL-account picker (David), VAT bracket, vendor selection and refunds still outstanding.",
+        "WhatsApp/email/Vault pipeline exists; the upload drawer is still missing WhatsApp + email options (flagged 22 Jun)."
+      ],
+      "risks": [
+        {"severity": "high", "text": "6 Jul onboarding target is tight — the onboarding-actions project is still in backlog and its stepper depends on the new transactions UI."},
+        {"severity": "med", "text": "Open-banking provider decision unconfirmed (Plaid ~€2k/mo minimum); single- vs multi-provider still pending."},
+        {"severity": "med", "text": "Email forwarding only accepts workspace-member senders, has no UI yet, and the rejected-email auto-reply is still to be built."}
+      ],
+      "projects": [
+        {"name": "Connect external bank accounts (Open Banking)", "status": "In Progress", "owner": "dima", "summary": "Provider-agnostic transaction/balance ingestion plus a multi-account Money Management UI rework.", "blockers": ["Open-banking provider decision unconfirmed"]},
+        {"name": "Multi-Client Exact Online Connections", "status": "Planned", "owner": "Ihor", "summary": "A separate Exact connection per client workspace so accountants reconcile each client into their own division.", "blockers": ["GL picker, VAT bracket, vendor selection and refunds still outstanding"]},
+        {"name": "Present onboarding actions for the next 5 customers", "status": "Backlog", "owner": null, "summary": "Home dashboard with guided steps teaching the three bill-submission channels and routing to bank connect.", "blockers": ["Depends on the new transactions UI"]},
+        {"name": "WhatsApp, Email forwarding & Vault re-provisioning", "status": "Planned", "owner": null, "summary": "Make the three bill-upload channels work for customers without a Swan account.", "blockers": []}
+      ],
+      "decisions": [
+        {"date": "2026-06-22", "text": "Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete.", "source": "Granola"},
+        {"date": "2026-06-22", "text": "Onboarding fixed to 6 steps; team invites, accounting menu, WhatsApp and credit-card steps deferred.", "source": "Granola"},
+        {"date": null, "text": "Non-Swan customers must be able to connect to neno (bypassing the Swan requirement) — a prerequisite for the next 5.", "source": "Granola"},
+        {"date": null, "text": "Slack notifications required for all document uploads during the early phase.", "source": "Slack #accounting-mvp"}
+      ],
+      "open_questions": [
+        {"text": "Onboarding stepper is a placeholder until the new transactions UI is ready.", "owner": "Euge"},
+        {"text": "Open-banking provider decision still unconfirmed — needs a status check.", "owner": null},
+        {"text": "Receipt upload drawer is missing WhatsApp + email options (flagged 22 Jun).", "owner": null}
+      ],
+      "next_steps": [
+        {"text": "Design the user-journey screens + an Ocean Ionics-specific homepage.", "owner": "Euge", "due": "was due 19 Jun"},
+        {"text": "WhatsApp messaging update + email reply automation.", "owner": "Ihor", "due": null},
+        {"text": "Check Swan drawer configurability; leave Linear tickets for Joel.", "owner": "Dima", "due": null},
+        {"text": "All team members test WhatsApp + email forwarding before Ocean Ionics rollout.", "owner": "Team", "due": null}
+      ],
+      "meetings": [],
+      "resources": [
+        {"label": "Linear initiative", "url": "https://linear.app/nenotechnology/initiative/build-data-by-onboarding-5-additional-customers-on-neno-16777b88b5d7"},
+        {"label": "Miro — onboarding journey", "url": "https://miro.com/app/board/uXjVHFXnKZk=/"}
+      ],
+      "sources_note": "Decisions/next-steps digested from recent Granola meetings and #accounting-mvp / #tech-team. Create a dedicated Granola folder for this initiative so individual meetings get listed here."
+    },
+    "fef38f90-b82c-4c47-b377-6dcb9b1a3020": {
+      "title": "Enable accountants to complete VAT submissions via double-entry GL",
+      "owner": "Matthew",
+      "target_date": "2026-09-30",
+      "health": "On track",
+      "exec_summary": "Standing up neno's own double-entry general ledger so we can file Q3 VAT for ~6 customers directly from neno. The spike that writes into the previously-unwired ledger is in progress (Mark), and the core architecture is largely settled (insert-only with reversals, period-close immutability, Euro-only, Q1/Q2 Exact closing balance as the Q3 opening). Next is productionising GL writes for Ocean Ionics from ~1 July. The biggest risk is that the ~13k-line, agent-generated spike needs careful review for atomicity and correctness before any of it ships.",
+      "whats_changed": [
+        "Spike (NEO-1302) writing into the neno GL for Ocean Ionics is in progress (Mark).",
+        "GL architecture decided: insert-only with reversals; period closes define immutability; Euro-only for now; monitoring over rollback.",
+        "Q3 target confirmed: VAT submission from neno for 6 customers (AR & AP), with the opening balance taken from the Q1/Q2 Exact close."
+      ],
+      "risks": [
+        {"severity": "high", "text": "The spike (~13k lines, Claude-generated) took liberties with DB writes — atomicity and no overlapping bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew)."},
+        {"severity": "med", "text": "Several VAT and period-close edit rules are still open ahead of the DP design session."}
+      ],
+      "projects": [
+        {"name": "Start writing to neno's double-entry GL", "status": "In Progress", "owner": "Mark", "summary": "Wire up the unused ledger and write entries for Ocean Ionics; target real GL writes from 1 July.", "blockers": ["Spike code needs atomicity/correctness review before production"]}
+      ],
+      "decisions": [
+        {"date": "2026-06-22", "text": "Insert-only architecture with reversals — no direct edits to journal entries; corrections reverse and rebook.", "source": "Granola: Next Steps AGL with Mark"},
+        {"date": "2026-06-22", "text": "Period closes define immutability — open periods allow free reversals; closed periods take new adjustment entries only (month/quarter/year).", "source": "Granola: Next Steps AGL with Mark"},
+        {"date": "2026-06-22", "text": "Monitoring over rollback — no complex rollback mechanics; the accountant review UI is the priority.", "source": "Granola: Next Steps AGL with Mark"},
+        {"date": "2026-06-22", "text": "Euro-only for now; multi-currency deferred but the architecture shouldn't preclude it.", "source": "Granola: Next Steps AGL with Mark"},
+        {"date": "2026-06-22", "text": "Q3: VAT submission from neno for 6 customers; opening balance from the Q1/Q2 Exact close; backfilling deferred unless it risks the VAT outcome.", "source": "Granola: Next Steps AGL with Mark"}
+      ],
+      "open_questions": [
+        {"text": "What must change in the current system to use double-entry bookkeeping for the Q3 VAT submission?", "owner": null},
+        {"text": "How do adjustments/corrections work for VAT when a period is closed?", "owner": null},
+        {"text": "How, when, and what will humans and agents be allowed to edit?", "owner": null},
+        {"text": "Multi-currency: how to handle FX gains/losses and cross-journal reporting?", "owner": null},
+        {"text": "Gapless-ledger requirement in Belgium — likely closed-period only; needs regulatory confirmation.", "owner": "Matthew"},
+        {"text": "What reporting do we eventually want to run on the double-entry GL?", "owner": null}
+      ],
+      "next_steps": [
+        {"text": "DP session on GL design & open questions.", "owner": "Matthew", "due": "Wed 23 Jun 11:30"},
+        {"text": "Review spike code for atomicity, security and correctness.", "owner": "Mark (+Matthew)", "due": "this week"},
+        {"text": "Reproduce the balance check in production with periods.", "owner": "Engineering", "due": "by Wed 25 Jun"},
+        {"text": "Confirm the gapless-ledger requirement for Belgium.", "owner": "Matthew", "due": "ASAP"},
+        {"text": "Map the VAT export to Nextens for submission.", "owner": "TBD", "due": "Q3"}
+      ],
+      "meetings": [
+        {"date": "2026-06-22", "title": "Next Steps AGL with Mark", "url": null,
+         "summary": "Walked the double-entry GL design toward productionising for Ocean Ionics and the Q3 VAT submission.",
+         "decisions": ["Insert-only with reversals", "Period closes define immutability", "Euro-only for now", "Q1/Q2 Exact close as Q3 opening balance"],
+         "open_questions": ["VAT corrections in closed periods", "Edit permissions for humans vs agents", "Belgium gapless-ledger requirement"],
+         "next_steps": ["DP session 23 Jun", "Review spike code for atomicity", "Reproduce balance check in production by 25 Jun"]}
+      ],
+      "resources": [
+        {"label": "Linear initiative", "url": "https://linear.app/nenotechnology/initiative/enable-accountants-to-complete-vat-submissions-using-neno-double-entry-089e47b575e8"},
+        {"label": "Granola folder — Nenos Double-Entry GL", "url": null}
+      ],
+      "sources_note": "Granola folder 'Nenos Double-Entry GL' + #tech-team ledger threads."
+    },
+    "ce07f00e-b392-40bd-85fb-2a4a831c9c80": {
+      "title": "Make neno the source of truth for all bookkeeping",
+      "owner": "Matthew",
+      "target_date": "2026-09-30",
+      "health": "Planning",
+      "exec_summary": "Still a placeholder: a prioritised feature plan (AR reconciliation, credit notes, related-parties register, payroll, third-party wallet import, depreciation/accruals, native team features) with no projects or issues filed yet. End-to-end AR reconciliation is the first item queued (Planned, David). Much of the underlying architecture is being decided inside the double-entry GL initiative.",
+      "whats_changed": [
+        "No project or issue activity in the last 14 days — the initiative remains in planning."
+      ],
+      "risks": [
+        {"severity": "med", "text": "Scope is broad and unsequenced; nothing is staffed yet beyond AR reconciliation being earmarked for David."}
+      ],
+      "projects": [],
+      "decisions": [],
+      "open_questions": [
+        {"text": "Feature sequencing and ownership for the post-GL bookkeeping scope is not yet decided.", "owner": "Matthew"}
+      ],
+      "next_steps": [
+        {"text": "Define and file the first projects, starting with end-to-end AR reconciliation.", "owner": "Matthew", "due": null}
+      ],
+      "meetings": [],
+      "resources": [
+        {"label": "Linear initiative", "url": "https://linear.app/nenotechnology/initiative/make-neno-the-source-of-truth-for-all-bookkeeping-activities-c2ef3f4b2ff8"}
+      ],
+      "sources_note": "Keyword-derived only. Create a Granola folder and file the first Linear projects to enrich this page."
+    }
+  }
+}

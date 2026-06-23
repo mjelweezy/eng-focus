@@ -1,11 +1,16 @@
 {
-  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view. Edit this file to change the curation (Now/Next/Later bucketing, descriptions, owner overrides). The engineer view is fully auto-generated from Linear and is NOT described here.",
+  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). Edit this file to change curation (buckets, descriptions, owner overrides) or context sources. The engineer view is fully auto-generated from Linear.",
   "title": "Engineering Focus",
   "merge_rules": {
-    "initiative_view": "Keep buckets and item order exactly as defined below. For items with a projectId, refresh the owner (project lead) and status label from Linear at run time. Do NOT re-bucket items automatically.",
-    "new_projects": "If a NEW project appears under one of the three initiatives in Linear that is not listed below, do NOT silently place it. Add it to a visible 'Needs triage' note at the bottom of that initiative card so Matthew can decide its bucket.",
-    "removed_projects": "If a listed projectId no longer exists or is completed/cancelled in Linear, render it struck-through with a '(check)' flag rather than deleting it.",
-    "engineer_view": "Fully regenerate from Linear each run: all non-archived issues with statusType 'started' (In Progress / In Review) that have an assignee, grouped assignee -> initiative -> project -> issue. Issues with no project, or projects with no initiative, go under 'Not belonging to an initiative'. Order engineers by Dima, Mark, Joel, David, Yaroslav, then any new engineers."
+    "initiative_view": "Keep buckets and item order exactly as defined below. For items with a projectId, refresh owner (project lead) and status from Linear at run time. Do NOT re-bucket automatically.",
+    "new_projects": "If a NEW project appears under one of the three initiatives in Linear that is not listed below, surface it in a 'Needs triage' note on that card rather than placing it.",
+    "removed_projects": "If a listed projectId is completed/cancelled/missing in Linear, render it struck-through with a '(check)' flag.",
+    "engineer_view": "Fully regenerate from Linear each run: non-archived issues with statusType 'started' that have an assignee, grouped assignee -> initiative -> project -> issue. Ungrouped items go under 'Not belonging to an initiative'.",
+    "context_view": "For each initiative, build context.json using context_sources: Linear (status updates + issue activity + project descriptions), Granola (folder_id if set, else keyword queries), and Slack (the listed channels filtered by keywords). Lookback window = 14 days. Summarize into the sections defined in context.html. Cache results in context.json; do not summarize on page open."
+  },
+  "context": {
+    "lookback_days": 14,
+    "slack_channels_default": ["#accounting-mvp", "#tech-team"]
   },
   "initiatives": [
     {
@@ -14,6 +19,14 @@
       "accent": "accent",
       "tags": ["Active", "Target 6 Jul"],
       "blurb": "Get the system ready to run AP & AR reconciliation for 5 hand-picked customers. The team's real centre of gravity.",
+      "url": "https://linear.app/nenotechnology/initiative/build-data-by-onboarding-5-additional-customers-on-neno-16777b88b5d7",
+      "context_sources": {
+        "linear_initiative_id": "cb65425b-cc3d-4f8a-8164-5849f594d708",
+        "granola_folder_id": null,
+        "granola_keywords": ["onboarding", "open banking", "Exact", "WhatsApp", "email forwarding", "Vault", "reconciliation", "Ocean Ionics", "Roots & Bites", "SubsidAI", "Novem Studio", "AFP International", "QLever", "Escontrela"],
+        "slack_channels": ["#accounting-mvp", "#tech-team"],
+        "slack_keywords": ["onboarding", "open banking", "Exact", "reconciliation", "WhatsApp", "Vault", "email forwarding", "transactions UI"]
+      },
       "buckets": {
         "now": [
           {"type": "project", "projectId": "75e92a8b-6f94-4b72-aad3-1fccbe953d74", "label": "Connect external bank accounts (Open Banking)", "show_owner_status": true, "desc": "Rework the Money Management UI for multiple accounts and let customers link external banks to pull transactions and balances."},
@@ -37,6 +50,14 @@
       "accent": "amber",
       "tags": ["Active", "Early spike", "Target 30 Sep"],
       "blurb": "Begin writing to our own double-entry ledger so we can confidently file Q3 VAT for 5 neno customers.",
+      "url": "https://linear.app/nenotechnology/initiative/enable-accountants-to-complete-vat-submissions-using-neno-double-entry-089e47b575e8",
+      "context_sources": {
+        "linear_initiative_id": "fef38f90-b82c-4c47-b377-6dcb9b1a3020",
+        "granola_folder_id": "bf3574d4-280e-4e6f-8733-72e752f9f626",
+        "granola_keywords": ["ledger", "GL", "AGL", "double-entry", "VAT", "journal", "period close", "Nextens"],
+        "slack_channels": ["#tech-team", "#accounting-mvp"],
+        "slack_keywords": ["ledger", "GL", "double-entry", "VAT", "journal", "Exact", "reconciliation"]
+      },
       "buckets": {
         "now": [
           {"type": "project", "projectId": "0383a752-0a73-4bce-b0aa-77379e4f27cf", "label": "Spike: write into the neno GL (Ocean Ionics)", "show_owner_status": true, "desc": "Wire up the existing, unused double-entry ledger in the codebase and start writing entries into it for one customer."}
@@ -55,10 +76,18 @@
       "accent": "pink",
       "tags": ["Placeholder", "Target 30 Sep"],
       "blurb": "Scale bookkeeping functionality to manage the books for 30 customers in Q3 and stay in sync with Exact.",
+      "url": "https://linear.app/nenotechnology/initiative/make-neno-the-source-of-truth-for-all-bookkeeping-activities-c2ef3f4b2ff8",
+      "context_sources": {
+        "linear_initiative_id": "ce07f00e-b392-40bd-85fb-2a4a831c9c80",
+        "granola_folder_id": null,
+        "granola_keywords": ["accounts receivable", "AR reconciliation", "credit note", "related parties", "payroll", "Numbrs", "Stripe", "depreciation", "accruals", "source of truth"],
+        "slack_channels": ["#accounting-mvp", "#tech-team"],
+        "slack_keywords": ["accounts receivable", "credit note", "payroll", "Stripe", "depreciation", "source of truth"]
+      },
       "buckets": {
         "now": [],
         "next": [
-          {"type": "project", "projectId": "b2f06e1b-57d3-4ced-9a3c-daf042c02df0", "label": "End-to-end AR reconciliation", "show_owner_status": true, "desc": "Enable end-to-end accounts receivable — reconciliation for incoming payments."}
+          {"type": "text", "label": "End-to-end AR reconciliation", "owner_override": "David", "status_override": "Planned", "desc": "Enable end-to-end accounts receivable — reconciliation for incoming payments."}
         ],
         "later": [
           {"type": "text", "label": "Credit note processing", "desc": "Process credit notes in both directions (AR & AP)."},

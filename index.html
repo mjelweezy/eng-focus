@@ -37,6 +37,9 @@
   .tag.active{background:#eafaf2;color:#268a5d;} .tag.spike{background:#fce9e6;color:#c0564a;}
   .tag.placeholder{background:#fdeee4;color:#b56b27;}
   .blurb{font-size:12px;color:#6b6f7c;margin:10px 0 0;line-height:1.4;}
+  .ctx-btn{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:12px;font-weight:600;
+    color:var(--accent);text-decoration:none;background:#eef0fc;border-radius:8px;padding:6px 11px;transition:background .15s;}
+  .ctx-btn:hover{background:#e2e5fb;}
   .phases{flex:1;padding:6px 20px 20px;display:flex;flex-direction:column;}
   .phase{padding:14px 0 4px;border-top:1px solid var(--line);}
   .phase:first-child{border-top:none;}
@@ -170,7 +173,8 @@ function renderInitiatives(layout, data){
         + data.needs_triage[ini.id].map(p=>esc(p.name)).join(', ')+'</div>' : '';
     return '<div class="card"><div class="top '+accentCls+'"><h3>'+esc(ini.title)+'</h3>'
       + '<div class="tags">'+tags+'</div>'
-      + (ini.blurb?'<p class="blurb">'+esc(ini.blurb)+'</p>':'')+'</div>'
+      + (ini.blurb?'<p class="blurb">'+esc(ini.blurb)+'</p>':'')
+      + '<a class="ctx-btn" href="context.html?ini='+encodeURIComponent(ini.id)+'">View context →</a></div>'
       + '<div class="phases">'+phases+triage+'</div></div>';
   }).join('');
 }
