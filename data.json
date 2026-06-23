@@ -98,6 +98,14 @@
           ]}
         ]}
       ]
+    },
+    {
+      "name": "Giuseppe", "initial": "G", "color": "#ec4899",
+      "groups": []
+    },
+    {
+      "name": "Ihor", "initial": "I", "color": "#14b8a6",
+      "groups": []
     }
   ]
 }

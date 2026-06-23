@@ -184,7 +184,7 @@ function renderEngineers(data){
   grid.innerHTML = (data.engineers||[]).map((eng,i)=>{
     const color = eng.color || AV[i % AV.length];
     const initial = eng.initial || (eng.name||'?')[0];
-    let body = (eng.groups||[]).map(g=>{
+    let body = (!eng.groups || !eng.groups.length) ? '<div style="font-size:12px;color:#aeb2bd;font-style:italic;padding-top:8px;">No in-progress work right now.</div>' : (eng.groups||[]).map(g=>{
       const isNone = !g.initiative || g.initiative==='__none__';
       const iname = '<div class="init-name'+(isNone?' none':'')+'">'+(isNone?'Not belonging to an initiative':esc(g.initiative))+'</div>';
       const projs = (g.projects||[]).map(p=>{

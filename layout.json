@@ -12,6 +12,17 @@
     "lookback_days": 14,
     "slack_channels_default": ["#accounting-mvp", "#tech-team"]
   },
+  "team": [
+    {"name": "Dima", "email": "dmytro@neno.co", "initial": "D", "color": "#5e6ad2"},
+    {"name": "Mark", "email": "mark@neno.co", "initial": "M", "color": "#4cb782"},
+    {"name": "Joel", "email": "joel@neno.co", "initial": "J", "color": "#f2994a"},
+    {"name": "David", "email": "david@neno.co", "initial": "D", "color": "#e8857a"},
+    {"name": "Yaroslav", "email": "yaroslav@neno.co", "initial": "Y", "color": "#8b5cf6"},
+    {"name": "Matthew", "email": "matthew@neno.co", "initial": "M", "color": "#0ea5e9"},
+    {"name": "Giuseppe", "email": "giuseppe@neno.co", "initial": "G", "color": "#ec4899"},
+    {"name": "Ihor", "email": "ihor@neno.co", "initial": "I", "color": "#14b8a6"}
+  ],
+  "team_note": "The engineer view renders one lane per person in this roster, in this order, even if they have no in-progress issues. The daily job matches Linear assignees to these by email/name. Add or remove people here to change who appears.",
   "initiatives": [
     {
       "id": "cb65425b-cc3d-4f8a-8164-5849f594d708",
