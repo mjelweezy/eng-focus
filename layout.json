@@ -22,7 +22,7 @@
       "url": "https://linear.app/nenotechnology/initiative/build-data-by-onboarding-5-additional-customers-on-neno-16777b88b5d7",
       "context_sources": {
         "linear_initiative_id": "cb65425b-cc3d-4f8a-8164-5849f594d708",
-        "granola_folder_id": null,
+        "granola_folder_id": "3e5bf112-9006-4ba3-8f0b-7f1f1c5b30e5",
         "granola_keywords": ["onboarding", "open banking", "Exact", "WhatsApp", "email forwarding", "Vault", "reconciliation", "Ocean Ionics", "Roots & Bites", "SubsidAI", "Novem Studio", "AFP International", "QLever", "Escontrela"],
         "slack_channels": ["#accounting-mvp", "#tech-team"],
         "slack_keywords": ["onboarding", "open banking", "Exact", "reconciliation", "WhatsApp", "Vault", "email forwarding", "transactions UI"]
@@ -79,7 +79,7 @@
       "url": "https://linear.app/nenotechnology/initiative/make-neno-the-source-of-truth-for-all-bookkeeping-activities-c2ef3f4b2ff8",
       "context_sources": {
         "linear_initiative_id": "ce07f00e-b392-40bd-85fb-2a4a831c9c80",
-        "granola_folder_id": null,
+        "granola_folder_id": "d99b2035-5b7f-4025-90cd-b3af6657e2ae",
         "granola_keywords": ["accounts receivable", "AR reconciliation", "credit note", "related parties", "payroll", "Numbrs", "Stripe", "depreciation", "accruals", "source of truth"],
         "slack_channels": ["#accounting-mvp", "#tech-team"],
         "slack_keywords": ["accounts receivable", "credit note", "payroll", "Stripe", "depreciation", "source of truth"]

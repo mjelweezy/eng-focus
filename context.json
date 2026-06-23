@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T07:30:00Z",
+  "generated_at": "2026-06-23T10:00:00Z",
   "lookback_days": 14,
   "initiatives": {
     "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -47,49 +47,53 @@
         {"label": "Linear initiative", "url": "https://linear.app/nenotechnology/initiative/build-data-by-onboarding-5-additional-customers-on-neno-16777b88b5d7"},
         {"label": "Miro — onboarding journey", "url": "https://miro.com/app/board/uXjVHFXnKZk=/"}
       ],
-      "sources_note": "Decisions/next-steps digested from recent Granola meetings and #accounting-mvp / #tech-team. Create a dedicated Granola folder for this initiative so individual meetings get listed here."
+      "sources_note": "Granola folder 'Onboarding 5 additional customers' (currently empty) + #accounting-mvp / #tech-team. File onboarding meetings in the folder to populate the meetings list here."
     },
     "fef38f90-b82c-4c47-b377-6dcb9b1a3020": {
       "title": "Enable accountants to complete VAT submissions via double-entry GL",
       "owner": "Matthew",
       "target_date": "2026-09-30",
       "health": "On track",
-      "exec_summary": "Standing up neno's own double-entry general ledger so we can file Q3 VAT for ~6 customers directly from neno. The spike that writes into the previously-unwired ledger is in progress (Mark), and the core architecture is largely settled (insert-only with reversals, period-close immutability, Euro-only, Q1/Q2 Exact closing balance as the Q3 opening). Next is productionising GL writes for Ocean Ionics from ~1 July. The biggest risk is that the ~13k-line, agent-generated spike needs careful review for atomicity and correctness before any of it ships.",
+      "exec_summary": "Standing up neno's own double-entry general ledger so we can file Q3 VAT for ~6 customers directly from neno. The spike that writes into the previously-unwired ledger is in progress (Mark), and after the 23 Jun design session with DP the core mechanics are now decided — VAT corrections post to the next period, closed periods lock with approval-gated inserts only, and FX is handled via month-end revaluation. Next is productionising GL writes for Ocean Ionics from ~1 July. The biggest risk remains the ~13k-line, agent-generated spike, which needs careful review for atomicity and correctness before any of it ships.",
       "whats_changed": [
+        "Design session with DP (23 Jun) locked the core ledger mechanics: VAT corrections, period locking and multi-currency handling.",
         "Spike (NEO-1302) writing into the neno GL for Ocean Ionics is in progress (Mark).",
-        "GL architecture decided: insert-only with reversals; period closes define immutability; Euro-only for now; monitoring over rollback.",
-        "Q3 target confirmed: VAT submission from neno for 6 customers (AR & AP), with the opening balance taken from the Q1/Q2 Exact close."
+        "Q3 target confirmed: VAT submission from neno for 6 customers (AR & AP), opening balance taken from the Q1/Q2 Exact close."
       ],
       "risks": [
         {"severity": "high", "text": "The spike (~13k lines, Claude-generated) took liberties with DB writes — atomicity and no overlapping bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew)."},
-        {"severity": "med", "text": "Several VAT and period-close edit rules are still open ahead of the DP design session."}
+        {"severity": "med", "text": "Belgium gapless-ledger requirement still unconfirmed — does it constrain the day-to-day architecture or only closed-period reporting?"},
+        {"severity": "med", "text": "DP's full reporting requirements list (potentially 100+ items) is not yet compiled — could expand GL scope."}
       ],
       "projects": [
         {"name": "Start writing to neno's double-entry GL", "status": "In Progress", "owner": "Mark", "summary": "Wire up the unused ledger and write entries for Ocean Ionics; target real GL writes from 1 July.", "blockers": ["Spike code needs atomicity/correctness review before production"]}
       ],
       "decisions": [
+        {"date": "2026-06-23", "text": "VAT corrections after a period close are booked in the next period (dated day 1); amounts under €1,000 fold into the next return without a supplemental filing. Balance sheet needs three VAT lines: receivable, payable, and a corrections/suspense account.", "source": "Granola: Double-Entry Bookkeeping Open Questions"},
+        {"date": "2026-06-23", "text": "Closed periods lock writes by default; unlocking is approval-gated and only for material post-close accruals. No editing existing entries — only inserting new journal entries dated in the closed period, with a full audit log.", "source": "Granola: Double-Entry Bookkeeping Open Questions"},
+        {"date": "2026-06-23", "text": "Multi-currency: store foreign amount + transaction-date rate, derive euro on demand; revalue FX assets/liabilities at month-end to an unrealized FX gains/losses account (P&L under Dutch GAAP, equity under IFRS).", "source": "Granola: Double-Entry Bookkeeping Open Questions"},
         {"date": "2026-06-22", "text": "Insert-only architecture with reversals — no direct edits to journal entries; corrections reverse and rebook.", "source": "Granola: Next Steps AGL with Mark"},
-        {"date": "2026-06-22", "text": "Period closes define immutability — open periods allow free reversals; closed periods take new adjustment entries only (month/quarter/year).", "source": "Granola: Next Steps AGL with Mark"},
-        {"date": "2026-06-22", "text": "Monitoring over rollback — no complex rollback mechanics; the accountant review UI is the priority.", "source": "Granola: Next Steps AGL with Mark"},
-        {"date": "2026-06-22", "text": "Euro-only for now; multi-currency deferred but the architecture shouldn't preclude it.", "source": "Granola: Next Steps AGL with Mark"},
-        {"date": "2026-06-22", "text": "Q3: VAT submission from neno for 6 customers; opening balance from the Q1/Q2 Exact close; backfilling deferred unless it risks the VAT outcome.", "source": "Granola: Next Steps AGL with Mark"}
+        {"date": "2026-06-22", "text": "Period closes define immutability; monitoring over rollback; Euro-only for now; Q3 VAT for 6 customers with opening balance from the Q1/Q2 Exact close.", "source": "Granola: Next Steps AGL with Mark"}
       ],
       "open_questions": [
-        {"text": "What must change in the current system to use double-entry bookkeeping for the Q3 VAT submission?", "owner": null},
-        {"text": "How do adjustments/corrections work for VAT when a period is closed?", "owner": null},
-        {"text": "How, when, and what will humans and agents be allowed to edit?", "owner": null},
-        {"text": "Multi-currency: how to handle FX gains/losses and cross-journal reporting?", "owner": null},
-        {"text": "Gapless-ledger requirement in Belgium — likely closed-period only; needs regulatory confirmation.", "owner": "Matthew"},
-        {"text": "What reporting do we eventually want to run on the double-entry GL?", "owner": null}
+        {"text": "Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? (not resolved in the session)", "owner": null},
+        {"text": "Full reporting requirements list being compiled by DP (potentially 100+ items) — will frame future design.", "owner": "DP"},
+        {"text": "What must change in the current system to use double-entry bookkeeping for the Q3 VAT submission?", "owner": null}
       ],
       "next_steps": [
-        {"text": "DP session on GL design & open questions.", "owner": "Matthew", "due": "Wed 23 Jun 11:30"},
+        {"text": "Compile the full reporting requirements list.", "owner": "DP", "due": "ASAP"},
+        {"text": "Schedule the follow-up design session.", "owner": "Matthew", "due": "~1 week"},
+        {"text": "Compile outstanding open questions before the follow-up.", "owner": "Matthew / Mark", "due": "before follow-up"},
         {"text": "Review spike code for atomicity, security and correctness.", "owner": "Mark (+Matthew)", "due": "this week"},
         {"text": "Reproduce the balance check in production with periods.", "owner": "Engineering", "due": "by Wed 25 Jun"},
-        {"text": "Confirm the gapless-ledger requirement for Belgium.", "owner": "Matthew", "due": "ASAP"},
         {"text": "Map the VAT export to Nextens for submission.", "owner": "TBD", "due": "Q3"}
       ],
       "meetings": [
+        {"date": "2026-06-23", "title": "Double-Entry Bookkeeping Open Questions", "url": null,
+         "summary": "Design session with DP and Mark that resolved the core ledger mechanics ahead of productionising.",
+         "decisions": ["VAT corrections booked in the next period; <€1,000 folds in without a supplemental return; 3 VAT balance-sheet lines (receivable, payable, corrections/suspense)", "Closed periods lock; approval-gated insert-only changes with full audit log", "Multi-currency: store FX amount + date rate, month-end revaluation to an unrealized FX gains/losses account"],
+         "open_questions": ["Belgium gapless-ledger scope unconfirmed", "DP to compile full reporting requirements list"],
+         "next_steps": ["DP compiles reporting requirements", "Matthew schedules follow-up (~1 week)", "Confirm Belgium gapless-ledger scope"]},
         {"date": "2026-06-22", "title": "Next Steps AGL with Mark", "url": null,
          "summary": "Walked the double-entry GL design toward productionising for Ocean Ionics and the Q3 VAT submission.",
          "decisions": ["Insert-only with reversals", "Period closes define immutability", "Euro-only for now", "Q1/Q2 Exact close as Q3 opening balance"],
@@ -100,33 +104,48 @@
         {"label": "Linear initiative", "url": "https://linear.app/nenotechnology/initiative/enable-accountants-to-complete-vat-submissions-using-neno-double-entry-089e47b575e8"},
         {"label": "Granola folder — Nenos Double-Entry GL", "url": null}
       ],
-      "sources_note": "Granola folder 'Nenos Double-Entry GL' + #tech-team ledger threads."
+      "sources_note": "Granola folder 'Nenos Double-Entry GL' (2 notes) + #tech-team ledger threads."
     },
     "ce07f00e-b392-40bd-85fb-2a4a831c9c80": {
       "title": "Make neno the source of truth for all bookkeeping",
       "owner": "Matthew",
       "target_date": "2026-09-30",
       "health": "Planning",
-      "exec_summary": "Still a placeholder: a prioritised feature plan (AR reconciliation, credit notes, related-parties register, payroll, third-party wallet import, depreciation/accruals, native team features) with no projects or issues filed yet. End-to-end AR reconciliation is the first item queued (Planned, David). Much of the underlying architecture is being decided inside the double-entry GL initiative.",
+      "exec_summary": "Still a planning-stage initiative: a prioritised feature plan (AR reconciliation, credit notes, related-parties register, payroll, third-party wallet import, depreciation/accruals, native team features) with no projects or issues filed yet. The first concrete signal came from the 23 Jun DP session — aged-receivables reporting (30/60/90/120+ day buckets by customer) is confirmed as a minimum requirement, and DP is compiling a full reporting requirements list that will frame this scope. End-to-end AR reconciliation is the first item queued (Planned, David).",
       "whats_changed": [
-        "No project or issue activity in the last 14 days — the initiative remains in planning."
+        "23 Jun DP session confirmed aged-receivables analysis (30/60/90/120+ buckets by customer) as a minimum reporting requirement.",
+        "DP is compiling a full reporting requirements list (potentially 100+ items) to frame future design.",
+        "No projects or issues filed yet — initiative remains in planning."
       ],
       "risks": [
-        {"severity": "med", "text": "Scope is broad and unsequenced; nothing is staffed yet beyond AR reconciliation being earmarked for David."}
+        {"severity": "med", "text": "Scope is broad and unsequenced; nothing is staffed yet beyond AR reconciliation being earmarked for David."},
+        {"severity": "med", "text": "Full reporting requirements are not yet enumerated — scope could grow materially once DP's list lands."}
       ],
       "projects": [],
-      "decisions": [],
+      "decisions": [
+        {"date": "2026-06-23", "text": "Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement.", "source": "Granola: Double-Entry Bookkeeping Open Questions"}
+      ],
       "open_questions": [
+        {"text": "Payroll design not yet discussed — remains an open design area for a future session.", "owner": null},
+        {"text": "Full reporting requirements list still being compiled by DP.", "owner": "DP"},
         {"text": "Feature sequencing and ownership for the post-GL bookkeeping scope is not yet decided.", "owner": "Matthew"}
       ],
       "next_steps": [
+        {"text": "Compile the full reporting requirements list.", "owner": "DP", "due": "ASAP"},
         {"text": "Define and file the first projects, starting with end-to-end AR reconciliation.", "owner": "Matthew", "due": null}
       ],
-      "meetings": [],
-      "resources": [
-        {"label": "Linear initiative", "url": "https://linear.app/nenotechnology/initiative/make-neno-the-source-of-truth-for-all-bookkeeping-activities-c2ef3f4b2ff8"}
+      "meetings": [
+        {"date": "2026-06-23", "title": "Double-Entry Bookkeeping Open Questions", "url": null,
+         "summary": "Primarily a GL design session; touched the bookkeeping roadmap — AR reporting requirements and future feature areas.",
+         "decisions": ["Aged-receivables reporting (30/60/90/120+ buckets) confirmed as a minimum requirement"],
+         "open_questions": ["Payroll design not discussed", "DP to compile full reporting requirements list"],
+         "next_steps": ["DP compiles reporting requirements", "Follow-up session in ~1 week"]}
       ],
-      "sources_note": "Keyword-derived only. Create a Granola folder and file the first Linear projects to enrich this page."
+      "resources": [
+        {"label": "Linear initiative", "url": "https://linear.app/nenotechnology/initiative/make-neno-the-source-of-truth-for-all-bookkeeping-activities-c2ef3f4b2ff8"},
+        {"label": "Granola folder — neno bookkeeping features", "url": null}
+      ],
+      "sources_note": "Granola folder 'neno bookkeeping features' (1 note) + keyword search across #accounting-mvp / #tech-team. File the first Linear projects to enrich this page."
     }
   }
 }
