@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T06:58:40.225Z",
+  "generated_at": "2026-06-23T06:20:02.255Z",
   "projects": {
     "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
       "status": "In Progress",
@@ -37,16 +37,41 @@
           "initiative": "Build data by onboarding 5 additional customers on neno",
           "projects": [
             {
+              "name": "Multi-Client Exact Online Connections",
+              "issues": [
+                {
+                  "id": "NEO-1328",
+                  "title": "Narrow + restyle the Swan transaction detail drawer (Ocean Ionics)",
+                  "status": "In Progress"
+                }
+              ]
+            },
+            {
               "name": "Enable customers to connect external bank accounts and view their transactions",
               "issues": [
                 {
                   "id": "NEO-1291",
-                  "title": "Open Banking: provider-agnostic transaction & balance ingestion",
+                  "title": "Open Banking: provider-agnostic transaction and balance ingestion",
                   "status": "In Progress"
                 },
                 {
                   "id": "NEO-1115",
                   "title": "Open Banking: First Iteration Frontend Rework",
+                  "status": "In Progress"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "initiative": "__none__",
+          "projects": [
+            {
+              "name": "Mobile App",
+              "issues": [
+                {
+                  "id": "NEO-1323",
+                  "title": "Mobile app v1 - implement all screens",
                   "status": "In Progress"
                 }
               ]
@@ -74,46 +99,6 @@
               ]
             }
           ]
-        },
-        {
-          "initiative": "Ocean Ionics: Full AP Loop",
-          "projects": [
-            {
-              "name": "Reconciliation",
-              "issues": [
-                {
-                  "id": "NEO-1119",
-                  "title": "Direct-to-G/L booking for transactions without documents",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "initiative": "__none__",
-          "projects": [
-            {
-              "name": "__none__",
-              "issues": [
-                {
-                  "id": "NEO-999",
-                  "title": "Remove neno_wt_ prefix from worktree database names",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-54",
-                  "title": "Implement new email cron or watcher",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-56",
-                  "title": "Add client dependency injection to file-store",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
         }
       ]
     },
@@ -125,16 +110,6 @@
         {
           "initiative": "__none__",
           "projects": [
-            {
-              "name": "Dynamic Tasks",
-              "issues": [
-                {
-                  "id": "NEO-1315",
-                  "title": "C6: Customer Transactions page - status grouping + reconciled flag",
-                  "status": "In Progress"
-                }
-              ]
-            },
             {
               "name": "Build, Send and Track Invoices",
               "issues": [
@@ -150,7 +125,7 @@
               "issues": [
                 {
                   "id": "NEO-766",
-                  "title": "Infrastructure: Sync Pulumi & GH Actions, reduce dev costs",
+                  "title": "Infrastructure: Sync Pulumi and GH Actions, reduce dev costs",
                   "status": "In Progress"
                 }
               ]
@@ -165,43 +140,8 @@
       "color": "#e8857a",
       "groups": [
         {
-          "initiative": "Ocean Ionics: Full AP Loop",
-          "projects": [
-            {
-              "name": "Reconciliation",
-              "issues": [
-                {
-                  "id": "NEO-842",
-                  "title": "Replace percentage confidence scores with per-signal match indicators",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        },
-        {
           "initiative": "__none__",
           "projects": [
-            {
-              "name": "Build, Send and Track Invoices",
-              "issues": [
-                {
-                  "id": "NEO-773",
-                  "title": "Fix missing Dutch locale keys and dead strings in scheduled invoice UI",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-779",
-                  "title": "Refactor scheduled invoice services to use ResultAsync chaining",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-588",
-                  "title": "Scheduled and recurring invoice sending with confirmation",
-                  "status": "In Progress"
-                }
-              ]
-            },
             {
               "name": "__none__",
               "issues": [
@@ -234,12 +174,12 @@
                 },
                 {
                   "id": "NEO-1056",
-                  "title": "Bridge DocBldr incorporation documents into Swan doc vault",
+                  "title": "Bridge DocBldr incorporation docs into Swan supporting-doc vault",
                   "status": "In Progress"
                 },
                 {
                   "id": "NEO-997",
-                  "title": "Fix Prisma 7 prisma.config.ts not auto-loading .env",
+                  "title": "Fix Prisma 7 prisma.config.ts not auto-loading .env (setup-worktree)",
                   "status": "In Progress"
                 },
                 {
@@ -272,23 +212,7 @@
       "name": "Ihor",
       "initial": "I",
       "color": "#0ea5e9",
-      "groups": [
-        {
-          "initiative": "Build data by onboarding 5 additional customers on neno",
-          "projects": [
-            {
-              "name": "Multi-Client Exact Online Connections",
-              "issues": [
-                {
-                  "id": "NEO-1320",
-                  "title": "Build Ops Exact Connections page and per-workspace OAuth binding",
-                  "status": "In Review"
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "groups": []
     }
   ]
 }
