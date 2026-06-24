@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T07:06:24Z",
+  "generated_at": "2026-06-24T08:33:04Z",
   "projects": {
     "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
       "status": "In Progress",
@@ -71,16 +71,11 @@
             {
               "name": "Enable customers to connect external bank accounts and view their transactions",
               "issues": [
-                {
-                  "id": "NEO-1291",
-                  "title": "Open Banking: provider-agnostic transaction & balance ingestion",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-1115",
-                  "title": "Open Banking: First Iteration Frontend Rework",
-                  "status": "In Progress"
-                }
+                { "id": "NEO-1291", "title": "Open Banking: provider-agnostic transaction & balance ingestion", "status": "In Progress" },
+                { "id": "NEO-1115", "title": "Open Banking: First Iteration Frontend Rework", "status": "In Progress" },
+                { "id": "NEO-598", "title": "Scale UI for Open Banking (linked accounts)", "status": "Todo" },
+                { "id": "NEO-595", "title": "Rework Home page UI", "status": "Todo" },
+                { "id": "NEO-736", "title": "Implement Invoicing page design", "status": "Todo" }
               ]
             }
           ]
@@ -91,21 +86,33 @@
             {
               "name": "Mobile App",
               "issues": [
-                {
-                  "id": "NEO-1323",
-                  "title": "Mobile app v1 - implement all screens",
-                  "status": "In Progress"
-                }
+                { "id": "NEO-1323", "title": "Mobile app v1 - implement all screens", "status": "In Progress" }
+              ]
+            },
+            {
+              "name": "Neno UI: Unified Frontend Component Library",
+              "issues": [
+                { "id": "NEO-1095", "title": "Migrate LakeTextInput -> NInput in banking app", "status": "Todo" }
+              ]
+            },
+            {
+              "name": "BV Sequence 2: Flow Improvements",
+              "issues": [
+                { "id": "NEO-449", "title": "Consistent formatting for BV form questions", "status": "Todo" },
+                { "id": "NEO-460", "title": "Add ID tooltip showing examples of correct ID forms", "status": "Todo" },
+                { "id": "NEO-441", "title": "Clarify next steps in payment success copy", "status": "Todo" }
+              ]
+            },
+            {
+              "name": "UX Improvements",
+              "issues": [
+                { "id": "NEO-482", "title": "Unify input styles across filters", "status": "Todo" }
               ]
             },
             {
               "name": "__none__",
               "issues": [
-                {
-                  "id": "NEO-1328",
-                  "title": "Narrow + restyle the Swan transaction detail drawer",
-                  "status": "In Progress"
-                }
+                { "id": "NEO-1328", "title": "Create a new drawer component and replace all drawers in banking", "status": "In Progress" }
               ]
             }
           ]
@@ -123,11 +130,7 @@
             {
               "name": "Start writing to neno's double-entry GL",
               "issues": [
-                {
-                  "id": "NEO-1302",
-                  "title": "Spike: Start writing into the Neno general ledger (Ocean Ionics)",
-                  "status": "In Progress"
-                }
+                { "id": "NEO-1302", "title": "Spike: Start writing into the Neno general ledger (Ocean Ionics)", "status": "In Progress" }
               ]
             }
           ]
@@ -138,11 +141,31 @@
             {
               "name": "Flaky tests",
               "issues": [
-                {
-                  "id": "NEO-693",
-                  "title": "Fix flaky reconciliation tests - bills disappear mid-test",
-                  "status": "In Progress"
-                }
+                { "id": "NEO-693", "title": "Fix flaky reconciliation tests - bills disappear mid-test", "status": "In Progress" }
+              ]
+            },
+            {
+              "name": "Ocean Ionics sandbox testing",
+              "issues": [
+                { "id": "NEO-1143", "title": "Bills can sync to Exact without being reconciled (no signal)", "status": "Todo" }
+              ]
+            },
+            {
+              "name": "Exact Online Integration",
+              "issues": [
+                { "id": "NEO-857", "title": "Automated daily Exact sync job", "status": "Todo" }
+              ]
+            },
+            {
+              "name": "BV Sequence 2: Flow Improvements",
+              "issues": [
+                { "id": "NEO-426", "title": "Plug leak to prevent unpaid BV incorporation", "status": "Todo" }
+              ]
+            },
+            {
+              "name": "__none__",
+              "issues": [
+                { "id": "NEO-291", "title": "Gmail ingest NenoError re-write", "status": "Todo" }
               ]
             }
           ]
@@ -158,23 +181,21 @@
           "initiative": "__none__",
           "projects": [
             {
+              "name": "Bas S.: Post-Incorporation UX improvements",
+              "issues": [
+                { "id": "NEO-1009", "title": "Banking onboarding not showing all bvs as bank options", "status": "Todo" }
+              ]
+            },
+            {
               "name": "Build, Send and Track Invoices",
               "issues": [
-                {
-                  "id": "NEO-771",
-                  "title": "Add i18n support to API email templates (invoice emails)",
-                  "status": "In Progress"
-                }
+                { "id": "NEO-771", "title": "Add i18n support to API email templates (invoice emails)", "status": "Done" }
               ]
             },
             {
               "name": "__none__",
               "issues": [
-                {
-                  "id": "NEO-766",
-                  "title": "Infrastructure: Sync Pulumi & GH Actions, reduce dev costs",
-                  "status": "In Progress"
-                }
+                { "id": "NEO-766", "title": "Infrastructure: Sync Pulumi & GH Actions, reduce dev costs", "status": "Done" }
               ]
             }
           ]
@@ -190,13 +211,29 @@
           "initiative": "__none__",
           "projects": [
             {
+              "name": "Reconciliation",
+              "issues": [
+                { "id": "NEO-839", "title": "Expense account assignment in accountant reconciliation review", "status": "Todo" }
+              ]
+            },
+            {
+              "name": "Invoice Extraction",
+              "issues": [
+                { "id": "NEO-84", "title": "Renew gmail watch on schedule", "status": "Todo" },
+                { "id": "NEO-61", "title": "Implement Gmail Watch Task for Real-Time Updates", "status": "Todo" }
+              ]
+            },
+            {
+              "name": "Build, Send and Track Invoices",
+              "issues": [
+                { "id": "NEO-985", "title": "Replace fake /health with real Chromium health check", "status": "Done" },
+                { "id": "NEO-987", "title": "Explicit render-ready signal: replace Loading-text check", "status": "Done" }
+              ]
+            },
+            {
               "name": "__none__",
               "issues": [
-                {
-                  "id": "NEO-1181",
-                  "title": "Invoice display breaks for amounts >= EUR 10,000",
-                  "status": "In Progress"
-                }
+                { "id": "NEO-1181", "title": "Invoice display breaks for amounts >= EUR 10,000", "status": "In Progress" }
               ]
             }
           ]
@@ -207,7 +244,26 @@
       "name": "Ihor",
       "initial": "I",
       "color": "#14b8a6",
-      "groups": []
+      "groups": [
+        {
+          "initiative": "__none__",
+          "projects": [
+            {
+              "name": "Ocean Ionics sandbox testing",
+              "issues": [
+                { "id": "NEO-1193", "title": "Partial-payment reconciliation as a first-class workflow", "status": "Todo" },
+                { "id": "NEO-1135", "title": "Exact sync logs don't include enough info to find entities", "status": "Todo" }
+              ]
+            },
+            {
+              "name": "UX Improvements",
+              "issues": [
+                { "id": "NEO-505", "title": "Alert if a (Swan) user is created without an Account Holder", "status": "Todo" }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

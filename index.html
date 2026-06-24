@@ -83,9 +83,17 @@
   ul.eng-items li{font-size:12px;color:#3c404c;line-height:1.4;padding-left:13px;position:relative;}
   ul.eng-items li::before{content:"";position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--green);}
   ul.eng-items li.rev::before{background:var(--amber);}
+  ul.eng-items li.todo::before{background:var(--accent);}
+  ul.eng-items li.done::before{background:#b9bdc9;}
+  ul.eng-items li.done{color:#9aa0ad;}
   .iid{font-variant-numeric:tabular-nums;color:var(--muted);font-size:10.5px;font-weight:700;margin-right:5px;}
   .st{font-size:9.5px;font-weight:700;color:#268a5d;background:#eafaf2;border-radius:20px;padding:1px 6px;margin-left:5px;white-space:nowrap;}
   .st.review{color:#8a6d1f;background:#fbf3da;}
+  .st.todo{color:#3b59c3;background:#e8ecfb;}
+  .st.done{color:#6b7280;background:#eef0f4;}
+  .eng-legend{display:flex;gap:14px;flex-wrap:wrap;margin:-8px 0 18px;font-size:11px;color:var(--muted);}
+  .eng-legend span{display:inline-flex;align-items:center;gap:5px;}
+  .eng-legend i{width:8px;height:8px;border-radius:50%;display:inline-block;}
   .loading{padding:60px 0;text-align:center;color:var(--muted);font-size:14px;}
   .err{padding:20px;background:#fce9e6;color:#c0564a;border-radius:10px;font-size:13px;}
 </style>
@@ -104,7 +112,15 @@
   </div>
 
   <div id="view-initiative" class="view active"><div class="board" id="board"><div class="loading">Loading…</div></div></div>
-  <div id="view-engineer" class="view"><div class="eng-grid" id="eng-grid"></div></div>
+  <div id="view-engineer" class="view">
+    <div class="eng-legend">
+      <span><i style="background:var(--green)"></i> In progress</span>
+      <span><i style="background:var(--amber)"></i> In review</span>
+      <span><i style="background:var(--accent)"></i> Planned (Todo)</span>
+      <span><i style="background:#b9bdc9"></i> Recently completed (&lt;24h)</span>
+    </div>
+    <div class="eng-grid" id="eng-grid"></div>
+  </div>
 
 </div>
 
@@ -179,29 +195,45 @@ function renderInitiatives(layout, data){
   }).join('');
 }
 
+// Classify an issue status into a display kind: in progress / in review / planned (Todo) / done.
+function engStatus(s){
+  const t = (s||'').toLowerCase();
+  if(t.includes('review')) return {rank:1, li:'rev', st:'st review', label:s||'In Review'};
+  if(t.includes('done')||t.includes('complete')) return {rank:3, li:'done', st:'st done', label:s||'Done'};
+  if(t.includes('todo')||t.includes('plan')) return {rank:2, li:'todo', st:'st todo', label:'Planned'};
+  return {rank:0, li:'', st:'st', label:s||'In Progress'};
+}
+
 function renderEngineers(data){
   const grid = document.getElementById('eng-grid');
   grid.innerHTML = (data.engineers||[]).map((eng,i)=>{
     const color = eng.color || AV[i % AV.length];
     const initial = eng.initial || (eng.name||'?')[0];
-    let body = (!eng.groups || !eng.groups.length) ? '<div style="font-size:12px;color:#aeb2bd;font-style:italic;padding-top:8px;">No in-progress work right now.</div>' : (eng.groups||[]).map(g=>{
+    let body = (!eng.groups || !eng.groups.length) ? '<div style="font-size:12px;color:#aeb2bd;font-style:italic;padding-top:8px;">Nothing assigned right now.</div>' : (eng.groups||[]).map(g=>{
       const isNone = !g.initiative || g.initiative==='__none__';
       const iname = '<div class="init-name'+(isNone?' none':'')+'">'+(isNone?'Not belonging to an initiative':esc(g.initiative))+'</div>';
       const projs = (g.projects||[]).map(p=>{
         const noproj = !p.name || p.name==='__none__';
         const pname = '<div class="proj-name'+(noproj?' noproj':'')+'">'+(noproj?'No project':esc(p.name))+'</div>';
-        const lis = (p.issues||[]).map(it=>{
-          const rev = (it.status||'').toLowerCase().includes('review');
-          const stc = rev?'st review':'st';
-          return '<li'+(rev?' class="rev"':'')+'><span class="iid">'+esc(it.id)+'</span>'+esc(it.title)+'<span class="'+stc+'">'+esc(it.status||'In Progress')+'</span></li>';
+        // order within a project: in progress / review, then planned, then recently completed
+        const issues = (p.issues||[]).slice().sort((a,b)=>engStatus(a.status).rank-engStatus(b.status).rank);
+        const lis = issues.map(it=>{
+          const es = engStatus(it.status);
+          return '<li'+(es.li?' class="'+es.li+'"':'')+'><span class="iid">'+esc(it.id)+'</span>'+esc(it.title)+'<span class="'+es.st+'">'+esc(es.label)+'</span></li>';
         }).join('');
         return pname+'<ul class="eng-items">'+lis+'</ul>';
       }).join('');
       return '<div class="initgrp">'+iname+projs+'</div>';
     }).join('');
-    const n = (eng.groups||[]).reduce((a,g)=>a+(g.projects||[]).reduce((b,p)=>b+(p.issues||[]).length,0),0);
+    // count breakdown
+    let cp=0, cpl=0, cd=0;
+    (eng.groups||[]).forEach(g=>(g.projects||[]).forEach(p=>(p.issues||[]).forEach(it=>{
+      const r=engStatus(it.status).rank; if(r<=1)cp++; else if(r===2)cpl++; else cd++;
+    })));
+    const parts=[]; if(cp)parts.push(cp+' in progress'); if(cpl)parts.push(cpl+' planned'); if(cd)parts.push(cd+' done');
+    const countLabel = parts.length?parts.join(' · '):'nothing assigned';
     return '<div class="eng-card"><div class="ehead"><span class="avatar" style="background:'+color+'">'+esc(initial)+'</span>'
-      + '<h3>'+esc(eng.name)+'</h3><span class="count">'+n+' in progress</span></div>'
+      + '<h3>'+esc(eng.name)+'</h3><span class="count">'+countLabel+'</span></div>'
       + '<div class="eng-body">'+body+'</div></div>';
   }).join('');
 }
