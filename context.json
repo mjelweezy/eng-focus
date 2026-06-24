@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T12:42:42Z",
+  "generated_at": "2026-06-24T07:06:24Z",
   "lookback_days": 14,
   "initiatives": {
     "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -8,22 +8,29 @@
       "target_date": "2026-07-06",
       "health": "At risk",
       "notes": [],
-      "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno by early July. Open Banking ingestion is the active build (Dima); per-client Exact connections have moved into build (Ihor) with milestone 2 (per-workspace Exact reads/writes) now in review. The guided onboarding home and the WhatsApp/email/Vault channels are queued next, then final QA. The main worry is timing: the onboarding-actions project is still planned against a 6 Jul target and its stepper depends on the new transactions UI, and the open-banking provider decision is unconfirmed.",
+      "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno by early July, with onboarding calls now targeted for 6-7 July. Open Banking ingestion is the active build (Dima); the provider is now selected (Montoya), with the contract still unsigned as of 23 Jun and prod keys expected 24 Jun for a first full test in preview - As Controla (non-Swan) is the first target customer. Per-client Exact connections have moved into build (Ihor) with milestone 2 (per-workspace Exact reads/writes) now in review. The guided onboarding home and the WhatsApp/email/Vault channels are queued next (Joel building next week while Matthew is away), then final QA. The main worry is timing: the onboarding-actions project is still planned, its stepper depends on a new transactions UI whose drawer still needs significant rework, and Swan blockers (public onboarding link + Onboarding V2 migration) need fixing by 26 Jun.",
       "whats_changed": [
+        "Open-banking provider selected: Montoya; contract still unsigned as of 23 Jun, prod keys expected 24 Jun, first end-to-end test to run in preview using a personal account.",
+        "First open-banking target customer is As Controla (no Swan account, so non-Swan access must work).",
+        "Onboarding calls targeted for 6-7 July; Joel executing the onboarding-five build next week while Matthew is away.",
         "Open Banking provider-agnostic ingestion (NEO-1291) and frontend rework (NEO-1115) are in progress (Dima).",
         "Multi-Client Exact Online Connections is now In Progress (Ihor); milestone 2 (per-workspace Exact reads/writes, NEO-1329) is in review.",
         "Onboarding checklist scope locked: 6 self-reported steps (connect Swan, connect external bank, view transactions, reconcile/respond to tasks, send first invoice, contact accountant); team invites, accounting menu, WhatsApp and credit-card steps deferred.",
         "Decided that open-banking-only users get a limited Home (no team invites, cards, transfers or manage-beneficiaries) and the Home is hidden after onboarding for now.",
-        "WhatsApp/email/Vault pipeline exists; the upload drawer is still missing WhatsApp + email options (flagged 22 Jun), and email forwarding needs feature-flagging plus the forwarding address shown in the Vault UI."
+        "WhatsApp/email/Vault pipeline exists; the upload drawer is still missing WhatsApp + email options (flagged 22 Jun), the transactions drawer still needs significant rework (old Swan components, too wide, custom/Radix drawer likely), and email forwarding needs feature-flagging plus the forwarding address shown in the Vault UI."
       ],
       "risks": [
         {
           "severity": "high",
-          "text": "6 Jul onboarding target is tight - the onboarding-actions project is still planned and its stepper depends on the new transactions UI."
+          "text": "6-7 Jul onboarding target is tight - the onboarding-actions project is still planned and its stepper depends on the new transactions UI, whose drawer still needs significant rework."
         },
         {
           "severity": "med",
-          "text": "Open-banking provider decision unconfirmed (Plaid ~EUR 2k/mo minimum); single- vs multi-provider still pending."
+          "text": "Montoya open-banking contract unsigned as of 23 Jun - signature + prod keys gate the open-banking flow test."
+        },
+        {
+          "severity": "med",
+          "text": "Swan blockers for higher card limits + direct debit: public onboarding link must be fixed and migration to Onboarding V2 completed; Nick & Matthew targeting fixes by Fri 26 Jun."
         },
         {
           "severity": "med",
@@ -37,7 +44,7 @@
           "owner": "dima",
           "summary": "Provider-agnostic transaction/balance ingestion plus a multi-account Money Management UI rework.",
           "blockers": [
-            "Open-banking provider decision unconfirmed"
+            "Montoya contract unsigned as of 23 Jun; prod keys expected 24 Jun"
           ]
         },
         {
@@ -104,7 +111,11 @@
           "owner": "Euge"
         },
         {
-          "text": "Open-banking provider decision still unconfirmed - needs a status check.",
+          "text": "Montoya open-banking contract still unsigned as of 23 Jun; prod keys expected 24 Jun, then full flow tested in preview.",
+          "owner": null
+        },
+        {
+          "text": "Onboarding V2 deprecation date conflict: Swan email says 26 Jun, live docs say 30 Sep - Cecile to confirm.",
           "owner": null
         },
         {
@@ -141,6 +152,21 @@
           "text": "All team members test WhatsApp + email forwarding before Ocean Ionics rollout.",
           "owner": "Team",
           "due": null
+        },
+        {
+          "text": "Finalise acceptance criteria + non-Swan user journey before Matthew is away.",
+          "owner": "Matthew",
+          "due": "by EOW"
+        },
+        {
+          "text": "Fix the public onboarding link + pass email to the Swan API.",
+          "owner": "Nick / Matthew",
+          "due": "by Fri 26 Jun"
+        },
+        {
+          "text": "Test the full open-banking flow once Montoya prod keys arrive.",
+          "owner": "Engineering",
+          "due": "24 Jun"
         }
       ],
       "meetings": [],

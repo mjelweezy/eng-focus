@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T12:41:06Z",
+  "generated_at": "2026-06-24T07:06:24Z",
   "projects": {
     "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
       "status": "In Progress",
@@ -74,6 +74,11 @@
                 {
                   "id": "NEO-1291",
                   "title": "Open Banking: provider-agnostic transaction & balance ingestion",
+                  "status": "In Progress"
+                },
+                {
+                  "id": "NEO-1115",
+                  "title": "Open Banking: First Iteration Frontend Rework",
                   "status": "In Progress"
                 }
               ]
