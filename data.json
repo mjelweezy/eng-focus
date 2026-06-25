@@ -1,69 +1,28 @@
 {
-  "generated_at": "2026-06-24T08:33:04Z",
+  "generated_at": "2026-06-25T07:25:30Z",
   "projects": {
-    "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
-      "status": "In Progress",
-      "owner": "dima"
-    },
-    "bdca02fc-e544-4715-85f2-d11798131506": {
-      "status": "In Progress",
-      "owner": "Ihor"
-    },
-    "c186341c-f7a8-4336-b973-f25ed6fd7afb": {
-      "status": "Planned",
-      "owner": null
-    },
-    "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed": {
-      "status": "Planned",
-      "owner": null
-    },
-    "0383a752-0a73-4bce-b0aa-77379e4f27cf": {
-      "status": "In Progress",
-      "owner": "Mark"
-    },
-    "b2f06e1b-57d3-4ced-9a3c-daf042c02df0": {
-      "status": "Planned",
-      "owner": "David"
-    },
-    "14c0164a-580a-4707-a6f6-039eb30c5969": {
-      "status": "Backlog",
-      "owner": null
-    },
-    "6c262f19-7934-4641-ba14-6ff937127454": {
-      "status": "Backlog",
-      "owner": null
-    },
-    "4ce20eb5-9845-4fa3-b1a9-8f9c8b949a3e": {
-      "status": "Backlog",
-      "owner": null
-    },
-    "2731244b-71c8-44d1-b6bf-ae9434135d05": {
-      "status": "Backlog",
-      "owner": null
-    },
-    "8e80b462-b77a-4479-b48e-8031bc8b6f11": {
-      "status": "Backlog",
-      "owner": null
-    },
-    "9dead622-60da-42fc-b4a1-bbc3a2ce606b": {
-      "status": "Backlog",
-      "owner": null
-    },
-    "81f22936-e57a-4ecf-b68c-373967a9142c": {
-      "status": "Backlog",
-      "owner": null
-    },
-    "8f6881bc-f28a-4b3e-a832-33e61ac1b235": {
-      "status": "Backlog",
-      "owner": null
-    }
+    "75e92a8b-6f94-4b72-aad3-1fccbe953d74": { "status": "In Progress", "owner": "dima" },
+    "bdca02fc-e544-4715-85f2-d11798131506": { "status": "In Progress", "owner": "Ihor" },
+    "c186341c-f7a8-4336-b973-f25ed6fd7afb": { "status": "Planned", "owner": null },
+    "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed": { "status": "Planned", "owner": null },
+    "0383a752-0a73-4bce-b0aa-77379e4f27cf": { "status": "In Progress", "owner": "Mark" },
+    "b2f06e1b-57d3-4ced-9a3c-daf042c02df0": { "status": "Planned", "owner": "David" },
+    "14c0164a-580a-4707-a6f6-039eb30c5969": { "status": "Backlog", "owner": null },
+    "6c262f19-7934-4641-ba14-6ff937127454": { "status": "Backlog", "owner": null },
+    "4ce20eb5-9845-4fa3-b1a9-8f9c8b949a3e": { "status": "Backlog", "owner": null },
+    "2731244b-71c8-44d1-b6bf-ae9434135d05": { "status": "Backlog", "owner": null },
+    "8e80b462-b77a-4479-b48e-8031bc8b6f11": { "status": "Backlog", "owner": null },
+    "9dead622-60da-42fc-b4a1-bbc3a2ce606b": { "status": "Backlog", "owner": null },
+    "81f22936-e57a-4ecf-b68c-373967a9142c": { "status": "Backlog", "owner": null },
+    "8f6881bc-f28a-4b3e-a832-33e61ac1b235": { "status": "Backlog", "owner": null }
   },
-  "needs_triage": {},
+  "needs_triage": {
+    "cb65425b-cc3d-4f8a-8164-5849f594d708": [ { "name": "Additional changes for go-live" } ],
+    "ce07f00e-b392-40bd-85fb-2a4a831c9c80": [ { "name": "Bookkeeping bug-fixes" } ]
+  },
   "engineers": [
     {
-      "name": "Dima",
-      "initial": "D",
-      "color": "#5e6ad2",
+      "name": "Dima", "initial": "D", "color": "#5e6ad2",
       "groups": [
         {
           "initiative": "Build data by onboarding 5 additional customers",
@@ -84,17 +43,14 @@
           "initiative": "__none__",
           "projects": [
             {
-              "name": "Mobile App",
+              "name": "Dynamic Tasks",
               "issues": [
-                { "id": "NEO-1323", "title": "Mobile app v1 - implement all screens", "status": "In Progress" }
+                { "id": "NEO-1362", "title": "UI fixes on the feedback from Eugenia for dynamic tasks", "status": "In Progress" },
+                { "id": "NEO-1328", "title": "Create a new drawer component and replace all drawers in banking", "status": "Done" }
               ]
             },
-            {
-              "name": "Neno UI: Unified Frontend Component Library",
-              "issues": [
-                { "id": "NEO-1095", "title": "Migrate LakeTextInput -> NInput in banking app", "status": "Todo" }
-              ]
-            },
+            { "name": "Mobile App", "issues": [ { "id": "NEO-1323", "title": "Mobile app v1 - implement all screens", "status": "In Progress" } ] },
+            { "name": "Neno UI: Unified Frontend Component Library", "issues": [ { "id": "NEO-1095", "title": "Migrate LakeTextInput -> NInput in banking app", "status": "Todo" } ] },
             {
               "name": "BV Sequence 2: Flow Improvements",
               "issues": [
@@ -103,16 +59,12 @@
                 { "id": "NEO-441", "title": "Clarify next steps in payment success copy", "status": "Todo" }
               ]
             },
-            {
-              "name": "UX Improvements",
-              "issues": [
-                { "id": "NEO-482", "title": "Unify input styles across filters", "status": "Todo" }
-              ]
-            },
+            { "name": "UX Improvements", "issues": [ { "id": "NEO-482", "title": "Unify input styles across filters", "status": "Todo" } ] },
             {
               "name": "__none__",
               "issues": [
-                { "id": "NEO-1328", "title": "Create a new drawer component and replace all drawers in banking", "status": "In Progress" }
+                { "id": "NEO-1366", "title": "Transfer amount shows NaN with a comma decimal separator", "status": "Done" },
+                { "id": "NEO-1363", "title": "Team/Members drawer: add Save, grey out non-editable fields", "status": "Done" }
               ]
             }
           ]
@@ -120,9 +72,7 @@
       ]
     },
     {
-      "name": "Mark",
-      "initial": "M",
-      "color": "#4cb782",
+      "name": "Mark", "initial": "M", "color": "#4cb782",
       "groups": [
         {
           "initiative": "Enable VAT submissions via double-entry GL",
@@ -130,7 +80,8 @@
             {
               "name": "Start writing to neno's double-entry GL",
               "issues": [
-                { "id": "NEO-1302", "title": "Spike: Start writing into the Neno general ledger (Ocean Ionics)", "status": "In Progress" }
+                { "id": "NEO-1361", "title": "Create neno general ledger", "status": "In Progress" },
+                { "id": "NEO-1302", "title": "Spike: Start writing into the Neno general ledger (Ocean Ionics)", "status": "Done" }
               ]
             }
           ]
@@ -138,84 +89,42 @@
         {
           "initiative": "__none__",
           "projects": [
-            {
-              "name": "Flaky tests",
-              "issues": [
-                { "id": "NEO-693", "title": "Fix flaky reconciliation tests - bills disappear mid-test", "status": "In Progress" }
-              ]
-            },
-            {
-              "name": "Ocean Ionics sandbox testing",
-              "issues": [
-                { "id": "NEO-1143", "title": "Bills can sync to Exact without being reconciled (no signal)", "status": "Todo" }
-              ]
-            },
-            {
-              "name": "Exact Online Integration",
-              "issues": [
-                { "id": "NEO-857", "title": "Automated daily Exact sync job", "status": "Todo" }
-              ]
-            },
-            {
-              "name": "BV Sequence 2: Flow Improvements",
-              "issues": [
-                { "id": "NEO-426", "title": "Plug leak to prevent unpaid BV incorporation", "status": "Todo" }
-              ]
-            },
-            {
-              "name": "__none__",
-              "issues": [
-                { "id": "NEO-291", "title": "Gmail ingest NenoError re-write", "status": "Todo" }
-              ]
-            }
+            { "name": "Flaky tests", "issues": [ { "id": "NEO-693", "title": "Fix flaky reconciliation tests - bills disappear mid-test", "status": "In Progress" } ] },
+            { "name": "Ocean Ionics sandbox testing", "issues": [ { "id": "NEO-1143", "title": "Bills can sync to Exact without being reconciled (no signal)", "status": "Todo" } ] },
+            { "name": "Exact Online Integration", "issues": [ { "id": "NEO-857", "title": "Automated daily Exact sync job", "status": "Todo" } ] },
+            { "name": "BV Sequence 2: Flow Improvements", "issues": [ { "id": "NEO-426", "title": "Plug leak to prevent unpaid BV incorporation", "status": "Todo" } ] },
+            { "name": "__none__", "issues": [ { "id": "NEO-291", "title": "Gmail ingest NenoError re-write", "status": "Todo" } ] }
           ]
         }
       ]
     },
     {
-      "name": "Joel",
-      "initial": "J",
-      "color": "#f2994a",
+      "name": "Joel", "initial": "J", "color": "#f2994a",
       "groups": [
+        {
+          "initiative": "Build data by onboarding 5 additional customers",
+          "projects": [
+            { "name": "Whatsapp, Email forwarding and Vault re-provisioning", "issues": [ { "id": "NEO-1349", "title": "WhatsApp bill upload for non-Swan (open banking/BYOB) accounts - TC1", "status": "Done" } ] }
+          ]
+        },
         {
           "initiative": "__none__",
           "projects": [
-            {
-              "name": "Bas S.: Post-Incorporation UX improvements",
-              "issues": [
-                { "id": "NEO-1009", "title": "Banking onboarding not showing all bvs as bank options", "status": "Todo" }
-              ]
-            },
-            {
-              "name": "Build, Send and Track Invoices",
-              "issues": [
-                { "id": "NEO-771", "title": "Add i18n support to API email templates (invoice emails)", "status": "Done" }
-              ]
-            },
-            {
-              "name": "__none__",
-              "issues": [
-                { "id": "NEO-766", "title": "Infrastructure: Sync Pulumi & GH Actions, reduce dev costs", "status": "Done" }
-              ]
-            }
+            { "name": "Onboarding Actions", "issues": [ { "id": "NEO-1263", "title": "M0: Create home page", "status": "In Progress" } ] },
+            { "name": "Bas S.: Post-Incorporation UX improvements", "issues": [ { "id": "NEO-1009", "title": "Banking onboarding not showing all bvs as bank options", "status": "Todo" } ] },
+            { "name": "Build, Send and Track Invoices", "issues": [ { "id": "NEO-771", "title": "Add i18n support to API email templates (invoice emails)", "status": "Done" } ] },
+            { "name": "__none__", "issues": [ { "id": "NEO-766", "title": "Infrastructure: Sync Pulumi & GH Actions, reduce dev costs", "status": "Done" } ] }
           ]
         }
       ]
     },
     {
-      "name": "David",
-      "initial": "D",
-      "color": "#e8857a",
+      "name": "David", "initial": "D", "color": "#e8857a",
       "groups": [
         {
           "initiative": "__none__",
           "projects": [
-            {
-              "name": "Reconciliation",
-              "issues": [
-                { "id": "NEO-839", "title": "Expense account assignment in accountant reconciliation review", "status": "Todo" }
-              ]
-            },
+            { "name": "Reconciliation", "issues": [ { "id": "NEO-839", "title": "Expense account assignment in accountant reconciliation review", "status": "Todo" } ] },
             {
               "name": "Invoice Extraction",
               "issues": [
@@ -226,25 +135,31 @@
             {
               "name": "Build, Send and Track Invoices",
               "issues": [
-                { "id": "NEO-985", "title": "Replace fake /health with real Chromium health check", "status": "Done" },
-                { "id": "NEO-987", "title": "Explicit render-ready signal: replace Loading-text check", "status": "Done" }
+                { "id": "NEO-1343", "title": "Add a DB uniqueness guard for finalized invoice numbers", "status": "Done" },
+                { "id": "NEO-1354", "title": "pdf-service: pre-warm Chromium at boot to fix cold starts", "status": "Done" }
               ]
             },
-            {
-              "name": "__none__",
-              "issues": [
-                { "id": "NEO-1181", "title": "Invoice display breaks for amounts >= EUR 10,000", "status": "In Progress" }
-              ]
-            }
+            { "name": "Bookkeeping bug-fixes", "issues": [ { "id": "NEO-1353", "title": "Bill document preview 401s in PR preview env", "status": "Done" } ] },
+            { "name": "__none__", "issues": [ { "id": "NEO-1181", "title": "Invoice display breaks for amounts >= EUR 10,000", "status": "In Progress" } ] }
           ]
         }
       ]
     },
     {
-      "name": "Ihor",
-      "initial": "I",
-      "color": "#14b8a6",
+      "name": "Ihor", "initial": "I", "color": "#14b8a6",
       "groups": [
+        {
+          "initiative": "Build data by onboarding 5 additional customers",
+          "projects": [
+            {
+              "name": "Multi-Client Exact Online Connections",
+              "issues": [
+                { "id": "NEO-1348", "title": "Separate Exact OAuth grants from workspace division assignments", "status": "In Progress" },
+                { "id": "NEO-1329", "title": "Enable per-workspace Exact writes and GL/VAT reads", "status": "Done" }
+              ]
+            }
+          ]
+        },
         {
           "initiative": "__none__",
           "projects": [
@@ -255,12 +170,7 @@
                 { "id": "NEO-1135", "title": "Exact sync logs don't include enough info to find entities", "status": "Todo" }
               ]
             },
-            {
-              "name": "UX Improvements",
-              "issues": [
-                { "id": "NEO-505", "title": "Alert if a (Swan) user is created without an Account Holder", "status": "Todo" }
-              ]
-            }
+            { "name": "UX Improvements", "issues": [ { "id": "NEO-505", "title": "Alert if a (Swan) user is created without an Account Holder", "status": "Todo" } ] }
           ]
         }
       ]

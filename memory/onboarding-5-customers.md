@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-06-24_
+_Last updated: 2026-06-25_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -13,11 +13,17 @@ _Last updated: 2026-06-24_
 - [2026-06-23] Open-banking provider selected: Montoya; first end-to-end test to run in preview using a personal account once prod keys land. (source: Granola)
 - [2026-06-23] First open-banking target customer is As Controla (no Swan account, so non-Swan access must work). (source: Granola)
 - [2026-06-23] Onboarding calls targeted for 6-7 July; Joel executing the onboarding-five build next week while Matthew is away. (source: Granola)
+- [2026-06-24] Onboarding dashboard redesign (Giuseppe) shipped to production. New policy: vibe-coded work must ship in small, reviewable batches, or be frontend-only — no backend/DB changes until engineering assesses feasibility. (source: Granola — Daily stand-up)
+- [2026-06-24] Exact OAuth tokens are per-connection, not per-division; chosen approach for now is one token reused across workspaces with the division stored per connection (connection pool / backpressure deferred to the roadmap). (source: Granola — Daily stand-up)
+- [2026-06-24] Exact export automation works as a local script; to be codified into the accounting service for nightly syncs once accountants sign off. (source: Granola — Daily stand-up)
+- [2026-06-24] Multi-Client Exact: per-workspace Exact writes + GL/VAT reads (M2) shipped; follow-up to separate OAuth grants from workspace division assignments is in progress. (source: Linear NEO-1329 / NEO-1348)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
 - [resolved 2026-06-24] Open-banking provider decision → provider selected: Montoya (contract still unsigned as of 23 Jun; Plaid ~EUR 2k/mo minimum was the prior front-runner).
-- [open] Montoya open-banking contract still unsigned as of 23 Jun; prod keys expected 24 Jun, then full flow tested in preview. (source: Granola)
+- [resolved 2026-06-24] Montoya open-banking contract — now received (24 Jun); prod-key gating requirements being scoped this week. (source: Granola — Daily stand-up)
+- [open] Open-banking prod-key gating requirements being scoped this week. (owner: Joel) (source: Granola — Daily stand-up, 24 Jun)
+- [open] How does Exact count rate limits — per token or per division? Determines whether a connection pool actually helps. (source: Granola — Daily stand-up, 24 Jun)
 - [open] Onboarding V2 deprecation date conflict: Swan email says 26 Jun, live docs say 30 Sep - Cecile to confirm. (source: Granola)
 - [open] Receipt upload drawer is missing WhatsApp + email options (flagged 22 Jun).
 - [open] When will the new transactions UI (by-date/by-status switch + open-tasks section) be ready? The full WhatsApp/email/Vault submission walkthrough depends on it. (source: Granola — weekly sync)
@@ -26,7 +32,10 @@ _Last updated: 2026-06-24_
 - [high] 6 Jul onboarding target is tight — onboarding-actions project still in backlog and its stepper depends on the new transactions UI.
 - [med] Email forwarding only accepts workspace-member senders, has no UI yet, rejected-email auto-reply still to build.
 - [med] Swan blockers for higher card limits + direct debit: public onboarding link must be fixed and migration to Onboarding V2 completed; Nick & Matthew targeting fixes by Fri 26 Jun. (source: Granola)
-- [med] Montoya open-banking contract unsigned as of 23 Jun - signature + prod keys gate the open-banking test. (source: Granola)
+- [med] Montoya open-banking contract received 24 Jun; prod keys still gate the open-banking end-to-end test (requirements being scoped). (source: Granola — Daily stand-up)
+- [med] Exact OAuth rework: a new table to store access/refresh tokens per connection is required before Exact write functionality is fully usable. (source: Granola — Daily stand-up, 24 Jun)
+- [med] Exact API rate limit (60 req/min) already hit in testing with seeded data; needs a roadmap solution (connection pool or backpressure). (source: Granola — Daily stand-up, 24 Jun)
+- [med] WhatsApp/Meta Business account setup is misconfigured and was deprioritised (24 Jun); blocks the WhatsApp bill channel rollout. (source: Granola — Daily stand-up)
 
 ## Next steps
 - Design the user-journey screens + an Ocean Ionics-specific homepage. (owner: Euge)
@@ -37,6 +46,10 @@ _Last updated: 2026-06-24_
 - [2026-06-23] Finalise acceptance criteria + non-Swan user journey before Matthew is away. (owner: Matthew, by EOW) (source: Granola)
 - [2026-06-23] Fix the public onboarding link + pass email to the Swan API. (owner: Nick/Matthew, by Fri 26 Jun) (source: Granola)
 - [2026-06-24] Test the full open-banking flow once Montoya prod keys arrive. (owner: Engineering, 24 Jun) (source: Granola)
+- [2026-06-24] Introduce a new table for Exact access/refresh tokens per connection; complete the OAuth rework. (owner: Ihor) (source: Granola — Daily stand-up)
+- [2026-06-24] Scope out the open-banking prod-key requirements this week. (owner: Joel) (source: Granola — Daily stand-up)
+- [2026-06-24] Resolve the WhatsApp/Meta Business account issue with Giuseppe (low priority, can slip to next week). (owner: Joel) (source: Granola — Daily stand-up)
+- [2026-06-24] Codify the Exact export automation into the accounting service once accountants sign off. (owner: Ihor) (source: Granola — Daily stand-up)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._
