@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T05:31:26Z",
+  "generated_at": "2026-06-26T15:26:09Z",
   "projects": {
     "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
       "status": "In Progress",
@@ -252,6 +252,12 @@
               ]
             },
             {
+              "name": "Reconciliation",
+              "proj_status": "In Progress",
+              "lead": true,
+              "issues": []
+            },
+            {
               "name": "__none__",
               "issues": [
                 {
@@ -372,6 +378,12 @@
                   "status": "Todo"
                 }
               ]
+            },
+            {
+              "name": "Neno-first Auth - Permission Authority & Persona Simulation",
+              "proj_status": "Planned",
+              "lead": true,
+              "issues": []
             }
           ]
         }
@@ -382,6 +394,17 @@
       "initial": "D",
       "color": "#e8857a",
       "groups": [
+        {
+          "initiative": "Make neno the source of truth for all bookkeeping",
+          "projects": [
+            {
+              "name": "End-to-end AR reconciliation",
+              "proj_status": "Planned",
+              "lead": true,
+              "issues": []
+            }
+          ]
+        },
         {
           "initiative": "__none__",
           "projects": [
@@ -476,6 +499,36 @@
                   "status": "Todo"
                 }
               ]
+            },
+            {
+              "name": "Open source Pantheon hackathon pitch",
+              "proj_status": "In Progress",
+              "lead": true,
+              "issues": []
+            },
+            {
+              "name": "Swan API: Breaking Changes & Deprecations",
+              "proj_status": "In Progress",
+              "lead": true,
+              "issues": []
+            },
+            {
+              "name": "Swan Onboarding API Migration",
+              "proj_status": "Planned",
+              "lead": true,
+              "issues": []
+            },
+            {
+              "name": "Swan Card Cashback for Accounting Customers",
+              "proj_status": "Planned",
+              "lead": true,
+              "issues": []
+            },
+            {
+              "name": "Reconciliation KPIs",
+              "proj_status": "Planned",
+              "lead": true,
+              "issues": []
             },
             {
               "name": "__none__",
