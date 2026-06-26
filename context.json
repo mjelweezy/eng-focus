@@ -309,6 +309,14 @@
       "health": "On track",
       "notes": [
         {
+          "text": "Full specification for this build lives in the native-GL knowledgebase (an Obsidian vault) on PR #1128: the user-observable outcomes in 'General Ledger - Truth Conditions' (TC-LEDGER-01..15), the system rules in 'General Ledger - Invariants' (INV-LEDGER-01..22), and the architecture narrative in the 'General Ledger' domain hub. In-scope-now items (TC-LEDGER-01..06 / INV-LEDGER-01..13) read 'Holds'; deferred future-build items (TC-LEDGER-07..15 / INV-LEDGER-14..22) read 'Proposed (deferred)'.",
+          "source": "PR #1128 knowledgebase"
+        },
+        {
+          "text": "The knowledgebase is a behavioural 'digital twin': Truth Condition -> Invariant -> Scenario -> test -> code, traceable by id (TC-/INV-/SCN-LEDGER-NN). Tests cite the scenario id they prove; code cites the invariant id it satisfies. Reading order is top-down from the domain hub.",
+          "source": "PR #1128 knowledgebase README"
+        },
+        {
           "text": "Agentic-ledger idea: when a backdated entry is posted, automatically detect which reports are affected and surface the delta.",
           "source": "Granola - DP session, 23 Jun"
         }
@@ -490,6 +498,14 @@
         {
           "label": "Native GL knowledgebase (PR #1128)",
           "url": "https://github.com/neno-co/monorepo-core/pull/1128"
+        },
+        {
+          "label": "GL Truth Conditions (TC-LEDGER-01..15, incl. deferred)",
+          "url": "https://github.com/neno-co/monorepo-core/blob/mark/neo-1361-create-neno-general-ledger/knowledgebase/truth-conditions/General%20Ledger%20%E2%80%94%20Truth%20Conditions.md"
+        },
+        {
+          "label": "GL Invariants (INV-LEDGER-01..22, incl. deferred)",
+          "url": "https://github.com/neno-co/monorepo-core/blob/mark/neo-1361-create-neno-general-ledger/knowledgebase/invariants/General%20Ledger%20%E2%80%94%20Invariants.md"
         }
       ],
       "sources_note": "Granola 'M&M' (25 Jun) + 'Double-Entry Bookkeeping Open Questions' / 'Next Steps AGL' + the native-GL knowledgebase on PR #1128 (General Ledger domain, truth conditions, invariants) + Linear NEO-1361."
