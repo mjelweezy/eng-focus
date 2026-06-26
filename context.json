@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-25T07:26:00Z",
+  "generated_at": "2026-06-26T09:51:37Z",
   "lookback_days": 14,
   "initiatives": {
     "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -10,6 +10,7 @@
       "notes": [],
       "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno by early July, with onboarding calls targeted for 6-7 July (Joel building next week while Matthew is away). Open Banking ingestion is the active build (Dima); the provider is selected (Montoya) and the contract has now been received (24 Jun), with prod-key gating requirements being scoped this week before the first full preview test - As Controla (non-Swan) is the first target customer. Per-client Exact connections progressed: per-workspace Exact writes + GL/VAT reads (M2) shipped, and a follow-up to separate OAuth grants from workspace division assignments is in progress after the team confirmed Exact tokens are per-connection (a new per-connection token table is needed before writes are fully usable). The redesigned onboarding dashboard shipped, and a new policy now requires vibe-coded work to ship in small reviewable batches or stay frontend-only. The guided onboarding home and the WhatsApp/email/Vault channels are queued next, then final QA. Main worries: the 6-7 Jul target is tight (onboarding-actions still planned, its stepper depends on a new transactions UI), Swan blockers (public onboarding link + Onboarding V2 migration) need fixing by 26 Jun, the WhatsApp/Meta Business setup is currently misconfigured, and the Exact 60 req/min rate limit is already being hit on seeded data.",
       "whats_changed": [
+        "Onboarding-actions design firmed up (25 Jun): magic-link sign-on, customers self-onboard, reuse existing pages and link out rather than build custom components.",
         "Open-banking provider contract (Montoya) received 24 Jun; prod-key gating requirements now being scoped this week (Joel) before the first full preview test.",
         "Multi-Client Exact: per-workspace Exact writes + GL/VAT reads (M2, NEO-1329) shipped; follow-up to separate OAuth grants from workspace division assignments (NEO-1348) now in progress.",
         "Team confirmed Exact OAuth tokens are per-connection (not per-division); chosen approach is one token reused across workspaces with the division stored per connection - a new per-connection token table is required before Exact writes are fully usable.",
@@ -79,13 +80,23 @@
         },
         {
           "name": "WhatsApp, Email forwarding & Vault re-provisioning",
-          "status": "Planned",
-          "owner": null,
+          "status": "In Progress",
+          "owner": "Joel",
           "summary": "Make the three bill-upload channels work for customers without a Swan account.",
           "blockers": []
         }
       ],
       "decisions": [
+        {
+          "date": "2026-06-25",
+          "text": "Onboarding uses magic-link sign-on; tasks are self-marked with one hard-coded task per workspace linking back to the onboarding homepage; completed tasks hide and the homepage is removed from nav once all are done (invoice task optional).",
+          "source": "Granola - Onboarding Actions, 25 Jun"
+        },
+        {
+          "date": "2026-06-25",
+          "text": "Transactions tab is hidden until a bank account is connected; open-banking connect is a single button handing off to the provider-controlled flow. Accountant chat and the Bills & expenses page are out of scope for this cohort.",
+          "source": "Granola - Onboarding Actions, 25 Jun"
+        },
         {
           "date": "2026-06-24",
           "text": "Redesigned onboarding dashboard (Giuseppe) shipped to production. New policy: vibe-coded work must ship in small, reviewable batches, or be frontend-only - no backend/DB changes until engineering assesses feasibility.",
@@ -144,6 +155,14 @@
       ],
       "open_questions": [
         {
+          "text": "Accountant assignment for new workspaces: add to the accounting-engagements page or hard-code for the initial five?",
+          "owner": "Matthew/Yaroslav"
+        },
+        {
+          "text": "The dummy onboarding task must be marked as a dummy, and all three receipt channels (WhatsApp, email forwarding, Vault) explored before it can be marked done.",
+          "owner": "Dima/Euge"
+        },
+        {
           "text": "Onboarding stepper is a placeholder until the new transactions UI is ready.",
           "owner": "Euge"
         },
@@ -169,6 +188,21 @@
         }
       ],
       "next_steps": [
+        {
+          "text": "Write up the onboarding requirements before Matthew goes on leave.",
+          "owner": "Matthew",
+          "due": "EOW"
+        },
+        {
+          "text": "Dima & Euge own building out the onboarding steps next week with a decision framework.",
+          "owner": "Dima/Euge",
+          "due": "None"
+        },
+        {
+          "text": "Fix the Transactions page visibility/permissions for open-banking customers.",
+          "owner": "Ihor/Joel",
+          "due": "None"
+        },
         {
           "text": "Design the user-journey screens + an Ocean Ionics-specific homepage.",
           "owner": "Euge",
@@ -217,6 +251,26 @@
       ],
       "meetings": [
         {
+          "date": "2026-06-25",
+          "title": "Onboarding Actions (Three amigos / with Dima)",
+          "url": "None",
+          "summary": "Matthew, Dima and Euge firmed up the next-5 onboarding: magic-link sign-on, a self-marked actions checklist reusing existing pages, transactions hidden until a bank is connected, and Dima & Euge owning the build while Matthew is away.",
+          "decisions": [
+            "Magic-link sign-on + self-marked tasks",
+            "Reuse existing pages, link out",
+            "Transactions hidden until bank connected"
+          ],
+          "open_questions": [
+            "Accountant assignment approach",
+            "Dummy task must be clearly marked"
+          ],
+          "next_steps": [
+            "Matthew writes onboarding requirements",
+            "Dima & Euge build the steps",
+            "Ihor & Joel fix transactions visibility"
+          ]
+        },
+        {
           "date": "2026-06-24",
           "title": "Daily stand up",
           "url": null,
@@ -259,25 +313,28 @@
           "source": "Granola - DP session, 23 Jun"
         }
       ],
-      "exec_summary": "Standing up neno's own double-entry general ledger so we can file Q3 VAT for ~6 customers directly from neno. The spike that writes into the previously-unwired ledger is in progress (Mark), and after the 23 Jun design session with DP the core mechanics are now decided - VAT corrections post to the next period, closed periods lock with approval-gated inserts only, and FX is handled via month-end revaluation. The session also fixed VAT reporting to break down by rate and territory and confirmed the Nextens export path. Next is productionising GL writes for Ocean Ionics from ~1 July. The biggest risk remains the ~13k-line, agent-generated spike, which needs careful review for atomicity and correctness before any of it ships.",
+      "exec_summary": "Standing up Neno's own double-entry general ledger so accountants can file Q3 VAT for the first cohort from Neno's own data. The native GL (NEO-1361) is now implemented and covered by green tests on the build branch, gated behind an off-by-default feature flag pending a deliberate production go-live - superseding the earlier dual-write spike that mirrored Exact's codes. The design inverts the old model: Neno owns the chart of accounts and VAT codes, every accounting action emits an event that a reliable engine books into a balanced, VAT-aware journal entry with counterparty and VAT-code dimensions, and Exact becomes a removable downstream sync. Scope for this build is the VAT return, live/complete cash, append-only auditability and drill-down; period locking, opening balances, multi-currency, the full report set and XBRL filing are specified but deferred.",
       "whats_changed": [
-        "Design session with DP (23 Jun) locked the core ledger mechanics: VAT corrections, period locking and multi-currency handling.",
-        "VAT reporting fixed to break down by rate and territory (21% / 9% / 0% Dutch, EU sales, non-EU sales; same for purchases), exported to Nextens.",
-        "Spike (NEO-1302) writing into the neno GL for Ocean Ionics is in progress (Mark).",
-        "Q3 target confirmed: VAT submission from neno for 6 customers (AR & AP), opening balance taken from the Q1/Q2 Exact close."
+        "Native double-entry GL (NEO-1361) is built and green-tested on the build branch, behind an off-by-default feature flag; the 'ledger' event destination is now a supported, booked destination (PR #1128).",
+        "The work is now specified as a behavioural 'digital twin' knowledgebase (Truth Conditions -> Invariants -> Scenarios -> tests): TC-LEDGER-01..06 and INV-LEDGER-01..13 are in scope and now 'Hold'; TC-LEDGER-07..15 / INV-LEDGER-14..22 are specified but deferred.",
+        "Design supersedes the dual-write spike: Neno owns its chart of accounts and VAT codes; Exact is a removable downstream mapping the books never depend on.",
+        "VAT modelled as a first-class dimension - VAT code on both base and tax lines, treatment (domestic / reverse-charge / intra-EU / import / export) drives the posting shape; the VAT return is a code->box report, validated against a real filed Dutch return (Happy Team Apps Q1 2026).",
+        "Cash completeness confirmed: every bank transaction is booked on import (bank vs suspense) so the balance is live before reconciliation; reconciliation reclassifies out of suspense.",
+        "'Source of truth' deliberately reworded to 'source of truth for VAT filing' to avoid scope creep; euro-only for now with XBRL filing deferred.",
+        "Go-live now needs an opening-balance backfill or cutoff booking; year-end roll-forward (TC8) flagged CORE but still needs DP sign-off."
       ],
       "risks": [
         {
-          "severity": "high",
-          "text": "The spike (~13k lines, Claude-generated) took liberties with DB writes - atomicity and no overlapping bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew)."
+          "severity": "low",
+          "text": "Native GL build landed green-tested behind an off-by-default flag; risk has shifted from spike-code correctness to the production go-live cutover - opening-balance backfill/cutoff and Exact decoupling. (PR #1128)"
         },
         {
           "severity": "med",
-          "text": "Belgium gapless-ledger requirement still unconfirmed - does it constrain the day-to-day architecture or only closed-period reporting?"
+          "text": "Belgium gapless-ledger scope still unconfirmed - whether it constrains day-to-day ledger architecture or only closed-period exports/reporting."
         },
         {
           "severity": "med",
-          "text": "DP's full reporting requirements list (potentially 100+ items) is not yet compiled - could expand GL scope."
+          "text": "DP's full reporting requirements list (potentially 100+ items) not yet compiled - could expand GL scope."
         }
       ],
       "projects": [
@@ -285,56 +342,72 @@
           "name": "Start writing to neno's double-entry GL",
           "status": "In Progress",
           "owner": "Mark",
-          "summary": "Wire up the unused ledger and write entries for Ocean Ionics; target real GL writes from 1 July.",
+          "summary": "Native double-entry ledger now built and green-tested behind an off-by-default flag (NEO-1361): Neno-owned chart + VAT codes, event-driven balanced VAT-aware postings, append-only reversals, cash completeness, and the VAT return as a report. Exact decoupled to a removable downstream sync.",
           "blockers": [
-            "Spike code needs atomicity/correctness review before production"
+            "Production go-live cutover outstanding: opening-balance backfill or cutoff booking, plus Exact decoupling.",
+            "Year-end roll-forward (TC8) needs sign-off with DP before it is in scope."
           ]
         }
       ],
       "decisions": [
         {
-          "date": "2026-06-23",
-          "text": "VAT corrections after a period close are booked in the next period (dated day 1); amounts under EUR 1,000 fold into the next return without a supplemental filing. Balance sheet needs three VAT lines: receivable, payable, and a corrections/suspense account.",
-          "source": "Granola: Double-Entry Bookkeeping Open Questions"
+          "date": "2026-06-26",
+          "text": "Native GL (NEO-1361) is implemented and green-tested behind an off-by-default feature flag; Neno owns the chart and VAT codes and Exact becomes a removable downstream sync - superseding the dual-write spike.",
+          "source": "PR #1128 knowledgebase - General Ledger"
+        },
+        {
+          "date": "2026-06-26",
+          "text": "Ledger architecture: every accounting action emits an event; a reliable engine books each into a balanced, VAT-aware journal entry with counterparty and VAT-code dimensions; entries reference their event + source; corrections are append-only contras.",
+          "source": "PR #1128 knowledgebase"
+        },
+        {
+          "date": "2026-06-26",
+          "text": "VAT is a first-class dimension: VAT code on base and tax lines; treatment (domestic / reverse-charge / intra-EU / import / export) drives the posting shape; the return maps codes to boxes.",
+          "source": "PR #1128 knowledgebase"
+        },
+        {
+          "date": "2026-06-25",
+          "text": "'Source of truth' reworded to 'source of truth for VAT filing' to avoid scope creep from external payment sources.",
+          "source": "Granola - M&M"
+        },
+        {
+          "date": "2026-06-25",
+          "text": "Book ledger entries when bank transactions import (not only bills/invoices) so the bank balance is knowable before reconciliation (cash completeness via suspense).",
+          "source": "Granola - M&M"
+        },
+        {
+          "date": "2026-06-25",
+          "text": "Euro-only for now; XBRL statutory filing deferred. Opening balances at go-live handled via a backfill or a cutoff booking.",
+          "source": "Granola - M&M"
         },
         {
           "date": "2026-06-23",
-          "text": "Closed periods lock writes by default; unlocking is approval-gated and only for material post-close accruals. No editing existing entries - only inserting new journal entries dated in the closed period, with a full audit log.",
-          "source": "Granola: Double-Entry Bookkeeping Open Questions"
+          "text": "VAT corrections after a period close are booked in the next period (dated day 1); under EUR 1,000 fold into the next return without a supplemental filing. Balance sheet needs three VAT lines: receivable, payable, corrections/suspense.",
+          "source": "Granola - Double-Entry Bookkeeping Open Questions"
         },
         {
           "date": "2026-06-23",
-          "text": "Multi-currency: store foreign amount + transaction-date rate, derive euro on demand; revalue FX assets/liabilities at month-end to an unrealized FX gains/losses account (P&L under Dutch GAAP, equity under IFRS).",
-          "source": "Granola: Double-Entry Bookkeeping Open Questions"
-        },
-        {
-          "date": "2026-06-23",
-          "text": "VAT reporting must break down by rate and territory (21% / 9% / 0% Dutch, EU sales, non-EU sales; same for purchases); VAT export mapped to Nextens for submission.",
-          "source": "Granola: Double-Entry Bookkeeping Open Questions"
+          "text": "Closed periods lock writes by default; unlocking is approval-gated and only for material post-close accruals; insert-only with full audit log.",
+          "source": "Granola - DP session"
         },
         {
           "date": "2026-06-22",
-          "text": "Insert-only architecture with reversals - no direct edits to journal entries; corrections reverse and rebook.",
-          "source": "Granola: Next Steps AGL with Mark"
-        },
-        {
-          "date": "2026-06-22",
-          "text": "Period closes define immutability; monitoring over rollback; Euro-only for now; Q3 VAT for 6 customers with opening balance from the Q1/Q2 Exact close.",
-          "source": "Granola: Next Steps AGL with Mark"
+          "text": "Insert-only ledger with reversals - no edits to journal entries; corrections reverse and rebook. Period closes define immutability. Monitoring over rollback. Euro-only, multi-currency deferred.",
+          "source": "Granola - Next Steps AGL"
         }
       ],
       "open_questions": [
         {
-          "text": "Belgium gapless-ledger requirement - does it constrain day-to-day ledger architecture or only closed-period exports/reporting? (not resolved in the session)",
+          "text": "Year-end roll-forward (close income/expense into retained earnings; clean new-year P&L + correct opening balance sheet) flagged CORE but still needs DP sign-off.",
+          "owner": "Mark/Matthew"
+        },
+        {
+          "text": "Belgium gapless-ledger requirement - does it constrain day-to-day ledger architecture or only closed-period exports/reporting?",
           "owner": null
         },
         {
-          "text": "Full reporting requirements list being compiled by DP (potentially 100+ items) - will frame future design.",
+          "text": "Full reporting requirements list (potentially 100+ items) still being compiled by DP.",
           "owner": "DP"
-        },
-        {
-          "text": "What must change in the current system to use double-entry bookkeeping for the Q3 VAT submission?",
-          "owner": null
         },
         {
           "text": "VAT filing period must be configurable per customer/country (monthly, quarterly, or bi-monthly).",
@@ -343,29 +416,24 @@
       ],
       "next_steps": [
         {
-          "text": "Compile the full reporting requirements list.",
-          "owner": "DP",
-          "due": "ASAP"
+          "text": "Finish and send the truth-conditions document.",
+          "owner": "Mark",
+          "due": "None"
         },
         {
-          "text": "Schedule the follow-up design session.",
-          "owner": "Matthew",
-          "due": "~1 week"
+          "text": "Confirm TC8 / year-end roll-forward with DP.",
+          "owner": "Mark/Matthew",
+          "due": "None"
         },
         {
-          "text": "Compile outstanding open questions before the follow-up.",
-          "owner": "Matthew / Mark",
-          "due": "before follow-up"
+          "text": "Add XBRL to the Slack chat / roadmap.",
+          "owner": "Mark",
+          "due": "None"
         },
         {
-          "text": "Review spike code for atomicity, security and correctness.",
-          "owner": "Mark (+Matthew)",
-          "due": "this week"
-        },
-        {
-          "text": "Reproduce the balance check in production with periods.",
-          "owner": "Engineering",
-          "due": "by Wed 25 Jun"
+          "text": "Review spike code superseded; focus shifts to production go-live (opening balances + Exact decoupling).",
+          "owner": "Mark/Matthew",
+          "due": "None"
         },
         {
           "text": "Map the VAT export to Nextens for submission.",
@@ -375,47 +443,42 @@
       ],
       "meetings": [
         {
-          "date": "2026-06-23",
-          "title": "Double-Entry Bookkeeping Open Questions",
-          "url": null,
-          "summary": "Design session with DP and Mark that resolved the core ledger mechanics ahead of productionising.",
+          "date": "2026-06-25",
+          "title": "M&M",
+          "url": "None",
+          "summary": "Matthew/Mark working session on the native GL: scoped 'source of truth' to VAT filing, confirmed booking bank transactions on import, agreed supplemental-vs-break-the-glass handling, euro-only with XBRL later, and that opening balances need a backfill or cutoff booking.",
           "decisions": [
-            "VAT corrections booked in the next period; <EUR 1,000 folds in without a supplemental return; 3 VAT balance-sheet lines (receivable, payable, corrections/suspense)",
-            "Closed periods lock; approval-gated insert-only changes with full audit log",
-            "Multi-currency: store FX amount + date rate, month-end revaluation to an unrealized FX gains/losses account",
-            "VAT reporting broken down by rate and territory; export mapped to Nextens"
+            "Source of truth scoped to VAT filing",
+            "Book on import for cash completeness",
+            "Euro-only now, XBRL later",
+            "Opening balances via backfill or cutoff"
           ],
           "open_questions": [
-            "Belgium gapless-ledger scope unconfirmed",
-            "DP to compile full reporting requirements list",
-            "VAT filing period flexibility per customer/country"
+            "TC8 year-end roll-forward needs DP sign-off"
           ],
           "next_steps": [
-            "DP compiles reporting requirements",
-            "Matthew schedules follow-up (~1 week)",
-            "Confirm Belgium gapless-ledger scope"
+            "Mark finish + send truth-conditions doc",
+            "Confirm TC8 with DP",
+            "Add XBRL to Slack"
           ]
         },
         {
-          "date": "2026-06-22",
-          "title": "Next Steps AGL with Mark",
-          "url": null,
-          "summary": "Walked the double-entry GL design toward productionising for Ocean Ionics and the Q3 VAT submission.",
+          "date": "2026-06-23",
+          "title": "Double-Entry Bookkeeping Open Questions",
+          "url": "None",
+          "summary": "Design session with DP and Mark that resolved the core ledger mechanics: VAT correction handling, closed-period locking, multi-currency FX, and the rate/territory VAT breakdown mapped to Nextens.",
           "decisions": [
-            "Insert-only with reversals",
-            "Period closes define immutability",
-            "Euro-only for now",
-            "Q1/Q2 Exact close as Q3 opening balance"
+            "VAT corrections booked in the next period; <EUR 1,000 folds in",
+            "Closed periods lock; approval-gated insert-only with audit",
+            "Multi-currency: store txn-date rate, revalue at period-end"
           ],
           "open_questions": [
-            "VAT corrections in closed periods",
-            "Edit permissions for humans vs agents",
-            "Belgium gapless-ledger requirement"
+            "Belgium gapless-ledger scope unconfirmed",
+            "Full reporting list pending from DP"
           ],
           "next_steps": [
-            "DP session 23 Jun",
-            "Review spike code for atomicity",
-            "Reproduce balance check in production by 25 Jun"
+            "DP compiles reporting requirements",
+            "Schedule follow-up design session"
           ]
         }
       ],
@@ -425,11 +488,11 @@
           "url": "https://linear.app/nenotechnology/initiative/enable-accountants-to-complete-vat-submissions-using-neno-double-entry-089e47b575e8"
         },
         {
-          "label": "Granola folder - Nenos Double-Entry GL",
-          "url": null
+          "label": "Native GL knowledgebase (PR #1128)",
+          "url": "https://github.com/neno-co/monorepo-core/pull/1128"
         }
       ],
-      "sources_note": "Granola folder 'Nenos Double-Entry GL' (2 notes) + #tech-team ledger threads."
+      "sources_note": "Granola 'M&M' (25 Jun) + 'Double-Entry Bookkeeping Open Questions' / 'Next Steps AGL' + the native-GL knowledgebase on PR #1128 (General Ledger domain, truth conditions, invariants) + Linear NEO-1361."
     },
     "ce07f00e-b392-40bd-85fb-2a4a831c9c80": {
       "title": "Make neno the source of truth for all bookkeeping",
@@ -531,6 +594,11 @@
         }
       ],
       "decisions": [
+        {
+          "date": "2026-06-25",
+          "text": "Three of the next-5 cohort run payroll that currently needs a manual monthly CSV import from Numbrs; payroll-integration viability for Q3 to be determined.",
+          "source": "Granola/Slack - M&M week"
+        },
         {
           "date": "2026-06-23",
           "text": "Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement.",

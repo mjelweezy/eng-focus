@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-06-25_
+_Last updated: 2026-06-26_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -17,6 +17,10 @@ _Last updated: 2026-06-25_
 - [2026-06-24] Exact OAuth tokens are per-connection, not per-division; chosen approach for now is one token reused across workspaces with the division stored per connection (connection pool / backpressure deferred to the roadmap). (source: Granola — Daily stand-up)
 - [2026-06-24] Exact export automation works as a local script; to be codified into the accounting service for nightly syncs once accountants sign off. (source: Granola — Daily stand-up)
 - [2026-06-24] Multi-Client Exact: per-workspace Exact writes + GL/VAT reads (M2) shipped; follow-up to separate OAuth grants from workspace division assignments is in progress. (source: Linear NEO-1329 / NEO-1348)
+- [2026-06-25] Onboarding uses magic-link sign-on: customers create a workspace, log in, and self-onboard; reuse existing pages and link out rather than build custom components. (source: Granola - Onboarding Actions with Dima / Three amigos, 25 Jun)
+- [2026-06-25] Onboarding tasks are self-marked; hard-code one task per workspace with a hyperlink back to the onboarding homepage. Completed tasks are hidden (not deleted); once all are done the homepage is hidden and removed from nav. The invoice task is optional (not required to trigger hiding). (source: Granola - 25 Jun)
+- [2026-06-25] The Transactions tab is hidden until a bank account is connected; open-banking connect is a single button from Neno that hands off to the provider-controlled flow. (source: Granola - 25 Jun)
+- [2026-06-25] Accountant chat exists but is not yet available and is not surfaced in onboarding for now; the Bills & expenses page is removed from consideration for this cohort. (source: Granola - 25 Jun)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
@@ -27,6 +31,8 @@ _Last updated: 2026-06-25_
 - [open] Onboarding V2 deprecation date conflict: Swan email says 26 Jun, live docs say 30 Sep - Cecile to confirm. (source: Granola)
 - [open] Receipt upload drawer is missing WhatsApp + email options (flagged 22 Jun).
 - [open] When will the new transactions UI (by-date/by-status switch + open-tasks section) be ready? The full WhatsApp/email/Vault submission walkthrough depends on it. (source: Granola — weekly sync)
+- [open] Accountant assignment for new workspaces: add to Yaroslav's accounting-engagements page, or hard-code for the initial five? (source: Granola - Onboarding Actions, 25 Jun)
+- [open] The dummy onboarding task must be visually marked as a dummy, and all three receipt-sharing methods (WhatsApp, email forwarding, Vault) must be explored before it can be marked done. (source: Granola - 25 Jun)
 
 ## Risks
 - [high] 6 Jul onboarding target is tight — onboarding-actions project still in backlog and its stepper depends on the new transactions UI.
@@ -50,6 +56,10 @@ _Last updated: 2026-06-25_
 - [2026-06-24] Scope out the open-banking prod-key requirements this week. (owner: Joel) (source: Granola — Daily stand-up)
 - [2026-06-24] Resolve the WhatsApp/Meta Business account issue with Giuseppe (low priority, can slip to next week). (owner: Joel) (source: Granola — Daily stand-up)
 - [2026-06-24] Codify the Exact export automation into the accounting service once accountants sign off. (owner: Ihor) (source: Granola — Daily stand-up)
+- [2026-06-25] Matthew to write up the onboarding requirements before going on leave. (owner: Matthew) (source: Granola)
+- [2026-06-25] Dima & Euge own building out the onboarding steps together, agreeing a decision-making framework to resolve open questions independently next week. (owner: Dima/Euge) (source: Granola)
+- [2026-06-25] Euge to iterate on the onboarding prototype and the open-banking integration. (owner: Euge) (source: Granola)
+- [2026-06-25] Ihor & Joel to fix the Transactions page visibility/permissions for open-banking customers. (owner: Ihor/Joel) (source: Granola)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._

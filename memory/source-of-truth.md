@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-06-23_
+_Last updated: 2026-06-26_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -8,6 +8,7 @@ _Last updated: 2026-06-23_
 - [2026-06-23] Intercompany interest auto-accrual deprioritised as a nice-to-have (currently tracked in Excel). (source: Granola — DP session)
 - [2026-06-23] Depreciation review runs in July and annually for now; year-end balance correctness is the key requirement (monthly journals possible in Exact). (source: Granola — DP session)
 - [2026-06-19] End-to-end AR reconciliation is now a tracked Linear project (lead David, Planned) — first concrete piece of this initiative.
+- [2026-06-25] Three of the next-5 cohort run payroll that currently needs a manual monthly CSV import from Numbrs; payroll-integration viability for Q3 to be determined. (source: Granola/Slack - M&M week)
 
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.
