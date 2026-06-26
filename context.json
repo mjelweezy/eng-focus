@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T09:51:37Z",
+  "generated_at": "2026-06-26T11:58:51Z",
   "lookback_days": 14,
   "initiatives": {
     "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -10,15 +10,13 @@
       "notes": [],
       "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno by early July, with onboarding calls targeted for 6-7 July (Joel building next week while Matthew is away). Open Banking ingestion is the active build (Dima); the provider is selected (Montoya) and the contract has now been received (24 Jun), with prod-key gating requirements being scoped this week before the first full preview test - As Controla (non-Swan) is the first target customer. Per-client Exact connections progressed: per-workspace Exact writes + GL/VAT reads (M2) shipped, and a follow-up to separate OAuth grants from workspace division assignments is in progress after the team confirmed Exact tokens are per-connection (a new per-connection token table is needed before writes are fully usable). The redesigned onboarding dashboard shipped, and a new policy now requires vibe-coded work to ship in small reviewable batches or stay frontend-only. The guided onboarding home and the WhatsApp/email/Vault channels are queued next, then final QA. Main worries: the 6-7 Jul target is tight (onboarding-actions still planned, its stepper depends on a new transactions UI), Swan blockers (public onboarding link + Onboarding V2 migration) need fixing by 26 Jun, the WhatsApp/Meta Business setup is currently misconfigured, and the Exact 60 req/min rate limit is already being hit on seeded data.",
       "whats_changed": [
-        "Onboarding-actions design firmed up (25 Jun): magic-link sign-on, customers self-onboard, reuse existing pages and link out rather than build custom components.",
-        "Open-banking provider contract (Montoya) received 24 Jun; prod-key gating requirements now being scoped this week (Joel) before the first full preview test.",
-        "Multi-Client Exact: per-workspace Exact writes + GL/VAT reads (M2, NEO-1329) shipped; follow-up to separate OAuth grants from workspace division assignments (NEO-1348) now in progress.",
-        "Team confirmed Exact OAuth tokens are per-connection (not per-division); chosen approach is one token reused across workspaces with the division stored per connection - a new per-connection token table is required before Exact writes are fully usable.",
-        "Redesigned onboarding dashboard (Giuseppe) shipped to production; new policy: vibe-coded work ships in small reviewable batches or stays frontend-only (no backend/DB changes until engineering assesses feasibility).",
-        "Exact export automation works as a local script; to be codified into the accounting service for nightly syncs once accountants sign off.",
-        "WhatsApp bill upload for non-Swan / open-banking accounts (NEO-1349, TC1) completed; the broader WhatsApp/Meta Business account setup is misconfigured and was deprioritised on 24 Jun.",
-        "Exact API rate limit (60 req/min) already hit in testing with seeded data; a connection pool / backpressure solution is flagged for the roadmap.",
-        "Onboarding calls targeted for 6-7 July; Joel executing the onboarding-five build next week while Matthew is away."
+        "Onboarding-actions design firmed up across two 25 Jun sessions (Onboarding Actions with Dima; Three amigos): magic-link sign-on, a self-marked actions checklist reusing existing pages, and Dima + Eugenia owning the build while Matthew is away.",
+        "Homepage UX decided: lighter layout (away from chunky cards), active task highlighted in purple, white cards; completed tasks hide and the homepage is removed from nav once done (invoice task optional); the accountant profile block is copied to the tasks screen so it survives the homepage being hidden.",
+        "Page-visibility rules for open-banking customers: show Account, Transactions and Invoices; Transactions appears once a bank is connected and transactions exist; Bills & expenses is .build-only and out of scope. Ihor & Joel to do the permissions work.",
+        "Bank-connect uses the Yapily ('Yapi') one-button hand-off model; homepage shows connected accounts and prompts for more; WhatsApp setup collapses once connected.",
+        "Dummy onboarding task: marked as a dummy, types 'clarification' or 're-upload receipt', surfaces WhatsApp + email-forwarding, discoverable from the notification bell and transactions view; all three receipt channels must be explored before it is marked done.",
+        "Open-banking provider contract (Montoya) received 24 Jun; prod-key gating being scoped; onboarding calls targeted for 6-7 July.",
+        "Multi-Client Exact: per-workspace writes + GL/VAT reads shipped; OAuth-grant rework in progress (tokens are per-connection, not per-division); Exact export automation now runs as a local script with a nightly-sync + GL-migration path designed."
       ],
       "risks": [
         {
@@ -89,101 +87,65 @@
       "decisions": [
         {
           "date": "2026-06-25",
-          "text": "Onboarding uses magic-link sign-on; tasks are self-marked with one hard-coded task per workspace linking back to the onboarding homepage; completed tasks hide and the homepage is removed from nav once all are done (invoice task optional).",
-          "source": "Granola - Onboarding Actions, 25 Jun"
+          "text": "Onboarding uses magic-link sign-on; customers create a workspace, log in and self-onboard via a homepage actions checklist; reuse existing pages and link out rather than build custom components (separate checklist items, not a modal). Dima + Eugenia own the build.",
+          "source": "Granola - Onboarding Actions with Dima, 25 Jun"
         },
         {
           "date": "2026-06-25",
-          "text": "Transactions tab is hidden until a bank account is connected; open-banking connect is a single button handing off to the provider-controlled flow. Accountant chat and the Bills & expenses page are out of scope for this cohort.",
-          "source": "Granola - Onboarding Actions, 25 Jun"
+          "text": "Onboarding tasks are self-marked; hard-code one task per workspace linking back to the homepage; completed tasks are hidden (not deleted); once all are done the homepage is hidden and removed from nav (invoice task optional). The accountant profile block is copied to the tasks screen so it persists after the homepage is hidden.",
+          "source": "Granola - Three amigos / with Dima, 25 Jun"
+        },
+        {
+          "date": "2026-06-25",
+          "text": "Page visibility for open-banking customers: show Account, Transactions and Invoices; Transactions appears once a bank is connected and transactions exist in the table; Bills & expenses is .build-only and out of scope. Accountant chat exists but is not yet available and is not surfaced in onboarding.",
+          "source": "Granola - Onboarding Actions with Dima, 25 Jun"
+        },
+        {
+          "date": "2026-06-25",
+          "text": "Bank-connect uses the Yapily ('Yapi') model - one button from Neno hands off to the provider-controlled flow; the homepage shows connected accounts and prompts for additional ones; WhatsApp setup collapses once connected.",
+          "source": "Granola - Three amigos, 25 Jun"
+        },
+        {
+          "date": "2026-06-25",
+          "text": "Dummy onboarding task: marked as a dummy; types 'clarification' or 're-upload receipt'; surfaces the WhatsApp + email-forwarding channels and is discoverable from the notification bell and the transactions view; all three receipt channels must be explored before it is marked done.",
+          "source": "Granola - Three amigos, 25 Jun"
         },
         {
           "date": "2026-06-24",
-          "text": "Redesigned onboarding dashboard (Giuseppe) shipped to production. New policy: vibe-coded work must ship in small, reviewable batches, or be frontend-only - no backend/DB changes until engineering assesses feasibility.",
+          "text": "Redesigned onboarding dashboard (Giuseppe) shipped to production; new policy: vibe-coded work ships in small reviewable batches or stays frontend-only until engineering assesses feasibility.",
           "source": "Granola - Daily stand-up"
         },
         {
           "date": "2026-06-24",
-          "text": "Exact OAuth tokens are per-connection, not per-division; chosen approach for now is one token reused across workspaces with the division stored per connection (connection pool / backpressure deferred to the roadmap).",
-          "source": "Granola - Daily stand-up"
-        },
-        {
-          "date": "2026-06-24",
-          "text": "Exact export automation works as a local script; to be codified into the accounting service for nightly syncs once accountants sign off.",
+          "text": "Exact OAuth tokens are per-connection, not per-division; one token reused across workspaces with the division stored per connection (connection pool / backpressure deferred). Exact export automation runs as a local script; nightly sync + a Neno-GL migration path (stop sync, one-off reconciliation, then auto) designed.",
           "source": "Granola - Daily stand-up"
         },
         {
           "date": "2026-06-23",
-          "text": "Open-banking provider selected: Montoya; first end-to-end test to run in preview using a personal account once prod keys land. First target customer is As Controla (no Swan account).",
-          "source": "Granola"
-        },
-        {
-          "date": "2026-06-23",
-          "text": "Onboarding calls targeted for 6-7 July; Joel executing the onboarding-five build next week while Matthew is away.",
+          "text": "First open-banking target customer is As Controla (no Swan account); provider selected is Montoya; onboarding calls targeted for 6-7 July with Joel executing while Matthew is away.",
           "source": "Granola"
         },
         {
           "date": "2026-06-22",
-          "text": "Onboarding is a simple hardcoded checklist - a backend boolean/timestamp per step that hides when complete; completion is self-reported, with no auto-detection.",
-          "source": "Granola"
-        },
-        {
-          "date": "2026-06-22",
-          "text": "Onboarding fixed to 6 steps; team invites, accounting menu, WhatsApp and credit-card steps deferred.",
-          "source": "Granola"
-        },
-        {
-          "date": "2026-06-22",
-          "text": "Both the transactions drawer and the tasks/upload drawer should expose all three bill-submission options (WhatsApp, email forwarding, Vault); email forwarding must be feature-flagged and the forwarding address shown in the Vault UI.",
-          "source": "Granola"
-        },
-        {
-          "date": "2026-06-16",
-          "text": "Open-banking-only users get a limited Home (no team invites, card creation, transfers or manage-beneficiaries) and the Home is hidden after onboarding for now.",
-          "source": "Granola"
-        },
-        {
-          "date": null,
-          "text": "Non-Swan customers must be able to connect to neno (bypassing the Swan requirement) - a prerequisite for the next 5.",
-          "source": "Granola"
-        },
-        {
-          "date": null,
-          "text": "Slack notifications required for all document uploads during the early phase.",
-          "source": "Slack #accounting-mvp"
+          "text": "Onboarding is a fixed 6-step, self-reported checklist (connect Swan, connect external bank, view transactions, reconcile/respond to tasks, send first invoice, contact accountant); both the transactions drawer and the tasks/upload drawer expose all three bill-submission channels (WhatsApp, email forwarding, Vault).",
+          "source": "Granola - weekly sync"
         }
       ],
       "open_questions": [
         {
-          "text": "Accountant assignment for new workspaces: add to the accounting-engagements page or hard-code for the initial five?",
+          "text": "Accountant assignment for new workspaces: add to the accounting-engagements page (Yaroslav's) or hard-code for the initial five?",
           "owner": "Matthew/Yaroslav"
         },
         {
-          "text": "The dummy onboarding task must be marked as a dummy, and all three receipt channels (WhatsApp, email forwarding, Vault) explored before it can be marked done.",
-          "owner": "Dima/Euge"
-        },
-        {
-          "text": "Onboarding stepper is a placeholder until the new transactions UI is ready.",
-          "owner": "Euge"
-        },
-        {
-          "text": "Open-banking prod-key gating requirements being scoped this week.",
+          "text": "Open-banking prod-key gating requirements still being scoped (Montoya contract received 24 Jun).",
           "owner": "Joel"
         },
         {
-          "text": "How does Exact count rate limits - per token or per division? Determines whether a connection pool actually helps.",
+          "text": "When will the new transactions UI (by-date/by-status + open-tasks section) be ready? The full WhatsApp/email/Vault walkthrough depends on it.",
           "owner": null
         },
         {
           "text": "Onboarding V2 deprecation date conflict: Swan email says 26 Jun, live docs say 30 Sep - Cecile to confirm.",
-          "owner": null
-        },
-        {
-          "text": "Receipt upload drawer is missing WhatsApp + email options (flagged 22 Jun).",
-          "owner": null
-        },
-        {
-          "text": "When will the new transactions UI (by-date/by-status switch + open-tasks section) be ready? The full WhatsApp/email/Vault walkthrough depends on it.",
           "owner": null
         }
       ],
@@ -194,99 +156,86 @@
           "due": "EOW"
         },
         {
-          "text": "Dima & Euge own building out the onboarding steps next week with a decision framework.",
+          "text": "Dima & Eugenia build out the onboarding steps next week, with a decision framework to resolve open questions independently.",
           "owner": "Dima/Euge",
           "due": "None"
         },
         {
-          "text": "Fix the Transactions page visibility/permissions for open-banking customers.",
+          "text": "Iterate on the onboarding prototype and the open-banking integration.",
+          "owner": "Euge",
+          "due": "None"
+        },
+        {
+          "text": "Fix the Transactions page visibility/permissions for open-banking customers (show once a bank is connected and transactions exist).",
           "owner": "Ihor/Joel",
           "due": "None"
         },
         {
-          "text": "Design the user-journey screens + an Ocean Ionics-specific homepage.",
-          "owner": "Euge",
-          "due": null
-        },
-        {
-          "text": "Finalise acceptance criteria + non-Swan user journey before Matthew is away.",
-          "owner": "Matthew",
-          "due": "by EOW"
-        },
-        {
-          "text": "Fix the public onboarding link + pass email to the Swan API.",
-          "owner": "Nick / Matthew",
-          "due": "by Fri 26 Jun"
+          "text": "Test the magic-link onboarding flow end-to-end in a new workspace.",
+          "owner": "Dima/Euge",
+          "due": "None"
         },
         {
           "text": "Test the full open-banking flow once Montoya prod keys arrive.",
           "owner": "Engineering",
-          "due": null
-        },
-        {
-          "text": "Introduce a new table for Exact access/refresh tokens per connection; complete the OAuth rework.",
-          "owner": "Ihor",
-          "due": null
-        },
-        {
-          "text": "Scope out the open-banking prod-key requirements this week.",
-          "owner": "Joel",
-          "due": "this week"
-        },
-        {
-          "text": "Resolve the WhatsApp/Meta Business account issue with Giuseppe (low priority).",
-          "owner": "Joel",
-          "due": null
-        },
-        {
-          "text": "Codify the Exact export automation into the accounting service once accountants sign off.",
-          "owner": "Ihor",
-          "due": null
-        },
-        {
-          "text": "All team members test WhatsApp + email forwarding before Ocean Ionics rollout.",
-          "owner": "Team",
-          "due": null
+          "due": "None"
         }
       ],
       "meetings": [
         {
           "date": "2026-06-25",
-          "title": "Onboarding Actions (Three amigos / with Dima)",
+          "title": "Three amigos: onboarding actions",
           "url": "None",
-          "summary": "Matthew, Dima and Euge firmed up the next-5 onboarding: magic-link sign-on, a self-marked actions checklist reusing existing pages, transactions hidden until a bank is connected, and Dima & Euge owning the build while Matthew is away.",
+          "summary": "Matthew, Dima and Eugenia walked the onboarding-actions UI: task-completion/hide logic, a lighter card design with the active task in purple, the dummy task (clarification / re-upload receipt) surfacing WhatsApp + email forwarding, the Yapily one-button bank-connect, and hiding the transactions section until a bank is connected.",
           "decisions": [
-            "Magic-link sign-on + self-marked tasks",
-            "Reuse existing pages, link out",
-            "Transactions hidden until bank connected"
+            "Hide completed tasks and the homepage once done; invoice task optional",
+            "Lighter card layout, active task in purple, accountant block moved to tasks screen",
+            "Yapily one-button bank-connect; WhatsApp collapses once connected"
           ],
           "open_questions": [
-            "Accountant assignment approach",
-            "Dummy task must be clearly marked"
+            "Dummy task must be clearly marked; all three receipt channels explored before done"
           ],
           "next_steps": [
-            "Matthew writes onboarding requirements",
-            "Dima & Euge build the steps",
-            "Ihor & Joel fix transactions visibility"
+            "Euge iterates the prototype + open-banking integration",
+            "Add hide-transactions logic for unconnected accounts"
+          ]
+        },
+        {
+          "date": "2026-06-25",
+          "title": "Onboarding Actions with Dima",
+          "url": "None",
+          "summary": "Scoped the next-5 onboarding: magic-link sign-on and a self-marked actions checklist reusing existing pages (connect bank, email forwarding, WhatsApp, Vault, tasks intro); page-visibility fixes for open-banking customers (Account/Transactions/Invoices); Dima + Eugenia to own the build while Matthew is away.",
+          "decisions": [
+            "Magic-link sign-on + self-marked checklist",
+            "Reuse existing pages, link out (no modal, no custom components)",
+            "Show Account/Transactions/Invoices; Transactions once a bank is connected"
+          ],
+          "open_questions": [
+            "Accountant assignment: engagements page or hard-code for the five?"
+          ],
+          "next_steps": [
+            "Matthew writes onboarding requirements before leave",
+            "Dima & Eugenia build the steps next week",
+            "Ihor & Joel fix transactions visibility",
+            "Test magic-link flow end-to-end"
           ]
         },
         {
           "date": "2026-06-24",
           "title": "Daily stand up",
-          "url": null,
-          "summary": "Team stand-up covering onboarding, Exact connections, the open-banking provider contract, and the WhatsApp/Meta setup.",
+          "url": "None",
+          "summary": "Team stand-up: Giuseppe's onboarding dashboard shipped (new vibe-coding policy), Exact OAuth per-connection token rework and rate-limit findings, Exact export automation as a local script with a nightly-sync/GL-migration path, the WhatsApp/Meta setup issue, and the Montoya contract received with prod keys being scoped.",
           "decisions": [
-            "Onboarding dashboard redesign shipped; vibe-coded work must ship in small reviewable batches or stay frontend-only",
-            "Exact OAuth tokens are per-connection, not per-division; one token reused across workspaces with division stored per connection",
-            "Exact export automation done as a local script; to be codified into the accounting service for nightly syncs"
+            "Vibe-coded work ships in small batches or frontend-only",
+            "Reuse one Exact token across workspaces, division per connection",
+            "Codify Exact export automation into the accounting service"
           ],
           "open_questions": [
-            "How does Exact count rate limits - per token or per division?",
-            "Open-banking prod-key gating requirements (Joel scoping this week)"
+            "How does Exact count rate limits - per token or per division?"
           ],
           "next_steps": [
-            "Ihor: new per-connection Exact token table; finish OAuth rework",
-            "Joel: scope open-banking prod-key requirements; resolve WhatsApp/Meta setup with Giuseppe"
+            "Ihor: per-connection Exact token table; finish OAuth rework",
+            "Resolve WhatsApp/Meta Business setup with Giuseppe"
           ]
         }
       ],

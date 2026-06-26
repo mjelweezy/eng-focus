@@ -21,6 +21,12 @@ _Last updated: 2026-06-26_
 - [2026-06-25] Onboarding tasks are self-marked; hard-code one task per workspace with a hyperlink back to the onboarding homepage. Completed tasks are hidden (not deleted); once all are done the homepage is hidden and removed from nav. The invoice task is optional (not required to trigger hiding). (source: Granola - 25 Jun)
 - [2026-06-25] The Transactions tab is hidden until a bank account is connected; open-banking connect is a single button from Neno that hands off to the provider-controlled flow. (source: Granola - 25 Jun)
 - [2026-06-25] Accountant chat exists but is not yet available and is not surfaced in onboarding for now; the Bills & expenses page is removed from consideration for this cohort. (source: Granola - 25 Jun)
+- [2026-06-25] The 5 new customers mostly do not yet use the Neno app and will need open banking; Matthew onboards them by phone next week, so the platform must be ready before he returns. Dima and Eugenia (Enya) own building out the onboarding steps. (source: Granola - Onboarding Actions with Dima, 25 Jun)
+- [2026-06-25] Onboarding homepage visual design: a lighter layout (moving away from chunky cards), the active/next task highlighted in purple, white card backgrounds; the accountant profile block is copied onto the tasks screen so it stays visible after the homepage is hidden. (source: Granola - Three amigos: onboarding actions, 25 Jun)
+- [2026-06-25] Page visibility for open-banking customers: show the Account, Transactions and Invoices pages; the Transactions page appears once a bank is connected and transactions exist in the table; the Bills & expenses page is .build-only and out of scope for .co. (source: Granola - Onboarding Actions with Dima, 25 Jun)
+- [2026-06-25] Onboarding actions use separate checklist items (not a modal); the example task links out to the tasks page rather than a custom inline view; Joel's first version (built alongside dynamic tasks) needs rework. (source: Granola - Onboarding Actions with Dima, 25 Jun)
+- [2026-06-25] Bank-connect uses the Yapily ('Yapi') model - one button from Neno hands off to the provider-controlled flow; the homepage shows connected accounts and prompts for additional ones; WhatsApp setup collapses once connected. (source: Granola - Three amigos, 25 Jun)
+- [2026-06-25] Dummy onboarding task detail: task types are 'clarification' or 're-upload receipt'; it surfaces the WhatsApp + email-forwarding sharing methods (as in transactions) and is discoverable from both the notification bell and the transactions view. (source: Granola - Three amigos, 25 Jun)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
@@ -60,6 +66,7 @@ _Last updated: 2026-06-26_
 - [2026-06-25] Dima & Euge own building out the onboarding steps together, agreeing a decision-making framework to resolve open questions independently next week. (owner: Dima/Euge) (source: Granola)
 - [2026-06-25] Euge to iterate on the onboarding prototype and the open-banking integration. (owner: Euge) (source: Granola)
 - [2026-06-25] Ihor & Joel to fix the Transactions page visibility/permissions for open-banking customers. (owner: Ihor/Joel) (source: Granola)
+- [2026-06-25] Test the magic-link onboarding flow end-to-end in a new workspace. (owner: Dima/Euge) (source: Granola - Onboarding Actions with Dima)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._
