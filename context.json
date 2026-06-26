@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T11:58:51Z",
+  "generated_at": "2026-06-26T12:07:44Z",
   "lookback_days": 14,
   "initiatives": {
     "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -10,6 +10,8 @@
       "notes": [],
       "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno by early July, with onboarding calls targeted for 6-7 July (Joel building next week while Matthew is away). Open Banking ingestion is the active build (Dima); the provider is selected (Montoya) and the contract has now been received (24 Jun), with prod-key gating requirements being scoped this week before the first full preview test - As Controla (non-Swan) is the first target customer. Per-client Exact connections progressed: per-workspace Exact writes + GL/VAT reads (M2) shipped, and a follow-up to separate OAuth grants from workspace division assignments is in progress after the team confirmed Exact tokens are per-connection (a new per-connection token table is needed before writes are fully usable). The redesigned onboarding dashboard shipped, and a new policy now requires vibe-coded work to ship in small reviewable batches or stay frontend-only. The guided onboarding home and the WhatsApp/email/Vault channels are queued next, then final QA. Main worries: the 6-7 Jul target is tight (onboarding-actions still planned, its stepper depends on a new transactions UI), Swan blockers (public onboarding link + Onboarding V2 migration) need fixing by 26 Jun, the WhatsApp/Meta Business setup is currently misconfigured, and the Exact 60 req/min rate limit is already being hit on seeded data.",
       "whats_changed": [
+        "Re-provisioning project renamed to 'Feature re-provisioning for non Swan customers' and broadened; new TC4 (Money Management) added - Transactions populated from open-banking-connected accounts (empty if none), with Accounts and Invoicing visible and functional.",
+        "Open Banking is ready for a Monday (29 Jun) review; the Montoya contract is in and prod keys are the only remaining gate for the full end-to-end test.",
         "Onboarding-actions design firmed up across two 25 Jun sessions (Onboarding Actions with Dima; Three amigos): magic-link sign-on, a self-marked actions checklist reusing existing pages, and Dima + Eugenia owning the build while Matthew is away.",
         "Homepage UX decided: lighter layout (away from chunky cards), active task highlighted in purple, white cards; completed tasks hide and the homepage is removed from nav once done (invoice task optional); the accountant profile block is copied to the tasks screen so it survives the homepage being hidden.",
         "Page-visibility rules for open-banking customers: show Account, Transactions and Invoices; Transactions appears once a bank is connected and transactions exist; Bills & expenses is .build-only and out of scope. Ihor & Joel to do the permissions work.",
@@ -24,12 +26,8 @@
           "text": "6-7 Jul onboarding target is tight - the onboarding-actions project is still planned and its stepper depends on the new transactions UI, whose drawer still needs significant rework."
         },
         {
-          "severity": "med",
-          "text": "Swan blockers for higher card limits + direct debit: public onboarding link must be fixed and migration to Onboarding V2 completed; Nick & Matthew targeting fixes by Fri 26 Jun."
-        },
-        {
-          "severity": "med",
-          "text": "Montoya open-banking contract received 24 Jun; prod keys still gate the open-banking end-to-end test (requirements being scoped)."
+          "severity": "low",
+          "text": "Open Banking is on track for a Monday (29 Jun) review; the Montoya contract is received and prod keys remain the only gate for the full end-to-end test."
         },
         {
           "severity": "med",
@@ -77,14 +75,24 @@
           ]
         },
         {
-          "name": "WhatsApp, Email forwarding & Vault re-provisioning",
+          "name": "Feature re-provisioning for non Swan customers",
           "status": "In Progress",
           "owner": "Joel",
-          "summary": "Make the three bill-upload channels work for customers without a Swan account.",
+          "summary": "Make all relevant platform aspects work for non-Swan customers. Renamed/broadened from the WhatsApp/email/Vault re-provisioning project; TCs cover WhatsApp, email forwarding, Vault, and new TC4 Money Management (Transactions populated from open-banking-connected accounts, empty if none; Accounts and Invoicing visible and functional).",
           "blockers": []
         }
       ],
       "decisions": [
+        {
+          "date": "2026-06-26",
+          "text": "Re-provisioning project renamed to 'Feature re-provisioning for non Swan customers' and broadened to make all relevant platform aspects work for non-Swan customers; added TC4 (Money Management): Transactions populated from open-banking-connected accounts (empty if none), Accounts and Invoicing visible and functional.",
+          "source": "Linear project d5958e60d05c"
+        },
+        {
+          "date": "2026-06-26",
+          "text": "We have what we need to get Open Banking live for review on Monday 29 Jun; prod keys remain the only gate for the full end-to-end test.",
+          "source": "Matthew, 26 Jun"
+        },
         {
           "date": "2026-06-25",
           "text": "Onboarding uses magic-link sign-on; customers create a workspace, log in and self-onboard via a homepage actions checklist; reuse existing pages and link out rather than build custom components (separate checklist items, not a modal). Dima + Eugenia own the build.",
@@ -137,10 +145,6 @@
           "owner": "Matthew/Yaroslav"
         },
         {
-          "text": "Open-banking prod-key gating requirements still being scoped (Montoya contract received 24 Jun).",
-          "owner": "Joel"
-        },
-        {
           "text": "When will the new transactions UI (by-date/by-status + open-tasks section) be ready? The full WhatsApp/email/Vault walkthrough depends on it.",
           "owner": null
         },
@@ -150,6 +154,11 @@
         }
       ],
       "next_steps": [
+        {
+          "text": "Review Open Banking on Monday 29 Jun (prod keys gate the full e2e test).",
+          "owner": "Matthew/Engineering",
+          "due": "2026-06-29"
+        },
         {
           "text": "Write up the onboarding requirements before Matthew goes on leave.",
           "owner": "Matthew",

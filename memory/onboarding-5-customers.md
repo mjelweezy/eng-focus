@@ -27,6 +27,7 @@ _Last updated: 2026-06-26_
 - [2026-06-25] Onboarding actions use separate checklist items (not a modal); the example task links out to the tasks page rather than a custom inline view; Joel's first version (built alongside dynamic tasks) needs rework. (source: Granola - Onboarding Actions with Dima, 25 Jun)
 - [2026-06-25] Bank-connect uses the Yapily ('Yapi') model - one button from Neno hands off to the provider-controlled flow; the homepage shows connected accounts and prompts for additional ones; WhatsApp setup collapses once connected. (source: Granola - Three amigos, 25 Jun)
 - [2026-06-25] Dummy onboarding task detail: task types are 'clarification' or 're-upload receipt'; it surfaces the WhatsApp + email-forwarding sharing methods (as in transactions) and is discoverable from both the notification bell and the transactions view. (source: Granola - Three amigos, 25 Jun)
+- [2026-06-26] (Matthew) The 'Whatsapp, Email forwarding and Vault re-provisioning' project (d5958e60d05c) was renamed to 'Feature re-provisioning for non Swan customers' and broadened to making all relevant platform aspects work for non-Swan customers; a TC4 (Money Management) was added. (source: Linear project)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
@@ -43,8 +44,9 @@ _Last updated: 2026-06-26_
 ## Risks
 - [high] 6 Jul onboarding target is tight — onboarding-actions project still in backlog and its stepper depends on the new transactions UI.
 - [med] Email forwarding only accepts workspace-member senders, has no UI yet, rejected-email auto-reply still to build.
-- [med] Swan blockers for higher card limits + direct debit: public onboarding link must be fixed and migration to Onboarding V2 completed; Nick & Matthew targeting fixes by Fri 26 Jun. (source: Granola)
+- [descoped 2026-06-26] (Matthew) Swan card-limit + direct-debit fixes (public onboarding link, Onboarding V2 migration) are a separate banking workstream and are NOT relevant to this onboarding initiative - removed from risks.
 - [med] Montoya open-banking contract received 24 Jun; prod keys still gate the open-banking end-to-end test (requirements being scoped). (source: Granola — Daily stand-up)
+- [low] (Matthew, 2026-06-26) We now have what we need to get Open Banking live for review on Monday 29 Jun; prod keys remain the only gate for the full end-to-end test.
 - [med] Exact OAuth rework: a new table to store access/refresh tokens per connection is required before Exact write functionality is fully usable. (source: Granola — Daily stand-up, 24 Jun)
 - [med] Exact API rate limit (60 req/min) already hit in testing with seeded data; needs a roadmap solution (connection pool or backpressure). (source: Granola — Daily stand-up, 24 Jun)
 - [med] WhatsApp/Meta Business account setup is misconfigured and was deprioritised (24 Jun); blocks the WhatsApp bill channel rollout. (source: Granola — Daily stand-up)
@@ -74,6 +76,7 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 - (project: Whatsapp, Email forwarding and Vault re-provisioning) Email forwarding must be feature-flagged so it only shows for selected customers, and the customer's email-forwarding address must be displayed in the Vault UI. (source: Granola — weekly sync, 22 Jun 2026)
 - (project: Present onboarding actions for the next five customers) Home dashboard presents a 6-step, self-reported onboarding checklist (connect Swan, connect external bank, view transactions, reconcile/respond to tasks, send first invoice, contact accountant); steps are self-marked, with no auto-detection. (source: Granola — weekly sync, 22 Jun 2026)
 - (project: Present onboarding actions for the next five customers) Open-banking-only users get a limited Home (no team invites, card creation, transfers, or manage-beneficiaries), and the Home is hidden after onboarding for now. (source: Granola — User Journey, 16 Jun 2026)
+- (project: Feature re-provisioning for non Swan customers) [TC4 Money Management] A non-Swan account holder sees the Transactions page populated with history for all bank accounts connected via open banking (empty table if none connected); the Accounts and Invoicing pages are also visible and functional. (source: Linear project TC4, added by Matthew 26 Jun 2026)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

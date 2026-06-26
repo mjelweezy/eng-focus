@@ -274,7 +274,7 @@
           "initiative": "Build data by onboarding 5 additional customers",
           "projects": [
             {
-              "name": "Whatsapp, Email forwarding and Vault re-provisioning",
+              "name": "Feature re-provisioning for non Swan customers",
               "issues": [
                 {
                   "id": "NEO-1357",
