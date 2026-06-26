@@ -91,7 +91,6 @@
   .st.review{color:#8a6d1f;background:#fbf3da;}
   .st.todo{color:#3b59c3;background:#e8ecfb;}
   .st.done{color:#6b7280;background:#eef0f4;}
-  .leadtag{display:inline-block;margin-left:6px;font-size:9px;font-weight:700;color:#6b7280;border:1px solid #d1d5db;border-radius:4px;padding:0 4px;vertical-align:middle;text-transform:uppercase;letter-spacing:.05em;}
   .eng-legend{display:flex;gap:14px;flex-wrap:wrap;margin:-8px 0 18px;font-size:11px;color:var(--muted);}
   .eng-legend span{display:inline-flex;align-items:center;gap:5px;}
   .eng-legend i{width:8px;height:8px;border-radius:50%;display:inline-block;}
@@ -216,7 +215,7 @@ function renderEngineers(data){
       const projs = (g.projects||[]).map(p=>{
         const noproj = !p.name || p.name==='__none__';
         let ppill='';
-        if(p.proj_status){ const ps=engStatus(p.proj_status); ppill=' <span class="'+ps.st+'">'+esc(ps.label)+'</span>'+(p.lead?'<span class="leadtag">lead</span>':''); }
+        if(p.proj_status){ const ps=engStatus(p.proj_status); ppill=' <span class="'+ps.st+'">'+esc(ps.label)+'</span>'; }
         const pname = '<div class="proj-name'+(noproj?' noproj':'')+'">'+(noproj?'No project':esc(p.name))+ppill+'</div>';
         // order within a project: in progress / review, then planned, then recently completed
         const issues = (p.issues||[]).slice().sort((a,b)=>engStatus(a.status).rank-engStatus(b.status).rank);
@@ -230,12 +229,11 @@ function renderEngineers(data){
       return '<div class="initgrp">'+iname+projs+'</div>';
     }).join('');
     // count breakdown
-    let cp=0, cpl=0, cd=0, clead=0;
-    (eng.groups||[]).forEach(g=>(g.projects||[]).forEach(p=>{
-      if(p.proj_status && (!p.issues||!p.issues.length)) clead++;
-      (p.issues||[]).forEach(it=>{ const r=engStatus(it.status).rank; if(r<=1)cp++; else if(r===2)cpl++; else cd++; });
-    }));
-    const parts=[]; if(cp)parts.push(cp+' in progress'); if(cpl)parts.push(cpl+' planned'); if(cd)parts.push(cd+' done'); if(clead)parts.push(clead+' project'+(clead>1?'s':'')+' led');
+    let cp=0, cpl=0, cd=0;
+    (eng.groups||[]).forEach(g=>(g.projects||[]).forEach(p=>(p.issues||[]).forEach(it=>{
+      const r=engStatus(it.status).rank; if(r<=1)cp++; else if(r===2)cpl++; else cd++;
+    })));
+    const parts=[]; if(cp)parts.push(cp+' in progress'); if(cpl)parts.push(cpl+' planned'); if(cd)parts.push(cd+' done');
     const countLabel = parts.length?parts.join(' · '):'nothing assigned';
     return '<div class="eng-card"><div class="ehead"><span class="avatar" style="background:'+color+'">'+esc(initial)+'</span>'
       + '<h3>'+esc(eng.name)+'</h3><span class="count">'+countLabel+'</span></div>'
