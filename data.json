@@ -1,17 +1,19 @@
 {
-  "generated_at": "2026-06-26T15:26:09Z",
+  "generated_at": "2026-07-04T15:05:07Z",
   "projects": {
     "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
       "status": "In Progress",
       "owner": "dima"
     },
     "bdca02fc-e544-4715-85f2-d11798131506": {
-      "status": "In Progress",
-      "owner": "Ihor"
+      "status": "Completed",
+      "owner": "Ihor",
+      "gone": true
     },
     "c186341c-f7a8-4336-b973-f25ed6fd7afb": {
       "status": "Planned",
-      "owner": null
+      "owner": null,
+      "gone": true
     },
     "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed": {
       "status": "In Progress",
@@ -60,6 +62,9 @@
   },
   "needs_triage": {
     "cb65425b-cc3d-4f8a-8164-5849f594d708": [
+      {
+        "name": "Onboarding Actions for the Next Five Customers"
+      },
       {
         "name": "Additional changes for go-live"
       }
@@ -115,16 +120,6 @@
           "initiative": "__none__",
           "projects": [
             {
-              "name": "Dynamic Tasks",
-              "issues": [
-                {
-                  "id": "NEO-1362",
-                  "title": "UI fixes on the feedback from Eugenia for dynamic tasks",
-                  "status": "In Progress"
-                }
-              ]
-            },
-            {
               "name": "Mobile App",
               "issues": [
                 {
@@ -173,16 +168,6 @@
                   "status": "Todo"
                 }
               ]
-            },
-            {
-              "name": "__none__",
-              "issues": [
-                {
-                  "id": "NEO-1366",
-                  "title": "Transfer amount shows NaN with a comma decimal separator",
-                  "status": "Done"
-                }
-              ]
             }
           ]
         }
@@ -194,7 +179,7 @@
       "color": "#4cb782",
       "groups": [
         {
-          "initiative": "Enable VAT submissions via double-entry GL",
+          "initiative": "Enable accountants to complete VAT submissions via double-entry GL",
           "projects": [
             {
               "name": "Start writing to neno's double-entry GL",
@@ -226,7 +211,7 @@
               "issues": [
                 {
                   "id": "NEO-1143",
-                  "title": "Bills can sync to Exact without being reconciled (no signal)",
+                  "title": "Bills can sync to Exact without being reconciled, no signal",
                   "status": "Todo"
                 }
               ]
@@ -250,12 +235,6 @@
                   "status": "Todo"
                 }
               ]
-            },
-            {
-              "name": "Reconciliation",
-              "proj_status": "In Progress",
-              "lead": true,
-              "issues": []
             },
             {
               "name": "__none__",
@@ -283,24 +262,14 @@
               "name": "Feature re-provisioning for non Swan customers",
               "issues": [
                 {
-                  "id": "NEO-1357",
-                  "title": "Replace paid-registration gate with an entitlement check (authz seed)",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-1358",
-                  "title": "Harden bv/_protected funnel guard with server-side payment check",
-                  "status": "In Progress"
-                },
-                {
                   "id": "NEO-1359",
                   "title": "Email forwarding inbox for non-Swan (open banking) accounts - TC2",
-                  "status": "Todo"
+                  "status": "In Progress"
                 },
                 {
                   "id": "NEO-1360",
                   "title": "Vault document uploads for non-Swan (open banking) accounts - TC3",
-                  "status": "Todo"
+                  "status": "Done"
                 }
               ]
             }
@@ -310,46 +279,21 @@
           "initiative": "__none__",
           "projects": [
             {
-              "name": "Onboarding Actions",
-              "issues": [
-                {
-                  "id": "NEO-1263",
-                  "title": "M0: Create home page",
-                  "status": "In Progress"
-                }
-              ]
-            },
-            {
-              "name": "Internal access - Cloudflare Access + Google SSO",
-              "issues": [
-                {
-                  "id": "NEO-1176",
-                  "title": "Phase 1 - Configure Google Workspace as IdP in Cloudflare ZT",
-                  "status": "Todo"
-                },
-                {
-                  "id": "NEO-1175",
-                  "title": "Phase 1 - Create Google Cloud OAuth credentials for Cloudflare",
-                  "status": "Todo"
-                }
-              ]
-            },
-            {
-              "name": "Dynamic Tasks",
-              "issues": [
-                {
-                  "id": "NEO-1278",
-                  "title": "Add Cloud Scheduler cron in Pulumi for daily task digest",
-                  "status": "Todo"
-                }
-              ]
-            },
-            {
               "name": "Bastion onboarding + setup",
               "issues": [
                 {
+                  "id": "NEO-1414",
+                  "title": "Enforce Cloud SQL encryption in transit (ENCRYPTED_ONLY)",
+                  "status": "In Progress"
+                },
+                {
+                  "id": "NEO-1425",
+                  "title": "Adopt Bastion's Trust Center + Status Page",
+                  "status": "Todo"
+                },
+                {
                   "id": "NEO-1313",
-                  "title": "Harden deploy-api-cloud-run env_vars vs YAML/sed injection",
+                  "title": "Harden deploy-api-cloud-run env_vars path against YAML/sed inj",
                   "status": "Todo"
                 },
                 {
@@ -359,7 +303,7 @@
                 },
                 {
                   "id": "NEO-1311",
-                  "title": "Harden scaffold copy-config.ts child_process usage (Bastion SAST)",
+                  "title": "Harden scaffold copy-config.ts child_process usage (SAST)",
                   "status": "Todo"
                 },
                 {
@@ -370,20 +314,119 @@
               ]
             },
             {
-              "name": "Bas S.: Post-Incorporation UX improvements",
+              "name": "Neno-first Auth - Permission Authority & Persona Simulation",
               "issues": [
                 {
-                  "id": "NEO-1009",
-                  "title": "Banking onboarding not showing all bvs as bank options",
+                  "id": "NEO-1416",
+                  "title": "End-to-end test with new Auth Flow",
+                  "status": "In Progress"
+                },
+                {
+                  "id": "NEO-1388",
+                  "title": "E1: Workflow in practice - the metric (all 4 states unaided)",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1387",
+                  "title": "D5: x-swan-user-id sandbox propagation + SCA gate",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1386",
+                  "title": "D4: Persona picker UI (swan + launch) + refetch caps",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1385",
+                  "title": "D3: GET /v1/dev/personas + POST /v1/dev/act-as + guard",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1384",
+                  "title": "D2: Signed actAs cookie + identity/perms override + audit",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1383",
+                  "title": "D1: Account-state (1-4) derivation over real OB rows",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1382",
+                  "title": "C3: Swan SPA derives PERMISSIONS_MATRIX from capabilities",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1381",
+                  "title": "C2: Launch gates pages off neno.* caps",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1380",
+                  "title": "C1: Migrate the Company tasks gate to the resolver",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1379",
+                  "title": "B1: neno-first magic-link login for no-Swan users",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1378",
+                  "title": "A4: Members-area admin UI - unified swan/neno assignment",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1377",
+                  "title": "A3: meta.neno grant store + assign/revoke endpoint",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1376",
+                  "title": "A2: Capability registry + resolvePermissions endpoint",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1375",
+                  "title": "A1: Canonicalize the neno token",
                   "status": "Todo"
                 }
               ]
             },
             {
-              "name": "Neno-first Auth - Permission Authority & Persona Simulation",
-              "proj_status": "Planned",
-              "lead": true,
-              "issues": []
+              "name": "Internal access - Cloudflare Access + Google SSO",
+              "issues": [
+                {
+                  "id": "NEO-1176",
+                  "title": "Phase 1 - Configure Google Workspace as IdP in Cloudflare",
+                  "status": "Todo"
+                },
+                {
+                  "id": "NEO-1175",
+                  "title": "Phase 1 - Create Google Cloud OAuth credentials for CF Access",
+                  "status": "Todo"
+                }
+              ]
+            },
+            {
+              "name": "Dynamic Tasks",
+              "issues": [
+                {
+                  "id": "NEO-1278",
+                  "title": "Add Cloud Scheduler cron for daily task notification digest",
+                  "status": "Todo"
+                }
+              ]
+            },
+            {
+              "name": "Bas S.: Post-Incorporation UX improvements",
+              "issues": [
+                {
+                  "id": "NEO-1009",
+                  "title": "Banking onboarding not showing all bvs as options",
+                  "status": "Todo"
+                }
+              ]
             }
           ]
         }
@@ -395,55 +438,19 @@
       "color": "#e8857a",
       "groups": [
         {
-          "initiative": "Make neno the source of truth for all bookkeeping",
-          "projects": [
-            {
-              "name": "End-to-end AR reconciliation",
-              "proj_status": "Planned",
-              "lead": true,
-              "issues": []
-            }
-          ]
-        },
-        {
           "initiative": "__none__",
           "projects": [
-            {
-              "name": "Reconciliation",
-              "issues": [
-                {
-                  "id": "NEO-839",
-                  "title": "Expense account assignment in accountant reconciliation review",
-                  "status": "Todo"
-                }
-              ]
-            },
-            {
-              "name": "Invoice Extraction",
-              "issues": [
-                {
-                  "id": "NEO-84",
-                  "title": "Renew gmail watch on schedule",
-                  "status": "Todo"
-                },
-                {
-                  "id": "NEO-61",
-                  "title": "Implement Gmail Watch Task for Real-Time Updates",
-                  "status": "Todo"
-                }
-              ]
-            },
             {
               "name": "__none__",
               "issues": [
                 {
-                  "id": "NEO-1374",
-                  "title": "Quotes (offertes) MVP - draft, send, convert-to-invoice",
+                  "id": "NEO-1399",
+                  "title": "Swan e2e-impersonation never installs Playwright Chromium in CI",
                   "status": "In Progress"
                 },
                 {
                   "id": "NEO-1181",
-                  "title": "Invoice display breaks for amounts >= EUR 10,000",
+                  "title": "Invoice display breaks for amounts >= 10,000 euros",
                   "status": "In Progress"
                 }
               ]
@@ -457,21 +464,6 @@
       "initial": "I",
       "color": "#14b8a6",
       "groups": [
-        {
-          "initiative": "Build data by onboarding 5 additional customers",
-          "projects": [
-            {
-              "name": "Multi-Client Exact Online Connections",
-              "issues": [
-                {
-                  "id": "NEO-1348",
-                  "title": "Separate Exact OAuth grants from workspace division assignments",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        },
         {
           "initiative": "__none__",
           "projects": [
@@ -497,51 +489,6 @@
                   "id": "NEO-505",
                   "title": "Alert if a (Swan) user is created without an Account Holder",
                   "status": "Todo"
-                }
-              ]
-            },
-            {
-              "name": "Open source Pantheon hackathon pitch",
-              "proj_status": "In Progress",
-              "lead": true,
-              "issues": []
-            },
-            {
-              "name": "Swan API: Breaking Changes & Deprecations",
-              "proj_status": "In Progress",
-              "lead": true,
-              "issues": []
-            },
-            {
-              "name": "Swan Onboarding API Migration",
-              "proj_status": "Planned",
-              "lead": true,
-              "issues": []
-            },
-            {
-              "name": "Swan Card Cashback for Accounting Customers",
-              "proj_status": "Planned",
-              "lead": true,
-              "issues": []
-            },
-            {
-              "name": "Reconciliation KPIs",
-              "proj_status": "Planned",
-              "lead": true,
-              "issues": []
-            },
-            {
-              "name": "__none__",
-              "issues": [
-                {
-                  "id": "NEO-647",
-                  "title": "Add Argus benchmark validation suite for AI hunters",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-267",
-                  "title": "Unified Session Authentication for SPA and Swan Banking",
-                  "status": "In Progress"
                 }
               ]
             }

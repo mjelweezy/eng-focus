@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-06-26_
+_Last updated: 2026-07-05_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -22,6 +22,13 @@ _Last updated: 2026-06-26_
 - [2026-06-25] To track account balances at go-live, either a backfill or a cutoff booking (opening balances) is required. (source: Granola - M&M)
 - [2026-06-25] Euro-only for now; XBRL statutory filing to be added later. (source: Granola - M&M)
 
+- [2026-06-26] GL status (Mark): the design is locked and a first implementation is drafted with passing unit tests, but the native engine has NOT yet been run against real production data - next step is feeding real prod data through it in dev, which may surface code or even architecture changes. Still the architecture/spike phase. (source: Linear project status update, 26 Jun / edited 29 Jun)
+- [2026-06-30] FX rate on a bill is booked at the ECB daily reference (mid) rate on the transaction date, frozen on the line; when the settling bank payment clears at a different rate the residual is a realised FX gain/loss posted to a dedicated FX-difference account, and any separate bank FX fee books to bank charges (not reconciled to a specific payment). (source: Granola - DP/Mark open questions neno GL, 30 Jun; Slack #accounting-mvp, 1 Jul)
+- [2026-06-30] FX representation (INV-LEDGER-23, proposed): every journal line stores its native-currency amount + the transaction-date rate; the reporting-currency value is derived, never stored alone. Multi-currency balancing is split out to INV-LEDGER-27 (proposed): an entry may carry more than one currency and balances on reporting-currency value; INV-LEDGER-01 is reworded so balance = signed sum of reporting-currency values (stays 'Holds'). (source: Slack #accounting-mvp, 1 Jul)
+- [2026-06-30] FX revaluation (INV-LEDGER-16, deferred) model decided: balance-sheet accounts only (P&L never revalued), revalue to the period-end rate, true-up booked to the FX result account; first practical case is USD bank accounts, run on demand. Out of scope for now, but rates are stored so it can be built later. (source: Slack #accounting-mvp, 1 Jul)
+- [2026-06-30] Locked-period corrections: correct-forward is the default; restating a closed period is the exception, gated by a break-the-glass unlock (deliberate, non-default, per-workspace approver, full audit log, alert-all with amount-threshold escalation); prompt when a correction hits an already-filed period. (source: Granola - DP/Mark, 30 Jun; Slack #accounting-mvp, 1 Jul)
+- [2026-06-30] VAT corrections are always corrected forward (closed books are never reopened for VAT); <EUR 1,000 net/year rolls into the next return, >EUR 1,000 goes on a supplementary return. The chart of accounts needs two VAT balance-sheet accounts - a normal VAT account and a corrections/control account; once the EUR 1,000 cumulative threshold is crossed all subsequent corrections (even small ones) route to the corrections account, which is empty again once the suppletie is filed. (source: Granola - DP/Mark, 30 Jun; Slack #accounting-mvp, 1 Jul)
+
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
 - [open] Full reporting requirements list being compiled by DP (potentially 100+ items) — will frame future design. (owner: DP)
@@ -31,6 +38,10 @@ _Last updated: 2026-06-26_
 - [resolved 2026-06-23] Edit permissions for humans vs agents? → closed periods lock; approval-gated insert-only with audit log.
 - [resolved 2026-06-23] Multi-currency FX handling? → store rate at txn date; month-end revaluation to unrealized FX account.
 - [open] Year-end roll-forward (TC-LEDGER-15): closing income/expense into retained earnings with a clean new-year P&L and correct opening balance sheet - flagged CORE but still needs sign-off with DP. (owner: Mark/Matthew) (source: Granola - M&M, 25 Jun)
+
+- [resolved 2026-06-30] Which FX rate when a bill and its settling transaction don't match? -> ECB mid rate at booking (frozen on the line), residual to a dedicated realised FX gain/loss account, bank FX fees a separate expense line.
+- [open] FX balance rule not finally chosen: 'signed sum zero in the entry's one currency' (spike model) vs 'signed sum of reporting-currency values is zero' (native multi-currency); also confirm the full residual account set (FX difference, rounding, payment difference, discount). (owner: Design/DP) (source: Slack #accounting-mvp, 1 Jul)
+- [open] Locked-period break-the-glass details: who approves, what is recorded, and whether the original filing must be resubmitted - not finalised (depends on future customer profile/risk); design the audit log + Slack unlock alerting (start by reporting all changes, add amount-based thresholds once noisy). (owner: Mark/DP) (source: Slack #accounting-mvp, 1 Jul)
 
 ## Risks
 - [high] Spike code (~13k lines, Claude-generated) took liberties with DB writes; atomicity and no-overlapping-bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew). (source: Granola — Next Steps AGL)
@@ -48,6 +59,11 @@ _Last updated: 2026-06-26_
 - [2026-06-25] Mark to finish and send the truth-conditions document. (owner: Mark) (source: Granola - M&M)
 - [2026-06-25] Mark/Matthew to confirm TC8 / year-end roll-forward with DP. (owner: Mark/Matthew) (source: Granola - M&M)
 - [2026-06-25] Add XBRL to the Slack chat / roadmap. (owner: Mark) (source: Granola - M&M)
+
+- [2026-07-01] Feed real production data through the native GL engine in dev to validate it (expected to surface code/architecture changes). (owner: Mark) (source: Linear status update)
+- [2026-07-01] Decide the FX balance rule (single-currency spike vs native multi-currency) and confirm the full residual account list. (owner: Design/DP) (source: Slack #accounting-mvp)
+- [2026-07-01] Define the VAT correction/control account in the chart of accounts (separate from the normal VAT account; empty after each quarterly suppletie). (owner: Mark/DP) (source: Slack #accounting-mvp)
+- [2026-07-01] Design the locked-period audit log + Slack unlock alerting (report all changes first, add amount thresholds later). (owner: Mark) (source: Slack #accounting-mvp)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project (this project is In Progress, so they are posted as a proposed comment, not auto-applied)._
@@ -69,6 +85,13 @@ _Expanded 2026-06-26 from the native-GL knowledgebase (PR #1128). This project i
 - (project: Start writing to neno's double-entry GL) [deferred] Opening-balance import so balance-sheet accounts are absolute totals (balance-sheet source of truth); related-party drill-down by counterparty. (source: PR #1128 INV-LEDGER-17/18)
 - (project: Start writing to neno's double-entry GL) [deferred] VAT corrections after close: under EUR 1,000 folds into the next period; over threshold filed as a supplemental return posted day 1 to a distinct VAT corrections account (the third balance-sheet VAT line). (source: PR #1128 INV-LEDGER-19)
 - (project: Start writing to neno's double-entry GL) [deferred] Full statutory report set from Neno's own data (trial balance, GL export, P&L, balance sheet, AR aging 30/60/90/120+, fixed-asset register, per-account drill-down); real-time bank balance; XBRL filing of the VAT return as registered consulent; year-end roll-forward into retained earnings. (source: PR #1128 INV-LEDGER-20/21/22, TC-LEDGER-15)
+
+_Expanded 2026-06-30 from the DP/Mark open-questions session (posted as a proposed comment; project is In Progress)._
+- (project: Start writing to neno's double-entry GL) FX rate: book at the ECB daily reference (mid) rate on the transaction date, frozen on the line; a settlement rate difference posts to a dedicated realised FX gain/loss account, and a separate bank FX fee to bank charges. (source: Granola DP/Mark, 30 Jun / Slack #accounting-mvp, 1 Jul)
+- (project: Start writing to neno's double-entry GL) Every line stores native amount + transaction-date rate; the reporting-currency value is derived, never stored alone; balance = signed sum of reporting-currency values (INV-LEDGER-23/27/01). (source: Slack #accounting-mvp, 1 Jul)
+- (project: Start writing to neno's double-entry GL) [deferred] Period-end FX revaluation of balance-sheet accounts only to the period-end rate, true-up to the FX result account, USD bank first, on demand (INV-LEDGER-16). (source: Slack #accounting-mvp, 1 Jul)
+- (project: Start writing to neno's double-entry GL) [deferred] Locked-period break-the-glass: correct-forward by default; closed-period restatement only via a deliberate, approver-gated, fully audited unlock with amount-threshold alerting (INV-LEDGER-14/15). (source: Granola DP/Mark, 30 Jun)
+- (project: Start writing to neno's double-entry GL) VAT is always corrected forward; two VAT balance-sheet accounts (normal + corrections/control); once the EUR 1,000 cumulative threshold is crossed all subsequent corrections route to the corrections account until the suppletie is filed (INV-LEDGER-19). (source: Slack #accounting-mvp, 1 Jul)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

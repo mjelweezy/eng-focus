@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T12:07:44Z",
+  "generated_at": "2026-07-05T14:09:24Z",
   "lookback_days": 14,
   "initiatives": {
     "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -10,6 +10,10 @@
       "notes": [],
       "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno by early July, with onboarding calls targeted for 6-7 July (Joel building next week while Matthew is away). Open Banking ingestion is the active build (Dima); the provider is selected (Montoya) and the contract has now been received (24 Jun), with prod-key gating requirements being scoped this week before the first full preview test - As Controla (non-Swan) is the first target customer. Per-client Exact connections progressed: per-workspace Exact writes + GL/VAT reads (M2) shipped, and a follow-up to separate OAuth grants from workspace division assignments is in progress after the team confirmed Exact tokens are per-connection (a new per-connection token table is needed before writes are fully usable). The redesigned onboarding dashboard shipped, and a new policy now requires vibe-coded work to ship in small reviewable batches or stay frontend-only. The guided onboarding home and the WhatsApp/email/Vault channels are queued next, then final QA. Main worries: the 6-7 Jul target is tight (onboarding-actions still planned, its stepper depends on a new transactions UI), Swan blockers (public onboarding link + Onboarding V2 migration) need fixing by 26 Jun, the WhatsApp/Meta Business setup is currently misconfigured, and the Exact 60 req/min rate limit is already being hit on seeded data.",
       "whats_changed": [
+        "Multi-Client Exact Online Connections shipped and marked Completed (2 Jul): Ops manage per-workspace Exact connections from the admin page, each workspace reads/writes its own Exact division (Ocean Ionics is no longer the hard-coded fallback), OAuth grants are separated from workspace/division assignments, dead connections are detected and alerted to #tech-critical, and the accountant UI now fails closed when Exact is missing/unhealthy (PRs #1102/1107/1116/1131/1133).",
+        "Open Banking moved into real-bank testing: Yaroslav connected a live ABN AMRO account and immediately hit the bankTransaction.reference VARCHAR(255) limit - OB reference strings can reach ~280k chars, so a schema change (and a large-TEXT/lookup-performance trade-off) is needed before ingestion is reliable.",
+        "Non-Swan feature re-provisioning progressing: Vault uploads for non-Swan accounts (TC3, NEO-1360) shipped; the email-forwarding inbox (TC2, NEO-1359) is in progress; TC4 Money Management remains.",
+        "New projects surfaced under the initiative needing triage: 'Onboarding Actions for the Next Five Customers' (replacing the trashed 'Present onboarding actions' project) and 'Additional changes for go-live'.",
         "Re-provisioning project renamed to 'Feature re-provisioning for non Swan customers' and broadened; new TC4 (Money Management) added - Transactions populated from open-banking-connected accounts (empty if none), with Accounts and Invoicing visible and functional.",
         "Open Banking is ready for a Monday (29 Jun) review; the Montoya contract is in and prod keys are the only remaining gate for the full end-to-end test.",
         "Onboarding-actions design firmed up across two 25 Jun sessions (Onboarding Actions with Dima; Three amigos): magic-link sign-on, a self-marked actions checklist reusing existing pages, and Dima + Eugenia owning the build while Matthew is away.",
@@ -31,7 +35,7 @@
         },
         {
           "severity": "med",
-          "text": "Exact OAuth rework: a new table to store access/refresh tokens per connection is required before Exact write functionality is fully usable."
+          "text": "Open-banking ingestion needs a bankTransaction.reference schema change: the current VARCHAR(255) truncates/errors on real ABN AMRO data (OB references can reach ~280k chars); the large-TEXT vs substring-lookup performance trade-off is being agreed with Mark before a PR."
         },
         {
           "severity": "med",
@@ -53,17 +57,15 @@
           "owner": "dima",
           "summary": "Provider-agnostic transaction/balance ingestion plus a multi-account Money Management UI rework.",
           "blockers": [
-            "Montoya contract unsigned as of 23 Jun; prod keys expected 24 Jun"
+            "Real-bank testing (ABN AMRO) surfaced a bankTransaction.reference length limit - schema change needed before reliable ingestion."
           ]
         },
         {
           "name": "Multi-Client Exact Online Connections",
-          "status": "In Progress",
+          "status": "Completed",
           "owner": "Ihor",
-          "summary": "A separate Exact connection per client workspace so accountants reconcile each client into their own division.",
-          "blockers": [
-            "GL/VAT picker error states, dead-connection detection and Ops alerting still outstanding"
-          ]
+          "summary": "Per-workspace Exact connections, managed by Ops: each workspace reads/writes its own Exact division, OAuth grants separated from division assignments, dead-connection detection + #tech-critical alerts, accountant UI fails closed. Shipped and marked Completed 2 Jul (PRs #1102/1107/1116/1131/1133).",
+          "blockers": []
         },
         {
           "name": "Present onboarding actions for the next 5 customers",
@@ -83,6 +85,16 @@
         }
       ],
       "decisions": [
+        {
+          "date": "2026-07-02",
+          "text": "Multi-Client Exact Online Connections is complete: Ops manage per-workspace Exact connections; each workspace reads/writes its own division (Ocean Ionics no longer the fallback); OAuth grants are separated from workspace/division assignments; broken connections are detected, shown in the Ops dashboard and alerted to #tech-critical; the accountant UI fails closed when Exact is unhealthy.",
+          "source": "Linear project status update, 2 Jul"
+        },
+        {
+          "date": "2026-07-01",
+          "text": "Open Banking is being tested end-to-end against a real ABN AMRO account; the bankTransaction.reference column (VARCHAR(255)) is too short for real OB data (references can reach ~280k chars), so a schema change is required before ingestion is reliable.",
+          "source": "Slack #tech-team, 1 Jul"
+        },
         {
           "date": "2026-06-26",
           "text": "Re-provisioning project renamed to 'Feature re-provisioning for non Swan customers' and broadened to make all relevant platform aspects work for non-Swan customers; added TC4 (Money Management): Transactions populated from open-banking-connected accounts (empty if none), Accounts and Invoicing visible and functional.",
@@ -154,6 +166,11 @@
         }
       ],
       "next_steps": [
+        {
+          "text": "Fix the bankTransaction.reference schema so Open Banking references (up to ~280k chars) are stored without truncation; agree the large-TEXT vs lookup-performance trade-off with Mark before the PR.",
+          "owner": "Yaroslav/Mark",
+          "due": "None"
+        },
         {
           "text": "Review Open Banking on Monday 29 Jun (prod keys gate the full e2e test).",
           "owner": "Matthew/Engineering",
@@ -258,7 +275,7 @@
           "url": "https://miro.com/app/board/uXjVHFXnKZk=/"
         }
       ],
-      "sources_note": "Granola folder 'Onboarding 5 additional customers': Daily stand-up (24 Jun) plus the earlier 'User Journey for next 5 customers' (16 Jun) and the Matthew/Eugenia weekly sync (22 Jun); Slack #accounting-mvp / #tech-team had no new lookback hits."
+      "sources_note": "Linear project status update (Multi-Client Exact, 2 Jul) + Slack #tech-team (Open Banking real-bank testing, 1 Jul) + #accounting-mvp; no new Granola meetings since the 25-26 Jun onboarding sessions already captured."
     },
     "fef38f90-b82c-4c47-b377-6dcb9b1a3020": {
       "title": "Enable accountants to complete VAT submissions via double-entry GL",
@@ -281,6 +298,10 @@
       ],
       "exec_summary": "Standing up Neno's own double-entry general ledger so accountants can file Q3 VAT for the first cohort from Neno's own data. The native GL (NEO-1361) is now implemented and covered by green tests on the build branch, gated behind an off-by-default feature flag pending a deliberate production go-live - superseding the earlier dual-write spike that mirrored Exact's codes. The design inverts the old model: Neno owns the chart of accounts and VAT codes, every accounting action emits an event that a reliable engine books into a balanced, VAT-aware journal entry with counterparty and VAT-code dimensions, and Exact becomes a removable downstream sync. Scope for this build is the VAT return, live/complete cash, append-only auditability and drill-down; period locking, opening balances, multi-currency, the full report set and XBRL filing are specified but deferred.",
       "whats_changed": [
+        "DP/Mark 'open questions' session (30 Jun) locked the FX model: FX is booked at the ECB daily reference (mid) rate frozen on the line; a settlement rate difference posts to a dedicated realised FX gain/loss account and any separate bank FX fee to bank charges; every line stores native amount + transaction-date rate with the reporting-currency value derived (INV-LEDGER-23/27; INV-01 reworded to balance on reporting-currency values).",
+        "VAT-correction model firmed: VAT is always corrected forward (closed books never reopened); the chart needs two VAT balance-sheet accounts (normal + corrections/control) and, once the EUR 1,000 cumulative threshold is crossed, all subsequent corrections route to the corrections account until the suppletie is filed (INV-LEDGER-19).",
+        "Locked-period corrections gated by a break-the-glass unlock (deliberate, per-workspace approver, full audit log, amount-threshold alerting); FX revaluation deferred but modelled (balance-sheet accounts only, period-end rate, true-up to FX result, USD bank first, on demand).",
+        "Status check (Mark, 26 Jun): the design is locked and a first implementation is drafted with green unit tests, but it has NOT yet been run against real production data - the next step is validating the engine on real prod data in dev, which may surface code or architecture changes.",
         "Native double-entry GL (NEO-1361) is built and green-tested on the build branch, behind an off-by-default feature flag; the 'ledger' event destination is now a supported, booked destination (PR #1128).",
         "The work is now specified as a behavioural 'digital twin' knowledgebase (Truth Conditions -> Invariants -> Scenarios -> tests): TC-LEDGER-01..06 and INV-LEDGER-01..13 are in scope and now 'Hold'; TC-LEDGER-07..15 / INV-LEDGER-14..22 are specified but deferred.",
         "Design supersedes the dual-write spike: Neno owns its chart of accounts and VAT codes; Exact is a removable downstream mapping the books never depend on.",
@@ -292,7 +313,7 @@
       "risks": [
         {
           "severity": "low",
-          "text": "Native GL build landed green-tested behind an off-by-default flag; risk has shifted from spike-code correctness to the production go-live cutover - opening-balance backfill/cutoff and Exact decoupling. (PR #1128)"
+          "text": "Native GL build is drafted with green unit tests behind an off-by-default flag but has not yet been run against real production data; the next gate is real-data validation in dev (may surface code/architecture changes) ahead of the go-live cutover (opening balances + Exact decoupling). (PR #1128 / status update 26 Jun)"
         },
         {
           "severity": "med",
@@ -316,6 +337,31 @@
         }
       ],
       "decisions": [
+        {
+          "date": "2026-06-30",
+          "text": "FX rate is booked at the ECB daily reference (mid) rate on the transaction date, frozen on the line; when the settling payment clears at a different rate the residual is a realised FX gain/loss posted to a dedicated FX-difference account, and a separate bank FX fee books to bank charges.",
+          "source": "Granola - DP/Mark open questions neno GL, 30 Jun / Slack #accounting-mvp, 1 Jul"
+        },
+        {
+          "date": "2026-06-30",
+          "text": "FX representation: every line stores native amount + transaction-date rate, reporting-currency value derived (INV-LEDGER-23); multi-currency balancing split to INV-LEDGER-27; INV-01 reworded so balance = signed sum of reporting-currency values. FX revaluation (INV-16, deferred): balance-sheet accounts only, revalue to period-end rate, true-up to FX result, USD bank first, on demand.",
+          "source": "Slack #accounting-mvp, 1 Jul"
+        },
+        {
+          "date": "2026-06-30",
+          "text": "Locked-period corrections: correct-forward by default; restating a closed period only via a break-the-glass unlock (deliberate, per-workspace approver, full audit log, amount-threshold alerting); prompt when a correction hits an already-filed period.",
+          "source": "Granola - DP/Mark, 30 Jun / Slack #accounting-mvp, 1 Jul"
+        },
+        {
+          "date": "2026-06-30",
+          "text": "VAT corrections are always corrected forward; two VAT balance-sheet accounts (normal + corrections/control); once the EUR 1,000 cumulative threshold is crossed all subsequent corrections route to the corrections account until the suppletie is filed. <EUR 1,000 net/year rolls into the next return, >EUR 1,000 goes on a supplementary return.",
+          "source": "Granola - DP/Mark, 30 Jun / Slack #accounting-mvp, 1 Jul"
+        },
+        {
+          "date": "2026-06-26",
+          "text": "GL status: design locked and a first implementation drafted with passing unit tests, but not yet run against real production data - next step is feeding real prod data through the engine in dev (may surface code/architecture changes). Still the architecture/spike phase.",
+          "source": "Linear project status update, 26 Jun (edited 29 Jun)"
+        },
         {
           "date": "2026-06-26",
           "text": "Native GL (NEO-1361) is implemented and green-tested behind an off-by-default feature flag; Neno owns the chart and VAT codes and Exact becomes a removable downstream sync - superseding the dual-write spike.",
@@ -364,6 +410,14 @@
       ],
       "open_questions": [
         {
+          "text": "FX balance rule not finally chosen: 'signed sum zero in the entry's one currency' (spike model) vs 'signed sum of reporting-currency values is zero' (native multi-currency); also confirm the full residual account set (FX difference, rounding, payment difference, discount).",
+          "owner": "Design/DP"
+        },
+        {
+          "text": "Locked-period break-the-glass details unsettled: who approves, what is recorded, and whether the original filing must be resubmitted; plus the audit-log + Slack unlock-alerting design (start by reporting all changes, add amount thresholds once noisy).",
+          "owner": "Mark/DP"
+        },
+        {
           "text": "Year-end roll-forward (close income/expense into retained earnings; clean new-year P&L + correct opening balance sheet) flagged CORE but still needs DP sign-off.",
           "owner": "Mark/Matthew"
         },
@@ -381,6 +435,26 @@
         }
       ],
       "next_steps": [
+        {
+          "text": "Feed real production data through the native GL engine in dev to validate it (expected to surface code/architecture changes).",
+          "owner": "Mark",
+          "due": "None"
+        },
+        {
+          "text": "Decide the FX balance rule (single-currency spike vs native multi-currency) and confirm the full residual account list.",
+          "owner": "Design/DP",
+          "due": "None"
+        },
+        {
+          "text": "Define the VAT correction/control account in the chart of accounts (separate from the normal VAT account; empty after each quarterly suppletie).",
+          "owner": "Mark/DP",
+          "due": "None"
+        },
+        {
+          "text": "Design the locked-period audit log + Slack unlock alerting (report all changes first, add amount thresholds later).",
+          "owner": "Mark",
+          "due": "None"
+        },
         {
           "text": "Finish and send the truth-conditions document.",
           "owner": "Mark",
@@ -408,6 +482,26 @@
         }
       ],
       "meetings": [
+        {
+          "date": "2026-06-30",
+          "title": "DP / Mark - open questions neno GL",
+          "url": "https://notes.granola.ai/t/82be1837-f740-4c00-8e2c-bd0153c720c9-00demib2",
+          "summary": "DP + Mark worked the open GL questions surfaced while building the behavioural twin: the FX rate to book (ECB mid, frozen on the line; residual to realised FX gain/loss; bank fees separate), how an entry balances under FX and how far multi-currency goes, the deferred FX-revaluation model, locked-period break-the-glass, and the VAT-correction/control-account model. Written up in #accounting-mvp on 1 Jul.",
+          "decisions": [
+            "FX booked at ECB mid rate, residual to realised FX gain/loss, bank fee separate",
+            "Native lines carry amount+rate; reporting-currency value derived (INV-23/27/01)",
+            "VAT always corrected forward; normal + corrections/control VAT accounts with a EUR 1,000 threshold"
+          ],
+          "open_questions": [
+            "Single-currency spike vs native multi-currency balance rule; full residual account set",
+            "Locked-period break-the-glass approver/record/resubmit + audit-log & alerting design"
+          ],
+          "next_steps": [
+            "Confirm balance rule + residual accounts",
+            "Design locked-period audit log + Slack alerting",
+            "Define the VAT correction/control account in the chart of accounts"
+          ]
+        },
         {
           "date": "2026-06-25",
           "title": "M&M",
@@ -466,7 +560,7 @@
           "url": "https://github.com/neno-co/monorepo-core/blob/mark/neo-1361-create-neno-general-ledger/knowledgebase/invariants/General%20Ledger%20%E2%80%94%20Invariants.md"
         }
       ],
-      "sources_note": "Granola 'M&M' (25 Jun) + 'Double-Entry Bookkeeping Open Questions' / 'Next Steps AGL' + the native-GL knowledgebase on PR #1128 (General Ledger domain, truth conditions, invariants) + Linear NEO-1361."
+      "sources_note": "Granola 'DP / Mark - open questions neno GL' (30 Jun) + Slack #accounting-mvp write-up (1 Jul) + the native-GL knowledgebase on PR #1128 + Linear NEO-1361 / project status update (26 Jun)."
     },
     "ce07f00e-b392-40bd-85fb-2a4a831c9c80": {
       "title": "Make neno the source of truth for all bookkeeping",

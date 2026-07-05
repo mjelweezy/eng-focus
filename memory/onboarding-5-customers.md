@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-06-26_
+_Last updated: 2026-07-05_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -29,11 +29,14 @@ _Last updated: 2026-06-26_
 - [2026-06-25] Dummy onboarding task detail: task types are 'clarification' or 're-upload receipt'; it surfaces the WhatsApp + email-forwarding sharing methods (as in transactions) and is discoverable from both the notification bell and the transactions view. (source: Granola - Three amigos, 25 Jun)
 - [2026-06-26] (Matthew) The 'Whatsapp, Email forwarding and Vault re-provisioning' project (d5958e60d05c) was renamed to 'Feature re-provisioning for non Swan customers' and broadened to making all relevant platform aspects work for non-Swan customers; a TC4 (Money Management) was added. (source: Linear project)
 
+- [2026-07-01] Open Banking is now being tested against a real bank: Yaroslav connected his ABN AMRO account and hit the bankTransaction.reference VARCHAR(255) limit immediately - Open Banking reference strings can run far longer (the spec sets no firm cap; providers observed 500-280,000 chars), so a schema change is needed before ingestion is reliable (Yaroslav to align on schema with Mark before opening the PR). (source: Slack #tech-team, 1 Jul)
+- [2026-07-02] Multi-Client Exact Online Connections shipped and marked Completed: Ops manage per-workspace Exact connections from the admin Exact Connections page; each workspace reads/writes its own Exact division (Ocean Ionics is no longer the hard-coded fallback); OAuth grants are separated from workspace/division assignments; broken connections are detected, shown in the Ops dashboard and alerted to #tech-critical; the accountant UI fails closed when Exact is missing/unhealthy. Merged PRs #1102/#1107/#1116/#1131/#1133. (source: Linear project status update, 2 Jul)
+
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
 - [resolved 2026-06-24] Open-banking provider decision → provider selected: Montoya (contract still unsigned as of 23 Jun; Plaid ~EUR 2k/mo minimum was the prior front-runner).
 - [resolved 2026-06-24] Montoya open-banking contract — now received (24 Jun); prod-key gating requirements being scoped this week. (source: Granola — Daily stand-up)
-- [open] Open-banking prod-key gating requirements being scoped this week. (owner: Joel) (source: Granola — Daily stand-up, 24 Jun)
+- [resolved 2026-07-01] Open-banking prod-key gating requirements being scoped this week. (owner: Joel) -> resolved: Open Banking is now being tested end-to-end against a real ABN AMRO account in preview (Slack #tech-team, 1 Jul).
 - [open] How does Exact count rate limits — per token or per division? Determines whether a connection pool actually helps. (source: Granola — Daily stand-up, 24 Jun)
 - [open] Onboarding V2 deprecation date conflict: Swan email says 26 Jun, live docs say 30 Sep - Cecile to confirm. (source: Granola)
 - [open] Receipt upload drawer is missing WhatsApp + email options (flagged 22 Jun).
@@ -47,8 +50,9 @@ _Last updated: 2026-06-26_
 - [descoped 2026-06-26] (Matthew) Swan card-limit + direct-debit fixes (public onboarding link, Onboarding V2 migration) are a separate banking workstream and are NOT relevant to this onboarding initiative - removed from risks.
 - [med] Montoya open-banking contract received 24 Jun; prod keys still gate the open-banking end-to-end test (requirements being scoped). (source: Granola — Daily stand-up)
 - [low] (Matthew, 2026-06-26) We now have what we need to get Open Banking live for review on Monday 29 Jun; prod keys remain the only gate for the full end-to-end test.
-- [med] Exact OAuth rework: a new table to store access/refresh tokens per connection is required before Exact write functionality is fully usable. (source: Granola — Daily stand-up, 24 Jun)
+- [resolved 2026-07-02] Exact OAuth rework: a new table to store access/refresh tokens per connection is required before Exact write functionality is fully usable. -> shipped: Multi-Client Exact completed 2 Jul, OAuth grants separated from workspace/division assignments and per-workspace writes live. (source: Linear project status update)
 - [med] Exact API rate limit (60 req/min) already hit in testing with seeded data; needs a roadmap solution (connection pool or backpressure). (source: Granola — Daily stand-up, 24 Jun)
+- [med] Open-banking transaction ingestion needs a schema change: bankTransaction.reference (VARCHAR(255)) truncates/errors on real ABN AMRO data; OB references can reach ~280k chars. Schema/perf trade-off (large TEXT + substring lookups) to be agreed with Mark first. (source: Slack #tech-team, 1 Jul)
 - [med] WhatsApp/Meta Business account setup is misconfigured and was deprioritised (24 Jun); blocks the WhatsApp bill channel rollout. (source: Granola — Daily stand-up)
 
 ## Next steps
@@ -77,6 +81,8 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 - (project: Present onboarding actions for the next five customers) Home dashboard presents a 6-step, self-reported onboarding checklist (connect Swan, connect external bank, view transactions, reconcile/respond to tasks, send first invoice, contact accountant); steps are self-marked, with no auto-detection. (source: Granola — weekly sync, 22 Jun 2026)
 - (project: Present onboarding actions for the next five customers) Open-banking-only users get a limited Home (no team invites, card creation, transfers, or manage-beneficiaries), and the Home is hidden after onboarding for now. (source: Granola — User Journey, 16 Jun 2026)
 - (project: Feature re-provisioning for non Swan customers) [TC4 Money Management] A non-Swan account holder sees the Transactions page populated with history for all bank accounts connected via open banking (empty table if none connected); the Accounts and Invoicing pages are also visible and functional. (source: Linear project TC4, added by Matthew 26 Jun 2026)
+
+- (project: Enable customers to connect external bank accounts and view their transactions) Bank-transaction reference storage must accommodate Open Banking reference strings far beyond 255 characters (the OB spec sets no firm cap; providers observed up to ~280,000 chars) - the current VARCHAR(255) truncates/errors on real ABN AMRO data. (source: Slack #tech-team, 1 Jul)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->
