@@ -73,8 +73,7 @@
       "accent": "accent",
       "tags": [
         "Active",
-        "Committed · July",
-        "Calls 6-7 Jul"
+        "Target 6 Jul"
       ],
       "blurb": "Get the system ready to run AP & AR reconciliation for 5 hand-picked customers. The team's real centre of gravity.",
       "url": "https://linear.app/nenotechnology/initiative/build-data-by-onboarding-5-additional-customers-on-neno-16777b88b5d7",
@@ -155,7 +154,8 @@
           {
             "type": "text",
             "label": "Enable team members outside Swan",
-            "desc": "Invite and manage team members without a Swan membership (relates to the Neno-first Auth and native permissions work)."
+            "desc": "Invite and manage team members without a Swan membership (relates to the Neno-first Auth and native permissions work).",
+            "show_owner_status": true
           },
           {
             "type": "subhead",
@@ -186,7 +186,6 @@
       "accent": "amber",
       "tags": [
         "Active",
-        "Committed · July",
         "Target 30 Sep"
       ],
       "blurb": "Begin writing to our own double-entry ledger so we can confidently file Q3 VAT for 5 neno customers.",
@@ -246,7 +245,6 @@
       "accent": "pink",
       "tags": [
         "Active",
-        "Committed · July",
         "Target 30 Sep"
       ],
       "blurb": "Scale bookkeeping functionality to manage the books for 30 customers in Q3 and stay in sync with Exact.",
@@ -356,9 +354,7 @@
       "static": true,
       "title": "Other July commitments",
       "accent": "accent",
-      "tags": [
-        "Committed · July"
-      ],
+      "tags": [],
       "blurb": "July-committed work that sits outside the three tracked initiatives.",
       "buckets": {
         "now": [
@@ -367,14 +363,16 @@
             "label": "Accountant UI improvements",
             "owner_override": "Euge",
             "status_override": "In Progress",
-            "desc": "Fix reconciliation workflow issues already slowing Andries down - full-screen reconciliation review layout (NEO-1347) and bill review interface polish (NEO-1319) are underway."
+            "desc": "Fix reconciliation workflow issues already slowing Andries down - full-screen reconciliation review layout (NEO-1347) and bill review interface polish (NEO-1319) are underway.",
+            "show_owner_status": true
           }
         ],
         "next": [
           {
             "type": "text",
             "label": "Swan onboarding changes",
-            "desc": "Modify our onboarding flow per Swan's advice to meet the requirements that unlock additional Swan features."
+            "desc": "Modify our onboarding flow per Swan's advice to meet the requirements that unlock additional Swan features.",
+            "show_owner_status": true
           }
         ],
         "later": []
