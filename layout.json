@@ -372,6 +372,14 @@
             "status_override": "In Progress",
             "desc": "Fix reconciliation workflow issues already slowing Andries down - full-screen reconciliation review layout (NEO-1347) and bill review interface polish (NEO-1319) are underway.",
             "show_owner_status": true
+          },
+          {
+            "type": "text",
+            "label": "Prepare for Bastion pen test",
+            "show_owner_status": true,
+            "owner_override": "Joel",
+            "status_override": "In Progress",
+            "desc": "Prepare system for July 10th penetration test, as well as essential compliance documentation."
           }
         ],
         "next": [
