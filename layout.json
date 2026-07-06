@@ -1,8 +1,8 @@
 {
-  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). Edit this file to change curation (buckets, descriptions, owner overrides) or context sources. The engineer view is fully auto-generated from Linear.",
+  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). JULY SEMANTICS: buckets encode July commitments - 'now' = committed for July AND in progress; 'next' = committed for July, not yet started (Linear project state 'Planned' means planned-for-July); 'later' = not committed. The 'other-july' card is static (no Linear initiative): the job must leave it untouched and skip it when building context.json. Edit this file to change curation. The engineer view is fully auto-generated from Linear.",
   "title": "Engineering Focus",
   "merge_rules": {
-    "initiative_view": "Keep buckets and item order exactly as defined below. For items with a projectId, refresh owner (project lead) and status from Linear at run time. Do NOT re-bucket automatically.",
+    "initiative_view": "Keep buckets and item order exactly as defined below. For items with a projectId, refresh owner (project lead) and status from Linear at run time. Do NOT re-bucket automatically. Buckets encode July commitments: now = in progress, next = committed for July, later = not committed. Cards with static:true have no Linear initiative - skip them for context.json and needs-triage.",
     "new_projects": "If a NEW project appears under one of the three initiatives in Linear that is not listed below, surface it in a 'Needs triage' note on that card rather than placing it.",
     "removed_projects": "If a listed projectId is completed/cancelled/missing in Linear, render it struck-through with a '(check)' flag.",
     "engineer_view": "Fully regenerate from Linear each run: non-archived issues with statusType 'started' that have an assignee, grouped assignee -> initiative -> project -> issue. Ungrouped items go under 'Not belonging to an initiative'.",
@@ -10,17 +10,60 @@
   },
   "context": {
     "lookback_days": 14,
-    "slack_channels_default": ["#accounting-mvp", "#tech-team"]
+    "slack_channels_default": [
+      "#accounting-mvp",
+      "#tech-team"
+    ]
   },
   "team": [
-    {"name": "Dima", "email": "dmytro@neno.co", "initial": "D", "color": "#5e6ad2"},
-    {"name": "Mark", "email": "mark@neno.co", "initial": "M", "color": "#4cb782"},
-    {"name": "Joel", "email": "joel@neno.co", "initial": "J", "color": "#f2994a"},
-    {"name": "David", "email": "david@neno.co", "initial": "D", "color": "#e8857a"},
-    {"name": "Yaroslav", "email": "yaroslav@neno.co", "initial": "Y", "color": "#8b5cf6"},
-    {"name": "Matthew", "email": "matthew@neno.co", "initial": "M", "color": "#0ea5e9"},
-    {"name": "Giuseppe", "email": "giuseppe@neno.co", "initial": "G", "color": "#ec4899"},
-    {"name": "Ihor", "email": "ihor@neno.co", "initial": "I", "color": "#14b8a6"}
+    {
+      "name": "Dima",
+      "email": "dmytro@neno.co",
+      "initial": "D",
+      "color": "#5e6ad2"
+    },
+    {
+      "name": "Mark",
+      "email": "mark@neno.co",
+      "initial": "M",
+      "color": "#4cb782"
+    },
+    {
+      "name": "Joel",
+      "email": "joel@neno.co",
+      "initial": "J",
+      "color": "#f2994a"
+    },
+    {
+      "name": "David",
+      "email": "david@neno.co",
+      "initial": "D",
+      "color": "#e8857a"
+    },
+    {
+      "name": "Yaroslav",
+      "email": "yaroslav@neno.co",
+      "initial": "Y",
+      "color": "#8b5cf6"
+    },
+    {
+      "name": "Matthew",
+      "email": "matthew@neno.co",
+      "initial": "M",
+      "color": "#0ea5e9"
+    },
+    {
+      "name": "Giuseppe",
+      "email": "giuseppe@neno.co",
+      "initial": "G",
+      "color": "#ec4899"
+    },
+    {
+      "name": "Ihor",
+      "email": "ihor@neno.co",
+      "initial": "I",
+      "color": "#14b8a6"
+    }
   ],
   "team_note": "The engineer view renders one lane per person in this roster, in this order, even if they have no in-progress issues. The daily job matches Linear assignees to these by email/name. Add or remove people here to change who appears.",
   "initiatives": [
@@ -28,58 +71,172 @@
       "id": "cb65425b-cc3d-4f8a-8164-5849f594d708",
       "title": "Build data by onboarding 5 additional customers",
       "accent": "accent",
-      "tags": ["Active", "Target 6 Jul"],
+      "tags": [
+        "Active",
+        "Committed · July",
+        "Calls 6-7 Jul"
+      ],
       "blurb": "Get the system ready to run AP & AR reconciliation for 5 hand-picked customers. The team's real centre of gravity.",
       "url": "https://linear.app/nenotechnology/initiative/build-data-by-onboarding-5-additional-customers-on-neno-16777b88b5d7",
       "context_sources": {
         "linear_initiative_id": "cb65425b-cc3d-4f8a-8164-5849f594d708",
         "granola_folder_id": "3e5bf112-9006-4ba3-8f0b-7f1f1c5b30e5",
-        "granola_keywords": ["onboarding", "open banking", "Exact", "WhatsApp", "email forwarding", "Vault", "reconciliation", "Ocean Ionics", "Roots & Bites", "SubsidAI", "Novem Studio", "AFP International", "QLever", "Escontrela"],
-        "slack_channels": ["#accounting-mvp", "#tech-team"],
-        "slack_keywords": ["onboarding", "open banking", "Exact", "reconciliation", "WhatsApp", "Vault", "email forwarding", "transactions UI"],
+        "granola_keywords": [
+          "onboarding",
+          "open banking",
+          "Exact",
+          "WhatsApp",
+          "email forwarding",
+          "Vault",
+          "reconciliation",
+          "Ocean Ionics",
+          "Roots & Bites",
+          "SubsidAI",
+          "Novem Studio",
+          "AFP International",
+          "QLever",
+          "Escontrela"
+        ],
+        "slack_channels": [
+          "#accounting-mvp",
+          "#tech-team"
+        ],
+        "slack_keywords": [
+          "onboarding",
+          "open banking",
+          "Exact",
+          "reconciliation",
+          "WhatsApp",
+          "Vault",
+          "email forwarding",
+          "transactions UI"
+        ],
         "memory_file": "memory/onboarding-5-customers.md"
       },
       "buckets": {
         "now": [
-          {"type": "project", "projectId": "75e92a8b-6f94-4b72-aad3-1fccbe953d74", "label": "Connect external bank accounts (Open Banking)", "show_owner_status": true, "desc": "Rework the Money Management UI for multiple accounts and let customers link external banks to pull transactions and balances."},
-          {"type": "project", "projectId": "bdca02fc-e544-4715-85f2-d11798131506", "label": "Multi-Client Exact Online Connections", "show_owner_status": true, "desc": "Support a separate Exact connection per client workspace so accountants reconcile each client into their own Exact division."}
+          {
+            "type": "project",
+            "projectId": "75e92a8b-6f94-4b72-aad3-1fccbe953d74",
+            "label": "Connect external bank accounts (Open Banking)",
+            "show_owner_status": true,
+            "desc": "Rework the Money Management UI for multiple accounts and let customers link external banks to pull transactions and balances."
+          },
+          {
+            "type": "project",
+            "projectId": "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed",
+            "label": "Feature re-provisioning for non Swan customers",
+            "show_owner_status": true,
+            "desc": "Make WhatsApp, email forwarding, Vault and Money Management work for customers without a Swan bank account."
+          },
+          {
+            "type": "project",
+            "projectId": "bdca02fc-e544-4715-85f2-d11798131506",
+            "label": "Multi-Client Exact Online Connections",
+            "show_owner_status": true,
+            "desc": "Shipped 2 Jul: a separate Exact connection per client workspace, with broken-connection detection and alerts."
+          }
         ],
         "next": [
-          {"type": "project", "projectId": "c186341c-f7a8-4336-b973-f25ed6fd7afb", "label": "Present onboarding actions for the next 5 customers", "show_owner_status": true, "desc": "A Home dashboard with guided actions teaching the three bill-submission channels (email, WhatsApp, Vault) and routing customers to connect their bank."},
-          {"type": "project", "projectId": "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed", "label": "WhatsApp, Email forwarding & Vault re-provisioning", "show_owner_status": true, "desc": "Make the WhatsApp, email-forwarding and Vault bill-upload channels work for customers without a Swan bank account."}
+          {
+            "type": "project",
+            "projectId": "1f7bfeff-7561-4897-99be-ba07ade8948d",
+            "label": "Onboarding Actions for the Next Five Customers",
+            "show_owner_status": true,
+            "desc": "Guided Home onboarding hub - connect bank, learn the three bill channels (email, WhatsApp, Vault), a guided sample task; Home hides when done."
+          },
+          {
+            "type": "project",
+            "projectId": "d9b51b98-4e68-40c4-9eae-54d2ab936db2",
+            "label": "Additional changes for go-live",
+            "show_owner_status": true,
+            "desc": "Miscellaneous changes needed to get onboarding customers fully go-live ready."
+          },
+          {
+            "type": "text",
+            "label": "Enable team members outside Swan",
+            "desc": "Invite and manage team members without a Swan membership (relates to the Neno-first Auth and native permissions work)."
+          },
+          {
+            "type": "subhead",
+            "label": "Final hardening & QA before onboarding"
+          },
+          {
+            "type": "text",
+            "label": "Neno account testing",
+            "desc": "QA the new authentication method for neno users without a Swan account."
+          },
+          {
+            "type": "text",
+            "label": "Tasks permissions testing",
+            "desc": "Review and test dynamic tasks against accounts without Swan's membership permissions."
+          },
+          {
+            "type": "text",
+            "label": "End-to-end testing",
+            "desc": null
+          }
         ],
-        "later": [
-          {"type": "subhead", "label": "Final hardening & QA before onboarding"},
-          {"type": "text", "label": "Neno account testing", "desc": "QA the new authentication method for neno users without a Swan account."},
-          {"type": "text", "label": "Tasks permissions testing", "desc": "Review and test dynamic tasks against accounts without Swan's membership permissions."},
-          {"type": "text", "label": "End-to-end testing", "desc": null}
-        ]
+        "later": []
       }
     },
     {
       "id": "fef38f90-b82c-4c47-b377-6dcb9b1a3020",
       "title": "Enable accountants to complete VAT submissions via double-entry GL",
       "accent": "amber",
-      "tags": ["Active", "Early spike", "Target 30 Sep"],
+      "tags": [
+        "Active",
+        "Committed · July",
+        "Target 30 Sep"
+      ],
       "blurb": "Begin writing to our own double-entry ledger so we can confidently file Q3 VAT for 5 neno customers.",
       "url": "https://linear.app/nenotechnology/initiative/enable-accountants-to-complete-vat-submissions-using-neno-double-entry-089e47b575e8",
       "context_sources": {
         "linear_initiative_id": "fef38f90-b82c-4c47-b377-6dcb9b1a3020",
         "granola_folder_id": "bf3574d4-280e-4e6f-8733-72e752f9f626",
-        "granola_keywords": ["ledger", "GL", "AGL", "double-entry", "VAT", "journal", "period close", "Nextens"],
-        "slack_channels": ["#tech-team", "#accounting-mvp"],
-        "slack_keywords": ["ledger", "GL", "double-entry", "VAT", "journal", "Exact", "reconciliation"],
+        "granola_keywords": [
+          "ledger",
+          "GL",
+          "AGL",
+          "double-entry",
+          "VAT",
+          "journal",
+          "period close",
+          "Nextens"
+        ],
+        "slack_channels": [
+          "#tech-team",
+          "#accounting-mvp"
+        ],
+        "slack_keywords": [
+          "ledger",
+          "GL",
+          "double-entry",
+          "VAT",
+          "journal",
+          "Exact",
+          "reconciliation"
+        ],
         "memory_file": "memory/double-entry-gl.md"
       },
       "buckets": {
         "now": [
-          {"type": "project", "projectId": "0383a752-0a73-4bce-b0aa-77379e4f27cf", "label": "Spike: write into the neno GL (Ocean Ionics)", "show_owner_status": true, "desc": "Wire up the existing, unused double-entry ledger in the codebase and start writing entries into it for one customer."}
+          {
+            "type": "project",
+            "projectId": "0383a752-0a73-4bce-b0aa-77379e4f27cf",
+            "label": "Productionise writing to the double-entry GL (Ocean Ionics)",
+            "show_owner_status": true,
+            "desc": "From spike to production - real ledger writes for Ocean Ionics. Spike reproduced real books to the cent; the native engine is green-tested behind a flag. Next: run real production data through it."
+          }
         ],
-        "next": [
-          {"type": "text", "label": "Productionise writing to the double-entry GL for Ocean Ionics", "desc": "Move from spike to production — real ledger writes for Ocean Ionics, targeting the first live GL writes from 1 July."}
-        ],
+        "next": [],
         "later": [
-          {"type": "text", "label": "Roll out GL writes beyond Ocean Ionics to the wider cohort", "desc": null, "muted": true}
+          {
+            "type": "text",
+            "label": "Roll out GL writes beyond Ocean Ionics to the wider cohort",
+            "desc": null,
+            "muted": true
+          }
         ]
       }
     },
@@ -87,33 +244,140 @@
       "id": "ce07f00e-b392-40bd-85fb-2a4a831c9c80",
       "title": "Make neno the source of truth for all bookkeeping",
       "accent": "pink",
-      "tags": ["Placeholder", "Target 30 Sep"],
+      "tags": [
+        "Active",
+        "Committed · July",
+        "Target 30 Sep"
+      ],
       "blurb": "Scale bookkeeping functionality to manage the books for 30 customers in Q3 and stay in sync with Exact.",
       "url": "https://linear.app/nenotechnology/initiative/make-neno-the-source-of-truth-for-all-bookkeeping-activities-c2ef3f4b2ff8",
       "context_sources": {
         "linear_initiative_id": "ce07f00e-b392-40bd-85fb-2a4a831c9c80",
         "granola_folder_id": "d99b2035-5b7f-4025-90cd-b3af6657e2ae",
-        "granola_keywords": ["accounts receivable", "AR reconciliation", "credit note", "related parties", "payroll", "Numbrs", "Stripe", "depreciation", "accruals", "source of truth"],
-        "slack_channels": ["#accounting-mvp", "#tech-team"],
-        "slack_keywords": ["accounts receivable", "credit note", "payroll", "Stripe", "depreciation", "source of truth"],
+        "granola_keywords": [
+          "accounts receivable",
+          "AR reconciliation",
+          "credit note",
+          "related parties",
+          "payroll",
+          "Numbrs",
+          "Stripe",
+          "depreciation",
+          "accruals",
+          "source of truth"
+        ],
+        "slack_channels": [
+          "#accounting-mvp",
+          "#tech-team"
+        ],
+        "slack_keywords": [
+          "accounts receivable",
+          "credit note",
+          "payroll",
+          "Stripe",
+          "depreciation",
+          "source of truth"
+        ],
         "memory_file": "memory/source-of-truth.md"
       },
       "buckets": {
         "now": [],
         "next": [
-          {"type": "project", "projectId": "b2f06e1b-57d3-4ced-9a3c-daf042c02df0", "label": "End-to-end AR reconciliation", "show_owner_status": true, "desc": "Enable end-to-end accounts receivable — reconciliation for incoming payments."}
+          {
+            "type": "project",
+            "projectId": "b2f06e1b-57d3-4ced-9a3c-daf042c02df0",
+            "label": "End-to-end AR reconciliation",
+            "show_owner_status": true,
+            "desc": "Enable end-to-end accounts receivable - reconciliation for incoming payments."
+          },
+          {
+            "type": "project",
+            "projectId": "6c262f19-7934-4641-ba14-6ff937127454",
+            "label": "Credit note processing (AR & AP)",
+            "show_owner_status": true,
+            "desc": "Process credit notes in both directions (AR & AP)."
+          },
+          {
+            "type": "project",
+            "projectId": "9dead622-60da-42fc-b4a1-bbc3a2ce606b",
+            "label": "Depreciation & accruals",
+            "show_owner_status": true,
+            "desc": "Depreciation schedules grouped by asset type, plus accrual entries."
+          }
         ],
         "later": [
-          {"type": "project", "projectId": "14c0164a-580a-4707-a6f6-039eb30c5969", "label": "Financial reporting", "show_owner_status": true, "desc": "Reporting on top of the ledger — aged receivables (30/60/90/120+) confirmed; full requirements list pending from DP."},
-          {"type": "project", "projectId": "6c262f19-7934-4641-ba14-6ff937127454", "label": "Credit note processing (AR & AP)", "show_owner_status": true, "desc": "Process credit notes in both directions (AR & AP)."},
-          {"type": "project", "projectId": "4ce20eb5-9845-4fa3-b1a9-8f9c8b949a3e", "label": "Related-parties register", "show_owner_status": true, "desc": "A register of related parties, for intercompany payments."},
-          {"type": "project", "projectId": "2731244b-71c8-44d1-b6bf-ae9434135d05", "label": "Payroll (Numbrs)", "show_owner_status": true, "desc": "Payroll via a Numbrs integration."},
-          {"type": "project", "projectId": "8e80b462-b77a-4479-b48e-8031bc8b6f11", "label": "Third-party wallet transaction import", "show_owner_status": true, "desc": "MVP to import third-party wallet transactions — Stripe plus additional channels."},
-          {"type": "project", "projectId": "9dead622-60da-42fc-b4a1-bbc3a2ce606b", "label": "Depreciation & accruals", "show_owner_status": true, "desc": "Support depreciation and accrual entries."},
-          {"type": "project", "projectId": "81f22936-e57a-4ecf-b68c-373967a9142c", "label": "Native team features & permissions", "show_owner_status": true, "desc": "Native team features and membership permissions."},
-          {"type": "project", "projectId": "8f6881bc-f28a-4b3e-a832-33e61ac1b235", "label": "Customer project creation & management", "show_owner_status": true, "desc": "Let customers create and manage projects."}
+          {
+            "type": "project",
+            "projectId": "14c0164a-580a-4707-a6f6-039eb30c5969",
+            "label": "Financial reporting",
+            "show_owner_status": true,
+            "desc": "Reporting on top of the ledger - aged receivables (30/60/90/120+) confirmed; full requirements list pending from DP."
+          },
+          {
+            "type": "project",
+            "projectId": "4ce20eb5-9845-4fa3-b1a9-8f9c8b949a3e",
+            "label": "Related-parties register",
+            "show_owner_status": true,
+            "desc": "A register of related parties, for intercompany payments."
+          },
+          {
+            "type": "project",
+            "projectId": "2731244b-71c8-44d1-b6bf-ae9434135d05",
+            "label": "Payroll (Numbrs)",
+            "show_owner_status": true,
+            "desc": "Payroll via a Numbrs integration."
+          },
+          {
+            "type": "project",
+            "projectId": "8e80b462-b77a-4479-b48e-8031bc8b6f11",
+            "label": "Third-party wallet transaction import",
+            "show_owner_status": true,
+            "desc": "MVP to import third-party wallet transactions - Stripe plus additional channels."
+          },
+          {
+            "type": "project",
+            "projectId": "81f22936-e57a-4ecf-b68c-373967a9142c",
+            "label": "Native team features & permissions",
+            "show_owner_status": true,
+            "desc": "Native team features and membership permissions."
+          },
+          {
+            "type": "project",
+            "projectId": "8f6881bc-f28a-4b3e-a832-33e61ac1b235",
+            "label": "Customer project creation & management",
+            "show_owner_status": true,
+            "desc": "Let customers create and manage projects."
+          }
         ],
-        "footnote": "Projects now filed in Linear (Backlog); requirements captured on each project as they surface."
+        "footnote": "Committed for July: AR reconciliation, credit notes, depreciation schedules. Quotes MVP is already live (NEO-1374)."
+      }
+    },
+    {
+      "static": true,
+      "title": "Other July commitments",
+      "accent": "accent",
+      "tags": [
+        "Committed · July"
+      ],
+      "blurb": "July-committed work that sits outside the three tracked initiatives.",
+      "buckets": {
+        "now": [
+          {
+            "type": "text",
+            "label": "Accountant UI improvements",
+            "owner_override": "Euge",
+            "status_override": "In Progress",
+            "desc": "Fix reconciliation workflow issues already slowing Andries down - full-screen reconciliation review layout (NEO-1347) and bill review interface polish (NEO-1319) are underway."
+          }
+        ],
+        "next": [
+          {
+            "type": "text",
+            "label": "Swan onboarding changes",
+            "desc": "Modify our onboarding flow per Swan's advice to meet the requirements that unlock additional Swan features."
+          }
+        ],
+        "later": []
       }
     }
   ]

@@ -10,11 +10,6 @@
       "owner": "Ihor",
       "gone": true
     },
-    "c186341c-f7a8-4336-b973-f25ed6fd7afb": {
-      "status": "Planned",
-      "owner": null,
-      "gone": true
-    },
     "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed": {
       "status": "In Progress",
       "owner": "Joel"
@@ -32,7 +27,7 @@
       "owner": null
     },
     "6c262f19-7934-4641-ba14-6ff937127454": {
-      "status": "Backlog",
+      "status": "Planned",
       "owner": null
     },
     "4ce20eb5-9845-4fa3-b1a9-8f9c8b949a3e": {
@@ -48,7 +43,7 @@
       "owner": null
     },
     "9dead622-60da-42fc-b4a1-bbc3a2ce606b": {
-      "status": "Backlog",
+      "status": "Planned",
       "owner": null
     },
     "81f22936-e57a-4ecf-b68c-373967a9142c": {
@@ -58,17 +53,17 @@
     "8f6881bc-f28a-4b3e-a832-33e61ac1b235": {
       "status": "Backlog",
       "owner": null
+    },
+    "1f7bfeff-7561-4897-99be-ba07ade8948d": {
+      "status": "Planned",
+      "owner": "Matthew"
+    },
+    "d9b51b98-4e68-40c4-9eae-54d2ab936db2": {
+      "status": "Planned",
+      "owner": null
     }
   },
   "needs_triage": {
-    "cb65425b-cc3d-4f8a-8164-5849f594d708": [
-      {
-        "name": "Onboarding Actions for the Next Five Customers"
-      },
-      {
-        "name": "Additional changes for go-live"
-      }
-    ],
     "ce07f00e-b392-40bd-85fb-2a4a831c9c80": [
       {
         "name": "Bookkeeping bug-fixes"
