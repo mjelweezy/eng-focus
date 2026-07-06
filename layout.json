@@ -35,12 +35,6 @@
       "color": "#f2994a"
     },
     {
-      "name": "David",
-      "email": "david@neno.co",
-      "initial": "D",
-      "color": "#e8857a"
-    },
-    {
       "name": "Yaroslav",
       "email": "yaroslav@neno.co",
       "initial": "Y",
@@ -65,7 +59,7 @@
       "color": "#14b8a6"
     }
   ],
-  "team_note": "The engineer view renders one lane per person in this roster, in this order, even if they have no in-progress issues. The daily job matches Linear assignees to these by email/name. Add or remove people here to change who appears.",
+  "team_note": "The engineer view renders one lane per person in this roster, in this order, even if they have no in-progress issues. The daily job matches Linear assignees to these by email/name. Add or remove people here to change who appears. David left 6 Jul 2026 and was removed; roster is Dima, Mark, Joel, Ihor. NOTE: the scheduled 6am job's own instructions hardcode a five-lane roster including David and must be updated to match.",
   "initiatives": [
     {
       "id": "cb65425b-cc3d-4f8a-8164-5849f594d708",
@@ -393,5 +387,39 @@
         "later": []
       }
     }
-  ]
+  ],
+  "leave": {
+    "label": "Availability · rest of July",
+    "start": "2026-07-06",
+    "end": "2026-07-31",
+    "note": "Mark's leave runs to 7 Aug · Ihor away 13-24 Jul",
+    "people": [
+      {
+        "name": "Dima",
+        "away": []
+      },
+      {
+        "name": "Mark",
+        "away": [
+          {
+            "from": "2026-07-23",
+            "to": "2026-08-07"
+          }
+        ]
+      },
+      {
+        "name": "Joel",
+        "away": []
+      },
+      {
+        "name": "Ihor",
+        "away": [
+          {
+            "from": "2026-07-13",
+            "to": "2026-07-24"
+          }
+        ]
+      }
+    ]
+  }
 }

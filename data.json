@@ -432,33 +432,6 @@
       ]
     },
     {
-      "name": "David",
-      "initial": "D",
-      "color": "#e8857a",
-      "groups": [
-        {
-          "initiative": "__none__",
-          "projects": [
-            {
-              "name": "__none__",
-              "issues": [
-                {
-                  "id": "NEO-1399",
-                  "title": "Swan e2e-impersonation never installs Playwright Chromium in CI",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-1181",
-                  "title": "Invoice display breaks for amounts >= 10,000 euros",
-                  "status": "In Progress"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "Ihor",
       "initial": "I",
       "color": "#14b8a6",
