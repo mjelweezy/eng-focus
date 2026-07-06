@@ -298,9 +298,9 @@
           {
             "type": "project",
             "projectId": "9dead622-60da-42fc-b4a1-bbc3a2ce606b",
-            "label": "Depreciation & accruals",
+            "label": "Depreciation schedules",
             "show_owner_status": true,
-            "desc": "Depreciation schedules grouped by asset type, plus accrual entries."
+            "desc": "Depreciation schedules grouped by asset type, with a fixed asset register."
           }
         ],
         "later": [
@@ -345,6 +345,13 @@
             "label": "Customer project creation & management",
             "show_owner_status": true,
             "desc": "Let customers create and manage projects."
+          },
+          {
+            "type": "project",
+            "projectId": "78f1d5fa-1b8d-4699-a4c4-69fd20ca7d34",
+            "label": "Accruals",
+            "show_owner_status": true,
+            "desc": "Accrual and prepayment entries; approval-gated post-close adjustments."
           }
         ],
         "footnote": "Committed for July: AR reconciliation, credit notes, depreciation schedules. Quotes MVP is already live (NEO-1374)."
