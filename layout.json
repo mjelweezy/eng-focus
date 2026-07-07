@@ -399,7 +399,7 @@
     "label": "Availability · rest of July",
     "start": "2026-07-06",
     "end": "2026-07-31",
-    "note": "Mark's leave runs to 7 Aug · Ihor away 13-24 Jul",
+    "note": "Ihor away 13 Jul - 31 Aug · Mark's leave runs to 7 Aug",
     "people": [
       {
         "name": "Dima",
@@ -428,7 +428,7 @@
         "away": [
           {
             "from": "2026-07-13",
-            "to": "2026-07-24"
+            "to": "2026-08-31"
           }
         ]
       }
