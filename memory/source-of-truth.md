@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-07-06_
+_Last updated: 2026-07-07_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -11,6 +11,8 @@ _Last updated: 2026-07-06_
 - [2026-06-25] Three of the next-5 cohort run payroll that currently needs a manual monthly CSV import from Numbrs; payroll-integration viability for Q3 to be determined. (source: Granola/Slack - M&M week)
 
 - [2026-07-06] (Matthew) Split 'Depreciation & accruals' into two projects: 'Depreciation schedules' (Planned - committed for July) and 'Accruals' (Backlog - not committed). Requirements retagged accordingly.
+
+- [2026-07-07] (Matthew) Depreciation schedules and credit note processing are deprioritised for July - moved back to Later on the board and to Backlog in Linear. Note: Andries asked (6 Jul) for a depreciation schedule from w/c 7 Jul; deprioritised regardless.
 
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.

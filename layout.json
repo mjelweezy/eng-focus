@@ -147,9 +147,9 @@
           },
           {
             "type": "text",
-            "label": "Enable team members outside Swan",
-            "desc": "Invite and manage team members without a Swan membership (relates to the Neno-first Auth and native permissions work).",
-            "show_owner_status": true
+            "label": "Enable invoicing for non-Swan customers",
+            "show_owner_status": true,
+            "desc": "Priority: enable IBAN selection for open banking customers. (Team members outside Swan descoped - the first five are single users; manual user-add is the quick fix.)"
           },
           {
             "type": "subhead",
@@ -281,7 +281,9 @@
             "label": "End-to-end AR reconciliation",
             "show_owner_status": true,
             "desc": "Enable end-to-end accounts receivable - reconciliation for incoming payments."
-          },
+          }
+        ],
+        "later": [
           {
             "type": "project",
             "projectId": "6c262f19-7934-4641-ba14-6ff937127454",
@@ -295,9 +297,7 @@
             "label": "Depreciation schedules",
             "show_owner_status": true,
             "desc": "Depreciation schedules grouped by asset type, with a fixed asset register."
-          }
-        ],
-        "later": [
+          },
           {
             "type": "project",
             "projectId": "14c0164a-580a-4707-a6f6-039eb30c5969",
@@ -348,7 +348,7 @@
             "desc": "Accrual and prepayment entries; approval-gated post-close adjustments."
           }
         ],
-        "footnote": "Committed for July: AR reconciliation, credit notes, depreciation schedules. Quotes MVP is already live (NEO-1374)."
+        "footnote": "Committed for July: end-to-end AR reconciliation. Depreciation schedules and credit notes deprioritised for July (7 Jul); quotes MVP already live (NEO-1374)."
       }
     },
     {

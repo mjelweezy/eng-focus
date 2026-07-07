@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-05_
+_Last updated: 2026-07-07_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -31,6 +31,8 @@ _Last updated: 2026-07-05_
 
 - [2026-07-01] Open Banking is now being tested against a real bank: Yaroslav connected his ABN AMRO account and hit the bankTransaction.reference VARCHAR(255) limit immediately - Open Banking reference strings can run far longer (the spec sets no firm cap; providers observed 500-280,000 chars), so a schema change is needed before ingestion is reliable (Yaroslav to align on schema with Mark before opening the PR). (source: Slack #tech-team, 1 Jul)
 - [2026-07-02] Multi-Client Exact Online Connections shipped and marked Completed: Ops manage per-workspace Exact connections from the admin Exact Connections page; each workspace reads/writes its own Exact division (Ocean Ionics is no longer the hard-coded fallback); OAuth grants are separated from workspace/division assignments; broken connections are detected, shown in the Ops dashboard and alerted to #tech-critical; the accountant UI fails closed when Exact is missing/unhealthy. Merged PRs #1102/#1107/#1116/#1131/#1133. (source: Linear project status update, 2 Jul)
+
+- [2026-07-07] (Matthew) 'Enable team members outside Swan' descoped for July: the first five customers will be single users only, with manual user-add as a quick fix. Replaced on the board by 'Enable invoicing for non-Swan customers'; priority is IBAN selection for open banking customers.
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
