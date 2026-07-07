@@ -382,6 +382,13 @@
             "label": "Swan onboarding changes",
             "desc": "Modify our onboarding flow per Swan's advice to meet the requirements that unlock additional Swan features.",
             "show_owner_status": true
+          },
+          {
+            "type": "project",
+            "projectId": "fa87aac7-1ef5-4587-8f18-2f4c30cc9406",
+            "label": "Swan Card Cashback for Accounting Customers",
+            "show_owner_status": true,
+            "desc": "1% monthly cashback on net EUR Swan card spend for active accounting customers; v1 is a monthly export file for a manual Swan bulk transfer."
           }
         ],
         "later": []

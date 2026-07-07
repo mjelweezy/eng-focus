@@ -65,6 +65,10 @@
     "78f1d5fa-1b8d-4699-a4c4-69fd20ca7d34": {
       "status": "Backlog",
       "owner": null
+    },
+    "fa87aac7-1ef5-4587-8f18-2f4c30cc9406": {
+      "status": "Planned",
+      "owner": "Ihor"
     }
   },
   "needs_triage": {
