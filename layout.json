@@ -388,7 +388,8 @@
             "projectId": "fa87aac7-1ef5-4587-8f18-2f4c30cc9406",
             "label": "Swan Card Cashback for Accounting Customers",
             "show_owner_status": true,
-            "desc": "1% monthly cashback on net EUR Swan card spend for accounting customers; v1 is a manual bulk-transfer export. At risk: Ihor (lead) is away 13 Jul - 31 Aug."
+            "desc": "1% monthly cashback on net EUR Swan card spend for accounting customers; v1 is a manual bulk-transfer export.",
+            "risk": "Ihor (lead) is away 13 Jul - 31 Aug."
           }
         ],
         "later": []

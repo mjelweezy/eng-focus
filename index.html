@@ -62,6 +62,7 @@
   .empty{font-size:12px;color:#aeb2bd;font-style:italic;padding-left:14px;}
   .note{font-size:11px;color:var(--muted);font-style:italic;margin-top:9px;padding-left:14px;}
   .subhead{font-size:11px;font-weight:700;color:#5b5f6c;margin:10px 0 4px;}
+  ul.items li .desc.risk{color:#c0564a;font-weight:600;}
   .triage{margin-top:10px;font-size:11px;color:#b56b27;background:#fdf3e9;border:1px solid #f3d9bf;border-radius:8px;padding:8px 10px;}
   .gone{text-decoration:line-through;opacity:.6;}
 
@@ -187,7 +188,8 @@ function renderItem(item, data){
   const label = (item.show_owner_status || item.type==='project') ? '<b'+(gone?' class="gone"':'')+'>'+esc(item.label)+'</b>' : esc(item.label);
   const os = (item.show_owner_status || item.owner_override || item.status_override) ? ownerStatus(item, data) : '';
   const desc = item.desc ? '<span class="desc">'+esc(item.desc)+'</span>' : '';
-  return '<li>'+label+os+desc+'</li>';
+  const risk = item.risk ? '<span class="desc risk">At risk: '+esc(item.risk)+'</span>' : '';
+  return '<li>'+label+os+desc+risk+'</li>';
 }
 
 function renderBucket(name, label, cls, items, data){
