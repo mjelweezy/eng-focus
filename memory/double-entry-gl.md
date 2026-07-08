@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-05_
+_Last updated: 2026-07-08_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -29,6 +29,11 @@ _Last updated: 2026-07-05_
 - [2026-06-30] Locked-period corrections: correct-forward is the default; restating a closed period is the exception, gated by a break-the-glass unlock (deliberate, non-default, per-workspace approver, full audit log, alert-all with amount-threshold escalation); prompt when a correction hits an already-filed period. (source: Granola - DP/Mark, 30 Jun; Slack #accounting-mvp, 1 Jul)
 - [2026-06-30] VAT corrections are always corrected forward (closed books are never reopened for VAT); <EUR 1,000 net/year rolls into the next return, >EUR 1,000 goes on a supplementary return. The chart of accounts needs two VAT balance-sheet accounts - a normal VAT account and a corrections/control account; once the EUR 1,000 cumulative threshold is crossed all subsequent corrections (even small ones) route to the corrections account, which is empty again once the suppletie is filed. (source: Granola - DP/Mark, 30 Jun; Slack #accounting-mvp, 1 Jul)
 
+- [2026-07-06] Decision 07 (editing open periods) scoped: it covers deliberate 'break the glass' edits made DURING an open period only; edits outside a period are a separate concept - adjustments. (source: Granola - DE GL Decisions, 6 Jul)
+- [2026-07-06] Settlement amount validation (Decision 08 / INV-30): reconciliation now checks AMOUNT, not just zero-balance - the bank-entry leg and the bill leg must match on amount before reconciling, preventing a higher-amount bill reconciling to a lower-amount bank transaction. Root cause of the underlying bug: a bill was edited after initial booking (amount changed) and the system did not re-check correspondence to the bank transaction. (source: Granola - DE GL Decisions, 6 Jul)
+- [2026-07-06] INV-11 confirmed (settled 29 Jun - 2 Jul; resurfaced in this week's doc in error): no separate GL account per counterparty - a payables GL account carries a counterparty property, keeping a single account balance that is still sliceable by counterparty. (source: Granola - DE GL Decisions, 6 Jul)
+- [2026-07-07] VAT recognition vs expense split (Venla): when an invoice's expense is split across periods (e.g. Mar-Apr-May), the FULL VAT amount books to the balance sheet (VAT reclaimable/payable) on the INVOICE DATE - VAT is not split monthly with the expense. (source: Slack #accounting-mvp, 7 Jul)
+
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
 - [open] Full reporting requirements list being compiled by DP (potentially 100+ items) — will frame future design. (owner: DP)
@@ -42,6 +47,11 @@ _Last updated: 2026-07-05_
 - [resolved 2026-06-30] Which FX rate when a bill and its settling transaction don't match? -> ECB mid rate at booking (frozen on the line), residual to a dedicated realised FX gain/loss account, bank FX fees a separate expense line.
 - [open] FX balance rule not finally chosen: 'signed sum zero in the entry's one currency' (spike model) vs 'signed sum of reporting-currency values is zero' (native multi-currency); also confirm the full residual account set (FX difference, rounding, payment difference, discount). (owner: Design/DP) (source: Slack #accounting-mvp, 1 Jul)
 - [open] Locked-period break-the-glass details: who approves, what is recorded, and whether the original filing must be resubmitted - not finalised (depends on future customer profile/risk); design the audit log + Slack unlock alerting (start by reporting all changes, add amount-based thresholds once noisy). (owner: Mark/DP) (source: Slack #accounting-mvp, 1 Jul)
+
+- [open] INV-30: exactly how the reconciliation imbalance occurred mechanically is still unclear (context lives in the Claude session). (owner: Mark) (source: Granola - DE GL Decisions, 6 Jul)
+- [open] OQ1 party definition: needs a formal write-up with decisions and reasoning (logic exists, no formal doc yet). (source: Granola - DE GL Decisions, 6 Jul)
+- [open] INV-23 label: 'multi-currency payments' wording in the summary doc is confusing - foreign lines keep native amount, currency and rate from day one while FX settlement is deferred; doc to be reworded. (source: Granola - DE GL Decisions, 6 Jul)
+- [open] Is VAT recognition comparable across different countries? (raised by Mark, 8 Jul) (source: Slack #accounting-mvp)
 
 ## Risks
 - [high] Spike code (~13k lines, Claude-generated) took liberties with DB writes; atomicity and no-overlapping-bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew). (source: Granola — Next Steps AGL)
@@ -64,6 +74,8 @@ _Last updated: 2026-07-05_
 - [2026-07-01] Decide the FX balance rule (single-currency spike vs native multi-currency) and confirm the full residual account list. (owner: Design/DP) (source: Slack #accounting-mvp)
 - [2026-07-01] Define the VAT correction/control account in the chart of accounts (separate from the normal VAT account; empty after each quarterly suppletie). (owner: Mark/DP) (source: Slack #accounting-mvp)
 - [2026-07-01] Design the locked-period audit log + Slack unlock alerting (report all changes first, add amount thresholds later). (owner: Mark) (source: Slack #accounting-mvp)
+
+- [2026-07-07] Matthew + Venla to confirm the decisions and acknowledge the open questions in Mark's GL decisions doc. (owner: Matthew/Venla) (source: Slack #accounting-mvp, 7 Jul)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project (this project is In Progress, so they are posted as a proposed comment, not auto-applied)._
@@ -92,6 +104,11 @@ _Expanded 2026-06-30 from the DP/Mark open-questions session (posted as a propos
 - (project: Start writing to neno's double-entry GL) [deferred] Period-end FX revaluation of balance-sheet accounts only to the period-end rate, true-up to the FX result account, USD bank first, on demand (INV-LEDGER-16). (source: Slack #accounting-mvp, 1 Jul)
 - (project: Start writing to neno's double-entry GL) [deferred] Locked-period break-the-glass: correct-forward by default; closed-period restatement only via a deliberate, approver-gated, fully audited unlock with amount-threshold alerting (INV-LEDGER-14/15). (source: Granola DP/Mark, 30 Jun)
 - (project: Start writing to neno's double-entry GL) VAT is always corrected forward; two VAT balance-sheet accounts (normal + corrections/control); once the EUR 1,000 cumulative threshold is crossed all subsequent corrections route to the corrections account until the suppletie is filed (INV-LEDGER-19). (source: Slack #accounting-mvp, 1 Jul)
+
+_Expanded 2026-07-08 from the DE GL Decisions session (6 Jul) and #accounting-mvp (7 Jul). Project is In Progress, so posted as a proposed comment, not auto-applied._
+- (project: Start writing to neno's double-entry GL) Settlement gate checks amount, not just zero-balance: the bank-entry leg and bill leg must match on amount before reconciling; correspondence must be re-checked when a bill is edited after initial booking (INV-30). (source: Granola - DE GL Decisions, 6 Jul)
+- (project: Start writing to neno's double-entry GL) Break-the-glass (Decision 07) covers edits made during an open period only; out-of-period corrections are 'adjustments', a distinct concept. (source: Granola - DE GL Decisions, 6 Jul)
+- (project: Start writing to neno's double-entry GL) VAT books in full to the balance sheet on the invoice date even when the expense is split across periods - VAT follows the invoice date, not the expense split. (source: Slack #accounting-mvp (Venla), 7 Jul)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-07-07_
+_Last updated: 2026-07-08_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -13,6 +13,10 @@ _Last updated: 2026-07-07_
 - [2026-07-06] (Matthew) Split 'Depreciation & accruals' into two projects: 'Depreciation schedules' (Planned - committed for July) and 'Accruals' (Backlog - not committed). Requirements retagged accordingly.
 
 - [2026-07-07] (Matthew) Depreciation schedules and credit note processing are deprioritised for July - moved back to Later on the board and to Backlog in Linear. Note: Andries asked (6 Jul) for a depreciation schedule from w/c 7 Jul; deprioritised regardless.
+
+- [2026-07-06] OI duplicate bank transactions fixed (NEO-1448, Mark, Bookkeeping bug-fixes); the durable fix would be NEO-1299 (pull bank transactions from Exact and suppress already-booked ones). (source: Linear / Slack #accounting-mvp, 6 Jul)
+- [2026-07-07] Reconciliation suggestions are now limited to one active suggestion per bill and per transaction (NEO-1451, Ihor, shipped 7 Jul) - fixes bills appearing multiple times in the queue. Ihor flagged the same constraint will likely be needed for AR reconciliation once it exists. (source: Linear NEO-1451 / Slack #accounting-mvp, 7 Jul)
+- [2026-07-07] Workflow agreed: once the 'Not matched' and 'Needs your review' lists are trustworthy (Mark/Ihor, by EOD 7 Jul), Andries reviews the ~55 not-matched transactions and triggers missing-bill tasks for Marloes. (source: Slack #accounting-mvp, 7 Jul)
 
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.
@@ -50,6 +54,8 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 - (project: Credit note processing (AR & AP)) Credit-note processing (both AR & AP) is a Q3 feature; still to be specced — likely intersects the GL period-close/correction rules. (source: Q3 planning, 23 Jun 2026)
 - (project: Third-party wallet transaction import (MVP)) Needed so non-Swan banking customers can feed transactions into neno (bypassing the Swan requirement); start with Stripe, then additional channels. (source: DP session / Q3 planning, 23 Jun 2026)
 - (project: Payroll (Numbrs integration)) Not covered in the 23 Jun DP session; requirements still to be defined. (source: DP session, 23 Jun 2026)
+
+- (project: End-to-end AR reconciliation) Reconciliation-suggestion constraints must carry over to AR: at most one active suggestion per invoice and per transaction, and trustworthy 'not matched' / 'needs review' lists so accountants can trigger missing-document tasks. (source: Slack #accounting-mvp (Ihor), 7 Jul 2026)
 
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._

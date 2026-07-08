@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-07_
+_Last updated: 2026-07-08_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -33,6 +33,10 @@ _Last updated: 2026-07-07_
 - [2026-07-02] Multi-Client Exact Online Connections shipped and marked Completed: Ops manage per-workspace Exact connections from the admin Exact Connections page; each workspace reads/writes its own Exact division (Ocean Ionics is no longer the hard-coded fallback); OAuth grants are separated from workspace/division assignments; broken connections are detected, shown in the Ops dashboard and alerted to #tech-critical; the accountant UI fails closed when Exact is missing/unhealthy. Merged PRs #1102/#1107/#1116/#1131/#1133. (source: Linear project status update, 2 Jul)
 
 - [2026-07-07] (Matthew) 'Enable team members outside Swan' descoped for July: the first five customers will be single users only, with manual user-add as a quick fix. Replaced on the board by 'Enable invoicing for non-Swan customers'; priority is IBAN selection for open banking customers.
+
+- [2026-07-06] LOE automation direction: automate the Letter of Engagement (one button, pre-filled per entity, signing tracked back into HubSpot); PandaDocs ruled out on cost and Google Workspace has no signature API - likely DocuSign or an EU open-source signing tool. HubSpot deal context (group structure, pain points, sales history) to be surfaced in the neno accounting-engagement screen, avoiding paid HubSpot seats for accountants. (source: Granola - Matthew/Eugenia weekly sync, 6 Jul)
+- [2026-07-07] Open banking is now testable; Dima is plugging Yapily into the onboarding actions. The customer transaction view is HIDDEN initially (data can be messy) - show account name and balance only; consent captured in the DB allows re-pulling transactions later. (source: Granola - 3 amigos: Walk through customer onboarding, 7 Jul)
+- [2026-07-07] Non-Swan workspaces: contract signing auto-creates a fresh empty workspace (no Swan link). Cashback onboarding: a new screen prompts card order during onboarding for Swan users; the cashback prompt was removed from the account page; the upsell idea (show open-banking-only users projected 1% cashback if they open a Swan account) is parked. (source: Granola - 3 amigos / weekly sync, 6-7 Jul)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
@@ -76,6 +80,10 @@ _Last updated: 2026-07-07_
 - [2026-06-25] Ihor & Joel to fix the Transactions page visibility/permissions for open-banking customers. (owner: Ihor/Joel) (source: Granola)
 - [2026-06-25] Test the magic-link onboarding flow end-to-end in a new workspace. (owner: Dima/Euge) (source: Granola - Onboarding Actions with Dima)
 
+- [2026-07-07] Euge: document the customer-onboarding user journey as-is (HubSpot screenshots as placeholders); share the updated task-screen prototype + missing-context summary in Slack for Dima. (source: Granola, 6-7 Jul)
+- [2026-07-07] Matthew: review onboarding screens for open-banking customers (incl. the cashback prompt); prioritise Q3 bookkeeping features for the first five. (source: Granola, 6-7 Jul)
+- [2026-07-07] Yaroslav: prototype a HubSpot agent in the existing chat interface; book time with Euge to walk the user journey. (source: Granola - 3 amigos, 7 Jul)
+
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._
 - (project: Whatsapp, Email forwarding and Vault re-provisioning) The transactions drawer and the tasks/upload drawer must both offer all three bill-submission channels: WhatsApp, email forwarding, and Vault upload. (source: Granola — User Journey, 16 Jun 2026)
@@ -85,6 +93,9 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 - (project: Feature re-provisioning for non Swan customers) [TC4 Money Management] A non-Swan account holder sees the Transactions page populated with history for all bank accounts connected via open banking (empty table if none connected); the Accounts and Invoicing pages are also visible and functional. (source: Linear project TC4, added by Matthew 26 Jun 2026)
 
 - (project: Enable customers to connect external bank accounts and view their transactions) Bank-transaction reference storage must accommodate Open Banking reference strings far beyond 255 characters (the OB spec sets no firm cap; providers observed up to ~280,000 chars) - the current VARCHAR(255) truncates/errors on real ABN AMRO data. (source: Slack #tech-team, 1 Jul)
+
+- (project: Enable customers to connect external bank accounts and view their transactions) The customer-facing transaction view is hidden initially for open-banking accounts (data can be messy) - show account name and balance only; capture consent in the DB so transactions can be re-pulled/backfilled later. (source: Granola - 3 amigos walkthrough, 7 Jul 2026)
+_Note (2026-07-08): requirements tagged 'Present onboarding actions for the next five customers' publish to the successor project 'Onboarding Actions for the Next Five Customers' (1f7bfeff). Not appended there this run: both bullets are already reflected verbatim in that project's hand-authored outline (TC1/limited-Home/hide-when-done)._
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

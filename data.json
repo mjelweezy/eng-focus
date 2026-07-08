@@ -1,18 +1,26 @@
 {
-  "generated_at": "2026-07-06T16:30:47Z",
+  "generated_at": "2026-07-08T07:16:36Z",
   "projects": {
     "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
       "status": "In Progress",
       "owner": "dima"
+    },
+    "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed": {
+      "status": "In Progress",
+      "owner": "Joel"
     },
     "bdca02fc-e544-4715-85f2-d11798131506": {
       "status": "Completed",
       "owner": "Ihor",
       "gone": true
     },
-    "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed": {
-      "status": "In Progress",
-      "owner": "Joel"
+    "1f7bfeff-7561-4897-99be-ba07ade8948d": {
+      "status": "Planned",
+      "owner": "Matthew"
+    },
+    "d9b51b98-4e68-40c4-9eae-54d2ab936db2": {
+      "status": "Planned",
+      "owner": null
     },
     "0383a752-0a73-4bce-b0aa-77379e4f27cf": {
       "status": "In Progress",
@@ -22,11 +30,15 @@
       "status": "Planned",
       "owner": null
     },
-    "14c0164a-580a-4707-a6f6-039eb30c5969": {
+    "6c262f19-7934-4641-ba14-6ff937127454": {
       "status": "Backlog",
       "owner": null
     },
-    "6c262f19-7934-4641-ba14-6ff937127454": {
+    "9dead622-60da-42fc-b4a1-bbc3a2ce606b": {
+      "status": "Backlog",
+      "owner": null
+    },
+    "14c0164a-580a-4707-a6f6-039eb30c5969": {
       "status": "Backlog",
       "owner": null
     },
@@ -42,24 +54,12 @@
       "status": "Backlog",
       "owner": null
     },
-    "9dead622-60da-42fc-b4a1-bbc3a2ce606b": {
-      "status": "Backlog",
-      "owner": null
-    },
     "81f22936-e57a-4ecf-b68c-373967a9142c": {
       "status": "Backlog",
       "owner": null
     },
     "8f6881bc-f28a-4b3e-a832-33e61ac1b235": {
       "status": "Backlog",
-      "owner": null
-    },
-    "1f7bfeff-7561-4897-99be-ba07ade8948d": {
-      "status": "Planned",
-      "owner": "Matthew"
-    },
-    "d9b51b98-4e68-40c4-9eae-54d2ab936db2": {
-      "status": "Planned",
       "owner": null
     },
     "78f1d5fa-1b8d-4699-a4c4-69fd20ca7d34": {
@@ -200,16 +200,6 @@
           "initiative": "__none__",
           "projects": [
             {
-              "name": "Flaky tests",
-              "issues": [
-                {
-                  "id": "NEO-693",
-                  "title": "Fix flaky reconciliation tests - bills disappear mid-test",
-                  "status": "In Progress"
-                }
-              ]
-            },
-            {
               "name": "Ocean Ionics sandbox testing",
               "issues": [
                 {
@@ -259,26 +249,6 @@
       "color": "#f2994a",
       "groups": [
         {
-          "initiative": "Build data by onboarding 5 additional customers",
-          "projects": [
-            {
-              "name": "Feature re-provisioning for non Swan customers",
-              "issues": [
-                {
-                  "id": "NEO-1359",
-                  "title": "Email forwarding inbox for non-Swan (open banking) accounts - TC2",
-                  "status": "In Progress"
-                },
-                {
-                  "id": "NEO-1360",
-                  "title": "Vault document uploads for non-Swan (open banking) accounts - TC3",
-                  "status": "Done"
-                }
-              ]
-            }
-          ]
-        },
-        {
           "initiative": "__none__",
           "projects": [
             {
@@ -312,7 +282,7 @@
                 {
                   "id": "NEO-1325",
                   "title": "Correct Bastion-drafted policies to match Neno's actual stack",
-                  "status": "Todo"
+                  "status": "Done"
                 }
               ]
             },
@@ -465,6 +435,16 @@
                   "id": "NEO-505",
                   "title": "Alert if a (Swan) user is created without an Account Holder",
                   "status": "Todo"
+                }
+              ]
+            },
+            {
+              "name": "__none__",
+              "issues": [
+                {
+                  "id": "NEO-1451",
+                  "title": "Limit reconciliation suggestions to one per bill and transaction",
+                  "status": "Done"
                 }
               ]
             }
