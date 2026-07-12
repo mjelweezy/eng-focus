@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T07:16:36Z",
+  "generated_at": "2026-07-12T04:13:04Z",
   "projects": {
     "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
       "status": "In Progress",
@@ -123,16 +123,6 @@
           "initiative": "__none__",
           "projects": [
             {
-              "name": "Mobile App",
-              "issues": [
-                {
-                  "id": "NEO-1323",
-                  "title": "Mobile app v1 - implement all screens",
-                  "status": "In Progress"
-                }
-              ]
-            },
-            {
               "name": "Neno UI: Unified Frontend Component Library",
               "issues": [
                 {
@@ -168,6 +158,16 @@
                 {
                   "id": "NEO-482",
                   "title": "Unify input styles across filters",
+                  "status": "Todo"
+                }
+              ]
+            },
+            {
+              "name": "__none__",
+              "issues": [
+                {
+                  "id": "NEO-1460",
+                  "title": "Alphabetise all input dropdowns",
                   "status": "Todo"
                 }
               ]
@@ -233,6 +233,11 @@
               "name": "__none__",
               "issues": [
                 {
+                  "id": "NEO-999",
+                  "title": "Remove neno_wt_ prefix from worktree database names",
+                  "status": "In Progress"
+                },
+                {
                   "id": "NEO-291",
                   "title": "Gmail ingest NenoError re-write",
                   "status": "Todo"
@@ -278,11 +283,6 @@
                   "id": "NEO-1311",
                   "title": "Harden scaffold copy-config.ts child_process usage (SAST)",
                   "status": "Todo"
-                },
-                {
-                  "id": "NEO-1325",
-                  "title": "Correct Bastion-drafted policies to match Neno's actual stack",
-                  "status": "Done"
                 }
               ]
             },
@@ -442,9 +442,9 @@
               "name": "__none__",
               "issues": [
                 {
-                  "id": "NEO-1451",
-                  "title": "Limit reconciliation suggestions to one per bill and transaction",
-                  "status": "Done"
+                  "id": "NEO-1464",
+                  "title": "Enforce review-before-reconciliation and remove APPROVED bill status",
+                  "status": "In Progress"
                 }
               ]
             }

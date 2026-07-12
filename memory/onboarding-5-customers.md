@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-08_
+_Last updated: 2026-07-12_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -37,6 +37,12 @@ _Last updated: 2026-07-08_
 - [2026-07-06] LOE automation direction: automate the Letter of Engagement (one button, pre-filled per entity, signing tracked back into HubSpot); PandaDocs ruled out on cost and Google Workspace has no signature API - likely DocuSign or an EU open-source signing tool. HubSpot deal context (group structure, pain points, sales history) to be surfaced in the neno accounting-engagement screen, avoiding paid HubSpot seats for accountants. (source: Granola - Matthew/Eugenia weekly sync, 6 Jul)
 - [2026-07-07] Open banking is now testable; Dima is plugging Yapily into the onboarding actions. The customer transaction view is HIDDEN initially (data can be messy) - show account name and balance only; consent captured in the DB allows re-pulling transactions later. (source: Granola - 3 amigos: Walk through customer onboarding, 7 Jul)
 - [2026-07-07] Non-Swan workspaces: contract signing auto-creates a fresh empty workspace (no Swan link). Cashback onboarding: a new screen prompts card order during onboarding for Swan users; the cashback prompt was removed from the account page; the upsell idea (show open-banking-only users projected 1% cashback if they open a Swan account) is parked. (source: Granola - 3 amigos / weekly sync, 6-7 Jul)
+
+- [2026-07-08] Open banking production and preview API keys are live in both environments; Joel is testing open banking with Revolut and the new auth flows - ready to merge when tests pass. (source: Granola - Daily stand-up, 8 Jul)
+- [2026-07-08] Onboarding sequencing: Joel to finalise onboarding actions with Dima, then move to single order line; the fake/dummy onboarding task is picked up after the open-banking items. New engineers arrive 3 Aug, so scoped lanes of work must be ready before then. (source: Granola - Daily stand-up, 8 Jul)
+- [2026-07-08] The contact recipe component (email/WhatsApp + QR code) for the Task page is blocked on Dima's unpublished component (built for Transactions); the goal is to reuse it rather than rebuild. (source: Granola - Matthew/Euge, 8 Jul)
+- [2026-07-10] Onboarding Actions implementation has started in Linear: the accountant directory + assign-accountant-on-workspace-creation shipped (NEO-1468, Done 10 Jul) and the Home onboarding hub screens from Euge's design are In Progress (NEO-1467) - the first issues filed on the project. (source: Linear)
+- [2026-07-10] Bills uploaded via dynamic-task file_upload responses now enter the OCR/ingestion pipeline (NEO-1462 fixed, Joel, 10 Jul) - previously they were stored only as Vault documents and never became reviewable Bills (TC3 contradiction closed). (source: Linear NEO-1462)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
@@ -83,6 +89,9 @@ _Last updated: 2026-07-08_
 - [2026-07-07] Euge: document the customer-onboarding user journey as-is (HubSpot screenshots as placeholders); share the updated task-screen prototype + missing-context summary in Slack for Dima. (source: Granola, 6-7 Jul)
 - [2026-07-07] Matthew: review onboarding screens for open-banking customers (incl. the cashback prompt); prioritise Q3 bookkeeping features for the first five. (source: Granola, 6-7 Jul)
 - [2026-07-07] Yaroslav: prototype a HubSpot agent in the existing chat interface; book time with Euge to walk the user journey. (source: Granola - 3 amigos, 7 Jul)
+
+- [2026-07-08] Matthew to check with Dima on availability of the unpublished contact component for the Task page. (owner: Matthew) (source: Granola - Matthew/Euge, 8 Jul)
+- [2026-07-08] Euge while Matthew is away: start the customer-journey work (entity grouping on the Account Engagement page + main customer pain points) and record/share the drawer-to-overlay UI migration video for async review. (owner: Euge) (source: Granola - Matthew/Euge, 8 Jul)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._

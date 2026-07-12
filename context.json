@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T07:19:25Z",
+  "generated_at": "2026-07-12T04:14:47Z",
   "lookback_days": 14,
   "initiatives": {
     "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -8,24 +8,25 @@
       "target_date": "2026-07-06",
       "health": "At risk",
       "notes": [],
-      "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno, with onboarding calls targeted for 6-7 July (now upon us - the 6 Jul target date has passed). Open banking is now TESTABLE: Dima is plugging Yapily into the onboarding actions, and the decision is to hide the customer transaction view initially (messy data) and show account name + balance only, with consent stored so transactions can be re-pulled later. Multi-Client Exact Online Connections shipped and closed on 2 Jul (per-workspace connections, broken-connection detection, fail-closed accountant UI). Non-Swan feature re-provisioning continues (Joel): Vault (TC3) shipped, email-forwarding inbox (TC2) in progress, TC4 Money Management remains. Contract signing now auto-creates a fresh empty workspace for non-Swan customers, and the team is scoping Letter-of-Engagement automation (DocuSign or an EU open-source signing tool; PandaDocs ruled out). Main worries: the onboarding-actions project is still Planned while calls are happening, the bankTransaction.reference schema change is needed before OB ingestion is reliable, the WhatsApp/Meta Business setup is misconfigured, and the Exact 60 req/min rate limit is already being hit.",
+      "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno. The 6 Jul target date has passed and the onboarding calls week is behind us; the platform work is converging but the Onboarding Actions project card is still Planned. Implementation has now started in Linear: the accountant directory + assign-accountant-on-workspace-creation shipped (NEO-1468, 10 Jul) and the Home onboarding hub screens from Euge's design are In Progress (NEO-1467). Open banking has moved from testable to near-merge: production and preview API keys are live in both environments and Joel is testing with Revolut plus the new auth flows (8 Jul); the customer transaction view stays hidden initially (account name + balance only, consent stored for later re-pull). Non-Swan feature re-provisioning continues (Joel): Vault (TC3) shipped, email-forwarding inbox (TC2) in progress, TC4 Money Management remains; bills submitted via dynamic-task uploads now correctly enter the OCR pipeline (NEO-1462, 10 Jul). Main worries: the bankTransaction.reference schema change is still needed before OB ingestion is reliable, the WhatsApp/Meta Business setup is misconfigured, the Exact 60 req/min rate limit is already being hit, and new engineers arrive 3 Aug with lanes of work still to be scoped.",
       "whats_changed": [
-        "Open banking is now testable (7 Jul): Yapily is being wired into the onboarding actions (Dima); the customer transaction view will be hidden initially - account name and balance only - with consent captured in the DB so transactions can be re-pulled later.",
-        "Non-Swan workspaces: contract signing auto-creates a fresh empty workspace (no Swan link); cashback onboarding screens done for Swan users with a new card-order prompt during onboarding (mobile-app screens and homepage cashback summary still outstanding); the OB-to-Swan cashback upsell idea is parked.",
-        "Letter-of-Engagement automation direction chosen (6 Jul): one button generating pre-filled letters per entity with signing tracked into HubSpot; PandaDocs ruled out on cost, likely DocuSign or an EU open-source signing tool; HubSpot deal context to be surfaced in the accounting-engagement screen.",
-        "Multi-Client Exact Online Connections shipped and marked Completed (2 Jul): per-workspace Exact connections managed by Ops, dead-connection detection + #tech-critical alerts, accountant UI fails closed (PRs #1102/1107/1116/1131/1133).",
-        "Open Banking real-bank testing (1 Jul): a live ABN AMRO account immediately hit the bankTransaction.reference VARCHAR(255) limit - OB references can reach ~280k chars, so a schema change is needed before ingestion is reliable.",
-        "Non-Swan feature re-provisioning progressing: Vault uploads (TC3, NEO-1360) shipped; the email-forwarding inbox (TC2, NEO-1359) in progress; TC4 Money Management remains.",
-        "Board curation (7 Jul): 'Enable team members outside Swan' descoped for July - the first five are single users, manual user-add is the quick fix; replaced by 'Enable invoicing for non-Swan customers' (priority: IBAN selection for open-banking customers)."
+        "Onboarding Actions implementation started in Linear (10 Jul): accountant directory + assign-accountant on workspace creation shipped (NEO-1468); the Home onboarding hub screens from Euge's Claude design are In Progress (NEO-1467). The project card itself is still Planned.",
+        "Open banking production + preview API keys are live in both environments (8 Jul); Joel is testing open banking with Revolut and the new auth flows - ready to merge when green.",
+        "Bills uploaded via dynamic-task file_upload responses now enter the OCR/ingestion pipeline (NEO-1462, fixed 10 Jul) - previously they landed only in the Vault and never became reviewable Bills.",
+        "Task-page contact recipe component (email/WhatsApp + QR) is blocked on Dima's unpublished Transactions component; Matthew checking availability (8 Jul).",
+        "Open banking became testable (7 Jul): Yapily wired into the onboarding actions (Dima); the customer transaction view is hidden initially - account name and balance only - with consent captured in the DB so transactions can be re-pulled later.",
+        "Non-Swan workspaces: contract signing auto-creates a fresh empty workspace (no Swan link); cashback onboarding screens done for Swan users with a new card-order prompt; the OB-cashback upsell idea parked.",
+        "Letter-of-Engagement automation direction chosen (6 Jul): one button generating pre-filled letters per entity with signing tracked into HubSpot; PandaDocs ruled out; likely DocuSign or an EU open-source signing tool.",
+        "New engineers arrive 3 Aug (8 Jul stand-up): scoped lanes of work must be ready before then; Joel finalises onboarding actions with Dima, then moves to single order line."
       ],
       "risks": [
         {
           "severity": "high",
-          "text": "Onboarding calls (6-7 Jul) are here but the onboarding-actions project is still Planned; its stepper dependency is softened by the decision to hide the transaction view initially, but the guided flow is not shipped."
+          "text": "The onboarding-actions project is still Planned in Linear while the cohort is being onboarded; implementation issues only started 10 Jul."
         },
         {
           "severity": "med",
-          "text": "Open-banking ingestion needs a bankTransaction.reference schema change: the current VARCHAR(255) truncates/errors on real ABN AMRO data (OB references can reach ~280k chars); large-TEXT vs lookup-performance trade-off to be agreed with Mark before a PR."
+          "text": "Open-banking ingestion needs a bankTransaction.reference schema change: the current VARCHAR(255) truncates/errors on real ABN AMRO data (OB references can reach ~280k chars)."
         },
         {
           "severity": "med",
@@ -70,7 +71,7 @@
           "owner": "Matthew",
           "summary": "Guided Home onboarding hub: connect bank (invokes open banking), learn the three bill channels, a guided sample task; Home hides when done.",
           "blockers": [
-            "Still Planned while the 6-7 Jul onboarding calls happen; open-banking connect flow is the invoked dependency."
+            "Card still Planned, though implementation issues are now underway (NEO-1467 In Progress, NEO-1468 shipped 10 Jul)."
           ]
         },
         {
@@ -82,6 +83,26 @@
         }
       ],
       "decisions": [
+        {
+          "date": "2026-07-10",
+          "text": "Onboarding Actions implementation started: accountant directory + assign-accountant on workspace creation shipped (NEO-1468); Home onboarding hub screens In Progress (NEO-1467).",
+          "source": "Linear"
+        },
+        {
+          "date": "2026-07-10",
+          "text": "Bills uploaded via dynamic-task file_upload now enter the OCR/ingestion pipeline (NEO-1462 fixed) - TC3 contradiction closed.",
+          "source": "Linear NEO-1462"
+        },
+        {
+          "date": "2026-07-08",
+          "text": "Open banking prod + preview API keys live in both environments; Joel testing with Revolut and the new auth flows - merge when green.",
+          "source": "Granola - Daily stand-up, 8 Jul"
+        },
+        {
+          "date": "2026-07-08",
+          "text": "Task-page contact recipe component reuses Dima's unpublished Transactions component rather than rebuilding; blocked on its availability.",
+          "source": "Granola - Matthew/Euge, 8 Jul"
+        },
         {
           "date": "2026-07-07",
           "text": "The customer transaction view is hidden initially for open-banking accounts (data can be messy) - show account name and balance only; consent captured in the DB allows re-pulling transactions later. Open banking is now testable, with Dima plugging Yapily into the onboarding actions.",
@@ -131,16 +152,6 @@
           "date": "2026-06-25",
           "text": "Bank-connect uses the Yapily one-button hand-off model; the homepage shows connected accounts and prompts for more; WhatsApp setup collapses once connected. Dummy onboarding task marked as a sample; all three receipt channels must be explored before it is done.",
           "source": "Granola - Three amigos, 25 Jun"
-        },
-        {
-          "date": "2026-06-23",
-          "text": "First open-banking target customer is As Controla (no Swan account); provider selected is Montoya; onboarding calls targeted for 6-7 July.",
-          "source": "Granola"
-        },
-        {
-          "date": "2026-06-22",
-          "text": "Onboarding is a fixed 6-step, self-reported checklist; both the transactions drawer and the tasks/upload drawer expose all three bill-submission channels (WhatsApp, email forwarding, Vault).",
-          "source": "Granola - weekly sync"
         }
       ],
       "open_questions": [
@@ -167,37 +178,69 @@
       ],
       "next_steps": [
         {
-          "text": "Document the customer-onboarding user journey as-is; share the updated task-screen prototype + missing-context summary in Slack for Dima.",
+          "text": "Check with Dima on availability of the unpublished contact component for the Task page.",
+          "owner": "Matthew",
+          "due": null
+        },
+        {
+          "text": "While Matthew is away: start the customer-journey work (entity grouping on the Account Engagement page + main pain points); record and share the drawer-to-overlay UI migration video for async review.",
           "owner": "Euge",
-          "due": "None"
+          "due": null
+        },
+        {
+          "text": "Finalise onboarding actions with Dima, then move to single order line; pick up the fake/dummy onboarding task after the open-banking items.",
+          "owner": "Joel",
+          "due": null
+        },
+        {
+          "text": "Fix the bankTransaction.reference schema so OB references (up to ~280k chars) store without truncation; agree the schema/perf trade-off with Mark first.",
+          "owner": "Yaroslav/Mark",
+          "due": null
+        },
+        {
+          "text": "Scope lanes of work for the new engineers arriving 3 Aug.",
+          "owner": "Matthew/Team",
+          "due": "2026-08-03"
         },
         {
           "text": "Review onboarding screens for open-banking customers (incl. the cashback prompt); prioritise Q3 bookkeeping features for the first five.",
           "owner": "Matthew",
-          "due": "None"
-        },
-        {
-          "text": "Prototype a HubSpot agent in the existing chat interface; book time with Euge to walk the user journey.",
-          "owner": "Yaroslav",
-          "due": "None"
-        },
-        {
-          "text": "Fix the bankTransaction.reference schema so OB references (up to ~280k chars) store without truncation; agree the trade-off with Mark before the PR.",
-          "owner": "Yaroslav/Mark",
-          "due": "None"
-        },
-        {
-          "text": "Fix the Transactions page visibility/permissions for open-banking customers.",
-          "owner": "Ihor/Joel",
-          "due": "None"
-        },
-        {
-          "text": "Test the magic-link onboarding flow end-to-end in a new workspace.",
-          "owner": "Dima/Euge",
-          "due": "None"
+          "due": null
         }
       ],
       "meetings": [
+        {
+          "date": "2026-07-08",
+          "title": "Matthew / Euge: Coolest meeting of the week",
+          "url": null,
+          "summary": "Task-page contact recipe component (email/WhatsApp + QR) blocked on Dima's unpublished Transactions component. Two clients churned on slow Swan onboarding vs competitors - no clear fix yet. Cashback flagged at risk with Ihor going on holiday. Euge's priorities while Matthew is away: customer journey (entity grouping on Account Engagement, pain points) and the drawer-to-overlay UI migration video.",
+          "decisions": [
+            "Reuse Dima's contact component for the Task page rather than rebuild",
+            "Navigation: parent items are titles only (not clickable), children clickable - Integrations stays clickable"
+          ],
+          "open_questions": [
+            "Whether now is the right time to user-test the sidebar vs top-bar exploration"
+          ],
+          "next_steps": [
+            "Matthew checks component availability with Dima",
+            "Euge asks Yaroslav for a pre-proposal Account Engagement page screenshot",
+            "Euge records the UI migration video"
+          ]
+        },
+        {
+          "date": "2026-07-08",
+          "title": "Daily stand up",
+          "url": null,
+          "summary": "Open banking: Joel testing with Revolut + new auth flows, prod and preview API keys live - merge when green. Onboarding: Joel to finalise onboarding actions with Dima, then single order line; dummy task after OB items; lanes of work must be scoped before new engineers arrive 3 Aug. Ihor starts cashback after investigating a credit-transfer UX issue.",
+          "decisions": [
+            "Merge open banking once Revolut + new-auth tests pass"
+          ],
+          "open_questions": [],
+          "next_steps": [
+            "Joel sends policy links for review",
+            "Matthew sends the credit-transfer screenshot to Ihor"
+          ]
+        },
         {
           "date": "2026-07-07",
           "title": "3 amigos: Walk through customer onboarding",
@@ -233,23 +276,6 @@
             "Euge + Matthew run a DP session for automation candidates",
             "Matthew prioritises Q3 bookkeeping features"
           ]
-        },
-        {
-          "date": "2026-06-25",
-          "title": "Three amigos: onboarding actions",
-          "url": "None",
-          "summary": "Matthew, Dima and Eugenia walked the onboarding-actions UI: task-completion/hide logic, a lighter card design with the active task in purple, the dummy task surfacing WhatsApp + email forwarding, the Yapily one-button bank-connect, and hiding the transactions section until a bank is connected.",
-          "decisions": [
-            "Hide completed tasks and the homepage once done; invoice task optional",
-            "Lighter card layout, active task in purple, accountant block moved to tasks screen",
-            "Yapily one-button bank-connect; WhatsApp collapses once connected"
-          ],
-          "open_questions": [
-            "Dummy task must be clearly marked; all three receipt channels explored before done"
-          ],
-          "next_steps": [
-            "Euge iterates the prototype + open-banking integration"
-          ]
         }
       ],
       "resources": [
@@ -262,7 +288,7 @@
           "url": "https://miro.com/app/board/uXjVHFXnKZk=/"
         }
       ],
-      "sources_note": "Granola '3 amigos: Walk through customer onboarding' (7 Jul) + Matthew/Eugenia weekly sync (6 Jul) + 7 Jul stand-up; Linear projects/issues; Slack #tech-team / #accounting-mvp lookback."
+      "sources_note": "Granola 8 Jul stand-up + Matthew/Euge (8 Jul) + '3 amigos' walkthrough (7 Jul) + weekly sync (6 Jul); Linear issues NEO-1467/1468/1462; Slack #tech-team / #accounting-mvp lookback. No new meetings recorded after 8 Jul."
     },
     "fef38f90-b82c-4c47-b377-6dcb9b1a3020": {
       "title": "Enable accountants to complete VAT submissions via double-entry GL",
@@ -283,8 +309,10 @@
           "source": "Granola - DP session, 23 Jun"
         }
       ],
-      "exec_summary": "Standing up Neno's own double-entry general ledger so accountants can file Q3 VAT for the first cohort from Neno's own data. The native GL (NEO-1361) is now implemented and covered by green tests on the build branch, gated behind an off-by-default feature flag pending a deliberate production go-live - superseding the earlier dual-write spike that mirrored Exact's codes. The design inverts the old model: Neno owns the chart of accounts and VAT codes, every accounting action emits an event that a reliable engine books into a balanced, VAT-aware journal entry with counterparty and VAT-code dimensions, and Exact becomes a removable downstream sync. Scope for this build is the VAT return, live/complete cash, append-only auditability and drill-down; period locking, opening balances, multi-currency, the full report set and XBRL filing are specified but deferred.",
+      "exec_summary": "Standing up Neno's own double-entry general ledger so accountants can file Q3 VAT for the first cohort from Neno's own data. The native GL (NEO-1361) is implemented and green-tested behind an off-by-default feature flag; Mark reported the GL on track (8 Jul) and his focus is driving it to a state where interruptions don't derail the project. The design inverts the old model: Neno owns the chart of accounts and VAT codes, every accounting action emits an event booked into a balanced, VAT-aware journal entry, and Exact becomes a removable downstream sync. Decision-making continues to firm up: settlement now requires an amount match (Decision 08 / INV-30), break-the-glass covers in-period edits only, and VAT recognition was settled this week - VAT attributes in full to the invoice-issue period (subscription expenses spread, VAT does not) with non-EU regimes (e.g. South Africa) explicitly out of scope. Remaining path to go-live: run real production data through the engine, opening balances/cutoff, and Exact decoupling.",
       "whats_changed": [
+        "VAT recognition scope settled (8 Jul): VAT attributes in full to the invoice-issue period even when the expense is spread across periods (e.g. monthly subscriptions); non-EU regimes (e.g. South Africa) are out of scope - EU invoice-credit method only. Resolves Mark's country-comparability question.",
+        "Mark reported the GL on track (8 Jul, 'Neno GL on track' artifact in #accounting-mvp); focus is making the GL robust to interruptions. Ihor folding the VAT clarification into the knowledgebase.",
         "DE GL Decisions session (6 Jul, Mark/Matthew): settlement gets an AMOUNT check (Decision 08 / INV-30) - the bank-entry leg and bill leg must match on amount before reconciling, not just balance to zero; root cause of the underlying bug was a bill edited after initial booking without re-checking correspondence.",
         "Decision 07 (editing open periods) scoped: break-the-glass covers deliberate edits DURING an open period only; out-of-period corrections are a separate concept - adjustments.",
         "INV-11 confirmed (settled 29 Jun - 2 Jul): no GL account per counterparty; a payables GL account carries a counterparty property, keeping one balance sliceable by counterparty.",
@@ -296,11 +324,7 @@
         "Status check (Mark, 26 Jun): the design is locked and a first implementation is drafted with green unit tests, but it has NOT yet been run against real production data - the next step is validating the engine on real prod data in dev, which may surface code or architecture changes.",
         "Native double-entry GL (NEO-1361) is built and green-tested on the build branch, behind an off-by-default feature flag; the 'ledger' event destination is now a supported, booked destination (PR #1128).",
         "The work is now specified as a behavioural 'digital twin' knowledgebase (Truth Conditions -> Invariants -> Scenarios -> tests): TC-LEDGER-01..06 and INV-LEDGER-01..13 are in scope and now 'Hold'; TC-LEDGER-07..15 / INV-LEDGER-14..22 are specified but deferred.",
-        "Design supersedes the dual-write spike: Neno owns its chart of accounts and VAT codes; Exact is a removable downstream mapping the books never depend on.",
-        "VAT modelled as a first-class dimension - VAT code on both base and tax lines, treatment (domestic / reverse-charge / intra-EU / import / export) drives the posting shape; the VAT return is a code->box report, validated against a real filed Dutch return (Happy Team Apps Q1 2026).",
-        "Cash completeness confirmed: every bank transaction is booked on import (bank vs suspense) so the balance is live before reconciliation; reconciliation reclassifies out of suspense.",
-        "'Source of truth' deliberately reworded to 'source of truth for VAT filing' to avoid scope creep; euro-only for now with XBRL filing deferred.",
-        "Go-live now needs an opening-balance backfill or cutoff booking; year-end roll-forward (TC8) flagged CORE but still needs DP sign-off."
+        "Design supersedes the dual-write spike: Neno owns its chart of accounts and VAT codes; Exact is a removable downstream mapping the books never depend on."
       ],
       "risks": [
         {
@@ -329,6 +353,11 @@
         }
       ],
       "decisions": [
+        {
+          "date": "2026-07-08",
+          "text": "VAT is attributed in full to the period the invoice was issued, even when the underlying expense is recognised across multiple periods (subscriptions spread the expense, never the VAT); non-EU regimes (e.g. South Africa) out of scope for current VAT logic.",
+          "source": "Granola - Daily stand-up (Venla) / Slack #accounting-mvp (Matthew), 8 Jul"
+        },
         {
           "date": "2026-07-06",
           "text": "Settlement amount validation (Decision 08 / INV-30): reconciliation checks amount, not just zero-balance - the bank-entry leg and the bill leg must match on amount before reconciling; correspondence is re-checked when a bill is edited after initial booking.",
@@ -434,10 +463,6 @@
           "owner": null
         },
         {
-          "text": "Is VAT recognition comparable across different countries? (raised by Mark, 8 Jul)",
-          "owner": "Mark/Venla"
-        },
-        {
           "text": "FX balance rule not finally chosen: 'signed sum zero in the entry's one currency' (spike model) vs 'signed sum of reporting-currency values is zero' (native multi-currency); also confirm the full residual account set (FX difference, rounding, payment difference, discount).",
           "owner": "Design/DP"
         },
@@ -463,6 +488,11 @@
         }
       ],
       "next_steps": [
+        {
+          "text": "Fold the VAT-recognition clarification into the GL knowledgebase (retrying after hitting a token limit).",
+          "owner": "Ihor",
+          "due": null
+        },
         {
           "text": "Confirm the decisions and acknowledge the open questions in Mark's GL decisions doc.",
           "owner": "Matthew/Venla",
@@ -516,6 +546,19 @@
       ],
       "meetings": [
         {
+          "date": "2026-07-08",
+          "title": "Daily stand up",
+          "url": null,
+          "summary": "GL: Mark's focus is driving the GL to a state where interruptions don't derail the project. VAT recording clarified with Venla: attributed in full when the invoice is issued; monthly subscription expenses spread over the period. Ihor to incorporate into the knowledgebase. Duplicate-entry fix reviewed by Mark (2-3 issues caught, resolved).",
+          "decisions": [
+            "VAT attributes to the invoice-issue period in full; only the expense is spread"
+          ],
+          "open_questions": [],
+          "next_steps": [
+            "Ihor updates the knowledgebase with the VAT clarification"
+          ]
+        },
+        {
           "date": "2026-07-06",
           "title": "DE GL Decisions",
           "url": "None",
@@ -554,45 +597,6 @@
             "Design locked-period audit log + Slack alerting",
             "Define the VAT correction/control account in the chart of accounts"
           ]
-        },
-        {
-          "date": "2026-06-25",
-          "title": "M&M",
-          "url": "None",
-          "summary": "Matthew/Mark working session on the native GL: scoped 'source of truth' to VAT filing, confirmed booking bank transactions on import, agreed supplemental-vs-break-the-glass handling, euro-only with XBRL later, and that opening balances need a backfill or cutoff booking.",
-          "decisions": [
-            "Source of truth scoped to VAT filing",
-            "Book on import for cash completeness",
-            "Euro-only now, XBRL later",
-            "Opening balances via backfill or cutoff"
-          ],
-          "open_questions": [
-            "TC8 year-end roll-forward needs DP sign-off"
-          ],
-          "next_steps": [
-            "Mark finish + send truth-conditions doc",
-            "Confirm TC8 with DP",
-            "Add XBRL to Slack"
-          ]
-        },
-        {
-          "date": "2026-06-23",
-          "title": "Double-Entry Bookkeeping Open Questions",
-          "url": "None",
-          "summary": "Design session with DP and Mark that resolved the core ledger mechanics: VAT correction handling, closed-period locking, multi-currency FX, and the rate/territory VAT breakdown mapped to Nextens.",
-          "decisions": [
-            "VAT corrections booked in the next period; <EUR 1,000 folds in",
-            "Closed periods lock; approval-gated insert-only with audit",
-            "Multi-currency: store txn-date rate, revalue at period-end"
-          ],
-          "open_questions": [
-            "Belgium gapless-ledger scope unconfirmed",
-            "Full reporting list pending from DP"
-          ],
-          "next_steps": [
-            "DP compiles reporting requirements",
-            "Schedule follow-up design session"
-          ]
         }
       ],
       "resources": [
@@ -613,7 +617,7 @@
           "url": "https://github.com/neno-co/monorepo-core/blob/mark/neo-1361-create-neno-general-ledger/knowledgebase/invariants/General%20Ledger%20%E2%80%94%20Invariants.md"
         }
       ],
-      "sources_note": "Granola 'DE GL Decisions' (6 Jul) + Slack #accounting-mvp decisions thread and VAT-recognition discussion (7-8 Jul) + Linear NEO-1361 / project status update (26 Jun, edited 29 Jun)."
+      "sources_note": "Slack #accounting-mvp (VAT-recognition thread + 'GL on track', 7-8 Jul) + Granola 8 Jul stand-up + 'DE GL Decisions' (6 Jul) + DP/Mark session (30 Jun) + Linear NEO-1361. No GL-folder meetings after 8 Jul."
     },
     "ce07f00e-b392-40bd-85fb-2a4a831c9c80": {
       "title": "Make neno the source of truth for all bookkeeping",
@@ -626,19 +630,25 @@
           "source": "Matthew, 23 Jun"
         }
       ],
-      "exec_summary": "The initiative is a filled-out backlog with one committed piece for July: end-to-end AR reconciliation (Planned, currently unstaffed after David's departure on 6 Jul). Depreciation schedules and credit-note processing were deprioritised for July (7 Jul) despite Andries asking for a depreciation schedule from w/c 7 Jul. Meanwhile the live reconciliation workflow is hardening: suggestions are now capped at one per bill and per transaction (NEO-1451, shipped 7 Jul), OI duplicate bank transactions were fixed (NEO-1448, 6 Jul), and a workflow was agreed where Andries reviews the ~55 not-matched transactions and triggers missing-bill tasks for Marloes once the lists are trustworthy. Ihor flagged that the suggestion-dedupe constraint must carry over to AR reconciliation. DP is still compiling the full reporting requirements list (100+ items).",
+      "exec_summary": "The initiative is a filled-out backlog with one committed piece for July: end-to-end AR reconciliation (Planned, still unstaffed after David's departure on 6 Jul). Depreciation schedules and credit-note processing stay deprioritised for July. The live reconciliation workflow keeps hardening: all bills/transactions are now properly surfaced in the app for review (Ihor, 8 Jul, minor DB anomalies still under investigation), suggestions are capped at one per bill/transaction (NEO-1451), and OI duplicates are fixed (NEO-1448). New correctness gap filed before Ihor's holiday: NEO-1464 - bills can accept reconciliation links while still NEEDS_REVIEW, permitting reconciliation (and Exact sync) before extraction approval; Yaroslav to prioritise next week. The stand-up also flagged that the invoice/billing flow needs a proper fix before customer count scales (163 backlog Q2 invoices were bulk-uploaded via a Claude-assisted harness). DP is still compiling the full reporting requirements list (100+ items).",
       "whats_changed": [
+        "All bills/transactions are now properly surfaced in the app for review (Ihor, 8 Jul, with a review artifact for Andries/Joel); minor DB anomalies still being investigated.",
+        "NEO-1464 filed (9 Jul, Ihor): enforce review-before-reconciliation and remove the legacy APPROVED bill status - a NEEDS_REVIEW bill can currently be matched and synced to Exact before extraction review. Ihor is now on summer holiday; Yaroslav to prioritise next week unless Joel gets to it.",
+        "Per the 8 Jul stand-up notes: Swan transactions syncing into Xero for 3 workspaces via the per-workspace connections pipeline; 163 backlog Q2 invoices bulk-uploaded via a Claude-assisted harness - the invoice/billing flow needs a proper fix before customer count scales.",
         "Reconciliation suggestions now limited to one active suggestion per bill and per transaction (NEO-1451, Ihor, shipped 7 Jul); Ihor flagged the same constraint will be needed for AR reconciliation once it exists.",
         "Missing-bill workflow agreed (7 Jul): once the 'Not matched' and 'Needs your review' lists are trustworthy (Mark/Ihor by EOD), Andries reviews the ~55 not-matched transactions and triggers missing-bill tasks for Marloes.",
         "OI duplicate bank transactions fixed (NEO-1448, Mark, 6 Jul, in Bookkeeping bug-fixes); the durable fix is NEO-1299 (pull bank transactions from Exact and suppress already-booked ones).",
         "Depreciation schedules and credit-note processing deprioritised for July (7 Jul) - moved back to Later on the board and Backlog in Linear; Andries had asked (6 Jul) for a depreciation schedule from w/c 7 Jul.",
-        "'Depreciation & accruals' split into two projects (6 Jul): 'Depreciation schedules' and 'Accruals'; requirements retagged accordingly.",
-        "End-to-end AR reconciliation remains the July commitment; it is currently unstaffed (David left 6 Jul)."
+        "'Depreciation & accruals' split into two projects (6 Jul): 'Depreciation schedules' and 'Accruals'; requirements retagged accordingly."
       ],
       "risks": [
         {
           "severity": "med",
           "text": "End-to-end AR reconciliation is the July commitment but is unstaffed since David left (6 Jul)."
+        },
+        {
+          "severity": "med",
+          "text": "NEO-1464: a NEEDS_REVIEW bill can be matched and synced to Exact before extraction review; unowned during Ihor's holiday until Yaroslav/Joel pick it up."
         },
         {
           "severity": "med",
@@ -729,6 +739,16 @@
       ],
       "decisions": [
         {
+          "date": "2026-07-09",
+          "text": "NEO-1464 invariant: a bill must be extraction-approved (REVIEWED) before reconciliation; the legacy APPROVED status is to be removed. Not an active incident; prioritised for the week of 13 Jul.",
+          "source": "Linear NEO-1464 / Slack #tech-team, 10 Jul"
+        },
+        {
+          "date": "2026-07-08",
+          "text": "Reconciliation review lists are now trustworthy: all bills/transactions properly surfaced (minor DB anomalies under investigation); duplicate-entry fix reviewed by Mark (2-3 issues caught, resolved).",
+          "source": "Slack #accounting-mvp / Granola - Daily stand-up, 8 Jul"
+        },
+        {
           "date": "2026-07-07",
           "text": "Reconciliation suggestions limited to one active suggestion per bill and per transaction (NEO-1451 shipped); the same constraint will likely be needed for AR reconciliation once it exists.",
           "source": "Linear NEO-1451 / Slack #accounting-mvp, 7 Jul"
@@ -803,14 +823,19 @@
       ],
       "next_steps": [
         {
-          "text": "Make the 'Not matched' and 'Needs your review' lists trustworthy so Andries can trigger missing-bill tasks for Marloes.",
-          "owner": "Mark/Ihor",
-          "due": "2026-07-07"
+          "text": "Prioritise NEO-1464 (review-before-reconciliation) - Yaroslav next week unless Joel has time sooner.",
+          "owner": "Yaroslav/Joel",
+          "due": null
+        },
+        {
+          "text": "Resolve the remaining minor DB anomalies behind the reconciliation review lists.",
+          "owner": "Ihor (handover)",
+          "due": null
         },
         {
           "text": "Review the ~55 not-matched transactions and mark them receipt-missing / trigger tasks.",
           "owner": "Andries",
-          "due": "None"
+          "due": null
         },
         {
           "text": "Compile the full reporting requirements list.",
@@ -825,38 +850,14 @@
       ],
       "meetings": [
         {
-          "date": "2026-06-23",
-          "title": "Double-Entry Bookkeeping Open Questions",
+          "date": "2026-07-08",
+          "title": "Daily stand up",
           "url": null,
-          "summary": "Primarily a GL design session; produced the minimum reporting set and sharpened related-parties and depreciation/accruals requirements.",
-          "decisions": [
-            "Minimum reporting set defined (trial balance, full GL export, P&L, balance sheet, aged receivables, fixed-asset register, GL drill-down)",
-            "Aged-receivables reporting (30/60/90/120+ buckets) confirmed as a minimum requirement",
-            "Intercompany interest auto-accrual deprioritised"
-          ],
-          "open_questions": [
-            "Payroll design not discussed",
-            "DP to compile full reporting requirements list",
-            "Ocean Ionics Espana: entity vs second bank account"
-          ],
+          "summary": "Reconciliation: duplicate-entry fix reviewed by Mark (2-3 issues caught, resolved); AR will likely need the same duplicate-suggestion fix once it exists (ticket filed). Stand-up notes: Swan transactions syncing into Xero for 3 workspaces via the per-workspace connections pipeline; 163 backlog Q2 invoices bulk-uploaded via a Claude-assisted harness; invoice/billing flow needs a proper fix before customer count scales.",
+          "decisions": [],
+          "open_questions": [],
           "next_steps": [
-            "DP compiles reporting requirements",
-            "Follow-up session in ~1 week"
-          ]
-        },
-        {
-          "date": "2026-06-18",
-          "title": "Q2 Retro & Q3 Planning",
-          "url": null,
-          "summary": "Quarter retro and Q3 planning across P&E, Services, Commercial and Finance; restated the 30-customer source-of-truth goal and the Q3 bookkeeping feature set.",
-          "decisions": [
-            "Q3 goal: 30 customers running on neno with neno as the single source of truth feeding Exact"
-          ],
-          "open_questions": [
-            "Feature sequencing and ownership for the bookkeeping scope"
-          ],
-          "next_steps": [
-            "Define and file the remaining projects after AR reconciliation"
+            "Matthew sends the credit-transfer screenshot to Ihor to reproduce locally"
           ]
         }
       ],
@@ -870,7 +871,7 @@
           "url": null
         }
       ],
-      "sources_note": "Slack #accounting-mvp (reconciliation-list trust + NEO-1451/NEO-1448 threads, 6-7 Jul) + Linear projects (Depreciation schedules / Accruals split, July deprioritisation) + the 23 Jun DP session; Granola folder had no new meetings in the lookback."
+      "sources_note": "Slack #accounting-mvp (bills/transactions surfaced, 8 Jul) + #tech-team (NEO-1464 thread, 10 Jul) + Granola 8 Jul stand-up + Linear issues; Granola folder had no new meetings after 8 Jul."
     }
   }
 }

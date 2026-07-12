@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-07-08_
+_Last updated: 2026-07-12_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -17,6 +17,10 @@ _Last updated: 2026-07-08_
 - [2026-07-06] OI duplicate bank transactions fixed (NEO-1448, Mark, Bookkeeping bug-fixes); the durable fix would be NEO-1299 (pull bank transactions from Exact and suppress already-booked ones). (source: Linear / Slack #accounting-mvp, 6 Jul)
 - [2026-07-07] Reconciliation suggestions are now limited to one active suggestion per bill and per transaction (NEO-1451, Ihor, shipped 7 Jul) - fixes bills appearing multiple times in the queue. Ihor flagged the same constraint will likely be needed for AR reconciliation once it exists. (source: Linear NEO-1451 / Slack #accounting-mvp, 7 Jul)
 - [2026-07-07] Workflow agreed: once the 'Not matched' and 'Needs your review' lists are trustworthy (Mark/Ihor, by EOD 7 Jul), Andries reviews the ~55 not-matched transactions and triggers missing-bill tasks for Marloes. (source: Slack #accounting-mvp, 7 Jul)
+
+- [2026-07-08] Reconciliation review state: all bills/transactions are now properly surfaced in the app (Ihor shared a review artifact for Andries/Joel); some minor DB anomalies still under investigation. The duplicate-entry fix was reviewed by Mark, who caught 2-3 issues, all resolved. (source: Slack #accounting-mvp / Granola - Daily stand-up, 8 Jul)
+- [2026-07-09] NEO-1464 filed (Ihor): bills can accept reconciliation links while still NEEDS_REVIEW, hiding them from the extraction-review list and permitting reconciliation (and Exact sync) before extraction approval. Invariant to enforce: a bill must be extraction-approved (REVIEWED) before reconciliation; the legacy APPROVED bill status is to be removed. Ihor flagged it on his last day before summer holiday (10 Jul); Yaroslav to prioritise next week unless Joel gets to it sooner. (source: Linear NEO-1464 / Slack #tech-team, 10 Jul)
+- [2026-07-08] Per the stand-up notes: Swan transactions are syncing into Xero for 3 workspaces via the per-workspace connections pipeline, and 163 backlog Q2 invoices were bulk-uploaded via a Claude-assisted harness; flagged that the invoice/billing flow needs a proper fix before customer count scales. (source: Granola - Daily stand-up, 8 Jul)
 
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.
