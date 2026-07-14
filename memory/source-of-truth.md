@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-07-12_
+_Last updated: 2026-07-14_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -21,6 +21,8 @@ _Last updated: 2026-07-12_
 - [2026-07-08] Reconciliation review state: all bills/transactions are now properly surfaced in the app (Ihor shared a review artifact for Andries/Joel); some minor DB anomalies still under investigation. The duplicate-entry fix was reviewed by Mark, who caught 2-3 issues, all resolved. (source: Slack #accounting-mvp / Granola - Daily stand-up, 8 Jul)
 - [2026-07-09] NEO-1464 filed (Ihor): bills can accept reconciliation links while still NEEDS_REVIEW, hiding them from the extraction-review list and permitting reconciliation (and Exact sync) before extraction approval. Invariant to enforce: a bill must be extraction-approved (REVIEWED) before reconciliation; the legacy APPROVED bill status is to be removed. Ihor flagged it on his last day before summer holiday (10 Jul); Yaroslav to prioritise next week unless Joel gets to it sooner. (source: Linear NEO-1464 / Slack #tech-team, 10 Jul)
 - [2026-07-08] Per the stand-up notes: Swan transactions are syncing into Xero for 3 workspaces via the per-workspace connections pipeline, and 163 backlog Q2 invoices were bulk-uploaded via a Claude-assisted harness; flagged that the invoice/billing flow needs a proper fix before customer count scales. (source: Granola - Daily stand-up, 8 Jul)
+- [2026-07-13] The admin area and Atlas now run together on a separate domain (prod atlas.neno.co, sandbox atlas.neno.build); Yaroslav shared how devs should test the Atlas admin experience. (source: Slack #tech-team (Yaroslav), 13 Jul)
+- [2026-07-13] Stand-up recap: a direct Exact connection for transactions/synchronisation is established, all invoices for existing customers are scheduled and verified correct, and accountant engagements are tracked by entity, group and larger groups (recap wording is low-fidelity). (source: Slack #tldv-channel - daily stand-up recap (tldv), 13 Jul)
 
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.

@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-12_
+_Last updated: 2026-07-14_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -43,6 +43,8 @@ _Last updated: 2026-07-12_
 - [2026-07-08] The contact recipe component (email/WhatsApp + QR code) for the Task page is blocked on Dima's unpublished component (built for Transactions); the goal is to reuse it rather than rebuild. (source: Granola - Matthew/Euge, 8 Jul)
 - [2026-07-10] Onboarding Actions implementation has started in Linear: the accountant directory + assign-accountant-on-workspace-creation shipped (NEO-1468, Done 10 Jul) and the Home onboarding hub screens from Euge's design are In Progress (NEO-1467) - the first issues filed on the project. (source: Linear)
 - [2026-07-10] Bills uploaded via dynamic-task file_upload responses now enter the OCR/ingestion pipeline (NEO-1462 fixed, Joel, 10 Jul) - previously they were stored only as Vault documents and never became reviewable Bills (TC3 contradiction closed). (source: Linear NEO-1462)
+- [2026-07-13] End-to-end test with the new auth flow is complete (NEO-1416, Joel, Done 13 Jul) - the new non-Swan auth flow used by open-banking customers is validated end-to-end. (source: Linear NEO-1416)
+- [2026-07-13] Onboarding actions and open banking are being shipped together; this week's goal is at least one customer connected via open banking, with Yaroslav getting the customer list for the onboarding-actions project. (source: Slack #tldv-channel - daily stand-up recap (tldv), 13 Jul)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
@@ -55,6 +57,7 @@ _Last updated: 2026-07-12_
 - [open] When will the new transactions UI (by-date/by-status switch + open-tasks section) be ready? The full WhatsApp/email/Vault submission walkthrough depends on it. (source: Granola — weekly sync)
 - [open] Accountant assignment for new workspaces: add to Yaroslav's accounting-engagements page, or hard-code for the initial five? (source: Granola - Onboarding Actions, 25 Jun)
 - [open] The dummy onboarding task must be visually marked as a dummy, and all three receipt-sharing methods (WhatsApp, email forwarding, Vault) must be explored before it can be marked done. (source: Granola - 25 Jun)
+- [open] The 13 Jul stand-up recap (tldv, low-fidelity transcript) suggests the open-banking connect ships 'as a full task, not just a button' - confirm whether this changes the settled one-button invoke decision for onboarding actions. (source: Slack #tldv-channel, 13 Jul)
 
 ## Risks
 - [high] 6 Jul onboarding target is tight — onboarding-actions project still in backlog and its stepper depends on the new transactions UI.
@@ -93,6 +96,8 @@ _Last updated: 2026-07-12_
 - [2026-07-08] Matthew to check with Dima on availability of the unpublished contact component for the Task page. (owner: Matthew) (source: Granola - Matthew/Euge, 8 Jul)
 - [2026-07-08] Euge while Matthew is away: start the customer-journey work (entity grouping on the Account Engagement page + main customer pain points) and record/share the drawer-to-overlay UI migration video for async review. (owner: Euge) (source: Granola - Matthew/Euge, 8 Jul)
 
+- [2026-07-13] Ensure at least one customer connects via open banking this week; get the customer list for the onboarding-actions project. (owner: Yaroslav) (source: Slack #tldv-channel - stand-up recap, 13 Jul)
+
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._
 - (project: Whatsapp, Email forwarding and Vault re-provisioning) The transactions drawer and the tasks/upload drawer must both offer all three bill-submission channels: WhatsApp, email forwarding, and Vault upload. (source: Granola — User Journey, 16 Jun 2026)
@@ -109,3 +114,4 @@ _Note (2026-07-08): requirements tagged 'Present onboarding actions for the next
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->
 - [2026-06-22] (internal) LLM-assisted changes risk being left half-done — watch for partial reworks during the onboarding push. (source: Granola — weekly sync)
+- [2026-07-13] Ihor is now away (13 Jul - 31 Aug); Joel is reviewing Ihor's handoff document. Per the stand-up recap, an AI engineer starts Mon 20 Jul and three engineers join in August. (source: Slack #tldv-channel - daily stand-up recap (tldv), 13 Jul)

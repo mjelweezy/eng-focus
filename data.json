@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T04:13:04Z",
+  "generated_at": "2026-07-14T06:20:00Z",
   "projects": {
     "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
       "status": "In Progress",
@@ -292,7 +292,7 @@
                 {
                   "id": "NEO-1416",
                   "title": "End-to-end test with new Auth Flow",
-                  "status": "In Progress"
+                  "status": "Done"
                 },
                 {
                   "id": "NEO-1388",

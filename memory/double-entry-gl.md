@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-12_
+_Last updated: 2026-07-14_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -36,6 +36,7 @@ _Last updated: 2026-07-12_
 
 - [2026-07-08] VAT recognition scope settled: VAT is attributed in full to the period the invoice was issued, even when the underlying expense is recognised across multiple periods (e.g. monthly subscriptions spread over the billing period) - only the expense is spread, never the VAT. Non-EU regimes (e.g. South Africa) are out of scope for the current VAT logic; a non-EU market would take separate logic if ever needed (SA in fact uses the same invoice-credit method as the EU). (source: Granola - Daily stand-up (Venla), 8 Jul; Slack #accounting-mvp (Matthew), 8 Jul)
 - [2026-07-08] Mark reported the GL on track (shared a 'Neno GL on track' progress artifact in #accounting-mvp); his stated focus is driving the GL to a state where interruptions don't derail the project. Ihor to fold the VAT clarification into the knowledgebase (retrying after hitting a token limit). (source: Slack #accounting-mvp / Granola - Daily stand-up, 8 Jul)
+- [2026-07-13] GL progress (stand-up recap): a UI tool comparing the Exact ledger against the neno ledger is implemented, and a first reconciliation has been booked in the neno ledger; correctness verification and integration work remain (recap wording is low-fidelity - confirm with Mark). (source: Slack #tldv-channel - daily stand-up recap (tldv), 13 Jul)
 
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
