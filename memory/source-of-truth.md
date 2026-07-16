@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-07-14_
+_Last updated: 2026-07-16_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -24,12 +24,18 @@ _Last updated: 2026-07-14_
 - [2026-07-13] The admin area and Atlas now run together on a separate domain (prod atlas.neno.co, sandbox atlas.neno.build); Yaroslav shared how devs should test the Atlas admin experience. (source: Slack #tech-team (Yaroslav), 13 Jul)
 - [2026-07-13] Stand-up recap: a direct Exact connection for transactions/synchronisation is established, all invoices for existing customers are scheduled and verified correct, and accountant engagements are tracked by entity, group and larger groups (recap wording is low-fidelity). (source: Slack #tldv-channel - daily stand-up recap (tldv), 13 Jul)
 
+- [2026-07-15] Selective synchronization of transactions to Exact will be implemented for the next customer cohort - a flexible/hybrid approach (some data in neno, some in Exact) is accepted; not urgent before end of August. Context: 8 customers on neno with 12 payroll payments to selectively push to Exact. (source: Granola/tldv - Workload distribution, 15 Jul)
+- [2026-07-15] Invoicing migration strategy: move customers to neno invoicing in phases starting with the easiest lift; neno invoicing will likely stay a second-class citizen for complex AR processes initially; some customers will resist due to existing workflows. (source: Granola/tldv - Workload distribution, 15 Jul)
+- [2026-07-15] Customer pull for agent access (Sil x Yaroslav): expose an MCP server for invoice + quote operations and surface non-reconciled-items / missing-documents lists; Sil volunteered as first customer for invoice-API testing; Yaroslav to add to the roadmap. (source: Granola/tldv - Sil x Yaroslav API call, 15 Jul)
+
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.
 - [open] Full reporting requirements list still being compiled by DP.
 - [open] Feature sequencing and ownership for the post-GL bookkeeping scope not yet decided. (owner: Matthew)
 - [open] Ocean Ionics Espana: separate entity or a second bank account? Booking treatment (intercompany vs investment) depends on the answer. (source: Granola — DP session)
 - [open] VAT filing period flexibility (monthly/quarterly/bi-monthly) must be configurable per customer and country. (source: Granola — DP session)
+
+- [open] Accountant portfolio management (per group/entity): where should it live (Yaroslav proposes Atlas) and what data source backs it? Assignments are editable per engagement, but portfolio management has no UI yet. (source: Slack #accounting-mvp, 14 Jul)
 
 ## Risks
 - [med] Scope is broad and unsequenced; nothing staffed yet beyond AR reconciliation (David).
@@ -39,6 +45,8 @@ _Last updated: 2026-07-14_
 ## Next steps
 - DP to compile the full reporting requirements list. (owner: DP, ASAP)
 - Define and file the remaining projects after AR reconciliation. (owner: Matthew)
+
+- [2026-07-15] Matthew to grab CSV examples from Numbrs customers to understand the payroll reconciliation shape. (owner: Matthew) (source: Granola/tldv - stand-up, 15 Jul)
 
 ## Projects (filed in Linear)
 - [2026-06-23] Generated the initiative's feature set as Linear projects (Backlog), attached to the initiative, with summaries + DP-sourced requirements where available: Financial reporting, Credit note processing (AR & AP), Related-parties register, Payroll (Numbrs), Third-party wallet transaction import, Depreciation & accruals, Native team features & permissions, Customer project creation & management. End-to-end AR reconciliation already existed (David, Planned).
@@ -63,8 +71,11 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 
 - (project: End-to-end AR reconciliation) Reconciliation-suggestion constraints must carry over to AR: at most one active suggestion per invoice and per transaction, and trustworthy 'not matched' / 'needs review' lists so accountants can trigger missing-document tasks. (source: Slack #accounting-mvp (Ihor), 7 Jul 2026)
 
+- (project: Payroll (Numbrs integration)) Payroll postings must reach the neno ledger, not only Exact - investigate CSV-based ingestion from Numbrs (8 customers, ~12 payroll payments/month); selective push of payroll transactions to Exact for hybrid customers. (source: Granola/tldv - stand-ups, 15 Jul)
+
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._
+- [2026-07-16] Expose invoice/quote operations via an MCP server/API plus trustworthy non-reconciled-items / missing-documents lists for external agent use (Sil to be the first test customer) - could belong to End-to-end AR reconciliation, invoicing, or a new API/MCP project; needs Matthew's attribution. (source: Granola/tldv - Sil x Yaroslav API call, 15 Jul)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

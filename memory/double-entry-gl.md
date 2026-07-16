@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-14_
+_Last updated: 2026-07-16_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -38,6 +38,10 @@ _Last updated: 2026-07-14_
 - [2026-07-08] Mark reported the GL on track (shared a 'Neno GL on track' progress artifact in #accounting-mvp); his stated focus is driving the GL to a state where interruptions don't derail the project. Ihor to fold the VAT clarification into the knowledgebase (retrying after hitting a token limit). (source: Slack #accounting-mvp / Granola - Daily stand-up, 8 Jul)
 - [2026-07-13] GL progress (stand-up recap): a UI tool comparing the Exact ledger against the neno ledger is implemented, and a first reconciliation has been booked in the neno ledger; correctness verification and integration work remain (recap wording is low-fidelity - confirm with Mark). (source: Slack #tldv-channel - daily stand-up recap (tldv), 13 Jul)
 
+- [2026-07-14] Bill discounts: a discount line books as a credit (Cr) on the bill to the SAME GL account (5522) as the other line items - confirmed by DP; Mark to check with DP whether negative line items should instead be credited debits, and to file a frontend bug ticket for negative line items vs Exact. (source: Slack #accounting-mvp + Granola/tldv - stand-up, 14 Jul)
+- [2026-07-15] GL is operating as expected but the scope is large; the target is production before Mark's holiday (from ~23 Jul). A trial-balance comparison page verifies neno-vs-Exact sync; Mark is building the knowledgebase so incoming engineers can absorb the design decisions (an immediate handoff would be rough but not impossible). (source: Granola/tldv - Daily stand-up, 15 Jul)
+- [2026-07-15] Payroll data currently reaches Exact but not the neno ledger; Mark to investigate a payroll CSV ingestion approach (Numbrs CSVs; Matthew collecting examples from Numbrs customers to understand the reconciliation shape). (source: Granola/tldv - Daily stand-up, 15 Jul)
+
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
 - [open] Full reporting requirements list being compiled by DP (potentially 100+ items) — will frame future design. (owner: DP)
@@ -63,6 +67,8 @@ _Last updated: 2026-07-14_
 - [med] DP's full reporting requirements list not yet compiled — could expand GL scope.
 - [low] Native GL build (NEO-1361, PR #1128) landed green-tested behind an off-by-default flag; risk shifts from spike-code correctness to the production go-live cutover (opening-balance backfill/cutoff and Exact decoupling). (source: PR #1128)
 
+- [med] Mark's leave starts 23 Jul (through 7 Aug); the ledger needs to reach production before then or be handed off mid-flight. (source: Granola/tldv - stand-up, 15 Jul)
+
 ## Next steps
 - [2026-06-23] DP to compile full reporting requirements list. (owner: DP, due ASAP)
 - [2026-06-23] Matthew to schedule the follow-up design session (~1 week). (owner: Matthew)
@@ -80,6 +86,8 @@ _Last updated: 2026-07-14_
 - [2026-07-01] Design the locked-period audit log + Slack unlock alerting (report all changes first, add amount thresholds later). (owner: Mark) (source: Slack #accounting-mvp)
 
 - [2026-07-07] Matthew + Venla to confirm the decisions and acknowledge the open questions in Mark's GL decisions doc. (owner: Matthew/Venla) (source: Slack #accounting-mvp, 7 Jul)
+
+- [2026-07-15] Mark to continue testing the GL and drive it to production before his holiday; investigate payroll CSV ingestion. (owner: Mark) (source: Granola/tldv - stand-up, 14-15 Jul)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project (this project is In Progress, so they are posted as a proposed comment, not auto-applied)._
@@ -117,6 +125,9 @@ _Expanded 2026-07-08 from the DE GL Decisions session (6 Jul) and #accounting-mv
 _Expanded 2026-07-12 from the 8 Jul stand-up and #accounting-mvp. Project is In Progress, so posted as a proposed comment, not auto-applied._
 - (project: Start writing to neno's double-entry GL) VAT is attributed in full to the invoice-issue period even when the underlying expense is recognised across multiple periods (e.g. monthly subscriptions spread over the billing period) - only the expense is spread, never the VAT. (source: Granola - Daily stand-up (Venla), 8 Jul; Slack #accounting-mvp, 8 Jul)
 - (project: Start writing to neno's double-entry GL) VAT logic targets the EU invoice-credit method only; non-EU regimes (e.g. South Africa) are out of scope and would be handled with separate logic if ever needed. (source: Slack #accounting-mvp (Matthew), 8 Jul)
+
+_Expanded 2026-07-16 from the 14 Jul stand-up and #accounting-mvp. Project is In Progress, so posted as a proposed comment, not auto-applied._
+- (project: Start writing to neno's double-entry GL) Bill discounts book as a credit line on the bill to the same GL account as the other line items (e.g. 5522), not to a separate discount account; correspondence with Exact for negative line items needs a frontend fix. (source: Slack #accounting-mvp (Mark/DP), 14 Jul)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

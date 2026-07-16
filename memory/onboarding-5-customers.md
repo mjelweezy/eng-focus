@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-14_
+_Last updated: 2026-07-16_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -46,6 +46,14 @@ _Last updated: 2026-07-14_
 - [2026-07-13] End-to-end test with the new auth flow is complete (NEO-1416, Joel, Done 13 Jul) - the new non-Swan auth flow used by open-banking customers is validated end-to-end. (source: Linear NEO-1416)
 - [2026-07-13] Onboarding actions and open banking are being shipped together; this week's goal is at least one customer connected via open banking, with Yaroslav getting the customer list for the onboarding-actions project. (source: Slack #tldv-channel - daily stand-up recap (tldv), 13 Jul)
 
+- [2026-07-14] Neno-first Auth project COMPLETED: neno now owns permission resolution (swan.* and neno.* presented as one set), pages are gated by /me/capabilities instead of feature flags, accountants can assign permission packages when creating Accounting Engagements, and preview/sandbox persona impersonation works. Follow-up: team invites for non-Swan accounts (NEO-1438, Joel, started 14 Jul). (source: Linear project status update, 14 Jul)
+- [2026-07-14] Dynamic tasks are implemented and ready to go live (currently live only for OI); the plan is to take them live together with open banking. Remaining piece: the 9am daily task-digest cron (NEO-1278). (source: Linear project status update, 14 Jul)
+- [2026-07-14] Onboarding actions are complete and on the preview environment for testing (Matthew to verify once Dima sends the link); Dima to build the open-banking reconnect UI from Euge's new design. (source: Granola/tldv - Daily stand-up, 14 Jul)
+- [2026-07-15] Open Banking merging to sandbox (Dima): enabled per workspace by feature flag; production links live accounts; sandbox uses Yapily mock institutions so no real transactional data lands in the sandbox DB. (source: Slack #tech-team (Yaroslav), 15 Jul)
+- [2026-07-15] Five target customers identified for open banking; the week's goal is at least one customer connected in production. Optedy and In the Zone entities are enabled for open banking (primary banks ING and Revolut). Q2 close limits onboarding capacity - customers with finalized Q2 books go first. (source: Granola/tldv - stand-up + workload distribution, 15 Jul)
+- [2026-07-15] WhatsApp bill submission for customers with multiple workspaces: the agent must prompt for a destination workspace (button list) before depositing the document; Joel assigned; Giuseppe to create a separate WhatsApp developer app for testing. (source: Granola/tldv - Workload distribution, 15 Jul)
+- [2026-07-16] Invoice IBAN selector for open-banking customers (NEO-1372, conditional payee-account selector): scope confirmed small and well defined; Dima to proceed. (source: Slack #tech-team (Yaroslav), 16 Jul)
+
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
 - [resolved 2026-06-24] Open-banking provider decision → provider selected: Montoya (contract still unsigned as of 23 Jun; Plaid ~EUR 2k/mo minimum was the prior front-runner).
@@ -69,6 +77,8 @@ _Last updated: 2026-07-14_
 - [med] Exact API rate limit (60 req/min) already hit in testing with seeded data; needs a roadmap solution (connection pool or backpressure). (source: Granola — Daily stand-up, 24 Jun)
 - [med] Open-banking transaction ingestion needs a schema change: bankTransaction.reference (VARCHAR(255)) truncates/errors on real ABN AMRO data; OB references can reach ~280k chars. Schema/perf trade-off (large TEXT + substring lookups) to be agreed with Mark first. (source: Slack #tech-team, 1 Jul)
 - [med] WhatsApp/Meta Business account setup is misconfigured and was deprioritised (24 Jun); blocks the WhatsApp bill channel rollout. (source: Granola — Daily stand-up)
+
+- [med] Recurring (daily) transaction fetching for connected open-banking accounts is not yet available - connected accounts do not refresh automatically; renewal for expiring connections was added 15 Jul. (source: Granola/tldv - stand-up, 15 Jul)
 
 ## Next steps
 - Design the user-journey screens + an Ocean Ionics-specific homepage. (owner: Euge)
@@ -98,6 +108,9 @@ _Last updated: 2026-07-14_
 
 - [2026-07-13] Ensure at least one customer connects via open banking this week; get the customer list for the onboarding-actions project. (owner: Yaroslav) (source: Slack #tldv-channel - stand-up recap, 13 Jul)
 
+- [2026-07-15] Dima to finish onboarding actions (Matthew verifies) and the IBAN dropdown in invoices (NEO-1372); Joel to share the preview link for minnow-first team invites and fix any issues; Euge to write QA scenarios for the add-team-member feature. (source: Granola/tldv - Workload distribution, 15 Jul)
+- [2026-07-15] Matthew to contact Venla to set up the Monday bank-connection call; finalize the first onboarding customer list with Yaroslav. (source: Granola/tldv - stand-up, 15 Jul)
+
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._
 - (project: Whatsapp, Email forwarding and Vault re-provisioning) The transactions drawer and the tasks/upload drawer must both offer all three bill-submission channels: WhatsApp, email forwarding, and Vault upload. (source: Granola — User Journey, 16 Jun 2026)
@@ -110,6 +123,10 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 
 - (project: Enable customers to connect external bank accounts and view their transactions) The customer-facing transaction view is hidden initially for open-banking accounts (data can be messy) - show account name and balance only; capture consent in the DB so transactions can be re-pulled/backfilled later. (source: Granola - 3 amigos walkthrough, 7 Jul 2026)
 _Note (2026-07-08): requirements tagged 'Present onboarding actions for the next five customers' publish to the successor project 'Onboarding Actions for the Next Five Customers' (1f7bfeff). Not appended there this run: both bullets are already reflected verbatim in that project's hand-authored outline (TC1/limited-Home/hide-when-done)._
+
+- (project: Enable customers to connect external bank accounts and view their transactions) Connected open-banking accounts need recurring (daily) transaction fetching; expiring consents/connections must be renewable (renewal flow added 15 Jul) with a reconnect UI per Euge's design. (source: Granola/tldv - stand-ups, 14-15 Jul)
+- (project: Feature re-provisioning for non Swan customers) WhatsApp bill submission: when a customer belongs to multiple workspaces, the agent must prompt for the destination workspace (button list) before depositing the uploaded document. (source: Granola/tldv - Workload distribution, 15 Jul)
+_Expanded 2026-07-16 from the 14-15 Jul stand-ups. Both projects are In Progress, so these were posted as proposed comments, not auto-applied._
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->
