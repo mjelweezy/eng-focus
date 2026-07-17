@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-16_
+_Last updated: 2026-07-17_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -42,6 +42,10 @@ _Last updated: 2026-07-16_
 - [2026-07-15] GL is operating as expected but the scope is large; the target is production before Mark's holiday (from ~23 Jul). A trial-balance comparison page verifies neno-vs-Exact sync; Mark is building the knowledgebase so incoming engineers can absorb the design decisions (an immediate handoff would be rough but not impossible). (source: Granola/tldv - Daily stand-up, 15 Jul)
 - [2026-07-15] Payroll data currently reaches Exact but not the neno ledger; Mark to investigate a payroll CSV ingestion approach (Numbrs CSVs; Matthew collecting examples from Numbrs customers to understand the reconciliation shape). (source: Granola/tldv - Daily stand-up, 15 Jul)
 
+- [2026-07-16] GL build progress (Mark): the trial-balance comparison page now expands each account into its individual ledger movements and renders the booking history behind a reconciled payment as T-account diagrams; the breakdown was fixed to count only payments actually committed to the ledger, so a part-matched payment no longer appears already booked; a single shared 'ready to book' check (a GL account, a VAT treatment the books can represent, a tax rate, and the right currency) now runs everywhere from review through approval to booking, replacing several disagreeing copies. An independent review confirmed the ledger now uses only its own vocabulary (no leftover Exact terms). (source: Slack #core-team, 16 Jul)
+- [2026-07-16] First production run planned as a validation-only trial that nothing operational depends on: foreign bills convert to euros before booking, the bill-edit correction flow stays unbuilt (drift repaired by hand, even by wiping and re-booking the whole trial ledger), and ledger failures are logged quietly instead of paging on-call. (source: Slack #core-team, 16 Jul)
+- [2026-07-16] Outstanding-balance tracking specced: read what is still owed on each bill/invoice straight from the postings rather than storing a separate 'paid' flag (prompted by a part-paid bill that showed as fully settled). (source: Slack #core-team (Mark) / Claude artifact, 16 Jul)
+
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
 - [open] Full reporting requirements list being compiled by DP (potentially 100+ items) — will frame future design. (owner: DP)
@@ -60,6 +64,8 @@ _Last updated: 2026-07-16_
 - [open] OQ1 party definition: needs a formal write-up with decisions and reasoning (logic exists, no formal doc yet). (source: Granola - DE GL Decisions, 6 Jul)
 - [open] INV-23 label: 'multi-currency payments' wording in the summary doc is confusing - foreign lines keep native amount, currency and rate from day one while FX settlement is deferred; doc to be reworded. (source: Granola - DE GL Decisions, 6 Jul)
 - [resolved 2026-07-08] Is VAT recognition comparable across different countries? (raised by Mark, 8 Jul) -> Non-EU regimes are out of scope for now; any non-EU market would get separate logic (South Africa in fact uses the same invoice-credit method as the EU). (source: Slack #accounting-mvp, 8 Jul)
+
+- [open] Foreign EU-paid VAT: bills carrying e.g. 10% Spanish IVA are booked at 0% in Exact (VAT paid in-EU), hiding the foreign VAT; as clients expand abroad (Ocean Ionics Spain) should neno track it - e.g. on an IVA GL account, or via 'Teruggaaf btw uit andere EU-landen 2008/9/EG' for goods bought outside NL? Advice requested from DP. (source: Slack #accounting-mvp (Mark), 16 Jul; ref SCN-BILLS-084)
 
 ## Risks
 - [high] Spike code (~13k lines, Claude-generated) took liberties with DB writes; atomicity and no-overlapping-bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew). (source: Granola — Next Steps AGL)
@@ -128,6 +134,10 @@ _Expanded 2026-07-12 from the 8 Jul stand-up and #accounting-mvp. Project is In 
 
 _Expanded 2026-07-16 from the 14 Jul stand-up and #accounting-mvp. Project is In Progress, so posted as a proposed comment, not auto-applied._
 - (project: Start writing to neno's double-entry GL) Bill discounts book as a credit line on the bill to the same GL account as the other line items (e.g. 5522), not to a separate discount account; correspondence with Exact for negative line items needs a frontend fix. (source: Slack #accounting-mvp (Mark/DP), 14 Jul)
+
+_Expanded 2026-07-17 from the 16 Jul #core-team stand-up. Project is In Progress, so posted as a proposed comment, not auto-applied._
+- (project: Start writing to neno's double-entry GL) A single shared 'ready to book' gate: a bill must have a GL account, a VAT treatment the books can represent, a tax rate, and the correct currency - enforced everywhere from the review screen through approval to booking. (source: Slack #core-team (Mark), 16 Jul)
+- (project: Start writing to neno's double-entry GL) The outstanding balance on a bill/invoice is derived from its postings (not a stored 'paid' flag), so part-payments report a correct remaining balance. (source: Slack #core-team (Mark), 16 Jul)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

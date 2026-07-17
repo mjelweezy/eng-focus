@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-07-16_
+_Last updated: 2026-07-17_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -28,6 +28,9 @@ _Last updated: 2026-07-16_
 - [2026-07-15] Invoicing migration strategy: move customers to neno invoicing in phases starting with the easiest lift; neno invoicing will likely stay a second-class citizen for complex AR processes initially; some customers will resist due to existing workflows. (source: Granola/tldv - Workload distribution, 15 Jul)
 - [2026-07-15] Customer pull for agent access (Sil x Yaroslav): expose an MCP server for invoice + quote operations and surface non-reconciled-items / missing-documents lists; Sil volunteered as first customer for invoice-API testing; Yaroslav to add to the roadmap. (source: Granola/tldv - Sil x Yaroslav API call, 15 Jul)
 
+- [2026-07-16] Neno MCP v1 direction (Yaroslav): expose an external Neno MCP scoped to Invoices, Quotes and Bills (bill upload via email forwarding already exists) as the safe, natural way to satisfy founder/developer customers who want self-serve automation, rather than exposing the Neno API directly. Sil - the prospective first test customer - ultimately declined, choosing a more API-mature provider (Moneybird/Jortt); kept as feedback, with a possible future path of onboarding him as a services customer and migrating once the AGL matures. (source: Slack #product / #advisory-services, 16 Jul)
+- [2026-07-16] Prioritisation stance (Matthew, #advisory-services): book-keeping completeness - managing a customer's books entirely from neno (posting to Exact) and writing that data to neno's own general ledger - comes before layering spend-management features such as in-app invoice payment/scheduling; the pay/schedule-invoice feature will be sized and slotted once August joiners can pick it up. (source: Slack #advisory-services, 16 Jul)
+
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.
 - [open] Full reporting requirements list still being compiled by DP.
@@ -36,6 +39,8 @@ _Last updated: 2026-07-16_
 - [open] VAT filing period flexibility (monthly/quarterly/bi-monthly) must be configurable per customer and country. (source: Granola — DP session)
 
 - [open] Accountant portfolio management (per group/entity): where should it live (Yaroslav proposes Atlas) and what data source backs it? Assignments are editable per engagement, but portfolio management has no UI yet. (source: Slack #accounting-mvp, 14 Jul)
+
+- [open] Accept hybrid data and a longer Exact dependence for more customers in order to prioritise spend-management (in-app invoice payment/scheduling), or hold the line on book-keeping completeness first? To be decided as the August joiners arrive. (owner: Matthew) (source: Slack #advisory-services, 16 Jul)
 
 ## Risks
 - [med] Scope is broad and unsequenced; nothing staffed yet beyond AR reconciliation (David).
@@ -76,6 +81,8 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._
 - [2026-07-16] Expose invoice/quote operations via an MCP server/API plus trustworthy non-reconciled-items / missing-documents lists for external agent use (Sil to be the first test customer) - could belong to End-to-end AR reconciliation, invoicing, or a new API/MCP project; needs Matthew's attribution. (source: Granola/tldv - Sil x Yaroslav API call, 15 Jul)
+
+- [2026-07-16] (update) The prospective first MCP-API test customer (Sil) declined, choosing a more API-mature provider; the invoice/quote MCP requirement stands for future founder/developer customers and still needs Matthew's attribution (End-to-end AR reconciliation, invoicing, or a new API/MCP project). Yaroslav is drafting a Neno MCP v1 scope (Invoices, Quotes, Bills). (source: Slack #product, 16 Jul)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

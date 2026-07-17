@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-16T07:18:57Z",
+ "generated_at": "2026-07-17T06:49:10Z",
  "projects": {
   "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
    "status": "In Progress",
@@ -91,13 +91,13 @@
        "name": "Enable customers to connect external bank accounts and view their transactions",
        "issues": [
         {
-         "id": "NEO-1291",
-         "title": "Open Banking: provider-agnostic transaction & balance ingestion",
+         "id": "NEO-1115",
+         "title": "Open Banking: First Iteration Frontend Rework",
          "status": "In Progress"
         },
         {
-         "id": "NEO-1115",
-         "title": "Open Banking: First Iteration Frontend Rework",
+         "id": "NEO-1291",
+         "title": "Open Banking: provider-agnostic transaction & balance ingestion",
          "status": "In Progress"
         },
         {
@@ -122,6 +122,16 @@
     {
      "initiative": "__none__",
      "projects": [
+      {
+       "name": "Customer-selectable payee bank account on invoices",
+       "issues": [
+        {
+         "id": "NEO-1372",
+         "title": "Invoice editor: conditional payee-account selector",
+         "status": "In Progress"
+        }
+       ]
+      },
       {
        "name": "Neno UI: Unified Frontend Component Library",
        "issues": [
@@ -275,14 +285,9 @@
        "name": "Bastion onboarding + setup",
        "issues": [
         {
-         "id": "NEO-1414",
-         "title": "Enforce Cloud SQL encryption in transit (ENCRYPTED_ONLY)",
+         "id": "NEO-1478",
+         "title": "Pin GitHub Actions to commit SHAs + harden dependency-integrity",
          "status": "In Progress"
-        },
-        {
-         "id": "NEO-1425",
-         "title": "Adopt Bastion's Trust Center + Status Page",
-         "status": "Todo"
         },
         {
          "id": "NEO-1313",
@@ -295,8 +300,18 @@
          "status": "Todo"
         },
         {
-         "id": "NEO-1311",
-         "title": "Harden scaffold copy-config.ts child_process usage (Bastion SAST)",
+         "id": "NEO-1414",
+         "title": "Enforce Cloud SQL encryption in transit (ENCRYPTED_ONLY)",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1415",
+         "title": "Tier 1 scaffold hardening for Bastion GCP checks",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1425",
+         "title": "Adopt Bastion's Trust Center + Status Page",
          "status": "Done"
         }
        ]

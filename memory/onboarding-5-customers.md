@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-16_
+_Last updated: 2026-07-17_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -53,6 +53,8 @@ _Last updated: 2026-07-16_
 - [2026-07-15] Five target customers identified for open banking; the week's goal is at least one customer connected in production. Optedy and In the Zone entities are enabled for open banking (primary banks ING and Revolut). Q2 close limits onboarding capacity - customers with finalized Q2 books go first. (source: Granola/tldv - stand-up + workload distribution, 15 Jul)
 - [2026-07-15] WhatsApp bill submission for customers with multiple workspaces: the agent must prompt for a destination workspace (button list) before depositing the document; Joel assigned; Giuseppe to create a separate WhatsApp developer app for testing. (source: Granola/tldv - Workload distribution, 15 Jul)
 - [2026-07-16] Invoice IBAN selector for open-banking customers (NEO-1372, conditional payee-account selector): scope confirmed small and well defined; Dima to proceed. (source: Slack #tech-team (Yaroslav), 16 Jul)
+
+- [2026-07-16] Engineering workload confirmed for onboarding the five (Yaroslav, P&E stand-up): strategy is 'risk forward - onboard and learn fast'; Dima on Open Banking + the invoice IBAN selector (NEO-1372), Joel on multi-workspace WhatsApp, Yaroslav on Numbrs (NMBRS) data ops; payroll will require manual assistance in August. (source: Slack #core-team, 16 Jul)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
