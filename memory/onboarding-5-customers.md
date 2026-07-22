@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-17_
+_Last updated: 2026-07-22_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -55,6 +55,10 @@ _Last updated: 2026-07-17_
 - [2026-07-16] Invoice IBAN selector for open-banking customers (NEO-1372, conditional payee-account selector): scope confirmed small and well defined; Dima to proceed. (source: Slack #tech-team (Yaroslav), 16 Jul)
 
 - [2026-07-16] Engineering workload confirmed for onboarding the five (Yaroslav, P&E stand-up): strategy is 'risk forward - onboard and learn fast'; Dima on Open Banking + the invoice IBAN selector (NEO-1372), Joel on multi-workspace WhatsApp, Yaroslav on Numbrs (NMBRS) data ops; payroll will require manual assistance in August. (source: Slack #core-team, 16 Jul)
+
+- [2026-07-20] Team invites for non-Swan accounts shipped (NEO-1438, Joel, Done 20 Jul): an admin can invite a brand-new (not-yet-existing) non-Swan user to a workspace team and link them immediately - the live follow-up to the completed Neno-first Auth project. (source: Linear NEO-1438)
+- [2026-07-20] Dynamic-tasks reminder reworked (NEO-1491, Joel, Done 20 Jul): the create-time 24h task digest is replaced by a daily open-task reminder (in-place) and orphaned task userIds were backfilled, so all open tasks - not just those created in the last 24h - are surfaced to the customer. (source: Linear NEO-1491)
+- [2026-07-21] Open-banking transaction ownership fixed (NEO-1513, urgent, Dima, Done 21 Jul): bank transactions were globally unique on (provider, providerTransactionId) and never re-assigned workspace, so the first workspace to import a transaction owned it forever and a second workspace connecting the same account imported nothing; corrected so multiple workspaces can connect overlapping accounts and each imports its own transactions. (source: Linear NEO-1513)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
@@ -129,6 +133,9 @@ _Note (2026-07-08): requirements tagged 'Present onboarding actions for the next
 - (project: Enable customers to connect external bank accounts and view their transactions) Connected open-banking accounts need recurring (daily) transaction fetching; expiring consents/connections must be renewable (renewal flow added 15 Jul) with a reconnect UI per Euge's design. (source: Granola/tldv - stand-ups, 14-15 Jul)
 - (project: Feature re-provisioning for non Swan customers) WhatsApp bill submission: when a customer belongs to multiple workspaces, the agent must prompt for the destination workspace (button list) before depositing the uploaded document. (source: Granola/tldv - Workload distribution, 15 Jul)
 _Expanded 2026-07-16 from the 14-15 Jul stand-ups. Both projects are In Progress, so these were posted as proposed comments, not auto-applied._
+
+_Expanded 2026-07-22 from Linear (20-21 Jul). Project is In Progress, so posted as a proposed comment, not auto-applied._
+- (project: Enable customers to connect external bank accounts and view their transactions) Open-banking transaction identity must be scoped per workspace, not globally unique on (provider, providerTransactionId), so multiple workspaces connecting the same underlying bank account each import their own transactions. (source: Linear NEO-1513, 21 Jul 2026)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

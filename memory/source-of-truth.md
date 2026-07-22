@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-07-17_
+_Last updated: 2026-07-22_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -30,6 +30,8 @@ _Last updated: 2026-07-17_
 
 - [2026-07-16] Neno MCP v1 direction (Yaroslav): expose an external Neno MCP scoped to Invoices, Quotes and Bills (bill upload via email forwarding already exists) as the safe, natural way to satisfy founder/developer customers who want self-serve automation, rather than exposing the Neno API directly. Sil - the prospective first test customer - ultimately declined, choosing a more API-mature provider (Moneybird/Jortt); kept as feedback, with a possible future path of onboarding him as a services customer and migrating once the AGL matures. (source: Slack #product / #advisory-services, 16 Jul)
 - [2026-07-16] Prioritisation stance (Matthew, #advisory-services): book-keeping completeness - managing a customer's books entirely from neno (posting to Exact) and writing that data to neno's own general ledger - comes before layering spend-management features such as in-app invoice payment/scheduling; the pay/schedule-invoice feature will be sized and slotted once August joiners can pick it up. (source: Slack #advisory-services, 16 Jul)
+
+- [2026-07-21] Neno's double-entry ledger reached production for Ocean Ionics (see the double-entry GL initiative) - the foundation for neno holding the books; the source-of-truth bookkeeping features (AR reconciliation, reporting, credit notes, etc.) build on top of it. (source: Slack #accounting-mvp, 21 Jul)
 
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.

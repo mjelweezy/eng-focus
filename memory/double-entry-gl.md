@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-17_
+_Last updated: 2026-07-22_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -46,6 +46,9 @@ _Last updated: 2026-07-17_
 - [2026-07-16] First production run planned as a validation-only trial that nothing operational depends on: foreign bills convert to euros before booking, the bill-edit correction flow stays unbuilt (drift repaired by hand, even by wiping and re-booking the whole trial ledger), and ledger failures are logged quietly instead of paging on-call. (source: Slack #core-team, 16 Jul)
 - [2026-07-16] Outstanding-balance tracking specced: read what is still owed on each bill/invoice straight from the postings rather than storing a separate 'paid' flag (prompted by a part-paid bill that showed as fully settled). (source: Slack #core-team (Mark) / Claude artifact, 16 Jul)
 
+- [2026-07-21] Neno Ledger went LIVE on production for Ocean Ionics (NEO-1361 + NEO-1514, Mark). It now books three event types - bank transactions on arrival, bills on confirmation, and transaction links (settlement); pre-existing bills/transactions raise expected `Ledger Failures` handled via a bank-transaction backfill script (Runbook "Settlement upstream leg is not live"). The neno-vs-Exact trial-balance comparison page is not yet useful on OI because of data noise in the workspace. (source: Slack #accounting-mvp (Mark), 21 Jul; Linear NEO-1361/NEO-1514)
+- [2026-07-21] Bill edit/re-book after booking: because the ledger locks a booked bill's facts, a new Edit button books a reversing entry for the bill and any related settlement (releasing the evidence so it can be changed) and a Re-book button commits a fresh booking; multiple edits can be made before re-booking, and the existing Exact sync flow is unaffected. (source: Slack #accounting-mvp (Mark), 21 Jul)
+
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
 - [open] Full reporting requirements list being compiled by DP (potentially 100+ items) — will frame future design. (owner: DP)
@@ -75,6 +78,8 @@ _Last updated: 2026-07-17_
 
 - [med] Mark's leave starts 23 Jul (through 7 Aug); the ledger needs to reach production before then or be handed off mid-flight. (source: Granola/tldv - stand-up, 15 Jul)
 
+- [low] (2026-07-21) Production go-live was reached before Mark's 23 Jul leave (ledger live for Ocean Ionics); residual risk shifts to post-go-live hardening during his absence - Ledger Failure triage, the still-unbuilt bill-edit correction flow, and neno-vs-Exact trial-balance noise on OI. (source: Slack #accounting-mvp, 21 Jul)
+
 ## Next steps
 - [2026-06-23] DP to compile full reporting requirements list. (owner: DP, due ASAP)
 - [2026-06-23] Matthew to schedule the follow-up design session (~1 week). (owner: Matthew)
@@ -94,6 +99,8 @@ _Last updated: 2026-07-17_
 - [2026-07-07] Matthew + Venla to confirm the decisions and acknowledge the open questions in Mark's GL decisions doc. (owner: Matthew/Venla) (source: Slack #accounting-mvp, 7 Jul)
 
 - [2026-07-15] Mark to continue testing the GL and drive it to production before his holiday; investigate payroll CSV ingestion. (owner: Mark) (source: Granola/tldv - stand-up, 14-15 Jul)
+
+- [2026-07-21] Production go-live done (ledger live for Ocean Ionics, 21 Jul); next: triage the backfill/Ledger Failures on OI, keep the neno-vs-Exact trial balance under watch, and harden the bill-edit/re-book correction flow while Mark is on leave. (owner: devs / Mark handoff) (source: Slack #accounting-mvp, 21 Jul)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project (this project is In Progress, so they are posted as a proposed comment, not auto-applied)._
@@ -138,6 +145,9 @@ _Expanded 2026-07-16 from the 14 Jul stand-up and #accounting-mvp. Project is In
 _Expanded 2026-07-17 from the 16 Jul #core-team stand-up. Project is In Progress, so posted as a proposed comment, not auto-applied._
 - (project: Start writing to neno's double-entry GL) A single shared 'ready to book' gate: a bill must have a GL account, a VAT treatment the books can represent, a tax rate, and the correct currency - enforced everywhere from the review screen through approval to booking. (source: Slack #core-team (Mark), 16 Jul)
 - (project: Start writing to neno's double-entry GL) The outstanding balance on a bill/invoice is derived from its postings (not a stored 'paid' flag), so part-payments report a correct remaining balance. (source: Slack #core-team (Mark), 16 Jul)
+
+_Expanded 2026-07-22 from the 21 Jul production go-live (#accounting-mvp). Project is In Progress, so posted as a proposed comment, not auto-applied._
+- (project: Start writing to neno's double-entry GL) Editing a booked bill must go through a reversing-entry + re-book flow: booking locks the bill's facts, an Edit action reverses the bill and any related settlement to release the evidence, and a Re-book action commits a fresh booking - supporting multiple edits before commit and leaving the existing Exact sync untouched. (source: Slack #accounting-mvp (Mark), 21 Jul 2026)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

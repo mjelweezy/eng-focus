@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-17T06:49:10Z",
+ "generated_at": "2026-07-22T05:44:05Z",
  "projects": {
   "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
    "status": "In Progress",
@@ -123,16 +123,6 @@
      "initiative": "__none__",
      "projects": [
       {
-       "name": "Customer-selectable payee bank account on invoices",
-       "issues": [
-        {
-         "id": "NEO-1372",
-         "title": "Invoice editor: conditional payee-account selector",
-         "status": "In Progress"
-        }
-       ]
-      },
-      {
        "name": "Neno UI: Unified Frontend Component Library",
        "issues": [
         {
@@ -173,12 +163,37 @@
        ]
       },
       {
+       "name": "Mobile App",
+       "issues": [
+        {
+         "id": "NEO-1485",
+         "title": "Add tasks",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1487",
+         "title": "Mobile: email-first login (Swan vs non-Swan detection)",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1483",
+         "title": "Mobile card issuing and management",
+         "status": "Done"
+        }
+       ]
+      },
+      {
        "name": "__none__",
        "issues": [
         {
          "id": "NEO-1460",
          "title": "Alphabetise all input dropdowns",
          "status": "Todo"
+        },
+        {
+         "id": "NEO-1513",
+         "title": "Open-banking transactions globally unique per (provider,txId)",
+         "status": "Done"
         }
        ]
       }
@@ -200,7 +215,12 @@
         {
          "id": "NEO-1361",
          "title": "Create neno general ledger",
-         "status": "In Progress"
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1514",
+         "title": "Enable neno ledger on sandbox and production",
+         "status": "Done"
         }
        ]
       }
@@ -214,7 +234,7 @@
        "issues": [
         {
          "id": "NEO-1143",
-         "title": "Bills can sync to Exact without being reconciled, no signal",
+         "title": "Bills can sync to Exact unreconciled, no signal to operator",
          "status": "Todo"
         }
        ]
@@ -264,64 +284,19 @@
    "color": "#f2994a",
    "groups": [
     {
-     "initiative": "Build data by onboarding 5 additional customers",
-     "projects": [
-      {
-       "name": "Feature re-provisioning for non Swan customers",
-       "issues": [
-        {
-         "id": "NEO-1438",
-         "title": "Admin invites a non-Swan user to a team (link-immediately)",
-         "status": "In Progress"
-        }
-       ]
-      }
-     ]
-    },
-    {
      "initiative": "__none__",
      "projects": [
       {
        "name": "Bastion onboarding + setup",
        "issues": [
         {
-         "id": "NEO-1478",
-         "title": "Pin GitHub Actions to commit SHAs + harden dependency-integrity",
-         "status": "In Progress"
-        },
-        {
          "id": "NEO-1313",
-         "title": "Harden deploy-api-cloud-run env_vars path vs YAML/sed injection",
+         "title": "Harden deploy-api-cloud-run env_vars vs YAML/sed injection",
          "status": "Todo"
         },
         {
          "id": "NEO-1322",
          "title": "Bump bcrypt work factor from 10 to 12 in packages/crypto",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-1414",
-         "title": "Enforce Cloud SQL encryption in transit (ENCRYPTED_ONLY)",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1415",
-         "title": "Tier 1 scaffold hardening for Bastion GCP checks",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1425",
-         "title": "Adopt Bastion's Trust Center + Status Page",
-         "status": "Done"
-        }
-       ]
-      },
-      {
-       "name": "Dynamic Tasks",
-       "issues": [
-        {
-         "id": "NEO-1278",
-         "title": "Add Cloud Scheduler cron for daily task notification digest",
          "status": "Todo"
         }
        ]
@@ -333,6 +308,16 @@
          "id": "NEO-1009",
          "title": "Banking onboarding not showing all bvs as options",
          "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "__none__",
+       "issues": [
+        {
+         "id": "NEO-1480",
+         "title": "WhatsApp agent-info emits double-+ phone and bad wa.me link",
+         "status": "In Progress"
         }
        ]
       }
