@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-22_
+_Last updated: 2026-07-23_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -69,6 +69,8 @@ _Last updated: 2026-07-22_
 - [resolved 2026-07-08] Is VAT recognition comparable across different countries? (raised by Mark, 8 Jul) -> Non-EU regimes are out of scope for now; any non-EU market would get separate logic (South Africa in fact uses the same invoice-credit method as the EU). (source: Slack #accounting-mvp, 8 Jul)
 
 - [open] Foreign EU-paid VAT: bills carrying e.g. 10% Spanish IVA are booked at 0% in Exact (VAT paid in-EU), hiding the foreign VAT; as clients expand abroad (Ocean Ionics Spain) should neno track it - e.g. on an IVA GL account, or via 'Teruggaaf btw uit andere EU-landen 2008/9/EG' for goods bought outside NL? Advice requested from DP. (source: Slack #accounting-mvp (Mark), 16 Jul; ref SCN-BILLS-084)
+
+- [open] FedEx BTW-return bill: Exact will not accept the BTW (VAT) return booking directly; Andries proposes a dedicated GL account for these cases. To be confirmed. (source: Slack #accounting-mvp (Mark/Andries), 22 Jul)
 
 ## Risks
 - [high] Spike code (~13k lines, Claude-generated) took liberties with DB writes; atomicity and no-overlapping-bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew). (source: Granola — Next Steps AGL)

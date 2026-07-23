@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-22_
+_Last updated: 2026-07-23_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -59,6 +59,8 @@ _Last updated: 2026-07-22_
 - [2026-07-20] Team invites for non-Swan accounts shipped (NEO-1438, Joel, Done 20 Jul): an admin can invite a brand-new (not-yet-existing) non-Swan user to a workspace team and link them immediately - the live follow-up to the completed Neno-first Auth project. (source: Linear NEO-1438)
 - [2026-07-20] Dynamic-tasks reminder reworked (NEO-1491, Joel, Done 20 Jul): the create-time 24h task digest is replaced by a daily open-task reminder (in-place) and orphaned task userIds were backfilled, so all open tasks - not just those created in the last 24h - are surfaced to the customer. (source: Linear NEO-1491)
 - [2026-07-21] Open-banking transaction ownership fixed (NEO-1513, urgent, Dima, Done 21 Jul): bank transactions were globally unique on (provider, providerTransactionId) and never re-assigned workspace, so the first workspace to import a transaction owned it forever and a second workspace connecting the same account imported nothing; corrected so multiple workspaces can connect overlapping accounts and each imports its own transactions. (source: Linear NEO-1513)
+
+- [2026-07-22] WhatsApp bill-upload confirmations now use static EN/NL success/duplicate messages instead of LLM-generated replies, so customers get a consistent 'on its way to your accountant' acknowledgement (Art, PR #1212). (source: Slack #tech-team, 22 Jul)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)

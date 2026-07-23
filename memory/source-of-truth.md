@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-07-22_
+_Last updated: 2026-07-23_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -32,6 +32,8 @@ _Last updated: 2026-07-22_
 - [2026-07-16] Prioritisation stance (Matthew, #advisory-services): book-keeping completeness - managing a customer's books entirely from neno (posting to Exact) and writing that data to neno's own general ledger - comes before layering spend-management features such as in-app invoice payment/scheduling; the pay/schedule-invoice feature will be sized and slotted once August joiners can pick it up. (source: Slack #advisory-services, 16 Jul)
 
 - [2026-07-21] Neno's double-entry ledger reached production for Ocean Ionics (see the double-entry GL initiative) - the foundation for neno holding the books; the source-of-truth bookkeeping features (AR reconciliation, reporting, credit notes, etc.) build on top of it. (source: Slack #accounting-mvp, 21 Jul)
+
+- [2026-07-22] Spanish receipt dates were parsed incorrectly in bill matching (mixing DD-MM-YY with YY-MM-DD), causing mismatches on Spanish supplier invoices (e.g. Ocean Ionics Espana); logged as NEO-1528 (Art) and a fix shipped the same day (PR #1218). (source: Slack #accounting-mvp, 22 Jul)
 
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.
