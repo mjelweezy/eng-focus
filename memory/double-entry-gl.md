@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-23_
+_Last updated: 2026-07-24_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)

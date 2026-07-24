@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-23T04:08:26Z",
+ "generated_at": "2026-07-24T07:17:01Z",
  "lookback_days": 14,
  "initiatives": {
   "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -10,6 +10,7 @@
    "notes": [],
    "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno. The 6 Jul target has passed, but the pieces are converging fast: onboarding actions are complete and on the preview environment for Matthew to verify (14-15 Jul), and open banking is merging to sandbox behind a per-workspace feature flag (production links live accounts; sandbox uses Yapily mock institutions). Five target customers are identified and the week's goal is at least one connected via open banking in production - Optedy and In the Zone entities are already enabled (primary banks ING and Revolut), though the Q2 close limits how many customers the accounting team can onboard right now. The Neno-first Auth project completed 14 Jul (permissions unified under neno, pages gated by /me/capabilities, persona impersonation for testing), with team invites for non-Swan accounts as the live follow-up (NEO-1438, Joel, minnow-first in preview). Dynamic tasks are done and will go live together with open banking (only the 9am digest cron remains, NEO-1278). Invoicing for non-Swan customers moves next: the invoice IBAN selector (NEO-1372) is confirmed small and Dima proceeds after onboarding actions. Watch-outs: connected accounts have no recurring (daily) transaction fetch yet, the bankTransaction.reference schema change is still needed, WhatsApp needs a workspace-selection prompt for multi-workspace customers (and the Meta Business setup remains misconfigured), the Exact 60 req/min rate limit is unsolved, Ihor is away to 31 Aug and Mark leaves 23 Jul, and lanes must be scoped for the engineers arriving in August.",
    "whats_changed": [
+    "Open banking live for a real onboarding customer: Moshe (QLever Quantum) is now streaming open-banking data into neno (23 Jul) - the first of the next-5 cohort connected end-to-end in production; builds on the NEO-1529 workspace-switcher fix (22 Jul) that unlocked his accounting-only workspace.",
     "WhatsApp bill-upload confirmations now use static EN/NL success/duplicate messages instead of LLM-generated replies, giving customers a consistent 'on its way to your accountant' acknowledgement (Art, PR #1212, 22 Jul).",
     "Open-banking transaction ownership bug fixed (NEO-1513, urgent, Dima, Done 21 Jul): transactions were globally unique on (provider, providerTransactionId) so a second workspace connecting the same bank account imported nothing; now scoped per workspace so overlapping connections each import their own transactions.",
     "Non-Swan team invites shipped (NEO-1438, Joel, Done 20 Jul): admins can invite a brand-new non-Swan user to a workspace team and link them immediately - the live follow-up to Neno-first Auth.",
@@ -97,6 +98,11 @@
     }
    ],
    "decisions": [
+    {
+     "date": "2026-07-23",
+     "text": "Open banking live for a real onboarding customer: Moshe (QLever Quantum) is now streaming open-banking data into neno - the first of the next-5 cohort connected end-to-end in production; builds on the workspace-switcher fix (NEO-1529, 22 Jul) that unlocked his accounting-only workspace.",
+     "source": "Slack #tech-team (Matthew), 23 Jul"
+    },
     {
      "date": "2026-07-16",
      "text": "Engineering workload confirmed for onboarding the five (Yaroslav, P&E stand-up): strategy is 'risk forward - onboard and learn fast'; Dima on Open Banking + the invoice IBAN selector (NEO-1372), Joel on multi-workspace WhatsApp, Yaroslav on Numbrs (NMBRS) data ops; payroll will need manual assistance in August.",
@@ -977,6 +983,11 @@
     }
    ],
    "decisions": [
+    {
+     "date": "2026-07-23",
+     "text": "Atlas admin Accounting tab to be re-gated behind atlas prod (atlas.neno.co) with the sandbox-only gate removed, so ops/accounting can use it in production.",
+     "source": "Slack #tech-team, 23 Jul"
+    },
     {
      "date": "2026-07-16",
      "text": "Neno MCP v1 direction (Yaroslav): expose an external Neno MCP scoped to Invoices, Quotes and Bills (email-forwarding bill upload already exists) rather than exposing the Neno API directly. Sil, the prospective first test customer, declined for a more API-mature provider (Moneybird/Jortt); kept as feedback, with a possible services-customer path and later migration once the AGL matures.",

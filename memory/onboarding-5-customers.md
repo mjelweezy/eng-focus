@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-23_
+_Last updated: 2026-07-24_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -61,6 +61,8 @@ _Last updated: 2026-07-23_
 - [2026-07-21] Open-banking transaction ownership fixed (NEO-1513, urgent, Dima, Done 21 Jul): bank transactions were globally unique on (provider, providerTransactionId) and never re-assigned workspace, so the first workspace to import a transaction owned it forever and a second workspace connecting the same account imported nothing; corrected so multiple workspaces can connect overlapping accounts and each imports its own transactions. (source: Linear NEO-1513)
 
 - [2026-07-22] WhatsApp bill-upload confirmations now use static EN/NL success/duplicate messages instead of LLM-generated replies, so customers get a consistent 'on its way to your accountant' acknowledgement (Art, PR #1212). (source: Slack #tech-team, 22 Jul)
+
+- [2026-07-23] Open banking live for a real onboarding customer: Moshe (QLever Quantum) is now streaming open-banking data into neno - the first of the next-5 cohort connected end-to-end in production. Builds on the workspace-switcher fix (NEO-1529, 22 Jul) that unlocked his accounting-only workspace so he could log in and connect. (source: Slack #tech-team (Matthew), 23 Jul)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)

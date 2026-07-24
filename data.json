@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-23T04:08:26Z",
+ "generated_at": "2026-07-24T07:14:34Z",
  "projects": {
   "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
    "status": "In Progress",
@@ -90,11 +90,31 @@
       {
        "name": "Enable customers to connect external bank accounts and view their transactions",
        "issues": [
-        {"id": "NEO-1115", "title": "Open Banking: First Iteration Frontend Rework", "status": "In Progress"},
-        {"id": "NEO-1291", "title": "Open Banking: provider-agnostic transaction & balance ingestion", "status": "In Progress"},
-        {"id": "NEO-598", "title": "Scale UI for Open Banking (linked accounts)", "status": "Todo"},
-        {"id": "NEO-595", "title": "Rework Home page UI", "status": "Todo"},
-        {"id": "NEO-736", "title": "Implement Invoicing page design", "status": "Todo"}
+        {
+         "id": "NEO-1115",
+         "title": "Open Banking: First Iteration Frontend Rework",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1291",
+         "title": "Open Banking: provider-agnostic transaction & balance ingestion",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-598",
+         "title": "Scale UI for Open Banking (linked accounts)",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-595",
+         "title": "Rework Home page UI",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-736",
+         "title": "Implement Invoicing page design",
+         "status": "Todo"
+        }
        ]
       }
      ]
@@ -105,27 +125,61 @@
       {
        "name": "Neno UI: Unified Frontend Component Library",
        "issues": [
-        {"id": "NEO-1095", "title": "Migrate LakeTextInput -> NInput in banking app", "status": "Todo"}
+        {
+         "id": "NEO-1095",
+         "title": "Migrate LakeTextInput -> NInput in banking app",
+         "status": "Todo"
+        }
        ]
       },
       {
        "name": "BV Sequence 2: Flow Improvements",
        "issues": [
-        {"id": "NEO-449", "title": "Consistent formatting for BV form questions", "status": "Todo"},
-        {"id": "NEO-460", "title": "Add ID tooltip showing examples of correct ID forms", "status": "Todo"},
-        {"id": "NEO-441", "title": "Clarify next steps in payment success copy", "status": "Todo"}
+        {
+         "id": "NEO-449",
+         "title": "Consistent formatting for BV form questions",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-460",
+         "title": "Add ID tooltip showing examples of correct ID forms",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-441",
+         "title": "Clarify next steps in payment success copy",
+         "status": "Todo"
+        }
        ]
       },
       {
        "name": "UX Improvements",
        "issues": [
-        {"id": "NEO-482", "title": "Unify input styles across filters", "status": "Todo"}
+        {
+         "id": "NEO-482",
+         "title": "Unify input styles across filters",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "Mobile App",
+       "issues": [
+        {
+         "id": "NEO-1517",
+         "title": "Set up CI/CD for mobile app with Expo (EAS) and GitHub Actions",
+         "status": "Done"
+        }
        ]
       },
       {
        "name": "__none__",
        "issues": [
-        {"id": "NEO-1460", "title": "Alphabetise all input dropdowns", "status": "Todo"}
+        {
+         "id": "NEO-1460",
+         "title": "Alphabetise all input dropdowns",
+         "status": "Todo"
+        }
        ]
       }
      ]
@@ -138,43 +192,51 @@
    "color": "#4cb782",
    "groups": [
     {
-     "initiative": "Enable accountants to complete VAT submissions via double-entry GL",
-     "projects": [
-      {
-       "name": "Start writing to neno's double-entry GL",
-       "issues": [
-        {"id": "NEO-1361", "title": "Create neno general ledger", "status": "Done"},
-        {"id": "NEO-1514", "title": "Enable neno ledger on sandbox and production", "status": "Done"}
-       ]
-      }
-     ]
-    },
-    {
      "initiative": "__none__",
      "projects": [
       {
        "name": "Ocean Ionics sandbox testing",
        "issues": [
-        {"id": "NEO-1143", "title": "Bills can sync to Exact unreconciled, no signal to operator", "status": "Todo"}
+        {
+         "id": "NEO-1143",
+         "title": "Bills can sync to Exact unreconciled, no signal to operator",
+         "status": "Todo"
+        }
        ]
       },
       {
        "name": "Exact Online Integration",
        "issues": [
-        {"id": "NEO-857", "title": "Automated daily Exact sync job", "status": "Todo"}
+        {
+         "id": "NEO-857",
+         "title": "Automated daily Exact sync job",
+         "status": "Todo"
+        }
        ]
       },
       {
        "name": "BV Sequence 2: Flow Improvements",
        "issues": [
-        {"id": "NEO-426", "title": "Plug leak to prevent unpaid BV incorporation", "status": "Todo"}
+        {
+         "id": "NEO-426",
+         "title": "Plug leak to prevent unpaid BV incorporation",
+         "status": "Todo"
+        }
        ]
       },
       {
        "name": "__none__",
        "issues": [
-        {"id": "NEO-999", "title": "Remove neno_wt_ prefix from worktree database names", "status": "In Progress"},
-        {"id": "NEO-291", "title": "Gmail ingest NenoError re-write", "status": "Todo"}
+        {
+         "id": "NEO-999",
+         "title": "Remove neno_wt_ prefix from worktree database names",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-291",
+         "title": "Gmail ingest NenoError re-write",
+         "status": "Todo"
+        }
        ]
       }
      ]
@@ -192,27 +254,36 @@
       {
        "name": "Bastion onboarding + setup",
        "issues": [
-        {"id": "NEO-1313", "title": "Harden deploy-api-cloud-run env_vars vs YAML/sed injection", "status": "Todo"},
-        {"id": "NEO-1322", "title": "Bump bcrypt work factor from 10 to 12 in packages/crypto", "status": "Todo"},
-        {"id": "NEO-1527", "title": "Resolve high-severity Bastion SAST findings (Renovate/GH tags)", "status": "Done"}
+        {
+         "id": "NEO-1313",
+         "title": "Harden deploy-api-cloud-run env_vars vs YAML/sed injection",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1322",
+         "title": "Bump bcrypt work factor from 10 to 12 in packages/crypto",
+         "status": "Todo"
+        }
        ]
       },
       {
        "name": "Bas S.: Post-Incorporation UX improvements",
        "issues": [
-        {"id": "NEO-1009", "title": "Banking onboarding not showing all bvs as options", "status": "Todo"}
-       ]
-      },
-      {
-       "name": "Dynamic Tasks",
-       "issues": [
-        {"id": "NEO-1519", "title": "Fix copy on daily open-tasks reminder email", "status": "Done"}
+        {
+         "id": "NEO-1009",
+         "title": "Banking onboarding not showing all bvs as options",
+         "status": "Todo"
+        }
        ]
       },
       {
        "name": "__none__",
        "issues": [
-        {"id": "NEO-1480", "title": "WhatsApp agent-info emits double-+ phone and bad wa.me link", "status": "In Progress"}
+        {
+         "id": "NEO-1480",
+         "title": "WhatsApp agent-info emits double-+ phone and bad wa.me link",
+         "status": "In Progress"
+        }
        ]
       }
      ]
@@ -230,20 +301,36 @@
       {
        "name": "Ocean Ionics sandbox testing",
        "issues": [
-        {"id": "NEO-1193", "title": "Partial-payment reconciliation as a first-class workflow", "status": "Todo"},
-        {"id": "NEO-1135", "title": "Exact sync logs lack info to find the created entities", "status": "Todo"}
+        {
+         "id": "NEO-1193",
+         "title": "Partial-payment reconciliation as a first-class workflow",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1135",
+         "title": "Exact sync logs lack info to find the created entities",
+         "status": "Todo"
+        }
        ]
       },
       {
        "name": "UX Improvements",
        "issues": [
-        {"id": "NEO-505", "title": "Alert if a (Swan) user is created without an Account Holder", "status": "Todo"}
+        {
+         "id": "NEO-505",
+         "title": "Alert if a (Swan) user is created without an Account Holder",
+         "status": "Todo"
+        }
        ]
       },
       {
        "name": "__none__",
        "issues": [
-        {"id": "NEO-1464", "title": "Enforce review-before-reconciliation, remove APPROVED status", "status": "In Progress"}
+        {
+         "id": "NEO-1464",
+         "title": "Enforce review-before-reconciliation, remove APPROVED status",
+         "status": "In Progress"
+        }
        ]
       }
      ]
