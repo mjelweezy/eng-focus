@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-24T07:17:01Z",
+ "generated_at": "2026-07-25T04:11:32Z",
  "lookback_days": 14,
  "initiatives": {
   "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -451,6 +451,7 @@
    ],
    "exec_summary": "Neno's own double-entry general ledger went LIVE on production for Ocean Ionics on 21 Jul (NEO-1361 + NEO-1514, Mark) - the initiative's core milestone, reached before Mark's 23 Jul holiday. The ledger now books three event types (bank transactions on arrival, bills on confirmation, transaction links/settlement); pre-existing OI bills and transactions raise expected Ledger Failures that devs clear with a bank-transaction backfill script (Runbook \"Settlement upstream leg is not live\"), and the neno-vs-Exact trial-balance comparison page is not yet useful on OI because of workspace data noise. A new bill edit/re-book flow was shipped alongside: booking locks a bill's facts, an Edit action books a reversing entry for the bill and any related settlement to release the evidence, and Re-book commits a fresh booking - without disturbing the existing Exact sync. Bookkeeping semantics continue to firm up from earlier weeks: bill discounts book as a credit line to the same GL account (DP, 14 Jul), VAT attributes in full to the invoice-issue period (expenses spread, VAT never), non-EU regimes stay out of scope, and a single shared 'ready to book' gate (GL account + representable VAT treatment + tax rate + correct currency) runs from review through booking. Open threads: payroll data reaches Exact but not the neno ledger (Mark investigating Numbrs CSV ingestion, Matthew collecting examples); whether neno should track foreign EU-paid VAT (e.g. Spanish IVA) as clients expand abroad; and the correction/adjustment flows and reporting set that remain deferred. The main risk now is post-go-live hardening during Mark's leave (Ledger Failure triage, the still-unbuilt bill-edit correction flow, VAT/FX residual accounts) - the knowledgebase on PR #1128 is the handoff vehicle for the August joiners.",
    "whats_changed": [
+    "Smart Bill Review (Art): the bill-parsing model is being extended to recommend precise GL accounts and VAT codes to accountants from historical supplier bookings (Ocean Ionics VAT & GL code matching); ~70-80% accuracy on limited data. Open point: the same supplier is often booked to different GL accounts, so Matthew asked Andries for the additional line-item judgement logic. (24 Jul)",
     "Neno Ledger LIVE on production for Ocean Ionics (21 Jul, Mark; NEO-1361 + NEO-1514): books bank transactions on arrival, bills on confirmation, and settlement links. Pre-existing OI data raises expected Ledger Failures cleared via a bank-transaction backfill script (Runbook); the neno-vs-Exact trial-balance page is noisy on OI for now.",
     "Bill edit/re-book flow shipped (21 Jul): booking locks a bill's facts; an Edit action reverses the bill and any related settlement to release the evidence, and Re-book commits a fresh booking (multiple edits before commit) - the existing Exact sync is unaffected.",
     "GL progress (16 Jul stand-up): trial-balance comparison page now drills each account into its individual ledger movements with T-account diagrams and counts only committed payments; a single shared 'ready to book' gate (GL account + representable VAT treatment + tax rate + correct currency) now runs everywhere from review to booking.",
@@ -497,6 +498,11 @@
     }
    ],
    "decisions": [
+    {
+     "date": "2026-07-24",
+     "text": "Smart Bill Review GL/VAT coding assistance (Art): the bill-parsing model is being extended to present precise GL-account and VAT-code recommendations to accountants, learned from historical supplier bookings (Ocean Ionics VAT & GL code matching); ~70-80% accuracy on limited data. Hurdle: the same supplier is often booked to different GL accounts, so Matthew asked Andries whether accountants apply additional line-item logic. Addresses the earlier gap that GL account/VAT code were never suggested in bill review.",
+     "source": "Slack #tech-team + #accounting-mvp, 24 Jul"
+    },
     {
      "date": "2026-07-16",
      "text": "GL build progress (Mark): the trial-balance comparison page now expands each account into its individual ledger movements and draws the booking history behind a reconciled payment as T-account diagrams; the breakdown was fixed to count only payments actually committed to the ledger (a part-matched payment no longer looks booked); a single shared 'ready to book' check (GL account + a representable VAT treatment + a tax rate + the correct currency) now runs from review through approval to booking, replacing several disagreeing copies; an independent review confirmed the ledger uses only its own vocabulary.",
@@ -874,6 +880,8 @@
    ],
    "exec_summary": "The initiative is a filled-out backlog with one committed piece for July: end-to-end AR reconciliation (Planned, still unstaffed after David's departure on 6 Jul). Depreciation schedules and credit-note processing stay deprioritised for July. New direction from the 15 Jul workload-distribution session: selective synchronization of transactions to Exact will be implemented for the next cohort (hybrid neno/Exact data accepted; not urgent before end of August - context is 8 customers with ~12 payroll payments to selectively push), customers move to neno invoicing in phases starting with the easiest lift, and payroll must reach the neno ledger (Numbrs CSV ingestion under investigation, Matthew collecting examples). Customer pull is emerging for agent access: Sil asked for an MCP/API for invoice + quote operations and trustworthy non-reconciled/missing-document lists, and volunteered as first test customer (unfiled pending attribution). The reconciliation workflow keeps hardening: all bills/transactions surfaced for review, suggestions capped at one per bill/transaction (NEO-1451), and NEO-1464 (review-before-reconciliation) is In Progress under Ihor's name though he is away - it still needs an owner. Accountant portfolio management (per group/entity) was requested by Max with no UI or data source yet; Yaroslav proposes Atlas.",
    "whats_changed": [
+    "End-to-end AR reconciliation moved to In Progress (project started 24 Jul): first active build began with the M1 \"Verify the Exact AR close\" spike plus exploratory AR frontend work (NEO-1560, Joel), building on the substantial AR plumbing already shipped opportunistically alongside AP.",
+    "\"Nenotron\" AI accounting layer (Art) has a first foundation live for internal testing at atlas.neno.build -> Accounting (admin only): an agent layer over neno's accounting data for querying data and performing tasks, explicitly early/foundational - a step toward giving accountants agent (read-first, guarded) access over the books. (24 Jul)",
     "Spanish receipt dates were parsed incorrectly in bill matching (mixing DD-MM-YY with YY-MM-DD), causing mismatches on Spanish supplier invoices; logged as NEO-1528 (Art) and a fix shipped the same day (PR #1218). (22 Jul)",
     "Neno's double-entry ledger reached production for Ocean Ionics (21 Jul; see the GL initiative) - the foundation for neno holding the books that the source-of-truth features (AR reconciliation, reporting, credit notes) build on.",
     "Neno MCP v1 scoped to Invoices, Quotes and Bills as the safe way to serve developer/founder customers (16 Jul); the first prospective test customer (Sil) declined for a more API-mature provider - kept as feedback.",
@@ -911,7 +919,7 @@
    "projects": [
     {
      "name": "End-to-end AR reconciliation",
-     "status": "Planned",
+     "status": "In Progress",
      "owner": null,
      "summary": "Match incoming payments to outbound invoices and close the open item in Exact; validated on seeded data first. Committed for July; currently unstaffed (David left 6 Jul). Needs a debtor-management view (~EUR 15K outstanding).",
      "blockers": [
@@ -983,6 +991,16 @@
     }
    ],
    "decisions": [
+    {
+     "date": "2026-07-24",
+     "text": "End-to-end AR reconciliation moved to In Progress (started 24 Jul): first active build began with the M1 \"Verify the Exact AR close\" spike and exploratory AR frontend work (NEO-1560, Joel).",
+     "source": "Linear NEO-1560 / project status"
+    },
+    {
+     "date": "2026-07-24",
+     "text": "\"Nenotron\" AI accounting layer (Art) reached a first internal-testing foundation at atlas.neno.build -> Accounting (admin only): an agent layer over neno's accounting data for querying and performing tasks; explicitly early/foundational, a step toward guarded accountant agent access over the books.",
+     "source": "Slack #tech-team, 24 Jul"
+    },
     {
      "date": "2026-07-23",
      "text": "Atlas admin Accounting tab to be re-gated behind atlas prod (atlas.neno.co) with the sandbox-only gate removed, so ops/accounting can use it in production.",

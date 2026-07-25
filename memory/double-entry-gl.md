@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-24_
+_Last updated: 2026-07-25_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -48,6 +48,8 @@ _Last updated: 2026-07-24_
 
 - [2026-07-21] Neno Ledger went LIVE on production for Ocean Ionics (NEO-1361 + NEO-1514, Mark). It now books three event types - bank transactions on arrival, bills on confirmation, and transaction links (settlement); pre-existing bills/transactions raise expected `Ledger Failures` handled via a bank-transaction backfill script (Runbook "Settlement upstream leg is not live"). The neno-vs-Exact trial-balance comparison page is not yet useful on OI because of data noise in the workspace. (source: Slack #accounting-mvp (Mark), 21 Jul; Linear NEO-1361/NEO-1514)
 - [2026-07-21] Bill edit/re-book after booking: because the ledger locks a booked bill's facts, a new Edit button books a reversing entry for the bill and any related settlement (releasing the evidence so it can be changed) and a Re-book button commits a fresh booking; multiple edits can be made before re-booking, and the existing Exact sync flow is unaffected. (source: Slack #accounting-mvp (Mark), 21 Jul)
+
+- [2026-07-24] Smart Bill Review GL/VAT coding assistance (Art): the bill-parsing model is being extended to present precise GL-account and VAT-code recommendations to accountants, learned from historical supplier bookings (Ocean Ionics VAT & GL code matching doc); early accuracy ~70-80% on limited data. Hurdle flagged: the same supplier is often booked to different GL accounts, so Matthew asked Andries whether accountants apply additional line-item logic (e.g. a power tool vs a plank both bought at Praxis). Directly addresses the earlier gap that GL account/VAT code were never suggested in bill review. (source: Slack #tech-team + #accounting-mvp, 24 Jul)
 
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)

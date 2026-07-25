@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-24T07:14:34Z",
+ "generated_at": "2026-07-25T04:11:32Z",
  "projects": {
   "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
    "status": "In Progress",
@@ -27,7 +27,7 @@
    "owner": "Mark"
   },
   "b2f06e1b-57d3-4ced-9a3c-daf042c02df0": {
-   "status": "Planned",
+   "status": "In Progress",
    "owner": null
   },
   "6c262f19-7934-4641-ba14-6ff937127454": {
@@ -123,6 +123,16 @@
      "initiative": "__none__",
      "projects": [
       {
+       "name": "Reconcilation UX Improvements",
+       "issues": [
+        {
+         "id": "NEO-1524",
+         "title": "Improve Supplier Management within the bill review UI",
+         "status": "In Progress"
+        }
+       ]
+      },
+      {
        "name": "Neno UI: Unified Frontend Component Library",
        "issues": [
         {
@@ -166,8 +176,8 @@
        "name": "Mobile App",
        "issues": [
         {
-         "id": "NEO-1517",
-         "title": "Set up CI/CD for mobile app with Expo (EAS) and GitHub Actions",
+         "id": "NEO-1486",
+         "title": "Add vault page",
          "status": "Done"
         }
        ]
@@ -248,6 +258,21 @@
    "initial": "J",
    "color": "#f2994a",
    "groups": [
+    {
+     "initiative": "Make neno the source of truth for all bookkeeping",
+     "projects": [
+      {
+       "name": "End-to-end AR reconciliation",
+       "issues": [
+        {
+         "id": "NEO-1560",
+         "title": "SPIKE: Exploratory frontend changes for AR",
+         "status": "In Progress"
+        }
+       ]
+      }
+     ]
+    },
     {
      "initiative": "__none__",
      "projects": [
