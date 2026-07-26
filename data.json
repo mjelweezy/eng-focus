@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-25T04:11:32Z",
+ "generated_at": "2026-07-26T05:00:44Z",
  "projects": {
   "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
    "status": "In Progress",
@@ -173,16 +173,6 @@
        ]
       },
       {
-       "name": "Mobile App",
-       "issues": [
-        {
-         "id": "NEO-1486",
-         "title": "Add vault page",
-         "status": "Done"
-        }
-       ]
-      },
-      {
        "name": "__none__",
        "issues": [
         {
@@ -209,7 +199,7 @@
        "issues": [
         {
          "id": "NEO-1143",
-         "title": "Bills can sync to Exact unreconciled, no signal to operator",
+         "title": "Bills can sync to Exact without being reconciled, with no signal",
          "status": "Todo"
         }
        ]
@@ -281,7 +271,7 @@
        "issues": [
         {
          "id": "NEO-1313",
-         "title": "Harden deploy-api-cloud-run env_vars vs YAML/sed injection",
+         "title": "Harden deploy-api-cloud-run env_vars path against YAML/sed injection",
          "status": "Todo"
         },
         {
@@ -296,7 +286,7 @@
        "issues": [
         {
          "id": "NEO-1009",
-         "title": "Banking onboarding not showing all bvs as options",
+         "title": "Banking onboarding not showing all bvs as options to open a bank",
          "status": "Todo"
         }
        ]
@@ -306,7 +296,7 @@
        "issues": [
         {
          "id": "NEO-1480",
-         "title": "WhatsApp agent-info emits double-+ phone and bad wa.me link",
+         "title": "WhatsApp agent-info emits a double-+ phone and bad wa.me link",
          "status": "In Progress"
         }
        ]
@@ -333,7 +323,7 @@
         },
         {
          "id": "NEO-1135",
-         "title": "Exact sync logs lack info to find the created entities",
+         "title": "Exact sync logs don't include enough info to find the created entities",
          "status": "Todo"
         }
        ]
@@ -353,7 +343,7 @@
        "issues": [
         {
          "id": "NEO-1464",
-         "title": "Enforce review-before-reconciliation, remove APPROVED status",
+         "title": "Enforce review-before-reconciliation and remove APPROVED bill status",
          "status": "In Progress"
         }
        ]
