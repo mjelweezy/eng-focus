@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-07-26_
+_Last updated: 2026-07-28_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -39,6 +39,8 @@ _Last updated: 2026-07-26_
 
 - [2026-07-24] End-to-end AR reconciliation moved to In Progress (project started 24 Jul): first active build began with the M1 "Verify the Exact AR close" spike plus exploratory AR frontend work (NEO-1560, Joel), building on the substantial AR plumbing already shipped opportunistically alongside AP. (source: Linear NEO-1560 / project status)
 - [2026-07-24] "Nenotron" AI accounting layer (Art) has a first foundation live for internal testing at atlas.neno.build -> Accounting (admin only): an agent layer over neno's accounting data for querying data and performing tasks, explicitly early/foundational rather than final - a step toward giving accountants agent (read-first, guarded) access over the books. (source: Slack #tech-team, 24 Jul)
+
+- [2026-07-27] Another production bug in the bill-matching path was found and fixed (Art, PR #1249) - reconciliation/bill-matching hardening continuing after the 22 Jul Spanish date-parsing fix. (source: Slack #tech-team, 27 Jul)
 
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.

@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-26_
+_Last updated: 2026-07-28_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -50,6 +50,9 @@ _Last updated: 2026-07-26_
 - [2026-07-21] Bill edit/re-book after booking: because the ledger locks a booked bill's facts, a new Edit button books a reversing entry for the bill and any related settlement (releasing the evidence so it can be changed) and a Re-book button commits a fresh booking; multiple edits can be made before re-booking, and the existing Exact sync flow is unaffected. (source: Slack #accounting-mvp (Mark), 21 Jul)
 
 - [2026-07-24] Smart Bill Review GL/VAT coding assistance (Art): the bill-parsing model is being extended to present precise GL-account and VAT-code recommendations to accountants, learned from historical supplier bookings (Ocean Ionics VAT & GL code matching doc); early accuracy ~70-80% on limited data. Hurdle flagged: the same supplier is often booked to different GL accounts, so Matthew asked Andries whether accountants apply additional line-item logic (e.g. a power tool vs a plank both bought at Praxis). Directly addresses the earlier gap that GL account/VAT code were never suggested in bill review. (source: Slack #tech-team + #accounting-mvp, 24 Jul)
+
+- [2026-07-27] Smart Bill Review GL/VAT coding pipeline landed its core pieces: the proposal engine now runs as a pipeline step that generates persisted GL + VAT proposals (or an abstention) from a tiered, LLM-forward-but-always-validated engine checked against the workspace's Exact code lists (NEO-1531/A2, Done 26 Jul); a broken proposer is now surfaced instead of silently abstaining, so every failure mode is visible rather than collapsing to the same outcome (NEO-1567, Done 27 Jul); and a prod bug that left the bill detail page permanently read-only was fixed - `BillDetailContent` fetched the Exact connection status with a bare relative URL, so in production it hit app.neno.co, got the SPA's index.html and concluded Exact was disconnected, so the GL/VAT pickers never mounted (NEO-1578, Done 27 Jul). (source: Linear NEO-1531/1567/1578; Slack #tech-team, 27 Jul)
+- [2026-07-27] Training-data hurdle for GL/VAT suggestions raised (Art/Nick): coding accuracy is limited by the small set of historical supplier bookings, so buying labelled datasets was floated as a way to improve the proposer - no decision. (source: Slack #tech-team, 27 Jul)
 
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)

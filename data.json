@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-26T05:00:44Z",
+ "generated_at": "2026-07-28T06:53:01Z",
  "projects": {
   "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
    "status": "In Progress",
@@ -116,6 +116,16 @@
          "status": "Todo"
         }
        ]
+      },
+      {
+       "name": "Onboarding Actions for the Next Five Customers",
+       "issues": [
+        {
+         "id": "NEO-1577",
+         "title": "Swan variant of Home onboarding hub (add funds + credit card)",
+         "status": "In Progress"
+        }
+       ]
       }
      ]
     },
@@ -169,6 +179,16 @@
          "id": "NEO-482",
          "title": "Unify input styles across filters",
          "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "Mobile App",
+       "issues": [
+        {
+         "id": "NEO-1571",
+         "title": "Mobile: refresh after bank connect, pull-to-refresh, swipe-back",
+         "status": "Done"
         }
        ]
       },
@@ -295,9 +315,19 @@
        "name": "__none__",
        "issues": [
         {
+         "id": "NEO-1581",
+         "title": "Setup whatsapp sandbox account",
+         "status": "In Progress"
+        },
+        {
          "id": "NEO-1480",
          "title": "WhatsApp agent-info emits a double-+ phone and bad wa.me link",
          "status": "In Progress"
+        },
+        {
+         "id": "NEO-1572",
+         "title": "New signups get no neno grants: blank dashboard, tasks inaccessible",
+         "status": "Done"
         }
        ]
       }
@@ -323,7 +353,7 @@
         },
         {
          "id": "NEO-1135",
-         "title": "Exact sync logs don't include enough info to find the created entities",
+         "title": "Exact sync logs don't include enough info to find created entities",
          "status": "Todo"
         }
        ]
