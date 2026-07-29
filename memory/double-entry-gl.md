@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-28_
+_Last updated: 2026-07-29_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -53,6 +53,8 @@ _Last updated: 2026-07-28_
 
 - [2026-07-27] Smart Bill Review GL/VAT coding pipeline landed its core pieces: the proposal engine now runs as a pipeline step that generates persisted GL + VAT proposals (or an abstention) from a tiered, LLM-forward-but-always-validated engine checked against the workspace's Exact code lists (NEO-1531/A2, Done 26 Jul); a broken proposer is now surfaced instead of silently abstaining, so every failure mode is visible rather than collapsing to the same outcome (NEO-1567, Done 27 Jul); and a prod bug that left the bill detail page permanently read-only was fixed - `BillDetailContent` fetched the Exact connection status with a bare relative URL, so in production it hit app.neno.co, got the SPA's index.html and concluded Exact was disconnected, so the GL/VAT pickers never mounted (NEO-1578, Done 27 Jul). (source: Linear NEO-1531/1567/1578; Slack #tech-team, 27 Jul)
 - [2026-07-27] Training-data hurdle for GL/VAT suggestions raised (Art/Nick): coding accuracy is limited by the small set of historical supplier bookings, so buying labelled datasets was floated as a way to improve the proposer - no decision. (source: Slack #tech-team, 27 Jul)
+
+- [2026-07-28] Smart Bill Review VAT coding made arithmetic rather than guessed (NEO-1595, Art, In Review 28 Jul): the coding proposer's prompt carried the supplier name, each line's position and description and the two candidate lists, but withheld net, gross, tax rate and the bill-level tax entries - so the model had to guess the VAT rate and whether amounts were inclusive or exclusive. It showed up on an Albert Heijn receipt where the candidate menu offered both an exclusive and an inclusive low-rate code. The fix derives the rate and inclusive/exclusive treatment from the bill's own figures and narrows the candidates accordingly; PR #1266 closes the AH receipt case Matthew raised the same day. (source: Linear NEO-1595; Slack #tech-team, 28 Jul)
 
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
@@ -155,6 +157,11 @@ _Expanded 2026-07-17 from the 16 Jul #core-team stand-up. Project is In Progress
 
 _Expanded 2026-07-22 from the 21 Jul production go-live (#accounting-mvp). Project is In Progress, so posted as a proposed comment, not auto-applied._
 - (project: Start writing to neno's double-entry GL) Editing a booked bill must go through a reversing-entry + re-book flow: booking locks the bill's facts, an Edit action reverses the bill and any related settlement to release the evidence, and a Re-book action commits a fresh booking - supporting multiple edits before commit and leaving the existing Exact sync untouched. (source: Slack #accounting-mvp (Mark), 21 Jul 2026)
+
+## Unfiled requirements (needs attribution)
+
+_New requirements the job could not confidently assign to a project under this initiative._
+- [2026-07-28] The GL/VAT coding proposer must receive the bill's own figures (line net/gross, tax amounts and bill-level tax entries) and derive the VAT rate and inclusive/exclusive treatment arithmetically, using them to narrow the candidate code list, rather than inferring VAT treatment from supplier name and line description alone. Filed in Linear against the Smart Bill Review project (NEO-1595), which sits outside the three tracked initiatives, so it cannot be confidently attributed to "Start writing to neno's double-entry GL"; needs Matthew's attribution. (source: Linear NEO-1595; Slack #tech-team, 28 Jul)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

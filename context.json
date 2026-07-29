@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-28T06:53:01Z",
+ "generated_at": "2026-07-29T04:05:00Z",
  "lookback_days": 14,
  "initiatives": {
   "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -8,8 +8,11 @@
    "target_date": "2026-07-06",
    "health": "At risk",
    "notes": [],
-   "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno. The 6 Jul target has passed, but the pieces are converging fast: onboarding actions are complete and on the preview environment for Matthew to verify (14-15 Jul), and open banking is merging to sandbox behind a per-workspace feature flag (production links live accounts; sandbox uses Yapily mock institutions). Five target customers are identified and the week's goal is at least one connected via open banking in production - Optedy and In the Zone entities are already enabled (primary banks ING and Revolut), though the Q2 close limits how many customers the accounting team can onboard right now. The Neno-first Auth project completed 14 Jul (permissions unified under neno, pages gated by /me/capabilities, persona impersonation for testing), with team invites for non-Swan accounts as the live follow-up (NEO-1438, Joel, minnow-first in preview). Dynamic tasks are done and will go live together with open banking (only the 9am digest cron remains, NEO-1278). Invoicing for non-Swan customers moves next: the invoice IBAN selector (NEO-1372) is confirmed small and Dima proceeds after onboarding actions. Watch-outs: connected accounts have no recurring (daily) transaction fetch yet, the bankTransaction.reference schema change is still needed, WhatsApp needs a workspace-selection prompt for multi-workspace customers (and the Meta Business setup remains misconfigured), the Exact 60 req/min rate limit is unsolved, Ihor is away to 31 Aug and Mark leaves 23 Jul, and lanes must be scoped for the engineers arriving in August.",
+   "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno. The 6 Jul target has long passed and the build is now largely in customers' hands - which is exactly how the week's worst moment arrived. On 28 Jul the Home-hub demo task (\"Laptop purchase - receipt needed\") was found rendering inside the customer-facing BV incorporation checklist in the launch app, with a working Upload button, counted in the customer's completion readout: two real BV customers acted on it, one uploading a genuine Coolblue invoice on 27 Jul. Yaroslav cleared the bad onboarding tasks from the database - in time to spare a new paying BV customer - patched the provisioning code, closed it as NEO-1605 (urgent, Done 28 Jul), and called a retrospective for 29 Jul with Joel, Dima and Matthew, saying plainly that features with a wide blast radius are not being thought through. Alongside that, real progress: the Home onboarding hub was extended to Swan banking workspaces behind an admin-managed per-workspace toggle settable on accounting-engagement create and update (NEO-1577, Dima, Done 28 Jul), the sandbox WhatsApp number is configured with PR-preview routing (NEO-1581, Joel, Done 28 Jul, Meta bot setup still in progress), and the long-standing multi-workspace WhatsApp requirement finally has a ticket (NEO-1604, Joel) after First Ring was onboarded onto neno AP across two accounts. Open banking remains live for real customers (QLever from 23 Jul) and Dima keeps working the Open Banking frontend/ingestion pair. Watch-outs are unchanged and now joined by a bigger one: connected accounts still have no recurring daily fetch, the bankTransaction.reference schema change is outstanding, the Exact 60 req/min limit is unsolved, Ihor is away to 31 Aug and Mark to 7 Aug - and onboarding-actions provisioning has proven it can escape into the BV funnel.",
    "whats_changed": [
+    "WhatsApp: the sandbox account is configured (NEO-1581, Joel, Done 28 Jul) with a dedicated sandbox number and PR-preview message routing - Meta bot setup still in progress - and the multi-workspace destination prompt is now ticketed as NEO-1604 (Joel), prompted by First Ring onboarding onto neno AP across two accounts.",
+    "Home onboarding hub extended to Swan banking workspaces behind an admin-managed per-workspace switch (NEO-1577, Dima, Done 28 Jul): onboarding actions are enabled for Swan users with accounting engagements, the action set is segment-aware, and the Admin UI can toggle the feature per workspace on accounting-engagement creation and update.",
+    "The onboarding-actions demo task leaked into the BV incorporation flow (NEO-1605, urgent, Yaroslav, Done 28 Jul). The Home-hub sample task rendered in the customer-facing BV checklist in the launch app with a working Upload button and was counted in the \"N/M van uw taken zijn voltooid\" readout; two customers acted on it (one uploaded a real Coolblue invoice on 27 Jul) and Giuseppe reported the last two BV incorporations were both prompted. Yaroslav cleaned the database - clearing it before a new paying BV customer saw it - and patched the code. A retro with Joel, Dima and Matthew is set for 29 Jul.",
     "New-signup capability grants bug fixed (NEO-1572, urgent, Joel, Done 27 Jul): every workspace membership created in prod since 19 Jul 22:08 UTC had its meta NULL, so all neno.* capabilities resolved false and new users were bounced off /dashboard/tasks to a blank dashboard - a customer got a daily open-task reminder he couldn't act on. Fixed so new signups get their grants; follows the Neno-first Auth capability model and the daily open-task reminder (NEO-1491).",
     "Open banking live for a real onboarding customer: Moshe (QLever Quantum) is now streaming open-banking data into neno (23 Jul) - the first of the next-5 cohort connected end-to-end in production; builds on the NEO-1529 workspace-switcher fix (22 Jul) that unlocked his accounting-only workspace.",
     "WhatsApp bill-upload confirmations now use static EN/NL success/duplicate messages instead of LLM-generated replies, giving customers a consistent 'on its way to your accountant' acknowledgement (Art, PR #1212, 22 Jul).",
@@ -27,6 +30,10 @@
     "End-to-end test with the new auth flow completed (NEO-1416, Joel, Done 13 Jul) - the non-Swan auth path used by open-banking customers is validated end-to-end."
    ],
    "risks": [
+    {
+     "severity": "high",
+     "text": "Onboarding-actions provisioning has already reached unintended customers once: the demo task rendered in the BV incorporation checklist and two real BV customers acted on it (NEO-1605, 28 Jul). The immediate leak is patched and the data cleaned, but the class of leak - onboarding actions escaping into the launch/BV funnel - is not yet designed out."
+    },
     {
      "severity": "med",
      "text": "Connected open-banking accounts do not refresh automatically yet - no recurring (daily) transaction fetching mechanism; renewal for expiring connections only landed 15 Jul."
@@ -85,9 +92,10 @@
      "name": "Onboarding Actions for the Next Five Customers",
      "status": "Planned",
      "owner": "Matthew",
-     "summary": "Guided Home onboarding hub: connect bank (invokes open banking), learn the three bill channels, a guided sample task; Home hides when done. Implementation complete on the preview environment, pending Matthew's verification.",
+     "summary": "Guided Home onboarding hub for the next-five cohort: connect bank (invokes open banking), learn the three bill/receipt channels, a guided sample task, hide-Home-when-done. Implementation is complete on preview and now extended to Swan banking workspaces behind an admin-managed per-workspace toggle (NEO-1577, Done 28 Jul). On 28 Jul the sample/demo task was found leaking into the customer-facing BV incorporation checklist in the launch app (NEO-1605, urgent, fixed same day; database cleaned).",
      "blockers": [
-      "Card still Planned in Linear although implementation is complete on preview (NEO-1467/NEO-1468)."
+      "Provisioning scope: the demo/sample task escaped into the BV incorporation flow and two real customers acted on it (NEO-1605) - the class of leak is patched, not designed out. Retro 29 Jul.",
+      "The Linear project is still Planned although implementation is on preview and the cohort is being onboarded."
      ]
     },
     {
@@ -99,6 +107,26 @@
     }
    ],
    "decisions": [
+    {
+     "date": "2026-07-28",
+     "text": "Demo onboarding task leaked into the BV incorporation flow (NEO-1605, urgent, Yaroslav, Done 28 Jul): the Home-hub demo task (\"Laptop purchase - receipt needed\") rendered inside the customer-facing BV incorporation checklist in the launch app, with a working Upload button, and was counted in the customer's task-completion readout. Two customers acted on it - one uploaded a real Coolblue invoice on 27 Jul - and the last two BV incorporations were both prompted. Yaroslav cleared the wrongly-created onboarding tasks from the database in time to spare a new paying BV customer, patched the provisioning code, and called a retrospective with Joel, Dima and Matthew for 29 Jul.",
+     "source": "Linear NEO-1605; Slack #tech-team, 28 Jul"
+    },
+    {
+     "date": "2026-07-28",
+     "text": "Home onboarding hub extended to Swan banking workspaces behind an admin-managed per-workspace switch (NEO-1577, Dima, Done 28 Jul): onboarding actions are enabled for Swan users who have accounting engagements, with a different action set per segment, and the Admin UI can toggle onboarding actions per workspace both on accounting-engagement creation and on update.",
+     "source": "Linear NEO-1577; Slack #core-team, 28 Jul"
+    },
+    {
+     "date": "2026-07-28",
+     "text": "WhatsApp multi-workspace bill submission is now ticketed as NEO-1604 (Joel), prompted by First Ring onboarding onto neno AP across two accounts (the second with very low payment volume); Matthew shared a proposed design for the agent confirming the destination workspace before completing the upload.",
+     "source": "Slack #tech-team, 28 Jul"
+    },
+    {
+     "date": "2026-07-28",
+     "text": "Sandbox WhatsApp account configured (NEO-1581, Joel, Done 28 Jul): a dedicated sandbox number replaces the shared old number, with PR-preview message routing so developers can test WhatsApp against their own preview environments; the new Meta bot setup is still being worked through.",
+     "source": "Linear NEO-1581; Slack #core-team, 28 Jul"
+    },
     {
      "date": "2026-07-27",
      "text": "New-signup capability grants bug fixed (NEO-1572, urgent, Joel): every workspace membership created in prod since 19 Jul 22:08 UTC had users_to_workspaces.meta NULL, so all neno.* capabilities resolved false and new users were redirected off /dashboard/tasks to a blank dashboard, unable to see or action their open tasks (surfaced by customer Thomas Barink's daily open-task reminder). Fixed so new signups get their grants.",
@@ -247,6 +275,10 @@
    ],
    "open_questions": [
     {
+     "text": "Onboarding-actions blast-radius retro (called for 29 Jul by Yaroslav, with Joel, Dima and Matthew): what changes in how features with a wide blast radius are planned, reviewed and gated?",
+     "owner": "Yaroslav"
+    },
+    {
      "text": "Onboarding stepper remains a placeholder until the new transactions UI is ready (dependency softened by hiding the transaction view initially).",
      "owner": "Euge"
     },
@@ -272,6 +304,11 @@
     }
    ],
    "next_steps": [
+    {
+     "text": "Hold the onboarding-actions retro and agree how features with a wide blast radius are planned and gated.",
+     "owner": "Yaroslav, with Joel/Dima/Matthew",
+     "due": "2026-07-29"
+    },
     {
      "text": "Finish onboarding actions on preview (Matthew verifies), then complete the invoice IBAN dropdown for open banking (NEO-1372).",
      "owner": "Dima",
@@ -306,6 +343,11 @@
      "text": "Scope lanes of work for the new engineers arriving 3 Aug.",
      "owner": "Matthew/Team",
      "due": "2026-08-03"
+    },
+    {
+     "text": "Finish the Meta setup for the new sandbox WhatsApp bot and build the multi-workspace destination picker (NEO-1604).",
+     "owner": "Joel",
+     "due": null
     }
    ],
    "meetings": [
@@ -434,7 +476,7 @@
      "url": "https://miro.com/app/board/uXjVHFXnKZk=/"
     }
    ],
-   "sources_note": "Linear 27 Jul: NEO-1572 (new-signup capability grants fix, Done). Linear 20-21 Jul: NEO-1438 (non-Swan team invites, Done), NEO-1491 (daily open-task reminder, Done), NEO-1513 (per-workspace open-banking transactions, Done). Earlier: Slack #tech-team (OB sandbox merge 15 Jul, NEO-1372 16 Jul) + #accounting-mvp (accountant assignment 14 Jul); Linear status updates (Neno-first Auth, Dynamic Tasks, 14 Jul); tldv recaps of the 14-15 Jul stand-ups. Plus Slack #tech-team 22 Jul (static WhatsApp upload confirmations, PR #1212). No new Granola-folder onboarding meetings 26-28 Jul."
+   "sources_note": "Linear 28 Jul: NEO-1605 (demo task leaked into the BV incorporation flow, urgent, Done), NEO-1577 (admin-managed per-workspace Home onboarding hub, Done), NEO-1581 (sandbox WhatsApp account, Done), NEO-1604 (multi-workspace WhatsApp picker, filed). Slack #tech-team 28 Jul (the BV-incorporation leak thread, retro called; First Ring WhatsApp workspace-prompt proposal) and #core-team 28 Jul (P&E stand-up: Dima on the per-workspace onboarding toggle, Joel on the WhatsApp sandbox). Earlier: Linear 27 Jul NEO-1572; 20-21 Jul NEO-1438/1491/1513; Slack #tech-team 22 Jul (static WhatsApp upload confirmations) and 15-16 Jul (OB sandbox merge, NEO-1372); tldv recaps of the 14-15 Jul stand-ups. No new Granola-folder onboarding meetings 26-28 Jul."
   },
   "fef38f90-b82c-4c47-b377-6dcb9b1a3020": {
    "title": "Enable accountants to complete VAT submissions via double-entry GL",
@@ -455,8 +497,9 @@
      "source": "Granola - DP session, 23 Jun"
     }
    ],
-   "exec_summary": "Neno's own double-entry general ledger went LIVE on production for Ocean Ionics on 21 Jul (NEO-1361 + NEO-1514, Mark) - the initiative's core milestone, reached before Mark's 23 Jul holiday. The ledger now books three event types (bank transactions on arrival, bills on confirmation, transaction links/settlement); pre-existing OI bills and transactions raise expected Ledger Failures that devs clear with a bank-transaction backfill script (Runbook \"Settlement upstream leg is not live\"), and the neno-vs-Exact trial-balance comparison page is not yet useful on OI because of workspace data noise. A new bill edit/re-book flow was shipped alongside: booking locks a bill's facts, an Edit action books a reversing entry for the bill and any related settlement to release the evidence, and Re-book commits a fresh booking - without disturbing the existing Exact sync. Bookkeeping semantics continue to firm up from earlier weeks: bill discounts book as a credit line to the same GL account (DP, 14 Jul), VAT attributes in full to the invoice-issue period (expenses spread, VAT never), non-EU regimes stay out of scope, and a single shared 'ready to book' gate (GL account + representable VAT treatment + tax rate + correct currency) runs from review through booking. Open threads: payroll data reaches Exact but not the neno ledger (Mark investigating Numbrs CSV ingestion, Matthew collecting examples); whether neno should track foreign EU-paid VAT (e.g. Spanish IVA) as clients expand abroad; and the correction/adjustment flows and reporting set that remain deferred. The main risk now is post-go-live hardening during Mark's leave (Ledger Failure triage, the still-unbuilt bill-edit correction flow, VAT/FX residual accounts) - the knowledgebase on PR #1128 is the handoff vehicle for the August joiners.",
+   "exec_summary": "Neno's own double-entry general ledger has been live on production for Ocean Ionics since 21 Jul (NEO-1361 + NEO-1514, Mark) - the initiative's core milestone, reached before Mark's 23 Jul holiday. The ledger books three event types (bank transactions on arrival, bills on confirmation, transaction links/settlement); pre-existing OI bills and transactions raise expected Ledger Failures cleared with a bank-transaction backfill script, and the neno-vs-Exact trial-balance comparison page is still noisy on OI. With Mark away, the visible work has shifted to the accountant-facing coding layer: the Smart Bill Review GL/VAT proposal pipeline landed its core pieces 26-27 Jul, and on 28 Jul Art corrected a real weakness in it - the proposer was being asked to infer VAT treatment with the numbers withheld. Its prompt carried supplier name, line position and description plus the candidate code lists, but not net, gross, tax rate or the bill-level tax entries, so the model guessed the rate and whether amounts were inclusive or exclusive (visible on an Albert Heijn receipt offering both an exclusive and an inclusive low-rate code). NEO-1595 derives the rate and inclusive/exclusive treatment from the bill's own figures and narrows the candidates; PR #1266 closes the case Matthew raised the same day. Coding accuracy remains limited by the small set of historical supplier bookings (buying labelled datasets was floated, no decision). Open threads carried over: the FX balance rule, locked-period break-the-glass detail, foreign EU-paid VAT treatment, the FedEx BTW-return booking Exact refuses, and year-end roll-forward sign-off with DP.",
    "whats_changed": [
+    "Smart Bill Review VAT coding made arithmetic rather than guessed (NEO-1595, Art, In Review 28 Jul): the coding proposer's prompt withheld net, gross, tax rate and bill-level tax entries, so the model had to guess the VAT rate and inclusive/exclusive treatment - visible on an Albert Heijn receipt whose candidate menu offered both an exclusive and an inclusive low-rate code. The fix derives both from the bill's own figures and narrows the candidate list; PR #1266 closes the AH case Matthew raised the same day.",
     "Smart Bill Review GL/VAT coding pipeline landed its core pieces (27 Jul): the proposal engine now runs as a pipeline step producing validated GL+VAT proposals or an abstention against the workspace's Exact code lists (NEO-1531/A2, Done 26 Jul); a broken proposer is now surfaced instead of silently abstaining (NEO-1567, Done 27 Jul); and a prod bug that left the bill detail page permanently read-only - Exact status fetched via a bare relative URL, so the GL/VAT pickers never mounted - was fixed (NEO-1578, Done 27 Jul). A training-data hurdle was raised (Art/Nick): accuracy is limited by the small historical-booking set, so buying labelled datasets was floated (no decision).",
     "Smart Bill Review (Art): the bill-parsing model is being extended to recommend precise GL accounts and VAT codes to accountants from historical supplier bookings (Ocean Ionics VAT & GL code matching); ~70-80% accuracy on limited data. Open point: the same supplier is often booked to different GL accounts, so Matthew asked Andries for the additional line-item judgement logic. (24 Jul)",
     "Neno Ledger LIVE on production for Ocean Ionics (21 Jul, Mark; NEO-1361 + NEO-1514): books bank transactions on arrival, bills on confirmation, and settlement links. Pre-existing OI data raises expected Ledger Failures cleared via a bank-transaction backfill script (Runbook); the neno-vs-Exact trial-balance page is noisy on OI for now.",
@@ -505,6 +548,11 @@
     }
    ],
    "decisions": [
+    {
+     "date": "2026-07-28",
+     "text": "Smart Bill Review VAT coding made arithmetic rather than guessed (NEO-1595, Art, In Review 28 Jul): the coding proposer's prompt carried the supplier name, each line's position and description and the two candidate lists, but withheld net, gross, tax rate and the bill-level tax entries - so the model had to guess the VAT rate and whether amounts were inclusive or exclusive. The fix derives the rate and inclusive/exclusive treatment from the bill's own figures and narrows the candidates accordingly; PR #1266 closes the Albert Heijn receipt case Matthew raised the same day.",
+     "source": "Linear NEO-1595; Slack #tech-team, 28 Jul"
+    },
     {
      "date": "2026-07-27",
      "text": "Smart Bill Review GL/VAT coding pipeline landed its core pieces: the proposal engine runs as a pipeline step that persists a validated GL+VAT proposal (or an abstention) per bill line, checked against the workspace's Exact code lists (NEO-1531/A2, Done 26 Jul); a broken proposer is now surfaced instead of silently abstaining (NEO-1567, Done 27 Jul); and a prod bug that left the bill detail page permanently read-only was fixed - BillDetailContent fetched Exact status with a bare relative URL, hit app.neno.co in production, got the SPA index.html and concluded Exact was disconnected, so the GL/VAT pickers never mounted (NEO-1578, Done 27 Jul).",
@@ -891,21 +939,24 @@
      "url": "https://github.com/neno-co/monorepo-core/blob/mark/neo-1361-create-neno-general-ledger/knowledgebase/invariants/General%20Ledger%20%E2%80%94%20Invariants.md"
     }
    ],
-   "sources_note": "Slack #tech-team 27 Jul (Smart Bill Review GL/VAT coding pipeline: PRs approved; bill-matching prod bug) + Linear NEO-1531/1567/1578 (Done 26-27 Jul); Granola 'Andries and Art' 27 Jul (no captured notes). Slack #accounting-mvp 21 Jul (Neno Ledger production go-live for Ocean Ionics, bill edit/re-book flow, backfill Runbook); Linear NEO-1361 + NEO-1514 (Done 21 Jul). Earlier: #core-team 16 Jul stand-up, #accounting-mvp 16 Jul foreign-VAT question (SCN-BILLS-084), tldv recaps of 14-15 Jul stand-ups. Plus Slack #accounting-mvp 22 Jul (FedEx BTW-return booking rejected by Exact; dedicated GL account proposed)."
+   "sources_note": "Slack #tech-team 28 Jul (Art: PR #1266 fixes the Albert Heijn receipt VAT issue) + Linear NEO-1595 (In Review 28 Jul, VAT rate and inclusive/exclusive derived from the bill's own figures). Earlier: Slack #tech-team 27 Jul (Smart Bill Review GL/VAT coding pipeline) + Linear NEO-1531/1567/1578 (Done 26-27 Jul); Granola 'Andries and Art' 27 Jul (no captured notes); Slack #accounting-mvp 21 Jul (production go-live for Ocean Ionics, bill edit/re-book flow, backfill Runbook) + Linear NEO-1361/NEO-1514; #core-team 16 Jul stand-up; #accounting-mvp 16 Jul foreign-VAT question (SCN-BILLS-084) and 22 Jul (FedEx BTW-return booking rejected by Exact); tldv recaps of the 14-15 Jul stand-ups. No new Granola-folder GL meetings 28 Jul."
   },
   "ce07f00e-b392-40bd-85fb-2a4a831c9c80": {
    "title": "Make neno the source of truth for all bookkeeping",
    "owner": "Matthew",
    "target_date": "2026-09-30",
-   "health": "Planning",
+   "health": "In progress",
    "notes": [
     {
      "text": "Feature set filed as Linear projects (Backlog) with DP-sourced requirements; requirements are updated on each project's summary directly for now, with the source noted.",
      "source": "Matthew, 23 Jun"
     }
    ],
-   "exec_summary": "The initiative is a filled-out backlog with one committed piece for July: end-to-end AR reconciliation (Planned, still unstaffed after David's departure on 6 Jul). Depreciation schedules and credit-note processing stay deprioritised for July. New direction from the 15 Jul workload-distribution session: selective synchronization of transactions to Exact will be implemented for the next cohort (hybrid neno/Exact data accepted; not urgent before end of August - context is 8 customers with ~12 payroll payments to selectively push), customers move to neno invoicing in phases starting with the easiest lift, and payroll must reach the neno ledger (Numbrs CSV ingestion under investigation, Matthew collecting examples). Customer pull is emerging for agent access: Sil asked for an MCP/API for invoice + quote operations and trustworthy non-reconciled/missing-document lists, and volunteered as first test customer (unfiled pending attribution). The reconciliation workflow keeps hardening: all bills/transactions surfaced for review, suggestions capped at one per bill/transaction (NEO-1451), and NEO-1464 (review-before-reconciliation) is In Progress under Ihor's name though he is away - it still needs an owner. Accountant portfolio management (per group/entity) was requested by Max with no UI or data source yet; Yaroslav proposes Atlas.",
+   "exec_summary": "The initiative is a filled-out backlog with one committed piece for July - end-to-end AR reconciliation - and that piece is finally moving: the project went In Progress on 24 Jul with the M1 \"Verify the Exact AR close\" spike and exploratory AR frontend work (NEO-1560, Joel), and on 28 Jul Joel ran a full end-to-end test of the new AR surfaces (PR #1232) to find the gaps, wanting to sync with Matthew to confirm it meets the stated requirements. Everything else in the backlog is unchanged: depreciation schedules and credit notes stay deprioritised for July, selective transaction sync to Exact is accepted for the next cohort (not urgent before end of August), customers move to neno invoicing in phases, and payroll must reach the neno ledger via Numbrs CSV ingestion. Two 28 Jul developments matter for the wider picture. First, invoicing: for a reseller-style prospect (Smart Data Solutions) who wants to push company name, registration number and employee count into neno by API and have invoices generate from a tiered price list, Wefact was chosen as the interim bridge - API-based, variable invoicing, already used by around 30% of neno customers and integrated with neno bookkeeping, so neno keeps full visibility - with Matthew to send a proposal setting out the Wefact route now versus waiting for a direct neno API. Second, reporting infrastructure: the Data Puddle (Datastream Postgres to BigQuery, NEO-1273) is live in prod and sandbox, feeding the CFO's sheets around 4am - good enough for reporting, not for live data. Matthew also spent 28 Jul reviewing the upcoming book-keeping features and integrations to prioritise them and prepare requirements for the first two. Reconciliation hardening continues (bill-matching prod fixes 22 and 27 Jul), and NEO-1464 (review-before-reconciliation) is still In Progress under Ihor's name while he is away to 31 Aug.",
    "whats_changed": [
+    "The Data Puddle (Datastream Postgres to BigQuery mirror, NEO-1273, Yaroslav) is live in prod and sandbox as managed infrastructure: replication in seconds, with the CFO's Google Sheets connector refreshing around 4am - judged good enough for reporting but not for live data.",
+    "Invoicing integration for a reseller-style prospect (Smart Data Solutions, 28 Jul): with a direct neno invoicing API on the roadmap but unavailable, Wefact was chosen as the interim bridge - API-based, supports variable invoicing, used by around 30% of neno customers and integrated with neno bookkeeping, so neno keeps full visibility and data access. Matthew to send a proposal covering the Wefact route now versus waiting for the neno API.",
+    "Joel ran an end-to-end test of the new AR surfaces (PR #1232) on 28 Jul to find the gaps in the process, and wants to sync with Matthew to verify it meets the requirements - the first hands-on validation since End-to-end AR reconciliation moved In Progress on 24 Jul (NEO-1560).",
     "Another production bug in the bill-matching path was found and fixed (Art, PR #1249, 27 Jul) - reconciliation/bill-matching hardening continuing after the 22 Jul Spanish date-parsing fix (NEO-1528).",
     "End-to-end AR reconciliation moved to In Progress (project started 24 Jul): first active build began with the M1 \"Verify the Exact AR close\" spike plus exploratory AR frontend work (NEO-1560, Joel), building on the substantial AR plumbing already shipped opportunistically alongside AP.",
     "\"Nenotron\" AI accounting layer (Art) has a first foundation live for internal testing at atlas.neno.build -> Accounting (admin only): an agent layer over neno's accounting data for querying data and performing tasks, explicitly early/foundational - a step toward giving accountants agent (read-first, guarded) access over the books. (24 Jul)",
@@ -924,7 +975,11 @@
    "risks": [
     {
      "severity": "med",
-     "text": "End-to-end AR reconciliation is the July commitment but is unstaffed since David left (6 Jul)."
+     "text": "The admin reconciliation queue has no date filter, no server-side search and no working column sort - the Ocean Ionics view carries 92 items with no way to scope to a month or to a period before close (NEO-1602, Art, In Progress). Filed outside the tracked initiatives, so it is recorded as an unfiled requirement pending attribution."
+    },
+    {
+     "severity": "low",
+     "text": "End-to-end AR reconciliation was unstaffed after David left (6 Jul); Joel picked it up on 24 Jul (NEO-1560) and ran an end-to-end test of the new AR surfaces on 28 Jul, but the project still has no lead recorded in Linear."
     },
     {
      "severity": "med",
@@ -948,7 +1003,7 @@
      "name": "End-to-end AR reconciliation",
      "status": "In Progress",
      "owner": null,
-     "summary": "Match incoming payments to outbound invoices and close the open item in Exact; validated on seeded data first. Committed for July; currently unstaffed (David left 6 Jul). Needs a debtor-management view (~EUR 15K outstanding).",
+     "summary": "First active build under way since 24 Jul: the M1 \"Verify the Exact AR close\" spike plus exploratory AR frontend work (NEO-1560, Joel), on top of the AR plumbing already shipped opportunistically alongside AP. Joel ran a full end-to-end test of the new AR surfaces (PR #1232) on 28 Jul to find the gaps, pending a requirements check with Matthew.",
      "blockers": [
       "Unstaffed since David's departure (6 Jul)."
      ]
@@ -1018,6 +1073,26 @@
     }
    ],
    "decisions": [
+    {
+     "date": "2026-07-28",
+     "text": "AR moved into hands-on end-to-end testing: Joel ran a full end-to-end test of the new AR surfaces (PR #1232) to find the gaps in the process, and wants to sync with Matthew to verify it meets the stated requirements.",
+     "source": "Slack #core-team, 28 Jul"
+    },
+    {
+     "date": "2026-07-28",
+     "text": "Interim invoicing-integration route chosen for a reseller-style prospect (Smart Data Solutions): because a direct neno invoicing API is on the roadmap but not yet available, Wefact was proposed as the interim bridge - API-based, supports variable invoicing, already used by around 30% of neno customers and integrated with neno bookkeeping, so neno keeps full visibility and data access. Longer term a platform could plug straight into the customer's backend for full automation (direct debits, mandates).",
+     "source": "Granola - Bjorn - Neno Invoicing connect, 28 Jul"
+    },
+    {
+     "date": "2026-07-28",
+     "text": "The Data Puddle (Datastream Postgres to BigQuery mirror, NEO-1273, Yaroslav) is live in prod and sandbox as managed infrastructure: replication runs in seconds and the CFO's Google Sheets connector refreshes around 4am - judged good enough for reporting, but not to be relied on for live data.",
+     "source": "Slack #tech-team, 28 Jul"
+    },
+    {
+     "date": "2026-07-28",
+     "text": "Matthew's day plan included reviewing the upcoming book-keeping features and integrations to prioritise them and prepare requirements for the first two, plus moving First Ring onto neno for AP and testing Dolfin via their sandbox.",
+     "source": "Slack #core-team, 28 Jul"
+    },
     {
      "date": "2026-07-27",
      "text": "Another production bug in the bill-matching path was found and fixed (Art, PR #1249) - reconciliation/bill-matching hardening continuing after the 22 Jul Spanish date-parsing fix (NEO-1528).",
@@ -1141,6 +1216,10 @@
    ],
    "open_questions": [
     {
+     "text": "Which two upcoming book-keeping features/integrations are prioritised first, and what are their requirements? Matthew was preparing this on 28 Jul.",
+     "owner": "Matthew"
+    },
+    {
      "text": "Payroll design not yet discussed - remains an open design area for a future session.",
      "owner": null
     },
@@ -1167,9 +1246,23 @@
     {
      "text": "Accept hybrid data and a longer Exact dependence for more customers to prioritise spend-management (in-app invoice payment/scheduling), or hold the line on book-keeping completeness first? To be decided as August joiners arrive.",
      "owner": "Matthew"
+    },
+    {
+     "text": "When will a direct neno invoicing API be available? A reseller-style prospect's decision to use the Wefact bridge now or wait depends on the roadmap timeline.",
+     "owner": "Matthew"
     }
    ],
    "next_steps": [
+    {
+     "text": "Sync on the end-to-end AR surfaces (PR #1232) to confirm they meet the requirements before building further.",
+     "owner": "Joel/Matthew",
+     "due": null
+    },
+    {
+     "text": "Send Bjorn (Smart Data Solutions) a proposal covering how the Wefact invoicing route would work now and when direct neno API integration is expected, so he can decide whether to proceed or wait.",
+     "owner": "Matthew",
+     "due": null
+    },
     {
      "text": "Grab CSV examples from Numbrs customers to understand the payroll reconciliation shape.",
      "owner": "Matthew",
@@ -1202,6 +1295,22 @@
     }
    ],
    "meetings": [
+    {
+     "date": "2026-07-28",
+     "title": "Bjorn - Neno Invoicing connect",
+     "url": null,
+     "summary": "Smart Data Solutions (Dutch HR sick-leave/absenteeism SaaS) wants to pass company name, registration number and employee count into neno by API so invoices generate automatically from a tiered price list (end customer / reseller / distributor brackets, fixed base plus per-employee variable), with volumes shifting monthly. EUR only today; GBP/USD/CHF planned for UK and South Africa expansion. One live customer, invoiced manually in the interim.",
+     "decisions": [
+      "Wefact as the interim bridge: API-based, supports variable invoicing, used by around 30% of neno customers and integrated with neno bookkeeping, so neno keeps full visibility and data access. Direct neno API integration stays on the roadmap."
+     ],
+     "open_questions": [
+      "Proceed with Wefact now or wait for direct neno API integration - Bjorn's own CRM and API capability are not ready yet",
+      "When direct neno API integration will be available (roadmap timeline TBD)"
+     ],
+     "next_steps": [
+      "Matthew to send Bjorn a proposal covering how the Wefact integration would work now and when direct neno API integration is expected"
+     ]
+    },
     {
      "date": "2026-07-15",
      "title": "Workload Distribution: next customer cohort (tldv)",
@@ -1253,7 +1362,7 @@
      "url": null
     }
    ],
-   "sources_note": "Slack #tech-team 27 Jul (bill-matching prod bug fixed, PR #1249). Slack #accounting-mvp 22 Jul (Spanish receipt date-parsing bug NEO-1528 + fix PR #1218) and 21 Jul (neno ledger production go-live, foundation for source-of-truth). Earlier: tldv recaps (workload-distribution + Sil x Yaroslav + 14-15 Jul stand-ups); #accounting-mvp accountant-portfolio thread (14 Jul); Linear NEO-1464/1451. No Granola-folder meetings after 8 Jul."
+   "sources_note": "Granola 'Bjorn - Neno Invoicing connect' 28 Jul (Wefact chosen as the interim invoicing bridge; direct neno API roadmap-only). Slack #core-team 28 Jul (Joel's end-to-end test of the new AR surfaces, PR #1232; Matthew prioritising the next book-keeping features and integrations) and #tech-team 28 Jul (Data Puddle live in prod and sandbox, NEO-1273). Linear NEO-1602 (admin reconciliation queue filters/search/sort, Art, In Progress 28 Jul - filed outside the tracked initiatives). Earlier: Slack #tech-team 27 Jul (bill-matching prod bug, PR #1249) and #accounting-mvp 22 Jul (Spanish date parsing, NEO-1528) and 21 Jul (ledger go-live); Linear NEO-1560 (24 Jul); tldv recaps (workload distribution, Sil x Yaroslav, 14-15 Jul stand-ups); Linear NEO-1464/1451."
   }
  }
 }

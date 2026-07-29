@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-28_
+_Last updated: 2026-07-29_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -66,6 +66,11 @@ _Last updated: 2026-07-28_
 
 - [2026-07-27] New-signup capability grants bug fixed (NEO-1572, urgent, Joel, Done 27 Jul): every workspace membership created in prod since 19 Jul 22:08 UTC had `users_to_workspaces.meta` NULL, so all `neno.*` capabilities resolved false - new users were redirected off /dashboard/tasks by the capability guard and landed on a blank dashboard, unable to see/action their open tasks. Reported by a customer (Thomas Barink) who got a daily open-task reminder he couldn't act on. Fixed so new signups get their grants. Follows the Neno-first Auth capability model (14 Jul) and the daily open-task reminder (NEO-1491, 20 Jul). (source: Linear NEO-1572)
 
+- [2026-07-28] Demo onboarding task leaked into the BV incorporation flow (NEO-1605, urgent, Yaroslav, Done 28 Jul): the Home-hub demo task ("Laptop purchase - receipt needed") rendered inside the customer-facing BV incorporation checklist in the launch app, with a working Upload button and counted in the "N/M van uw taken zijn voltooid" readout. Two customers acted on it (one uploaded a real Coolblue invoice on 27 Jul) and Giuseppe reported the last two BV incorporations were both prompted. Yaroslav cleared the wrongly-created onboarding tasks from the database - in time to spare a new paying BV customer (Moustafa) - and patched the provisioning code; he called a retrospective with Joel, Dima and Matthew for 29 Jul, stating that features with a wide blast radius are not being thought through. (source: Linear NEO-1605; Slack #tech-team, 28 Jul)
+- [2026-07-28] Home onboarding hub extended to Swan banking workspaces behind an admin-managed per-workspace switch (NEO-1577, Dima, Done 28 Jul): onboarding actions are enabled for Swan users who have accounting engagements, with a different action set per segment, and the Admin UI can toggle onboarding actions per workspace on accounting-engagement creation and on update. (source: Linear NEO-1577; Slack #core-team, 28 Jul)
+- [2026-07-28] WhatsApp multi-workspace bill submission is now ticketed as NEO-1604 (Joel), prompted by First Ring onboarding onto neno AP across two accounts (the second with very low payment volume); Matthew shared a proposed design for the agent confirming the destination workspace before completing the upload. (source: Slack #tech-team, 28 Jul)
+- [2026-07-28] Sandbox WhatsApp account configured (NEO-1581, Joel, Done 28 Jul): a dedicated sandbox number (+31 20 804 0630) replaces the shared old number, with PR-preview message routing so developers can test WhatsApp against their own preview environments; Joel is still working through Meta to finish the new bot setup. (source: Linear NEO-1581; Slack #core-team, 28 Jul)
+
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
 - [resolved 2026-06-24] Open-banking provider decision → provider selected: Montoya (contract still unsigned as of 23 Jun; Plaid ~EUR 2k/mo minimum was the prior front-runner).
@@ -79,6 +84,8 @@ _Last updated: 2026-07-28_
 - [open] The dummy onboarding task must be visually marked as a dummy, and all three receipt-sharing methods (WhatsApp, email forwarding, Vault) must be explored before it can be marked done. (source: Granola - 25 Jun)
 - [open] The 13 Jul stand-up recap (tldv, low-fidelity transcript) suggests the open-banking connect ships 'as a full task, not just a button' - confirm whether this changes the settled one-button invoke decision for onboarding actions. (source: Slack #tldv-channel, 13 Jul)
 
+- [open] Onboarding-actions blast-radius retro (called for 29 Jul by Yaroslav, with Joel, Dima and Matthew): what changes in how features with a wide blast radius are planned, reviewed and gated? (source: Slack #tech-team, 28 Jul)
+
 ## Risks
 - [high] 6 Jul onboarding target is tight — onboarding-actions project still in backlog and its stepper depends on the new transactions UI.
 - [med] Email forwarding only accepts workspace-member senders, has no UI yet, rejected-email auto-reply still to build.
@@ -91,6 +98,8 @@ _Last updated: 2026-07-28_
 - [med] WhatsApp/Meta Business account setup is misconfigured and was deprioritised (24 Jun); blocks the WhatsApp bill channel rollout. (source: Granola — Daily stand-up)
 
 - [med] Recurring (daily) transaction fetching for connected open-banking accounts is not yet available - connected accounts do not refresh automatically; renewal for expiring connections was added 15 Jul. (source: Granola/tldv - stand-up, 15 Jul)
+
+- [high] (2026-07-28) Onboarding-actions provisioning has already reached unintended customers once: the demo task rendered in the BV incorporation checklist and two real BV customers acted on it (NEO-1605). The immediate leak is patched and the data cleaned, but the class of leak - onboarding actions escaping into the launch/BV funnel - is not yet designed out. (source: Slack #tech-team, 28 Jul)
 
 ## Next steps
 - Design the user-journey screens + an Ocean Ionics-specific homepage. (owner: Euge)
@@ -123,6 +132,9 @@ _Last updated: 2026-07-28_
 - [2026-07-15] Dima to finish onboarding actions (Matthew verifies) and the IBAN dropdown in invoices (NEO-1372); Joel to share the preview link for minnow-first team invites and fix any issues; Euge to write QA scenarios for the add-team-member feature. (source: Granola/tldv - Workload distribution, 15 Jul)
 - [2026-07-15] Matthew to contact Venla to set up the Monday bank-connection call; finalize the first onboarding customer list with Yaroslav. (source: Granola/tldv - stand-up, 15 Jul)
 
+- [2026-07-28] Hold the onboarding-actions retro and agree how wide-blast-radius features are planned and gated. (owner: Yaroslav, with Joel/Dima/Matthew, 29 Jul) (source: Slack #tech-team, 28 Jul)
+- [2026-07-28] Finish the Meta setup for the new sandbox WhatsApp bot and build the multi-workspace destination picker (NEO-1604). (owner: Joel) (source: Slack #core-team / #tech-team, 28 Jul)
+
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._
 - (project: Whatsapp, Email forwarding and Vault re-provisioning) The transactions drawer and the tasks/upload drawer must both offer all three bill-submission channels: WhatsApp, email forwarding, and Vault upload. (source: Granola — User Journey, 16 Jun 2026)
@@ -142,6 +154,10 @@ _Expanded 2026-07-16 from the 14-15 Jul stand-ups. Both projects are In Progress
 
 _Expanded 2026-07-22 from Linear (20-21 Jul). Project is In Progress, so posted as a proposed comment, not auto-applied._
 - (project: Enable customers to connect external bank accounts and view their transactions) Open-banking transaction identity must be scoped per workspace, not globally unique on (provider, providerTransactionId), so multiple workspaces connecting the same underlying bank account each import their own transactions. (source: Linear NEO-1513, 21 Jul 2026)
+
+_Expanded 2026-07-29 from Linear (NEO-1605, NEO-1577) and the 28 Jul Slack stand-up. The target project (Onboarding Actions for the Next Five Customers) is Planned, but its description is a ~20k-character hand-authored outline; rather than rewrite it in full to append a managed block, these were posted as a project comment on 29 Jul. Memory remains canonical._
+- (project: Onboarding Actions for the Next Five Customers) Onboarding-actions provisioning must be scoped to the workspaces the feature is enabled for: the sample/demo task must never render in the BV incorporation checklist or any other launch-app task surface, must not count towards a customer's task-completion readout, and must not expose a working upload there. (source: Linear NEO-1605; Slack #tech-team, 28 Jul 2026)
+- (project: Onboarding Actions for the Next Five Customers) The Home onboarding hub is admin-managed per workspace: an Admin UI toggle - settable both when an accounting engagement is created and when it is updated - enables onboarding actions for that workspace, and the action set is segment-aware, so Swan banking workspaces get a different set from non-Swan accounting-engagement workspaces. (source: Linear NEO-1577; Slack #core-team, 28 Jul 2026)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

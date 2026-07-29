@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-07-28_
+_Last updated: 2026-07-29_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -42,6 +42,11 @@ _Last updated: 2026-07-28_
 
 - [2026-07-27] Another production bug in the bill-matching path was found and fixed (Art, PR #1249) - reconciliation/bill-matching hardening continuing after the 22 Jul Spanish date-parsing fix. (source: Slack #tech-team, 27 Jul)
 
+- [2026-07-28] AR moved into hands-on end-to-end testing (Joel): a full end-to-end run of the new AR surfaces (PR #1232) to find the gaps in the process, with Joel wanting to sync with Matthew to verify it meets the stated requirements. (source: Slack #core-team, 28 Jul)
+- [2026-07-28] Interim invoicing-integration route chosen for a reseller-style prospect (Smart Data Solutions): because a direct neno invoicing API is on the roadmap but not yet available, Wefact was proposed as the interim bridge - API-based, supports variable invoicing, already used by around 30% of neno customers and integrated with neno bookkeeping, so neno keeps full visibility and data access. Longer term a platform could plug straight into the customer's backend for full automation (direct debits, mandates). (source: Granola - Bjorn - Neno Invoicing connect, 28 Jul)
+- [2026-07-28] The Data Puddle (Datastream Postgres -> BigQuery mirror, NEO-1273, Yaroslav) is live in prod and sandbox as managed infrastructure: replication runs in seconds and the CFO's Google Sheets connector refreshes around 4am - judged good enough for reporting, but not to be relied on for live data. (source: Slack #tech-team, 28 Jul)
+- [2026-07-28] Matthew's day plan included reviewing the upcoming book-keeping features and integrations to prioritise them and prepare requirements for the first two, plus moving First Ring onto neno for AP and testing Dolfin via their sandbox. (source: Slack #core-team, 28 Jul)
+
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.
 - [open] Full reporting requirements list still being compiled by DP.
@@ -53,6 +58,9 @@ _Last updated: 2026-07-28_
 
 - [open] Accept hybrid data and a longer Exact dependence for more customers in order to prioritise spend-management (in-app invoice payment/scheduling), or hold the line on book-keeping completeness first? To be decided as the August joiners arrive. (owner: Matthew) (source: Slack #advisory-services, 16 Jul)
 
+- [open] Which two upcoming book-keeping features/integrations are prioritised first, and what are their requirements? Matthew was preparing this on 28 Jul. (owner: Matthew) (source: Slack #core-team, 28 Jul)
+- [open] When will a direct neno invoicing API be available? A reseller-style prospect's decision to use the Wefact bridge now or wait depends on the roadmap timeline. (owner: Matthew) (source: Granola - Bjorn - Neno Invoicing connect, 28 Jul)
+
 ## Risks
 - [med] Scope is broad and unsequenced; nothing staffed yet beyond AR reconciliation (David).
 - [med] Full reporting requirements not yet enumerated — scope could grow once DP's list lands.
@@ -63,6 +71,9 @@ _Last updated: 2026-07-28_
 - Define and file the remaining projects after AR reconciliation. (owner: Matthew)
 
 - [2026-07-15] Matthew to grab CSV examples from Numbrs customers to understand the payroll reconciliation shape. (owner: Matthew) (source: Granola/tldv - stand-up, 15 Jul)
+
+- [2026-07-28] Send Bjorn (Smart Data Solutions) a proposal covering how the Wefact invoicing route would work now and when direct neno API integration is expected, so he can decide whether to proceed or wait. (owner: Matthew) (source: Granola - Bjorn - Neno Invoicing connect, 28 Jul)
+- [2026-07-28] Sync with Matthew on the end-to-end AR surfaces (PR #1232) to confirm they meet the requirements before building further. (owner: Joel/Matthew) (source: Slack #core-team, 28 Jul)
 
 ## Projects (filed in Linear)
 - [2026-06-23] Generated the initiative's feature set as Linear projects (Backlog), attached to the initiative, with summaries + DP-sourced requirements where available: Financial reporting, Credit note processing (AR & AP), Related-parties register, Payroll (Numbrs), Third-party wallet transaction import, Depreciation & accruals, Native team features & permissions, Customer project creation & management. End-to-end AR reconciliation already existed (David, Planned).
@@ -94,6 +105,9 @@ _New requirements the job couldn't confidently assign to a project land here for
 - [2026-07-16] Expose invoice/quote operations via an MCP server/API plus trustworthy non-reconciled-items / missing-documents lists for external agent use (Sil to be the first test customer) - could belong to End-to-end AR reconciliation, invoicing, or a new API/MCP project; needs Matthew's attribution. (source: Granola/tldv - Sil x Yaroslav API call, 15 Jul)
 
 - [2026-07-16] (update) The prospective first MCP-API test customer (Sil) declined, choosing a more API-mature provider; the invoice/quote MCP requirement stands for future founder/developer customers and still needs Matthew's attribution (End-to-end AR reconciliation, invoicing, or a new API/MCP project). Yaroslav is drafting a Neno MCP v1 scope (Invoices, Quotes, Bills). (source: Slack #product, 16 Jul)
+
+- [2026-07-28] The admin reconciliation queue needs date filtering, server-side search and sortable Date/Amount columns - the Ocean Ionics view carries 92 items with no way to ask for "June" or "everything before Q2 closes". Filed as NEO-1602 (Art) on the "Reconciliation" project, which sits outside the three tracked initiatives, so it cannot be confidently attributed to End-to-end AR reconciliation; needs Matthew's attribution. (source: Linear NEO-1602, 28 Jul)
+- [2026-07-28] (update to the invoice/quote API item above) A reseller-style prospect (Smart Data Solutions) needs to pass company name, registration number and employee count into neno via API so invoices generate automatically from a tiered price list, with volumes changing month to month; Wefact is the interim bridge and the direct neno API remains roadmap-only. Reinforces the invoice/quote API/MCP requirement; still needs Matthew's attribution (End-to-end AR reconciliation, invoicing, or a new API/MCP project). (source: Granola - Bjorn - Neno Invoicing connect, 28 Jul)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-28T06:53:01Z",
+ "generated_at": "2026-07-29T04:05:00Z",
  "projects": {
   "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
    "status": "In Progress",
@@ -122,8 +122,8 @@
        "issues": [
         {
          "id": "NEO-1577",
-         "title": "Swan variant of Home onboarding hub (add funds + credit card)",
-         "status": "In Progress"
+         "title": "Admin-managed per-workspace switch for the Home onboarding hub",
+         "status": "Done"
         }
        ]
       }
@@ -186,8 +186,18 @@
        "name": "Mobile App",
        "issues": [
         {
-         "id": "NEO-1571",
-         "title": "Mobile: refresh after bank connect, pull-to-refresh, swipe-back",
+         "id": "NEO-1484",
+         "title": "Implement transaction accounting view",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1588",
+         "title": "Mobile: native gesture-driven motion (swipeable sheets, drawers)",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1504",
+         "title": "Add Vault page to mobile app (parity with Swan banking)",
          "status": "Done"
         }
        ]
@@ -312,21 +322,41 @@
        ]
       },
       {
-       "name": "__none__",
+       "name": "Platform",
        "issues": [
         {
-         "id": "NEO-1581",
-         "title": "Setup whatsapp sandbox account",
-         "status": "In Progress"
+         "id": "NEO-1598",
+         "title": "pdf-service: fix intermittent deploy failures (Chromium cold start)",
+         "status": "Done"
         },
+        {
+         "id": "NEO-1585",
+         "title": "Office-TV dashboard: read-only business-metrics API endpoint",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "BV Sequence 2: Flow Improvements",
+       "issues": [
+        {
+         "id": "NEO-407",
+         "title": "Launch E2E removed - build a real FE regression suite",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "__none__",
+       "issues": [
         {
          "id": "NEO-1480",
          "title": "WhatsApp agent-info emits a double-+ phone and bad wa.me link",
          "status": "In Progress"
         },
         {
-         "id": "NEO-1572",
-         "title": "New signups get no neno grants: blank dashboard, tasks inaccessible",
+         "id": "NEO-1581",
+         "title": "Setup whatsapp sandbox account",
          "status": "Done"
         }
        ]
