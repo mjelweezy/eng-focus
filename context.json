@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-30T06:00:00Z",
+ "generated_at": "2026-07-30T18:16:18Z",
  "lookback_days": 14,
  "initiatives": {
   "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -961,10 +961,81 @@
    ],
    "sources_note": "Granola 'Andries and Art' 27 Jul - full content retrieved this run (previously noted as uncaptured): GL-vendor-mapping suggestion idea, auto-match IBAN-weighting bug, batch-payment matching complexity. No new Linear status updates, issue activity, or Slack mentions on the tracked GL project (Start writing to neno's double-entry GL) since 28 Jul; Mark remains on leave to 7 Aug. Slack #tech-team 28 Jul (Art: PR #1266 fixes the Albert Heijn receipt VAT issue) + Linear NEO-1595 (In Review 28 Jul, VAT rate and inclusive/exclusive derived from the bill's own figures). Earlier: Slack #tech-team 27 Jul (Smart Bill Review GL/VAT coding pipeline) + Linear NEO-1531/1567/1578 (Done 26-27 Jul); Granola 'Andries and Art' 27 Jul (no captured notes); Slack #accounting-mvp 21 Jul (production go-live for Ocean Ionics, bill edit/re-book flow, backfill Runbook) + Linear NEO-1361/NEO-1514; #core-team 16 Jul stand-up; #accounting-mvp 16 Jul foreign-VAT question (SCN-BILLS-084) and 22 Jul (FedEx BTW-return booking rejected by Exact); tldv recaps of the 14-15 Jul stand-ups. No new Granola-folder GL meetings 28 Jul."
   },
-  "ce07f00e-b392-40bd-85fb-2a4a831c9c80": {
-   "title": "Make neno the source of truth for all bookkeeping",
-   "owner": "Matthew",
-   "target_date": "2026-09-30",
+  "0f26a21f-cd9b-47e4-9678-a3c5107a1fa0": {
+   "title": "Source of truth for all bookkeeping data",
+   "owner": null,
+   "target_date": null,
+   "health": "Planned",
+   "notes": [],
+   "exec_summary": "New initiative (30 Jul 2026), split out of \"Make neno the source of truth for all bookkeeping\" to own the external data integrations feeding neno's books: Numbrs (payroll), Stripe and other channels (third-party wallets), and - per the Q3 roadmap deck - Shopify, Shopify Payments, WeFact and PEPPOL invoicing, and generic platform balance imports. Both existing Linear projects (Payroll via Numbrs, Third-party wallet import) are still Backlog and unstaffed; the five new deck items have no Linear project yet and are tracked as text items on the board. The clearest live thread is invoicing: a direct neno invoicing API is roadmap-only, so WeFact was picked as the interim bridge for a reseller-style prospect (Smart Data Solutions) who needs company/registration/employee data pushed in via API against a tiered price list.",
+   "whats_changed": [
+    "Initiative created and split out of the former \"Make neno the source of truth for all bookkeeping\" (30 Jul 2026) - see \"Source of truth for all bookkeeping activity\" for the accountant-performed actions half.",
+    "Existing projects attached: Payroll (Numbrs integration), Third-party wallet transaction import (MVP). Five new items from the Q3 roadmap deck (Shopify, Shopify Payments, WeFact Invoicing, PEPPOL invoicing, Generic platform balance imports) added to the board as text items, not yet filed as Linear projects."
+   ],
+   "risks": [],
+   "projects": [
+    {
+     "name": "Payroll (Numbrs integration)",
+     "status": "Backlog",
+     "owner": null,
+     "summary": "Payroll via a Numbrs integration, with salary journals flowing into the ledger. Payroll currently reaches Exact only; Numbrs CSV ingestion into the neno ledger under investigation (8 customers, ~12 payroll payments/month), with selective push to Exact for hybrid customers.",
+     "blockers": []
+    },
+    {
+     "name": "Third-party wallet transaction import (MVP)",
+     "status": "Backlog",
+     "owner": null,
+     "summary": "Ingest third-party wallet/PSP transactions - Stripe first, then additional channels - so non-Swan banking customers can feed transactions into neno.",
+     "blockers": []
+    }
+   ],
+   "decisions": [
+    {
+     "date": "2026-07-30",
+     "text": "Split \"Make neno the source of truth for all bookkeeping\" into a data initiative (this one) and an activity initiative, per Matthew: data = external integrations (Numbrs, Stripe, generic balance imports); activity = accountant-performed actions (bookings, reconciliation, corrections).",
+     "source": "Matthew, 30 Jul"
+    },
+    {
+     "date": "2026-06-25",
+     "text": "Three of the next-5 cohort run payroll that currently needs a manual monthly CSV import from Numbrs; payroll-integration viability for Q3 to be determined.",
+     "source": "Granola/Slack - M&M week"
+    }
+   ],
+   "open_questions": [
+    {
+     "text": "Payroll design not yet discussed - remains an open design area for a future session.",
+     "owner": null
+    },
+    {
+     "text": "When will a direct neno invoicing API be available? A reseller-style prospect's decision to use the WeFact bridge now or wait depends on the roadmap timeline.",
+     "owner": "Matthew"
+    }
+   ],
+   "next_steps": [
+    {
+     "text": "Grab CSV examples from Numbrs customers to understand the payroll reconciliation shape.",
+     "owner": "Matthew",
+     "due": null
+    },
+    {
+     "text": "Send Bjorn (Smart Data Solutions) a proposal covering how the WeFact invoicing route would work now and when direct neno API integration is expected.",
+     "owner": "Matthew",
+     "due": null
+    }
+   ],
+   "meetings": [],
+   "resources": [
+    {
+     "label": "Linear initiative",
+     "url": "https://linear.app/nenotechnology/initiative/source-of-truth-for-all-bookkeeping-data-b8e639c8bc40"
+    }
+   ],
+   "sources_note": "First build after the 30 Jul 2026 split. Carried forward from the archived source-of-truth.md memory (pre-split history); no new Linear/Granola/Slack activity specific to Numbrs/Stripe/wallet-import surfaced this run beyond what's captured above."
+  },
+  "b508d2b3-f876-4068-beec-e3c9899dd8c4": {
+   "title": "Source of truth for all bookkeeping activity",
+   "owner": null,
+   "target_date": null,
    "health": "In progress",
    "notes": [
     {
@@ -972,62 +1043,34 @@
      "source": "Matthew, 23 Jun"
     }
    ],
-   "exec_summary": "The initiative is a filled-out backlog with one committed piece for July - end-to-end AR reconciliation - and that piece is finally moving: the project went In Progress on 24 Jul with the M1 \"Verify the Exact AR close\" spike and exploratory AR frontend work (NEO-1560, Joel), and on 28 Jul Joel ran a full end-to-end test of the new AR surfaces (PR #1232) to find the gaps, wanting to sync with Matthew to confirm it meets the stated requirements. Everything else in the backlog is unchanged: depreciation schedules and credit notes stay deprioritised for July, selective transaction sync to Exact is accepted for the next cohort (not urgent before end of August), customers move to neno invoicing in phases, and payroll must reach the neno ledger via Numbrs CSV ingestion. Two 28 Jul developments matter for the wider picture. First, invoicing: for a reseller-style prospect (Smart Data Solutions) who wants to push company name, registration number and employee count into neno by API and have invoices generate from a tiered price list, Wefact was chosen as the interim bridge - API-based, variable invoicing, already used by around 30% of neno customers and integrated with neno bookkeeping, so neno keeps full visibility - with Matthew to send a proposal setting out the Wefact route now versus waiting for a direct neno API. Second, reporting infrastructure: the Data Puddle (Datastream Postgres to BigQuery, NEO-1273) is live in prod and sandbox, feeding the CFO's sheets around 4am - good enough for reporting, not for live data. Matthew also spent 28 Jul reviewing the upcoming book-keeping features and integrations to prioritise them and prepare requirements for the first two. Reconciliation hardening continues (bill-matching prod fixes 22 and 27 Jul), and NEO-1464 (review-before-reconciliation) is still In Progress under Ihor's name while he is away to 31 Aug.",
+   "exec_summary": "Split out of \"Make neno the source of truth for all bookkeeping\" (30 Jul 2026) to own the accountant-performed bookkeeping actions: reconciliation, corrections, accruals, depreciation, credit notes, related parties and reporting. The one committed piece is moving: End-to-end AR reconciliation went In Progress on 24 Jul (Joel) with the M1 \"Verify the Exact AR close\" spike, and Joel ran a full end-to-end test of the new AR surfaces (PR #1232) on 28 Jul to find gaps before syncing with Matthew on requirements. Reconciliation matching is also under active review: Andries and Art (27 Jul) found the auto-match queue under-fires because the formula over-weights IBAN, and proposed shifting weight to amount, fuzzy supplier name and date proximity; the admin reconciliation queue itself got server-side search and sortable Date/Amount/Status columns the same week (NEO-1602, Art, shipped 29 Jul). Everything else - financial reporting, credit notes, depreciation, accruals, related parties, native team features, customer projects, and the standing bug-fixes backlog - remains Backlog and largely unstaffed.",
    "whats_changed": [
-    "Andries/Art reconciliation review (27 Jul, newly surfaced): the auto-match queue under-fires because the matching formula over-weights IBAN; proposed fix shifts weight to amount, fuzzy supplier name and date proximity, with batch payments flagged as a complicating factor. A related GL-vendor-mapping suggestion idea was also discussed (filed as an unfiled requirement pending Matthew's attribution - it targets the Smart Bill Review project, outside the three tracked initiatives).",
-    "The Data Puddle (Datastream Postgres to BigQuery mirror, NEO-1273, Yaroslav) is live in prod and sandbox as managed infrastructure: replication in seconds, with the CFO's Google Sheets connector refreshing around 4am - judged good enough for reporting but not for live data.",
-    "Invoicing integration for a reseller-style prospect (Smart Data Solutions, 28 Jul): with a direct neno invoicing API on the roadmap but unavailable, Wefact was chosen as the interim bridge - API-based, supports variable invoicing, used by around 30% of neno customers and integrated with neno bookkeeping, so neno keeps full visibility and data access. Matthew to send a proposal covering the Wefact route now versus waiting for the neno API.",
-    "Joel ran an end-to-end test of the new AR surfaces (PR #1232) on 28 Jul to find the gaps in the process, and wants to sync with Matthew to verify it meets the requirements - the first hands-on validation since End-to-end AR reconciliation moved In Progress on 24 Jul (NEO-1560).",
-    "Another production bug in the bill-matching path was found and fixed (Art, PR #1249, 27 Jul) - reconciliation/bill-matching hardening continuing after the 22 Jul Spanish date-parsing fix (NEO-1528).",
-    "End-to-end AR reconciliation moved to In Progress (project started 24 Jul): first active build began with the M1 \"Verify the Exact AR close\" spike plus exploratory AR frontend work (NEO-1560, Joel), building on the substantial AR plumbing already shipped opportunistically alongside AP.",
-    "\"Nenotron\" AI accounting layer (Art) has a first foundation live for internal testing at atlas.neno.build -> Accounting (admin only): an agent layer over neno's accounting data for querying data and performing tasks, explicitly early/foundational - a step toward giving accountants agent (read-first, guarded) access over the books. (24 Jul)",
-    "Spanish receipt dates were parsed incorrectly in bill matching (mixing DD-MM-YY with YY-MM-DD), causing mismatches on Spanish supplier invoices; logged as NEO-1528 (Art) and a fix shipped the same day (PR #1218). (22 Jul)",
-    "Neno's double-entry ledger reached production for Ocean Ionics (21 Jul; see the GL initiative) - the foundation for neno holding the books that the source-of-truth features (AR reconciliation, reporting, credit notes) build on.",
-    "Neno MCP v1 scoped to Invoices, Quotes and Bills as the safe way to serve developer/founder customers (16 Jul); the first prospective test customer (Sil) declined for a more API-mature provider - kept as feedback.",
-    "Prioritisation reaffirmed (Matthew, 16 Jul): book-keeping completeness (manage books from neno, post to Exact, write to neno's own GL) before spend-management features such as in-app invoice payment/scheduling.",
-    "Selective synchronization of transactions to Exact agreed for the next cohort - flexible/hybrid data across neno and Exact accepted; not urgent before end of August (8 customers, ~12 payroll payments to selectively push). (15 Jul)",
-    "Invoicing migration strategy: customers move to neno invoicing in phases starting with the easiest lift; neno invoicing likely stays a second-class citizen for complex AR processes initially. (15 Jul)",
-    "Payroll gap: payroll data reaches Exact but not the neno ledger; Numbrs CSV ingestion under investigation (Mark), Matthew collecting example CSVs. (15 Jul)",
-    "Customer pull for agent access (Sil x Yaroslav, 15 Jul): expose an MCP server for invoice + quote operations plus non-reconciled-items / missing-documents lists; Sil volunteered as first test customer; Yaroslav adding to the roadmap.",
-    "Accountant portfolio management (per group/entity) requested by Max (14 Jul): assignment is now visible/editable per engagement, but portfolio management has no UI or confirmed data source; Yaroslav wants it in Atlas.",
-    "Admin + Atlas now run together on a separate domain (prod atlas.neno.co, sandbox atlas.neno.build); devs told how to test the Atlas admin experience (13 Jul).",
-    "NEO-1464 (enforce review-before-reconciliation, remove APPROVED status) is In Progress but its assignee Ihor is away to 31 Aug - needs an owner (Yaroslav flagged to prioritise)."
+    "Initiative created and split out of the former \"Make neno the source of truth for all bookkeeping\" (30 Jul 2026) - see \"Source of truth for all bookkeeping data\" for the external integrations half.",
+    "Andries/Art reconciliation review (27 Jul): the auto-match queue under-fires because the matching formula over-weights IBAN; proposed fix shifts weight to amount, fuzzy supplier name and date proximity, with batch payments flagged as a complicating factor.",
+    "Admin reconciliation queue gained server-side search and sortable Date/Amount/Status columns (NEO-1602, Art, shipped 29 Jul) - the Ocean Ionics view was carrying 92 items with no way to scope to a period.",
+    "Joel ran an end-to-end test of the new AR surfaces (PR #1232, 28 Jul) to find gaps, and wants to sync with Matthew to confirm they meet requirements - the first hands-on validation since AR reconciliation moved In Progress on 24 Jul (NEO-1560)."
    ],
    "risks": [
     {
      "severity": "med",
-     "text": "The admin reconciliation queue has no date filter, no server-side search and no working column sort - the Ocean Ionics view carries 92 items with no way to scope to a month or to a period before close (NEO-1602, Art, In Progress). Filed outside the tracked initiatives, so it is recorded as an unfiled requirement pending attribution."
-    },
-    {
-     "severity": "low",
-     "text": "End-to-end AR reconciliation was unstaffed after David left (6 Jul); Joel picked it up on 24 Jul (NEO-1560) and ran an end-to-end test of the new AR surfaces on 28 Jul, but the project still has no lead recorded in Linear."
+     "text": "Scope is broad and unsequenced; nothing staffed yet beyond AR reconciliation (Joel)."
     },
     {
      "severity": "med",
-     "text": "NEO-1464: a NEEDS_REVIEW bill can be matched and synced to Exact before extraction review; In Progress under Ihor, who is away to 31 Aug - effectively unowned."
+     "text": "Full reporting requirements not yet enumerated - scope could grow once DP's list lands. (project: Financial reporting)"
     },
     {
      "severity": "med",
-     "text": "Full reporting requirements are not yet enumerated - scope could grow materially once DP's list lands."
-    },
-    {
-     "severity": "med",
-     "text": "~EUR 15K in outstanding receivables flagged with no active debtor management yet."
-    },
-    {
-     "severity": "low",
-     "text": "Andries asked for a depreciation schedule from w/c 7 Jul but depreciation was deprioritised for July - expectation to manage."
+     "text": "~EUR 15K in outstanding receivables flagged with no active debtor management yet. (project: End-to-end AR reconciliation)"
     }
    ],
    "projects": [
     {
      "name": "End-to-end AR reconciliation",
      "status": "In Progress",
-     "owner": null,
-     "summary": "First active build under way since 24 Jul: the M1 \"Verify the Exact AR close\" spike plus exploratory AR frontend work (NEO-1560, Joel), on top of the AR plumbing already shipped opportunistically alongside AP. Joel ran a full end-to-end test of the new AR surfaces (PR #1232) on 28 Jul to find the gaps, pending a requirements check with Matthew.",
-     "blockers": [
-      "Unstaffed since David's departure (6 Jul)."
-     ]
+     "owner": "Joel",
+     "summary": "First active build since 24 Jul: M1 \"Verify the Exact AR close\" spike plus exploratory AR frontend work (NEO-1560). Joel ran a full end-to-end test of the new AR surfaces (PR #1232) on 28 Jul to find gaps, pending a requirements check with Matthew.",
+     "blockers": []
     },
     {
      "name": "Financial reporting",
@@ -1044,6 +1087,13 @@
      "blockers": []
     },
     {
+     "name": "Depreciation schedules",
+     "status": "Backlog",
+     "owner": null,
+     "summary": "Depreciation by asset-type group with a fixed-asset register (annual review for now). Deprioritised for July (7 Jul).",
+     "blockers": []
+    },
+    {
      "name": "Related-parties register",
      "status": "Backlog",
      "owner": null,
@@ -1051,31 +1101,10 @@
      "blockers": []
     },
     {
-     "name": "Payroll (Numbrs integration)",
+     "name": "Accruals",
      "status": "Backlog",
      "owner": null,
-     "summary": "Payroll via a Numbrs integration, with salary journals flowing into the ledger. New (15 Jul): payroll currently reaches Exact only - investigate Numbrs CSV ingestion into the neno ledger (8 customers, ~12 payroll payments/month) with selective push to Exact.",
-     "blockers": []
-    },
-    {
-     "name": "Third-party wallet transaction import (MVP)",
-     "status": "Backlog",
-     "owner": null,
-     "summary": "Ingest third-party wallet/PSP transactions, Stripe first, so non-Swan banking customers feed transactions into neno.",
-     "blockers": []
-    },
-    {
-     "name": "Depreciation schedules",
-     "status": "Backlog",
-     "owner": null,
-     "summary": "Depreciation by asset-type group with a fixed-asset register (annual review for now). Split from 'Depreciation & accruals' on 6 Jul; deprioritised for July on 7 Jul.",
-     "blockers": []
-    },
-    {
-     "name": "Native team features & membership permissions",
-     "status": "Backlog",
-     "owner": null,
-     "summary": "neno-native team/member management and permissions, independent of Swan.",
+     "summary": "Accrual and prepayment entries; approval-gated post-close adjustments. Not committed for July.",
      "blockers": []
     },
     {
@@ -1086,43 +1115,35 @@
      "blockers": []
     },
     {
-     "name": "Accruals",
+     "name": "Native team features & membership permissions",
      "status": "Backlog",
      "owner": null,
-     "summary": "Accrual and prepayment entries; approval-gated post-close adjustments. Split from 'Depreciation & accruals' on 6 Jul; not committed for July.",
+     "summary": "neno-native team/member management and permissions, independent of Swan.",
+     "blockers": []
+    },
+    {
+     "name": "Bookkeeping bug-fixes",
+     "status": "Backlog",
+     "owner": "Mark",
+     "summary": "Ongoing correctness bug-fixes in reconciliation, matching and ledger allocation, surfaced while hardening bookkeeping as the customer base scales.",
      "blockers": []
     }
    ],
    "decisions": [
     {
+     "date": "2026-07-30",
+     "text": "Split \"Make neno the source of truth for all bookkeeping\" into an activity initiative (this one) and a data initiative, per Matthew: activity = accountant-performed actions (bookings, reconciliation, corrections); data = external integrations.",
+     "source": "Matthew, 30 Jul"
+    },
+    {
      "date": "2026-07-27",
-     "text": "Andries/Art reconciliation review: the auto-match queue was found to fire rarely because the matching formula over-weights IBAN (which only applies to bank transfers, not invoice matching) - proposed fix leans on amount, fuzzy supplier name and date proximity instead. Batch payments (one debit covering 3-4 invoices) flagged as a complicating factor for matching. Human matching logic confirmed (Andries): check amount, then supplier name, then date proximity, with payment expected after the invoice. Success metric agreed: reconciliation corrections (Andries fixing a match) are the strongest signal of model error - target zero clicks needed, revisit if the correction rate exceeds ~10%.",
+     "text": "Andries/Art reconciliation review: the auto-match queue was found to fire rarely because the matching formula over-weights IBAN (which only applies to bank transfers, not invoice matching) - proposed fix leans on amount, fuzzy supplier name and date proximity instead. Batch payments (one debit covering 3-4 invoices) flagged as a complicating factor. Success metric agreed: reconciliation corrections are the strongest signal of model error - target zero clicks needed, revisit if the correction rate exceeds ~10%.",
      "source": "Granola - Andries and Art, 27 Jul"
     },
     {
      "date": "2026-07-28",
-     "text": "AR moved into hands-on end-to-end testing: Joel ran a full end-to-end test of the new AR surfaces (PR #1232) to find the gaps in the process, and wants to sync with Matthew to verify it meets the stated requirements.",
+     "text": "AR moved into hands-on end-to-end testing: Joel ran a full end-to-end test of the new AR surfaces (PR #1232) to find the gaps, and wants to sync with Matthew to verify it meets the stated requirements.",
      "source": "Slack #core-team, 28 Jul"
-    },
-    {
-     "date": "2026-07-28",
-     "text": "Interim invoicing-integration route chosen for a reseller-style prospect (Smart Data Solutions): because a direct neno invoicing API is on the roadmap but not yet available, Wefact was proposed as the interim bridge - API-based, supports variable invoicing, already used by around 30% of neno customers and integrated with neno bookkeeping, so neno keeps full visibility and data access. Longer term a platform could plug straight into the customer's backend for full automation (direct debits, mandates).",
-     "source": "Granola - Bjorn - Neno Invoicing connect, 28 Jul"
-    },
-    {
-     "date": "2026-07-28",
-     "text": "The Data Puddle (Datastream Postgres to BigQuery mirror, NEO-1273, Yaroslav) is live in prod and sandbox as managed infrastructure: replication runs in seconds and the CFO's Google Sheets connector refreshes around 4am - judged good enough for reporting, but not to be relied on for live data.",
-     "source": "Slack #tech-team, 28 Jul"
-    },
-    {
-     "date": "2026-07-28",
-     "text": "Matthew's day plan included reviewing the upcoming book-keeping features and integrations to prioritise them and prepare requirements for the first two, plus moving First Ring onto neno for AP and testing Dolfin via their sandbox.",
-     "source": "Slack #core-team, 28 Jul"
-    },
-    {
-     "date": "2026-07-27",
-     "text": "Another production bug in the bill-matching path was found and fixed (Art, PR #1249) - reconciliation/bill-matching hardening continuing after the 22 Jul Spanish date-parsing fix (NEO-1528).",
-     "source": "Slack #tech-team, 27 Jul"
     },
     {
      "date": "2026-07-24",
@@ -1130,125 +1151,22 @@
      "source": "Linear NEO-1560 / project status"
     },
     {
-     "date": "2026-07-24",
-     "text": "\"Nenotron\" AI accounting layer (Art) reached a first internal-testing foundation at atlas.neno.build -> Accounting (admin only): an agent layer over neno's accounting data for querying and performing tasks; explicitly early/foundational, a step toward guarded accountant agent access over the books.",
-     "source": "Slack #tech-team, 24 Jul"
-    },
-    {
-     "date": "2026-07-23",
-     "text": "Atlas admin Accounting tab to be re-gated behind atlas prod (atlas.neno.co) with the sandbox-only gate removed, so ops/accounting can use it in production.",
-     "source": "Slack #tech-team, 23 Jul"
-    },
-    {
-     "date": "2026-07-16",
-     "text": "Neno MCP v1 direction (Yaroslav): expose an external Neno MCP scoped to Invoices, Quotes and Bills (email-forwarding bill upload already exists) rather than exposing the Neno API directly. Sil, the prospective first test customer, declined for a more API-mature provider (Moneybird/Jortt); kept as feedback, with a possible services-customer path and later migration once the AGL matures.",
-     "source": "Slack #product / #advisory-services, 16 Jul"
-    },
-    {
-     "date": "2026-07-16",
-     "text": "Prioritisation stance (Matthew): book-keeping completeness - managing a customer's books entirely from neno (posting to Exact) and writing that data to neno's own GL - comes before spend-management features like in-app invoice payment/scheduling; that feature will be sized and slotted once August joiners can pick it up.",
-     "source": "Slack #advisory-services, 16 Jul"
-    },
-    {
-     "date": "2026-07-15",
-     "text": "Selective synchronization of transactions to Exact for the next cohort; hybrid neno/Exact data accepted; not urgent before end of August.",
-     "source": "Granola/tldv - Workload distribution, 15 Jul"
-    },
-    {
-     "date": "2026-07-15",
-     "text": "Move customers to neno invoicing in phases, easiest lift first; neno invoicing likely a second-class citizen for complex AR initially.",
-     "source": "Granola/tldv - Workload distribution, 15 Jul"
-    },
-    {
-     "date": "2026-07-15",
-     "text": "Expose an MCP server for invoice + quote operations and non-reconciled/missing-document lists; Sil first test customer; added to roadmap.",
-     "source": "Granola/tldv - Sil x Yaroslav API call, 15 Jul"
-    },
-    {
-     "date": "2026-07-13",
-     "text": "The admin area and Atlas now run together on a separate domain (prod atlas.neno.co, sandbox atlas.neno.build).",
-     "source": "Slack #tech-team (Yaroslav), 13 Jul"
-    },
-    {
-     "date": "2026-07-13",
-     "text": "Direct Exact connection for transactions/synchronisation established; all invoices for existing customers scheduled and verified correct; accountant engagements tracked by entity, group and larger groups (recap wording low-fidelity).",
-     "source": "Slack #tldv-channel - daily stand-up recap (tldv), 13 Jul"
-    },
-    {
-     "date": "2026-07-09",
-     "text": "NEO-1464 invariant: a bill must be extraction-approved (REVIEWED) before reconciliation; the legacy APPROVED status is to be removed. Not an active incident; prioritised for the week of 13 Jul.",
-     "source": "Linear NEO-1464 / Slack #tech-team, 10 Jul"
-    },
-    {
-     "date": "2026-07-08",
-     "text": "Reconciliation review lists are now trustworthy: all bills/transactions properly surfaced (minor DB anomalies under investigation); duplicate-entry fix reviewed by Mark (2-3 issues caught, resolved).",
-     "source": "Slack #accounting-mvp / Granola - Daily stand-up, 8 Jul"
-    },
-    {
-     "date": "2026-07-07",
-     "text": "Reconciliation suggestions limited to one active suggestion per bill and per transaction (NEO-1451 shipped); the same constraint will likely be needed for AR reconciliation once it exists.",
-     "source": "Linear NEO-1451 / Slack #accounting-mvp, 7 Jul"
-    },
-    {
-     "date": "2026-07-07",
-     "text": "Workflow: once the 'Not matched' and 'Needs your review' lists are trustworthy, Andries reviews the ~55 not-matched transactions and triggers missing-bill tasks for Marloes.",
-     "source": "Slack #accounting-mvp, 7 Jul"
-    },
-    {
-     "date": "2026-07-07",
-     "text": "Depreciation schedules and credit-note processing deprioritised for July - moved back to Later on the board and Backlog in Linear (Andries' 6 Jul depreciation-schedule request noted; deprioritised regardless).",
-     "source": "Matthew, 7 Jul"
-    },
-    {
      "date": "2026-07-06",
-     "text": "'Depreciation & accruals' split into 'Depreciation schedules' (was committed, then deprioritised) and 'Accruals' (Backlog, not committed); requirements retagged.",
+     "text": "'Depreciation & accruals' split into 'Depreciation schedules' and 'Accruals'; requirements retagged.",
      "source": "Matthew, 6 Jul"
     },
     {
-     "date": "2026-07-06",
-     "text": "OI duplicate bank transactions fixed (NEO-1448); durable fix is NEO-1299 (pull bank transactions from Exact and suppress already-booked ones).",
-     "source": "Linear / Slack #accounting-mvp, 6 Jul"
-    },
-    {
-     "date": "2026-06-25",
-     "text": "Three of the next-5 cohort run payroll that currently needs a manual monthly CSV import from Numbrs; payroll-integration viability for Q3 to be determined.",
-     "source": "Granola/Slack - M&M week"
+     "date": "2026-07-07",
+     "text": "Depreciation schedules and credit-note processing deprioritised for July - moved back to Later on the board and Backlog in Linear.",
+     "source": "Matthew, 7 Jul"
     },
     {
      "date": "2026-06-23",
      "text": "Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement.",
      "source": "Granola: Double-Entry Bookkeeping Open Questions"
-    },
-    {
-     "date": "2026-06-23",
-     "text": "Q3 goal restated: 30 customers running on neno for bookkeeping, with neno as the single source of truth feeding Exact.",
-     "source": "Granola: Q2 Retro & Q3 Planning"
-    },
-    {
-     "date": "2026-06-23",
-     "text": "Intercompany interest auto-accrual deprioritised as a nice-to-have (currently tracked in Excel).",
-     "source": "Granola: DP session"
-    },
-    {
-     "date": "2026-06-23",
-     "text": "Depreciation review runs in July and annually for now; year-end balance correctness is the key requirement (monthly journals possible in Exact).",
-     "source": "Granola: DP session"
-    },
-    {
-     "date": "2026-07-21",
-     "text": "Neno's double-entry ledger reached production for Ocean Ionics (see the double-entry GL initiative) - the foundation for neno holding the books; source-of-truth bookkeeping features build on top of it.",
-     "source": "Slack #accounting-mvp, 21 Jul"
     }
    ],
    "open_questions": [
-    {
-     "text": "Which two upcoming book-keeping features/integrations are prioritised first, and what are their requirements? Matthew was preparing this on 28 Jul.",
-     "owner": "Matthew"
-    },
-    {
-     "text": "Payroll design not yet discussed - remains an open design area for a future session.",
-     "owner": null
-    },
     {
      "text": "Full reporting requirements list still being compiled by DP.",
      "owner": "DP"
@@ -1262,7 +1180,7 @@
      "owner": null
     },
     {
-     "text": "VAT filing period flexibility (monthly/quarterly/bi-monthly) must be configurable per customer and country.",
+     "text": "VAT filing period flexibility (monthly/quarterly/bi-monthly) must be configurable per customer and country. (project: Financial reporting)",
      "owner": null
     },
     {
@@ -1270,11 +1188,11 @@
      "owner": "Yaroslav/DP"
     },
     {
-     "text": "Accept hybrid data and a longer Exact dependence for more customers to prioritise spend-management (in-app invoice payment/scheduling), or hold the line on book-keeping completeness first? To be decided as August joiners arrive.",
+     "text": "Accept hybrid data and a longer Exact dependence for more customers to prioritise spend-management, or hold the line on book-keeping completeness first?",
      "owner": "Matthew"
     },
     {
-     "text": "When will a direct neno invoicing API be available? A reseller-style prospect's decision to use the Wefact bridge now or wait depends on the roadmap timeline.",
+     "text": "Which two upcoming book-keeping features/integrations are prioritised first, and what are their requirements?",
      "owner": "Matthew"
     }
    ],
@@ -1282,31 +1200,6 @@
     {
      "text": "Sync on the end-to-end AR surfaces (PR #1232) to confirm they meet the requirements before building further.",
      "owner": "Joel/Matthew",
-     "due": null
-    },
-    {
-     "text": "Send Bjorn (Smart Data Solutions) a proposal covering how the Wefact invoicing route would work now and when direct neno API integration is expected, so he can decide whether to proceed or wait.",
-     "owner": "Matthew",
-     "due": null
-    },
-    {
-     "text": "Grab CSV examples from Numbrs customers to understand the payroll reconciliation shape.",
-     "owner": "Matthew",
-     "due": null
-    },
-    {
-     "text": "Prioritise NEO-1464 (review-before-reconciliation) - Yaroslav next week unless Joel has time sooner.",
-     "owner": "Yaroslav/Joel",
-     "due": null
-    },
-    {
-     "text": "Resolve the remaining minor DB anomalies behind the reconciliation review lists.",
-     "owner": "Ihor (handover)",
-     "due": null
-    },
-    {
-     "text": "Review the ~55 not-matched transactions and mark them receipt-missing / trigger tasks.",
-     "owner": "Andries",
      "due": null
     },
     {
@@ -1320,75 +1213,53 @@
      "due": null
     }
    ],
-   "meetings": [
-    {
-     "date": "2026-07-28",
-     "title": "Bjorn - Neno Invoicing connect",
-     "url": null,
-     "summary": "Smart Data Solutions (Dutch HR sick-leave/absenteeism SaaS) wants to pass company name, registration number and employee count into neno by API so invoices generate automatically from a tiered price list (end customer / reseller / distributor brackets, fixed base plus per-employee variable), with volumes shifting monthly. EUR only today; GBP/USD/CHF planned for UK and South Africa expansion. One live customer, invoiced manually in the interim.",
-     "decisions": [
-      "Wefact as the interim bridge: API-based, supports variable invoicing, used by around 30% of neno customers and integrated with neno bookkeeping, so neno keeps full visibility and data access. Direct neno API integration stays on the roadmap."
-     ],
-     "open_questions": [
-      "Proceed with Wefact now or wait for direct neno API integration - Bjorn's own CRM and API capability are not ready yet",
-      "When direct neno API integration will be available (roadmap timeline TBD)"
-     ],
-     "next_steps": [
-      "Matthew to send Bjorn a proposal covering how the Wefact integration would work now and when direct neno API integration is expected"
-     ]
-    },
-    {
-     "date": "2026-07-15",
-     "title": "Workload Distribution: next customer cohort (tldv)",
-     "url": "https://tldv.io/app/meetings/6a576f371469ff0013669926",
-     "summary": "Selective transaction sync to Exact agreed for the next cohort (hybrid data accepted, not urgent before end of August; 8 customers with 12 payroll payments to selectively push). Customers move to neno invoicing in phases; some will resist due to existing workflows.",
-     "decisions": [
-      "Selective sync of transactions to Exact for the next cohort",
-      "Phased migration to neno invoicing, easiest lift first"
-     ],
-     "open_questions": [],
-     "next_steps": [
-      "Yaroslav reviews IBAN-in-invoice complexity",
-      "Matthew phases customers onto neno invoicing"
-     ]
-    },
-    {
-     "date": "2026-07-15",
-     "title": "Sil x Yaroslav API call (tldv)",
-     "url": "https://tldv.io/app/meetings/6a576ba2402e7700136dee41",
-     "summary": "Prospective customer Sil (software agency, sole proprietorship moving to a BV) wants agent-driven accounting: MCP/API access for quotes and invoices, email-forwarded invoice ingestion, and quarterly audits of transactions missing documentation. Yaroslav positioned neno's MCP approach and the proprietary GL (Exact proxy phased out end of year).",
-     "decisions": [
-      "Expose an MCP server for invoice and quote operations",
-      "Add non-reconciled items + missing documents lists to the roadmap"
-     ],
-     "open_questions": [],
-     "next_steps": [
-      "Sil engages as first customer for invoice API testing"
-     ]
-    },
-    {
-     "date": "2026-07-08",
-     "title": "Daily stand up",
-     "url": null,
-     "summary": "Reconciliation: duplicate-entry fix reviewed by Mark (2-3 issues caught, resolved); AR will likely need the same duplicate-suggestion fix once it exists (ticket filed). Stand-up notes: Swan transactions syncing into Xero for 3 workspaces via the per-workspace connections pipeline; 163 backlog Q2 invoices bulk-uploaded via a Claude-assisted harness; invoice/billing flow needs a proper fix before customer count scales.",
-     "decisions": [],
-     "open_questions": [],
-     "next_steps": [
-      "Matthew sends the credit-transfer screenshot to Ihor to reproduce locally"
-     ]
-    }
-   ],
+   "meetings": [],
    "resources": [
     {
      "label": "Linear initiative",
-     "url": "https://linear.app/nenotechnology/initiative/make-neno-the-source-of-truth-for-all-bookkeeping-activities-c2ef3f4b2ff8"
-    },
-    {
-     "label": "Granola folder - neno bookkeeping features",
-     "url": null
+     "url": "https://linear.app/nenotechnology/initiative/source-of-truth-for-all-bookkeeping-activity-5bc71f1a5359"
     }
    ],
-   "sources_note": "Granola 'Andries and Art' 27 Jul - reconciliation auto-match / IBAN-weighting content retrieved this run. Granola this-week/last-week meeting lists checked for 27-29 Jul; the Dolfin and Klime sales calls (29 Jul) were reviewed but judged exploratory/pre-decision, not added as durable context. No new Linear status updates on tracked source-of-truth projects since 28 Jul; #accounting-mvp had no messages after 28 Jul. Granola 'Bjorn - Neno Invoicing connect' 28 Jul (Wefact chosen as the interim invoicing bridge; direct neno API roadmap-only). Slack #core-team 28 Jul (Joel's end-to-end test of the new AR surfaces, PR #1232; Matthew prioritising the next book-keeping features and integrations) and #tech-team 28 Jul (Data Puddle live in prod and sandbox, NEO-1273). Linear NEO-1602 (admin reconciliation queue filters/search/sort, Art, In Progress 28 Jul - filed outside the tracked initiatives). Earlier: Slack #tech-team 27 Jul (bill-matching prod bug, PR #1249) and #accounting-mvp 22 Jul (Spanish date parsing, NEO-1528) and 21 Jul (ledger go-live); Linear NEO-1560 (24 Jul); tldv recaps (workload distribution, Sil x Yaroslav, 14-15 Jul stand-ups); Linear NEO-1464/1451."
+   "sources_note": "First build after the 30 Jul 2026 split; carried forward from the archived source-of-truth.md memory. New this run: NEO-1602 (reconciliation queue search/sort/filter, Art) shipped 29 Jul, filed under Bookkeeping bug-fixes."
+  },
+  "e78d13c9-27d8-494e-9c3b-8a264412e471": {
+   "title": "Centralise customer data",
+   "owner": null,
+   "target_date": null,
+   "health": "Planned",
+   "notes": [],
+   "exec_summary": "New initiative (30 Jul 2026), created from the Q3 roadmap deck's \"Centralise the data\" goal - one system for every customer's data. Scoped for now to the three features Matthew named: Basic reporting, Structured profiles for services customers, and Onboarding actions for off-platform tasks (the deck's wider \"Integrate sales source\" and \"Accountant/Onboarding Efficiency\" buckets were not folded in). Basic reporting already has a home in the existing \"Custom reporting for Neno customers\" project, which has an in-progress issue (NEO-1624, Dima) porting the standalone report generator into the Swan banking admin as a Custom Reporting tab. The other two features have no Linear project yet.",
+   "whats_changed": [
+    "Initiative created (30 Jul 2026) from the Q3 roadmap deck.",
+    "Existing project \"Custom reporting for Neno customers\" attached as the home for Basic reporting; it already has an in-progress issue (NEO-1624, Dima) porting the report generator into the Swan banking admin."
+   ],
+   "risks": [],
+   "projects": [
+    {
+     "name": "Custom reporting for Neno customers",
+     "status": "Backlog",
+     "owner": "dima",
+     "summary": "Bespoke, customer-specific financial reports built on the neno-report-generator. NEO-1624 (In Progress, Dima) ports it into the Swan banking admin as a Custom Reporting tab.",
+     "blockers": []
+    }
+   ],
+   "decisions": [
+    {
+     "date": "2026-07-30",
+     "text": "Initiative scoped to 3 named features only (Basic reporting, Structured profiles for services customers, Onboarding actions for off-platform tasks) rather than the deck's broader feature buckets.",
+     "source": "Matthew, 30 Jul"
+    }
+   ],
+   "open_questions": [],
+   "next_steps": [],
+   "meetings": [],
+   "resources": [
+    {
+     "label": "Linear initiative",
+     "url": "https://linear.app/nenotechnology/initiative/centralise-customer-data-d0aa599c2497"
+    }
+   ],
+   "sources_note": "New initiative; no prior history. Basic reporting linked to the existing 'Custom reporting for Neno customers' project. Structured profiles / onboarding-off-platform-tasks have no Linear project yet."
   }
  }
 }

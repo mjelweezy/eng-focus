@@ -18,9 +18,12 @@ Either edit these files directly, or just tell Claude in chat ("file this agains
 - Manual / chat-fed entries are authoritative — the job never edits or removes them.
 
 ## Files
-- `onboarding-5-customers.md` → initiative cb65425b
+- `onboarding-5-customers.md` → initiative cb65425b — **hidden from the board (30 Jul 2026)** but still synced in the background (memory refresh + Linear write-back continue; see `layout.json`'s `hidden_but_synced_initiatives`).
 - `double-entry-gl.md` → initiative fef38f90
-- `source-of-truth.md` → initiative ce07f00e
+- `source-of-truth-data.md` → initiative 0f26a21f — external data integrations (Numbrs, Stripe, Shopify, WeFact, PEPPOL, balance imports). Split from `source-of-truth.md` on 30 Jul 2026.
+- `source-of-truth-activity.md` → initiative b508d2b3 — accountant-performed bookkeeping actions (AR reconciliation, credit notes, accruals, depreciation, related parties, financial reporting). Split from `source-of-truth.md` on 30 Jul 2026.
+- `centralise-customer-data.md` → initiative e78d13c9 — new (30 Jul 2026): basic reporting, structured profiles for services customers, onboarding actions for off-platform tasks.
+- `source-of-truth.md` → **archived** (30 Jul 2026, initiative ce07f00e). Kept as historical record; no longer read by the daily job. See the two files above for its successors.
 
 ## Write-back to Linear (daily)
 The morning job publishes requirements from memory back into Linear project descriptions, with a comment trail.

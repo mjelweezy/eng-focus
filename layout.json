@@ -1,9 +1,9 @@
 {
-  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). JULY SEMANTICS: buckets encode July commitments - 'now' = committed for July AND in progress; 'next' = committed for July, not yet started (Linear project state 'Planned' means planned-for-July); 'later' = not committed. The 'other-july' card is static (no Linear initiative): the job must leave it untouched and skip it when building context.json. Edit this file to change curation. The engineer view is fully auto-generated from Linear.",
+  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). JULY SEMANTICS: buckets encode commitments - 'now' = committed AND in progress; 'next' = committed, not yet started; 'later' = not committed. The 'other-july' card is static (no Linear initiative): the job must leave it untouched and skip it when building context.json. Cards listed in hidden_but_synced_initiatives have no board card but the job still refreshes their memory/context.json and Linear write-back. Edit this file to change curation. The engineer view is fully auto-generated from Linear. Restructured 30 Jul 2026: removed 'Build data by onboarding 5 additional customers' from the board (now hidden-but-synced); split 'Make neno the source of truth for all bookkeeping' into two initiatives (data vs activity); added 'Centralise customer data'; added Art to the engineer roster.",
   "title": "Engineering Focus",
   "merge_rules": {
     "initiative_view": "Keep buckets and item order exactly as defined below. For items with a projectId, refresh owner (project lead) and status from Linear at run time. Do NOT re-bucket automatically. Buckets encode July commitments: now = in progress, next = committed for July, later = not committed. Cards with static:true have no Linear initiative - skip them for context.json and needs-triage.",
-    "new_projects": "If a NEW project appears under one of the three initiatives in Linear that is not listed below, surface it in a 'Needs triage' note on that card rather than placing it.",
+    "new_projects": "If a NEW project appears under one of the tracked initiatives in Linear that is not listed below, surface it in a 'Needs triage' note on that card rather than placing it.",
     "removed_projects": "If a listed projectId is completed/cancelled/missing in Linear, render it struck-through with a '(check)' flag.",
     "engineer_view": "Fully regenerate from Linear each run: non-archived issues with statusType 'started' that have an assignee, grouped assignee -> initiative -> project -> issue. Ungrouped items go under 'Not belonging to an initiative'.",
     "context_view": "For each initiative, build context.json using context_sources: Linear (status updates + issue activity + project descriptions), Granola (folder_id if set, else keyword queries), and Slack (the listed channels filtered by keywords). Lookback window = 14 days. Summarize into the sections defined in context.html. Cache results in context.json; do not summarize on page open."
@@ -57,123 +57,16 @@
       "email": "ihor@neno.co",
       "initial": "I",
       "color": "#14b8a6"
+    },
+    {
+      "name": "Art",
+      "email": "art@neno.co",
+      "initial": "A",
+      "color": "#e5484d"
     }
   ],
-  "team_note": "The engineer view renders one lane per person in this roster, in this order, even if they have no in-progress issues. The daily job matches Linear assignees to these by email/name. Add or remove people here to change who appears. David left 6 Jul 2026 and was removed; roster is Dima, Mark, Joel, Ihor. NOTE: the scheduled 6am job's own instructions hardcode a five-lane roster including David and must be updated to match.",
+  "team_note": "The engineer view renders one lane per person in this roster, in this order, even if they have no in-progress issues. The daily job matches Linear assignees to these by email/name. Add or remove people here to change who appears. David left 6 Jul 2026 and was removed; Art added 30 Jul 2026. Roster is Dima, Mark, Joel, Ihor, Art.",
   "initiatives": [
-    {
-      "id": "cb65425b-cc3d-4f8a-8164-5849f594d708",
-      "title": "Build data by onboarding 5 additional customers",
-      "accent": "accent",
-      "tags": [
-        "Active",
-        "Target 6 Jul"
-      ],
-      "blurb": "Get the system ready to run AP & AR reconciliation for 5 hand-picked customers. The team's real centre of gravity.",
-      "url": "https://linear.app/nenotechnology/initiative/build-data-by-onboarding-5-additional-customers-on-neno-16777b88b5d7",
-      "context_sources": {
-        "linear_initiative_id": "cb65425b-cc3d-4f8a-8164-5849f594d708",
-        "granola_folder_id": "3e5bf112-9006-4ba3-8f0b-7f1f1c5b30e5",
-        "granola_keywords": [
-          "onboarding",
-          "open banking",
-          "Exact",
-          "WhatsApp",
-          "email forwarding",
-          "Vault",
-          "reconciliation",
-          "Ocean Ionics",
-          "Roots & Bites",
-          "SubsidAI",
-          "Novem Studio",
-          "AFP International",
-          "QLever",
-          "Escontrela"
-        ],
-        "slack_channels": [
-          "#accounting-mvp",
-          "#tech-team"
-        ],
-        "slack_keywords": [
-          "onboarding",
-          "open banking",
-          "Exact",
-          "reconciliation",
-          "WhatsApp",
-          "Vault",
-          "email forwarding",
-          "transactions UI"
-        ],
-        "memory_file": "memory/onboarding-5-customers.md"
-      },
-      "buckets": {
-        "now": [
-          {
-            "type": "project",
-            "projectId": "75e92a8b-6f94-4b72-aad3-1fccbe953d74",
-            "label": "Connect external bank accounts (Open Banking)",
-            "show_owner_status": true,
-            "desc": "Rework the Money Management UI for multiple accounts and let customers link external banks to pull transactions and balances."
-          },
-          {
-            "type": "project",
-            "projectId": "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed",
-            "label": "Feature re-provisioning for non Swan customers",
-            "show_owner_status": true,
-            "desc": "Make WhatsApp, email forwarding, Vault and Money Management work for customers without a Swan bank account."
-          },
-          {
-            "type": "project",
-            "projectId": "bdca02fc-e544-4715-85f2-d11798131506",
-            "label": "Multi-Client Exact Online Connections",
-            "show_owner_status": true,
-            "desc": "Shipped 2 Jul: a separate Exact connection per client workspace, with broken-connection detection and alerts."
-          }
-        ],
-        "next": [
-          {
-            "type": "project",
-            "projectId": "1f7bfeff-7561-4897-99be-ba07ade8948d",
-            "label": "Onboarding Actions for the Next Five Customers",
-            "show_owner_status": true,
-            "desc": "Guided Home onboarding hub - connect bank, learn the three bill channels (email, WhatsApp, Vault), a guided sample task; Home hides when done."
-          },
-          {
-            "type": "project",
-            "projectId": "d9b51b98-4e68-40c4-9eae-54d2ab936db2",
-            "label": "Additional changes for go-live",
-            "show_owner_status": true,
-            "desc": "Miscellaneous changes needed to get onboarding customers fully go-live ready."
-          },
-          {
-            "type": "text",
-            "label": "Enable invoicing for non-Swan customers",
-            "show_owner_status": true,
-            "desc": "Priority: enable IBAN selection for open banking customers. (Team members outside Swan descoped - the first five are single users; manual user-add is the quick fix.)"
-          },
-          {
-            "type": "subhead",
-            "label": "Final hardening & QA before onboarding"
-          },
-          {
-            "type": "text",
-            "label": "Neno account testing",
-            "desc": "QA the new authentication method for neno users without a Swan account."
-          },
-          {
-            "type": "text",
-            "label": "Tasks permissions testing",
-            "desc": "Review and test dynamic tasks against accounts without Swan's membership permissions."
-          },
-          {
-            "type": "text",
-            "label": "End-to-end testing",
-            "desc": null
-          }
-        ],
-        "later": []
-      }
-    },
     {
       "id": "fef38f90-b82c-4c47-b377-6dcb9b1a3020",
       "title": "Enable accountants to complete VAT submissions via double-entry GL",
@@ -234,28 +127,121 @@
       }
     },
     {
-      "id": "ce07f00e-b392-40bd-85fb-2a4a831c9c80",
-      "title": "Make neno the source of truth for all bookkeeping",
+      "id": "0f26a21f-cd9b-47e4-9678-a3c5107a1fa0",
+      "title": "Source of truth for all bookkeeping data",
       "accent": "pink",
       "tags": [
         "Active",
         "Target 30 Sep"
       ],
-      "blurb": "Scale bookkeeping functionality to manage the books for 30 customers in Q3 and stay in sync with Exact.",
-      "url": "https://linear.app/nenotechnology/initiative/make-neno-the-source-of-truth-for-all-bookkeeping-activities-c2ef3f4b2ff8",
+      "blurb": "Own the external data feeding neno's books: bank, wallet, payroll and sales-platform integrations.",
+      "url": "https://linear.app/nenotechnology/initiative/source-of-truth-for-all-bookkeeping-data-b8e639c8bc40",
       "context_sources": {
-        "linear_initiative_id": "ce07f00e-b392-40bd-85fb-2a4a831c9c80",
+        "linear_initiative_id": "0f26a21f-cd9b-47e4-9678-a3c5107a1fa0",
+        "granola_keywords": [
+          "Numbrs",
+          "Stripe",
+          "Shopify",
+          "Shopify Payments",
+          "WeFact",
+          "PEPPOL",
+          "balance import",
+          "wallet transactions",
+          "integration",
+          "source of truth"
+        ],
+        "slack_channels": [
+          "#accounting-mvp",
+          "#tech-team"
+        ],
+        "slack_keywords": [
+          "Numbrs",
+          "Stripe",
+          "Shopify",
+          "WeFact",
+          "PEPPOL",
+          "balance import",
+          "wallet",
+          "integration"
+        ],
+        "memory_file": "memory/source-of-truth-data.md"
+      },
+      "buckets": {
+        "now": [],
+        "next": [
+          {
+            "type": "text",
+            "label": "Generic platform balance imports",
+            "desc": "Generic connector to pull account balances from other platforms customers already use.",
+            "show_owner_status": false
+          }
+        ],
+        "later": [
+          {
+            "type": "project",
+            "projectId": "2731244b-71c8-44d1-b6bf-ae9434135d05",
+            "label": "Payroll (Numbrs integration)",
+            "show_owner_status": true,
+            "desc": "Payroll via a Numbrs integration, with salary journals flowing into the ledger."
+          },
+          {
+            "type": "project",
+            "projectId": "8e80b462-b77a-4479-b48e-8031bc8b6f11",
+            "label": "Third-party wallet transaction import (MVP)",
+            "show_owner_status": true,
+            "desc": "MVP to import third-party wallet transactions - Stripe plus additional channels."
+          },
+          {
+            "type": "text",
+            "label": "Shopify",
+            "desc": "Pull Shopify sales/balance data into neno.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
+            "label": "Shopify Payments",
+            "desc": "Pull Shopify Payments settlement data into neno.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
+            "label": "WeFact Invoicing",
+            "desc": "Integrate WeFact invoicing data as a source.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
+            "label": "PEPPOL invoicing",
+            "desc": "Integrate PEPPOL e-invoicing as a data source.",
+            "show_owner_status": false
+          }
+        ],
+        "footnote": "New initiative (30 Jul 2026), split out of 'Make neno the source of truth for all bookkeeping' - covers external integrations feeding neno's books. See 'Source of truth for all bookkeeping activity' for the accountant-performed bookkeeping actions on top of this data."
+      }
+    },
+    {
+      "id": "b508d2b3-f876-4068-beec-e3c9899dd8c4",
+      "title": "Source of truth for all bookkeeping activity",
+      "accent": "accent",
+      "tags": [
+        "Active",
+        "Target 30 Sep"
+      ],
+      "blurb": "Own the accountant-performed bookkeeping actions on top of that data: reconciliation, corrections, accruals, depreciation, credit notes, reporting.",
+      "url": "https://linear.app/nenotechnology/initiative/source-of-truth-for-all-bookkeeping-activity-5bc71f1a5359",
+      "context_sources": {
+        "linear_initiative_id": "b508d2b3-f876-4068-beec-e3c9899dd8c4",
         "granola_folder_id": "d99b2035-5b7f-4025-90cd-b3af6657e2ae",
         "granola_keywords": [
           "accounts receivable",
           "AR reconciliation",
           "credit note",
           "related parties",
-          "payroll",
-          "Numbrs",
-          "Stripe",
-          "depreciation",
           "accruals",
+          "depreciation",
+          "financial reporting",
+          "corrections",
+          "inter-company",
           "source of truth"
         ],
         "slack_channels": [
@@ -265,22 +251,41 @@
         "slack_keywords": [
           "accounts receivable",
           "credit note",
-          "payroll",
-          "Stripe",
           "depreciation",
-          "source of truth"
+          "accruals",
+          "source of truth",
+          "reconciliation"
         ],
-        "memory_file": "memory/source-of-truth.md"
+        "memory_file": "memory/source-of-truth-activity.md"
       },
       "buckets": {
-        "now": [],
-        "next": [
+        "now": [
           {
             "type": "project",
             "projectId": "b2f06e1b-57d3-4ced-9a3c-daf042c02df0",
             "label": "End-to-end AR reconciliation",
             "show_owner_status": true,
             "desc": "Enable end-to-end accounts receivable - reconciliation for incoming payments."
+          }
+        ],
+        "next": [
+          {
+            "type": "text",
+            "label": "Investment & loan booking",
+            "desc": "Book investment and loan transactions correctly in the ledger.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
+            "label": "Backfill bookings to AGL",
+            "desc": "Backfill historical bookings into the Agentic General Ledger.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
+            "label": "Opening balances for AGL",
+            "desc": "Set opening balances so the AGL starts from an accurate baseline.",
+            "show_owner_status": false
           }
         ],
         "later": [
@@ -314,24 +319,10 @@
           },
           {
             "type": "project",
-            "projectId": "2731244b-71c8-44d1-b6bf-ae9434135d05",
-            "label": "Payroll (Numbrs)",
+            "projectId": "78f1d5fa-1b8d-4699-a4c4-69fd20ca7d34",
+            "label": "Accruals",
             "show_owner_status": true,
-            "desc": "Payroll via a Numbrs integration."
-          },
-          {
-            "type": "project",
-            "projectId": "8e80b462-b77a-4479-b48e-8031bc8b6f11",
-            "label": "Third-party wallet transaction import",
-            "show_owner_status": true,
-            "desc": "MVP to import third-party wallet transactions - Stripe plus additional channels."
-          },
-          {
-            "type": "project",
-            "projectId": "81f22936-e57a-4ecf-b68c-373967a9142c",
-            "label": "Native team features & permissions",
-            "show_owner_status": true,
-            "desc": "Native team features and membership permissions."
+            "desc": "Accrual and prepayment entries; approval-gated post-close adjustments."
           },
           {
             "type": "project",
@@ -342,13 +333,90 @@
           },
           {
             "type": "project",
-            "projectId": "78f1d5fa-1b8d-4699-a4c4-69fd20ca7d34",
-            "label": "Accruals",
+            "projectId": "81f22936-e57a-4ecf-b68c-373967a9142c",
+            "label": "Native team features & permissions",
             "show_owner_status": true,
-            "desc": "Accrual and prepayment entries; approval-gated post-close adjustments."
+            "desc": "Native team features and membership permissions."
+          },
+          {
+            "type": "project",
+            "projectId": "2400bbd7-2889-4aa6-9ac4-21815da641f2",
+            "label": "Bookkeeping bug-fixes",
+            "show_owner_status": true,
+            "desc": "Ongoing correctness bug-fixes in reconciliation, matching and ledger allocation."
+          },
+          {
+            "type": "text",
+            "label": "Corrections / memorandums",
+            "desc": "Post corrections as new adjustment entries rather than edits.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
+            "label": "Inter-company payments",
+            "desc": "Book and reconcile payments between related entities.",
+            "show_owner_status": false
           }
         ],
-        "footnote": "Committed for July: end-to-end AR reconciliation. Depreciation schedules and credit notes deprioritised for July (7 Jul); quotes MVP already live (NEO-1374)."
+        "footnote": "New initiative (30 Jul 2026), split out of 'Make neno the source of truth for all bookkeeping'. See 'Source of truth for all bookkeeping data' for the external data integrations feeding this work. Committed for Q3: end-to-end AR reconciliation (in progress, Joel)."
+      }
+    },
+    {
+      "id": "e78d13c9-27d8-494e-9c3b-8a264412e471",
+      "title": "Centralise customer data",
+      "accent": "amber",
+      "tags": [
+        "Active"
+      ],
+      "blurb": "One system for every customer's data - faster accountant onboarding, plus visibility into which tools each customer still uses outside neno.",
+      "url": "https://linear.app/nenotechnology/initiative/centralise-customer-data-d0aa599c2497",
+      "context_sources": {
+        "linear_initiative_id": "e78d13c9-27d8-494e-9c3b-8a264412e471",
+        "granola_keywords": [
+          "reporting",
+          "customer profile",
+          "onboarding",
+          "off-platform",
+          "accountant homepage"
+        ],
+        "slack_channels": [
+          "#accounting-mvp",
+          "#tech-team"
+        ],
+        "slack_keywords": [
+          "reporting",
+          "profile",
+          "onboarding",
+          "accountant homepage",
+          "collaboration"
+        ],
+        "memory_file": "memory/centralise-customer-data.md"
+      },
+      "buckets": {
+        "now": [
+          {
+            "type": "project",
+            "projectId": "97add946-ef4d-4f20-8dce-93892999fbfa",
+            "label": "Basic reporting",
+            "show_owner_status": true,
+            "desc": "Custom, per-customer financial reports (built on the neno-report-generator)."
+          }
+        ],
+        "next": [],
+        "later": [
+          {
+            "type": "text",
+            "label": "Structured profiles for services customers",
+            "desc": "Structured profile data model for services (non-bookkeeping) customers.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
+            "label": "Onboarding actions for off-platform tasks",
+            "desc": "Guided onboarding actions for tasks customers complete off-platform.",
+            "show_owner_status": false
+          }
+        ]
       }
     },
     {
@@ -434,5 +502,13 @@
         ]
       }
     ]
-  }
+  },
+  "hidden_but_synced_initiatives": [
+    {
+      "id": "cb65425b-cc3d-4f8a-8164-5849f594d708",
+      "title": "Build data by onboarding 5 additional customers",
+      "memory_file": "memory/onboarding-5-customers.md",
+      "note": "Removed from the board (30 Jul 2026) per Matthew's request. The daily job keeps refreshing this initiative's memory file and context.json entry, and keeps writing requirements back to its Linear projects, even though it no longer renders as a card."
+    }
+  ]
 }

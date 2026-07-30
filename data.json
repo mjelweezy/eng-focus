@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-30T06:00:00Z",
+ "generated_at": "2026-07-30T15:52:48Z",
  "projects": {
   "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
    "status": "In Progress",
@@ -69,15 +69,13 @@
   "fa87aac7-1ef5-4587-8f18-2f4c30cc9406": {
    "status": "Planned",
    "owner": "Ihor"
+  },
+  "97add946-ef4d-4f20-8dce-93892999fbfa": {
+   "status": "Backlog",
+   "owner": "dima"
   }
  },
- "needs_triage": {
-  "ce07f00e-b392-40bd-85fb-2a4a831c9c80": [
-   {
-    "name": "Bookkeeping bug-fixes"
-   }
-  ]
- },
+ "needs_triage": {},
  "engineers": [
   {
    "name": "Dima",
@@ -365,6 +363,98 @@
          "id": "NEO-1464",
          "title": "Enforce review-before-reconciliation and remove APPROVED bill status",
          "status": "In Progress"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Art",
+   "initial": "A",
+   "color": "#e5484d",
+   "groups": [
+    {
+     "initiative": "__none__",
+     "projects": [
+      {
+       "name": "Smart Bill Review",
+       "issues": [
+        {
+         "id": "NEO-1614",
+         "title": "Found the first coding draft on the likely supplier, and persist th...",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1612",
+         "title": "Coding proposals for a deleted line item are never cleaned up",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1610",
+         "title": "Solve for the VAT rate when a bill states none: net lines plus a gr...",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1595",
+         "title": "Derive the VAT rate and inclusive/exclusive from the bill's own fig...",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1596",
+         "title": "Re-propose the GL account when a bill's supplier link changes (VAT ...",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1611",
+         "title": "Bill upload silently swallows the duplicate case; document preview ...",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "Reconcilation UX Improvements",
+       "issues": [
+        {
+         "id": "NEO-1524",
+         "title": "Improve Supplier Management within the bill review UI",
+         "status": "In Review"
+        }
+       ]
+      },
+      {
+       "name": "Neno Brain",
+       "issues": [
+        {
+         "id": "NEO-1501",
+         "title": "Authenticate Anthropic API from Cloud Run via Workload Identity Fed...",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "Reconciliation",
+       "issues": [
+        {
+         "id": "NEO-1602",
+         "title": "Admin reconciliation queue: server-side search and sortable Date/Am...",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "__none__",
+       "issues": [
+        {
+         "id": "NEO-1606",
+         "title": "Tests wait on fire-and-forget writes with fixed sleeps — 33 of them...",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1580",
+         "title": "env-sync.sh produces a local environment that cannot run the Swan b...",
+         "status": "Done"
         }
        ]
       }

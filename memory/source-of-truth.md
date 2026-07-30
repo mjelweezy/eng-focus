@@ -1,3 +1,5 @@
+> **ARCHIVED (30 Jul 2026).** This initiative was split into two: `source-of-truth-data.md` (external data integrations) and `source-of-truth-activity.md` (accountant-performed bookkeeping actions). This file is kept as historical record and is no longer read by the daily job. Live open questions/risks/next-steps/requirements were carried forward into the two new files.
+
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
 _Last updated: 2026-07-30_
