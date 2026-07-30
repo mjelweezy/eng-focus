@@ -1,6 +1,6 @@
 # Running context — Make neno the source of truth for all bookkeeping
 _Initiative: ce07f00e · maintained by the daily job + Matthew_
-_Last updated: 2026-07-29_
+_Last updated: 2026-07-30_
 
 ## Decisions
 - [2026-06-23] Aged-receivables analysis (by customer, 30/60/90/120+ day buckets) is a minimum AR reporting requirement. (source: Granola — Double-Entry Bookkeeping Open Questions)
@@ -46,6 +46,8 @@ _Last updated: 2026-07-29_
 - [2026-07-28] Interim invoicing-integration route chosen for a reseller-style prospect (Smart Data Solutions): because a direct neno invoicing API is on the roadmap but not yet available, Wefact was proposed as the interim bridge - API-based, supports variable invoicing, already used by around 30% of neno customers and integrated with neno bookkeeping, so neno keeps full visibility and data access. Longer term a platform could plug straight into the customer's backend for full automation (direct debits, mandates). (source: Granola - Bjorn - Neno Invoicing connect, 28 Jul)
 - [2026-07-28] The Data Puddle (Datastream Postgres -> BigQuery mirror, NEO-1273, Yaroslav) is live in prod and sandbox as managed infrastructure: replication runs in seconds and the CFO's Google Sheets connector refreshes around 4am - judged good enough for reporting, but not to be relied on for live data. (source: Slack #tech-team, 28 Jul)
 - [2026-07-28] Matthew's day plan included reviewing the upcoming book-keeping features and integrations to prioritise them and prepare requirements for the first two, plus moving First Ring onto neno for AP and testing Dolfin via their sandbox. (source: Slack #core-team, 28 Jul)
+
+- [2026-07-27] Andries/Art reconciliation & GL-coding review: manual GL/VAT selection remains the core pain point for Andries - recalling vendor context and the applicable VAT rate on every invoice, including cases where one receipt needs two VAT-coded lines (e.g. fuel vs non-fuel items on the same receipt). Proposed near-term addition: surface a typical GL-account mapping per vendor at recommendation time (e.g. "Ocean Ionics is typically booked to R&D Materials"), optionally with a confidence percentage. Separately, the auto-match reconciliation queue was found to fire rarely because the matching formula over-weights IBAN (which only applies to bank transfers, not invoice matching); proposed fix reduces IBAN weight and leans on amount, fuzzy supplier name and date proximity - batch payments (one debit covering 3-4 invoices) flagged as a complicating factor. Success metric agreed: corrections (Andries having to fix a match) are the strongest signal of model error - target zero clicks needed from Andries, revisit if the correction rate exceeds ~10%. (source: Granola - Andries and Art, 27 Jul)
 
 ## Open questions
 - [open] Payroll design not yet discussed — open design area for a future session.
@@ -108,6 +110,8 @@ _New requirements the job couldn't confidently assign to a project land here for
 
 - [2026-07-28] The admin reconciliation queue needs date filtering, server-side search and sortable Date/Amount columns - the Ocean Ionics view carries 92 items with no way to ask for "June" or "everything before Q2 closes". Filed as NEO-1602 (Art) on the "Reconciliation" project, which sits outside the three tracked initiatives, so it cannot be confidently attributed to End-to-end AR reconciliation; needs Matthew's attribution. (source: Linear NEO-1602, 28 Jul)
 - [2026-07-28] (update to the invoice/quote API item above) A reseller-style prospect (Smart Data Solutions) needs to pass company name, registration number and employee count into neno via API so invoices generate automatically from a tiered price list, with volumes changing month to month; Wefact is the interim bridge and the direct neno API remains roadmap-only. Reinforces the invoice/quote API/MCP requirement; still needs Matthew's attribution (End-to-end AR reconciliation, invoicing, or a new API/MCP project). (source: Granola - Bjorn - Neno Invoicing connect, 28 Jul)
+
+- [2026-07-27] Surface a typical GL-account mapping per vendor at bill-coding recommendation time (with an optional confidence percentage), to reduce Andries's per-invoice manual vendor-context lookups. Discussed as a near-term addition to the Smart Bill Review coding assistant, which sits outside the three tracked initiatives, so it cannot be confidently attributed to a project under "Make neno the source of truth for all bookkeeping"; needs Matthew's attribution. (source: Granola - Andries and Art, 27 Jul)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

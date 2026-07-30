@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-29T04:05:00Z",
+ "generated_at": "2026-07-30T06:00:00Z",
  "projects": {
   "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
    "status": "In Progress",
@@ -65,10 +65,6 @@
   "78f1d5fa-1b8d-4699-a4c4-69fd20ca7d34": {
    "status": "Backlog",
    "owner": null
-  },
-  "fa87aac7-1ef5-4587-8f18-2f4c30cc9406": {
-   "status": "Planned",
-   "owner": "Ihor"
   }
  },
  "needs_triage": {
@@ -97,7 +93,7 @@
         },
         {
          "id": "NEO-1291",
-         "title": "Open Banking: provider-agnostic transaction & balance ingestion",
+         "title": "Open Banking: provider-agnostic transaction & balance ingestion wit...",
          "status": "In Progress"
         },
         {
@@ -114,16 +110,6 @@
          "id": "NEO-736",
          "title": "Implement Invoicing page design",
          "status": "Todo"
-        }
-       ]
-      },
-      {
-       "name": "Onboarding Actions for the Next Five Customers",
-       "issues": [
-        {
-         "id": "NEO-1577",
-         "title": "Admin-managed per-workspace switch for the Home onboarding hub",
-         "status": "Done"
         }
        ]
       }
@@ -183,26 +169,6 @@
        ]
       },
       {
-       "name": "Mobile App",
-       "issues": [
-        {
-         "id": "NEO-1484",
-         "title": "Implement transaction accounting view",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1588",
-         "title": "Mobile: native gesture-driven motion (swipeable sheets, drawers)",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1504",
-         "title": "Add Vault page to mobile app (parity with Swan banking)",
-         "status": "Done"
-        }
-       ]
-      },
-      {
        "name": "__none__",
        "issues": [
         {
@@ -229,7 +195,7 @@
        "issues": [
         {
          "id": "NEO-1143",
-         "title": "Bills can sync to Exact without being reconciled, with no signal",
+         "title": "Bills can sync to Exact without being reconciled, with no signal to...",
          "status": "Todo"
         }
        ]
@@ -259,7 +225,7 @@
        "issues": [
         {
          "id": "NEO-999",
-         "title": "Remove neno_wt_ prefix from worktree database names",
+         "title": "Remove `neno_wt_` prefix from worktree database names",
          "status": "In Progress"
         },
         {
@@ -297,6 +263,26 @@
      "initiative": "__none__",
      "projects": [
       {
+       "name": "WhatsApp Integration + Agents",
+       "issues": [
+        {
+         "id": "NEO-1604",
+         "title": "WhatsApp bill upload: workspace picker buttons for multi-workspace ...",
+         "status": "In Progress"
+        }
+       ]
+      },
+      {
+       "name": "Platform",
+       "issues": [
+        {
+         "id": "NEO-1584",
+         "title": "Observability: per-customer usage metrics (Phase 0, starting with O...",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
        "name": "Bastion onboarding + setup",
        "issues": [
         {
@@ -316,33 +302,8 @@
        "issues": [
         {
          "id": "NEO-1009",
-         "title": "Banking onboarding not showing all bvs as options to open a bank",
+         "title": "Banking onboarding not showing all bvs as options to open a bank ac...",
          "status": "Todo"
-        }
-       ]
-      },
-      {
-       "name": "Platform",
-       "issues": [
-        {
-         "id": "NEO-1598",
-         "title": "pdf-service: fix intermittent deploy failures (Chromium cold start)",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1585",
-         "title": "Office-TV dashboard: read-only business-metrics API endpoint",
-         "status": "Done"
-        }
-       ]
-      },
-      {
-       "name": "BV Sequence 2: Flow Improvements",
-       "issues": [
-        {
-         "id": "NEO-407",
-         "title": "Launch E2E removed - build a real FE regression suite",
-         "status": "Done"
         }
        ]
       },
@@ -351,13 +312,8 @@
        "issues": [
         {
          "id": "NEO-1480",
-         "title": "WhatsApp agent-info emits a double-+ phone and bad wa.me link",
+         "title": "WhatsApp agent-info emits a double-+ phone number and a non-canonic...",
          "status": "In Progress"
-        },
-        {
-         "id": "NEO-1581",
-         "title": "Setup whatsapp sandbox account",
-         "status": "Done"
         }
        ]
       }
@@ -378,12 +334,12 @@
        "issues": [
         {
          "id": "NEO-1193",
-         "title": "Partial-payment reconciliation as a first-class workflow",
+         "title": "Partial-payment reconciliation as a first-class workflow (settlemen...",
          "status": "Todo"
         },
         {
          "id": "NEO-1135",
-         "title": "Exact sync logs don't include enough info to find created entities",
+         "title": "Exact sync logs don't include enough info to find the created entities",
          "status": "Todo"
         }
        ]

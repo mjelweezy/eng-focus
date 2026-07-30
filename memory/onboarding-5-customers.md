@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-29_
+_Last updated: 2026-07-30_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -70,6 +70,8 @@ _Last updated: 2026-07-29_
 - [2026-07-28] Home onboarding hub extended to Swan banking workspaces behind an admin-managed per-workspace switch (NEO-1577, Dima, Done 28 Jul): onboarding actions are enabled for Swan users who have accounting engagements, with a different action set per segment, and the Admin UI can toggle onboarding actions per workspace on accounting-engagement creation and on update. (source: Linear NEO-1577; Slack #core-team, 28 Jul)
 - [2026-07-28] WhatsApp multi-workspace bill submission is now ticketed as NEO-1604 (Joel), prompted by First Ring onboarding onto neno AP across two accounts (the second with very low payment volume); Matthew shared a proposed design for the agent confirming the destination workspace before completing the upload. (source: Slack #tech-team, 28 Jul)
 - [2026-07-28] Sandbox WhatsApp account configured (NEO-1581, Joel, Done 28 Jul): a dedicated sandbox number (+31 20 804 0630) replaces the shared old number, with PR-preview message routing so developers can test WhatsApp against their own preview environments; Joel is still working through Meta to finish the new bot setup. (source: Linear NEO-1581; Slack #core-team, 28 Jul)
+
+- [2026-07-29] P&E stand-up: Dima's onboarding-actions work continues - adding a new "add funds" task for Swan users with a zero account balance, and starting to look into keeping the Home page persistent after onboarding actions complete (alongside ongoing mobile-app UI work: native swipe/pull gestures). Yaroslav's stand-up plan for the day listed "retro in the wake of outage discovered last night" - the onboarding-actions blast-radius retro called 28 Jul appears to have gone ahead, but no retro outcomes/decisions were found in Slack or Granola this run. (source: Slack #core-team - P&E stand-up, 29 Jul)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
