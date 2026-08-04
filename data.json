@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-30T15:52:48Z",
+ "generated_at": "2026-08-04T07:19:11Z",
  "projects": {
   "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
    "status": "In Progress",
@@ -28,7 +28,7 @@
   },
   "b2f06e1b-57d3-4ced-9a3c-daf042c02df0": {
    "status": "In Progress",
-   "owner": null
+   "owner": "Joel"
   },
   "6c262f19-7934-4641-ba14-6ff937127454": {
    "status": "Backlog",
@@ -66,6 +66,10 @@
    "status": "Backlog",
    "owner": null
   },
+  "2400bbd7-2889-4aa6-9ac4-21815da641f2": {
+   "status": "Backlog",
+   "owner": "Mark"
+  },
   "fa87aac7-1ef5-4587-8f18-2f4c30cc9406": {
    "status": "Planned",
    "owner": "Ihor"
@@ -83,35 +87,45 @@
    "color": "#5e6ad2",
    "groups": [
     {
-     "initiative": "Build data by onboarding 5 additional customers",
+     "initiative": "Build data by onboarding 5 additional customers on neno",
      "projects": [
       {
-       "name": "Enable customers to connect external bank accounts and view their transactions",
+       "name": "Onboarding Actions for the Next Five Customers",
        "issues": [
         {
-         "id": "NEO-1115",
-         "title": "Open Banking: First Iteration Frontend Rework",
-         "status": "In Progress"
-        },
+         "id": "NEO-1631",
+         "title": "Contact your accountant on WhatsApp from the Home hub accountant card",
+         "status": "In Review"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "initiative": "Centralise customer data",
+     "projects": [
+      {
+       "name": "Custom reporting for Neno customers",
+       "issues": [
         {
-         "id": "NEO-1291",
-         "title": "Open Banking: provider-agnostic transaction & balance ingestion wit...",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-598",
-         "title": "Scale UI for Open Banking (linked accounts)",
+         "id": "NEO-1650",
+         "title": "Roll out live management reporting to customers behind a feature flag",
          "status": "Todo"
         },
         {
-         "id": "NEO-595",
-         "title": "Rework Home page UI",
+         "id": "NEO-1651",
+         "title": "Build the \"books are clean\" review flow so the report goes live per...",
          "status": "Todo"
         },
         {
-         "id": "NEO-736",
-         "title": "Implement Invoicing page design",
+         "id": "NEO-1668",
+         "title": "Fetch Exact report data and store it in Neno's database on approval",
          "status": "Todo"
+        },
+        {
+         "id": "NEO-1648",
+         "title": "Translate Custom reporting into all eight banking-app languages",
+         "status": "Done"
         }
        ]
       }
@@ -121,52 +135,12 @@
      "initiative": "__none__",
      "projects": [
       {
-       "name": "Reconcilation UX Improvements",
+       "name": "Smart Bill Review",
        "issues": [
         {
-         "id": "NEO-1524",
-         "title": "Improve Supplier Management within the bill review UI",
-         "status": "In Progress"
-        }
-       ]
-      },
-      {
-       "name": "Neno UI: Unified Frontend Component Library",
-       "issues": [
-        {
-         "id": "NEO-1095",
-         "title": "Migrate LakeTextInput -> NInput in banking app",
-         "status": "Todo"
-        }
-       ]
-      },
-      {
-       "name": "BV Sequence 2: Flow Improvements",
-       "issues": [
-        {
-         "id": "NEO-449",
-         "title": "Consistent formatting for BV form questions",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-460",
-         "title": "Add ID tooltip showing examples of correct ID forms",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-441",
-         "title": "Clarify next steps in payment success copy",
-         "status": "Todo"
-        }
-       ]
-      },
-      {
-       "name": "UX Improvements",
-       "issues": [
-        {
-         "id": "NEO-482",
-         "title": "Unify input styles across filters",
-         "status": "Todo"
+         "id": "NEO-1536",
+         "title": "C2: Admin UI to view and edit the workspace accounting context + bu...",
+         "status": "Done"
         }
        ]
       },
@@ -174,9 +148,9 @@
        "name": "__none__",
        "issues": [
         {
-         "id": "NEO-1460",
-         "title": "Alphabetise all input dropdowns",
-         "status": "Todo"
+         "id": "NEO-1654",
+         "title": "Modals opened from inside a side drawer are not clickable - clicks ...",
+         "status": "Done"
         }
        ]
       }
@@ -190,7 +164,7 @@
    "color": "#4cb782",
    "groups": [
     {
-     "initiative": "__none__",
+     "initiative": "Ocean Ionics: Full AP Loop",
      "projects": [
       {
        "name": "Ocean Ionics sandbox testing",
@@ -211,7 +185,12 @@
          "status": "Todo"
         }
        ]
-      },
+      }
+     ]
+    },
+    {
+     "initiative": "__none__",
+     "projects": [
       {
        "name": "BV Sequence 2: Flow Improvements",
        "issues": [
@@ -247,43 +226,33 @@
    "color": "#f2994a",
    "groups": [
     {
-     "initiative": "Make neno the source of truth for all bookkeeping",
+     "initiative": "Source of truth for all bookkeeping activity",
      "projects": [
       {
        "name": "End-to-end AR reconciliation",
        "issues": [
         {
+         "id": "NEO-1627",
+         "title": "verify end-to-end AR flow",
+         "status": "In Progress"
+        },
+        {
          "id": "NEO-1560",
          "title": "SPIKE: Exploratory frontend changes for AR",
          "status": "In Progress"
+        },
+        {
+         "id": "NEO-1637",
+         "title": "AR send flow broken: no approved -> finalized transition (blocks NE...",
+         "status": "Done"
         }
        ]
       }
      ]
     },
     {
-     "initiative": "__none__",
+     "initiative": "Org + Platform Maturity",
      "projects": [
-      {
-       "name": "WhatsApp Integration + Agents",
-       "issues": [
-        {
-         "id": "NEO-1604",
-         "title": "WhatsApp bill upload: workspace picker buttons for multi-workspace ...",
-         "status": "In Progress"
-        }
-       ]
-      },
-      {
-       "name": "Platform",
-       "issues": [
-        {
-         "id": "NEO-1584",
-         "title": "Observability: per-customer usage metrics (Phase 0, starting with O...",
-         "status": "Todo"
-        }
-       ]
-      },
       {
        "name": "Bastion onboarding + setup",
        "issues": [
@@ -298,7 +267,12 @@
          "status": "Todo"
         }
        ]
-      },
+      }
+     ]
+    },
+    {
+     "initiative": "__none__",
+     "projects": [
       {
        "name": "Bas S.: Post-Incorporation UX improvements",
        "issues": [
@@ -313,9 +287,24 @@
        "name": "__none__",
        "issues": [
         {
+         "id": "NEO-1408",
+         "title": "Hide the terms-template dropdown on the quote builder (templates ar...",
+         "status": "In Progress"
+        },
+        {
          "id": "NEO-1480",
          "title": "WhatsApp agent-info emits a double-+ phone number and a non-canonic...",
          "status": "In Progress"
+        },
+        {
+         "id": "NEO-1607",
+         "title": "Decouple Home Hub demo task from Task model (Frontend & Supporting ...",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1666",
+         "title": "BV -> Swan onboarding prefill rejected: relatedIndividuals missing ...",
+         "status": "Done"
         }
        ]
       }
@@ -327,140 +316,7 @@
    "name": "Ihor",
    "initial": "I",
    "color": "#14b8a6",
-   "groups": [
-    {
-     "initiative": "__none__",
-     "projects": [
-      {
-       "name": "Ocean Ionics sandbox testing",
-       "issues": [
-        {
-         "id": "NEO-1193",
-         "title": "Partial-payment reconciliation as a first-class workflow (settlemen...",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-1135",
-         "title": "Exact sync logs don't include enough info to find the created entities",
-         "status": "Todo"
-        }
-       ]
-      },
-      {
-       "name": "UX Improvements",
-       "issues": [
-        {
-         "id": "NEO-505",
-         "title": "Alert if a (Swan) user is created without an Account Holder",
-         "status": "Todo"
-        }
-       ]
-      },
-      {
-       "name": "__none__",
-       "issues": [
-        {
-         "id": "NEO-1464",
-         "title": "Enforce review-before-reconciliation and remove APPROVED bill status",
-         "status": "In Progress"
-        }
-       ]
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "name": "Art",
-   "initial": "A",
-   "color": "#e5484d",
-   "groups": [
-    {
-     "initiative": "__none__",
-     "projects": [
-      {
-       "name": "Smart Bill Review",
-       "issues": [
-        {
-         "id": "NEO-1614",
-         "title": "Found the first coding draft on the likely supplier, and persist th...",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1612",
-         "title": "Coding proposals for a deleted line item are never cleaned up",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1610",
-         "title": "Solve for the VAT rate when a bill states none: net lines plus a gr...",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1595",
-         "title": "Derive the VAT rate and inclusive/exclusive from the bill's own fig...",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1596",
-         "title": "Re-propose the GL account when a bill's supplier link changes (VAT ...",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1611",
-         "title": "Bill upload silently swallows the duplicate case; document preview ...",
-         "status": "Done"
-        }
-       ]
-      },
-      {
-       "name": "Reconcilation UX Improvements",
-       "issues": [
-        {
-         "id": "NEO-1524",
-         "title": "Improve Supplier Management within the bill review UI",
-         "status": "In Review"
-        }
-       ]
-      },
-      {
-       "name": "Neno Brain",
-       "issues": [
-        {
-         "id": "NEO-1501",
-         "title": "Authenticate Anthropic API from Cloud Run via Workload Identity Fed...",
-         "status": "Todo"
-        }
-       ]
-      },
-      {
-       "name": "Reconciliation",
-       "issues": [
-        {
-         "id": "NEO-1602",
-         "title": "Admin reconciliation queue: server-side search and sortable Date/Am...",
-         "status": "Done"
-        }
-       ]
-      },
-      {
-       "name": "__none__",
-       "issues": [
-        {
-         "id": "NEO-1606",
-         "title": "Tests wait on fire-and-forget writes with fixed sleeps — 33 of them...",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1580",
-         "title": "env-sync.sh produces a local environment that cannot run the Swan b...",
-         "status": "Done"
-        }
-       ]
-      }
-     ]
-    }
-   ]
+   "groups": []
   }
  ]
 }

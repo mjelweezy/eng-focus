@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping activity
 _Initiative: b508d2b3-f876-4068-beec-e3c9899dd8c4 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-30_
+_Last updated: 2026-08-04_
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the
 > accountant-performed bookkeeping actions: AR reconciliation, credit notes, accruals,
@@ -18,6 +18,7 @@ _Last updated: 2026-07-30_
 - [2026-07-06] (carried forward, Matthew) Split 'Depreciation & accruals' into two projects: 'Depreciation schedules' and 'Accruals'.
 - [2026-07-07] (carried forward, Matthew) Depreciation schedules and credit note processing deprioritised for July - moved to Later on the board and Backlog in Linear.
 - [2026-07-30] (Matthew) Initiative split into 'bookkeeping data' vs 'bookkeeping activity'; this file covers the accountant-performed actions. AR reconciliation is now In Progress (Joel) - promoted to the "now" bucket.
+- [2026-08-03] Depreciation should ideally run daily rather than monthly, so the balance sheet reflects a live snapshot; depreciation can be built before the balance sheet exists, but the edit and write-off flows will require it. (source: Granola - Book-keeping features: investments, 3 Aug)
 
 ## Open questions
 - [open] (carried forward) Full reporting requirements list still being compiled by DP. (project: Financial reporting)
@@ -27,6 +28,8 @@ _Last updated: 2026-07-30_
 - [open] (carried forward) Accountant portfolio management (per group/entity): where should it live (Yaroslav proposes Atlas) and what data source backs it? (source: Slack #accounting-mvp, 14 Jul)
 - [open] (carried forward) Accept hybrid data and a longer Exact dependence for more customers in order to prioritise spend-management, or hold the line on book-keeping completeness first? (owner: Matthew) (source: Slack #advisory-services, 16 Jul)
 - [open] (carried forward) Which two upcoming book-keeping features/integrations are prioritised first, and what are their requirements? (owner: Matthew) (source: Slack #core-team, 28 Jul)
+- [open] Build depreciation now without delete/edit capability, or wait and do it properly with balance-sheet integration? (project: Depreciation schedules) (source: Granola - Book-keeping features: investments, 3 Aug)
+- [open] Balance-sheet strategy: pull the Exact balance sheet into neno and make it editable, or wait until customers have fully migrated off Exact? To be decided before building depreciation. (source: Granola - Book-keeping features: investments, 3 Aug)
 
 ## Risks
 - [med] (carried forward) Scope is broad and unsequenced; nothing staffed yet beyond AR reconciliation.
@@ -37,6 +40,8 @@ _Last updated: 2026-07-30_
 - [carried forward] DP to compile the full reporting requirements list. (owner: DP, ASAP) (project: Financial reporting)
 - [carried forward] Define and file the remaining projects after AR reconciliation. (owner: Matthew)
 - [2026-07-28] (carried forward) Sync with Matthew on the end-to-end AR surfaces (PR #1232) to confirm they meet the requirements before building further. (owner: Joel/Matthew) (source: Slack #core-team, 28 Jul)
+- [2026-08-03] Write up the depreciation schedule spec in Linear, including the open questions on edit/delete and the balance-sheet dependency. (owner: Matthew) (source: Granola - Book-keeping features: investments, 3 Aug)
+- [2026-08-03] Decide the balance-sheet strategy before building depreciation. (owner: Matthew/Mark) (source: Granola - Book-keeping features: investments, 3 Aug)
 
 ## Projects (filed in Linear)
 - [2026-07-30] Attached to this new initiative: Financial reporting, Credit note processing (AR & AP), Related-parties register, Depreciation schedules, Accruals, Native team features & permissions, Customer project creation & management, Bookkeeping bug-fixes, End-to-end AR reconciliation. New backlog items from the Q3 roadmap deck not yet filed as Linear projects: Investment & loan booking, Corrections/memorandums, Inter-company payments, Backfill bookings to AGL, Opening balances for AGL.
@@ -56,6 +61,9 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 - (project: End-to-end AR reconciliation) ~EUR 15K in outstanding receivables flagged with no active debtor management yet; AR end-to-end is a Q3 priority and needs a debtor-management view. (source: DP session, 23 Jun 2026)
 - (project: End-to-end AR reconciliation) Reconciliation-suggestion constraints must carry over to AR: at most one active suggestion per invoice and per transaction, and trustworthy 'not matched' / 'needs review' lists. (source: Slack #accounting-mvp (Ihor), 7 Jul 2026)
 - (project: Credit note processing (AR & AP)) Credit-note processing (both AR & AP) is a Q3 feature; still to be specced — likely intersects the GL period-close/correction rules. (source: Q3 planning, 23 Jun 2026)
+- (project: Depreciation schedules) An accountant can select a transaction, mark it as an asset and define a depreciation schedule; the schedule then updates the balance sheet on the defined cadence, with daily preferred over monthly. (source: Granola - Book-keeping features: investments, 3 Aug 2026)
+- (project: Depreciation schedules) A write-off flow is needed: remove the cost price, book the sale proceeds and recognise the resulting gain or loss. (source: Granola - Book-keeping features: investments, 3 Aug 2026)
+- (project: Depreciation schedules) Assets need residual-value support, and depreciation timelines follow the customer's own company policy. (source: Granola - Book-keeping features: investments, 3 Aug 2026)
 
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._
@@ -63,6 +71,7 @@ _New requirements the job couldn't confidently assign to a project land here for
 - [2026-07-16] (carried forward, update) The prospective first MCP-API test customer (Sil) declined; the invoice/quote MCP requirement stands for future founder/developer customers and still needs Matthew's attribution. Yaroslav is drafting a Neno MCP v1 scope (Invoices, Quotes, Bills). (source: Slack #product, 16 Jul)
 - [2026-07-28] (carried forward) The admin reconciliation queue needs date filtering, server-side search and sortable Date/Amount columns. Filed as NEO-1602 (Art) on the "Reconciliation" project, which sits outside the tracked initiatives; needs Matthew's attribution. (source: Linear NEO-1602, 28 Jul)
 - [2026-07-27] (carried forward) Surface a typical GL-account mapping per vendor at bill-coding recommendation time, to reduce Andries's per-invoice manual vendor-context lookups. Discussed as a near-term addition to the Smart Bill Review coding assistant, which sits outside the tracked initiatives; needs Matthew's attribution. (source: Granola - Andries and Art, 27 Jul)
+- [2026-08-03] Andries needs to be able to book an Ocean Ionics transaction to an "Investments" GL account. The wider "Investment & loan booking" scope is a board text item with no Linear project yet, so this cannot be confidently attributed; needs Matthew's attribution. (source: Granola - Book-keeping features: investments, 3 Aug)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-07-30_
+_Last updated: 2026-08-04_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -56,6 +56,9 @@ _Last updated: 2026-07-30_
 
 - [2026-07-28] Smart Bill Review VAT coding made arithmetic rather than guessed (NEO-1595, Art, In Review 28 Jul): the coding proposer's prompt carried the supplier name, each line's position and description and the two candidate lists, but withheld net, gross, tax rate and the bill-level tax entries - so the model had to guess the VAT rate and whether amounts were inclusive or exclusive. It showed up on an Albert Heijn receipt where the candidate menu offered both an exclusive and an inclusive low-rate code. The fix derives the rate and inclusive/exclusive treatment from the bill's own figures and narrows the candidates accordingly; PR #1266 closes the AH receipt case Matthew raised the same day. (source: Linear NEO-1595; Slack #tech-team, 28 Jul)
 
+- [2026-08-03] GL accounts are currently read from Exact; neno cannot yet create a GL account from inside the product. Making the neno GL the source of truth for the chart of accounts is deferred until Mark returns from leave. (source: Granola - Book-keeping features: investments, 3 Aug)
+- [2026-08-03] VAT return delivery to the customer is split into two phases: (1) vault upload + task creation + email notification, (2) a Swan "Pay Now" button plus an open-banking PIS payment flow for non-Swan customers. The VAT submission task gets its own dedicated email template that points the customer to the platform rather than carrying sensitive detail inline (Molly precedent), and the VAT upload is modelled as a new task type that deposits a document into the vault with transaction info left empty so it never surfaces in the reconciliation queue. (source: Granola - VAT Return Tasks, 3 Aug)
+
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
 - [open] Full reporting requirements list being compiled by DP (potentially 100+ items) — will frame future design. (owner: DP)
@@ -79,6 +82,11 @@ _Last updated: 2026-07-30_
 
 - [open] FedEx BTW-return bill: Exact will not accept the BTW (VAT) return booking directly; Andries proposes a dedicated GL account for these cases. To be confirmed. (source: Slack #accounting-mvp (Mark/Andries), 22 Jul)
 
+- [open] Does neno resync the chart of GL accounts from Exact on a cadence, or only once at connection time? (owner: Ihor) (source: Granola - Book-keeping features: investments, 3 Aug)
+- [open] Should neno pull the Exact balance sheet in and make it editable in neno, or wait until customers have fully migrated off Exact? (source: Granola - Book-keeping features: investments, 3 Aug)
+- [open] Can the Swan "Pay Now" flow ship alongside phase one of VAT return tasks, or must it be split out? Effort to be assessed first. (owner: Matthew) (source: Granola - VAT Return Tasks, 3 Aug)
+- [open] How does the accounting firm currently generate payment links to the IBAN - can neno replicate or integrate that? (owner: Eugenia) (source: Granola - VAT Return Tasks, 3 Aug)
+
 ## Risks
 - [high] Spike code (~13k lines, Claude-generated) took liberties with DB writes; atomicity and no-overlapping-bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew). (source: Granola — Next Steps AGL)
 - [med] Belgium gapless-ledger scope unconfirmed.
@@ -88,6 +96,8 @@ _Last updated: 2026-07-30_
 - [med] Mark's leave starts 23 Jul (through 7 Aug); the ledger needs to reach production before then or be handed off mid-flight. (source: Granola/tldv - stand-up, 15 Jul)
 
 - [low] (2026-07-21) Production go-live was reached before Mark's 23 Jul leave (ledger live for Ocean Ionics); residual risk shifts to post-go-live hardening during his absence - Ledger Failure triage, the still-unbuilt bill-edit correction flow, and neno-vs-Exact trial-balance noise on OI. (source: Slack #accounting-mvp, 21 Jul)
+
+- [med] (2026-08-03) Bus factor: Mark is the only person who has seen the full state of the GL work, and nobody else can speak to it while he is on leave; making the neno GL the source of truth for the chart of accounts is blocked on his return. (source: Granola - Book-keeping features: investments, 3 Aug)
 
 ## Next steps
 - [2026-06-23] DP to compile full reporting requirements list. (owner: DP, due ASAP)
@@ -110,6 +120,11 @@ _Last updated: 2026-07-30_
 - [2026-07-15] Mark to continue testing the GL and drive it to production before his holiday; investigate payroll CSV ingestion. (owner: Mark) (source: Granola/tldv - stand-up, 14-15 Jul)
 
 - [2026-07-21] Production go-live done (ledger live for Ocean Ionics, 21 Jul); next: triage the backfill/Ledger Failures on OI, keep the neno-vs-Exact trial balance under watch, and harden the bill-edit/re-book correction flow while Mark is on leave. (owner: devs / Mark handoff) (source: Slack #accounting-mvp, 21 Jul)
+
+- [2026-08-03] Andries to create an "Investments" GL account in Exact and test it through neno's Allocate-to-GL flow. (owner: Andries) (source: Granola - Book-keeping features: investments, 3 Aug)
+- [2026-08-03] Ihor to investigate chart-of-accounts sync if the new Exact GL account does not appear in neno. (owner: Ihor) (source: Granola - Book-keeping features: investments, 3 Aug)
+- [2026-08-03] Review Mark's GL progress with the full team on his return. (owner: Matthew) (source: Granola - Book-keeping features: investments, 3 Aug)
+- [2026-08-03] Matthew to write up the VAT return project spec covering both phases; Eugenia to get an example payment link from the accounting firm; find and restore the missing Tasks page in Atlas (it exists at neno.build but not atlas.neno.com). (owner: Matthew/Eugenia) (source: Granola - VAT Return Tasks, 3 Aug)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project (this project is In Progress, so they are posted as a proposed comment, not auto-applied)._
@@ -162,6 +177,7 @@ _Expanded 2026-07-22 from the 21 Jul production go-live (#accounting-mvp). Proje
 
 _New requirements the job could not confidently assign to a project under this initiative._
 - [2026-07-28] The GL/VAT coding proposer must receive the bill's own figures (line net/gross, tax amounts and bill-level tax entries) and derive the VAT rate and inclusive/exclusive treatment arithmetically, using them to narrow the candidate code list, rather than inferring VAT treatment from supplier name and line description alone. Filed in Linear against the Smart Bill Review project (NEO-1595), which sits outside the three tracked initiatives, so it cannot be confidently attributed to "Start writing to neno's double-entry GL"; needs Matthew's attribution. (source: Linear NEO-1595; Slack #tech-team, 28 Jul)
+- [2026-08-03] VAT return delivery and payment: model the VAT submission as a new task type that deposits the VAT document into the vault with transaction info left empty (so it does not appear in the reconciliation queue); capture amount, reference number, IBAN, due date and the document itself; give it a dedicated email template directing the customer to the platform; phase two adds a Swan "Pay Now" button (stored IBAN, reference and amount, one click plus Swan auth) and an open-banking PIS payment route for non-Swan customers, targeted before 31 Oct 2026 (Q3 VAT deadline); a working Tasks page is needed in Atlas, and longer term a documents-queue page with an upload button and document-type dropdown. This is task/payment surface work rather than ledger work, so it cannot be attributed to "Start writing to neno's double-entry GL", and no Linear project exists for it yet; needs Matthew's attribution. (source: Granola - VAT Return Tasks, 3 Aug)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->
