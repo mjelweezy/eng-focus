@@ -1,5 +1,5 @@
 {
-  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). Buckets encode commitments for the month named in period_label: 'now' = committed AND in progress; 'next' = committed, not yet started; 'later' = not committed. The 'Other commitments' card is static (no Linear initiative): the job must leave it untouched and skip it when building context.json. Cards listed in hidden_but_synced_initiatives have no board card but the job still refreshes their memory/context.json and Linear write-back. Edit this file to change curation. The engineer view is fully auto-generated from Linear. Restructured 4 Aug 2026 (Matthew): board is now the four tracked initiatives - source of truth for bookkeeping data, source of truth for bookkeeping activity, make accountants more efficient during onboarding and customer collaboration (renamed from 'Centralise customer data' in Linear too), enable accountants to complete VAT submissions via double-entry GL - plus the static 'Other commitments' card, all five side by side. The leave calendar moved below the board and is rebuilt monthly from Matthew's Google Calendar. Ihor's holiday ended 31 Jul so he is available for August. Re-bucketed 4 Aug 2026 (Matthew, ahead of the P&E retro): payroll (Numbrs) committed under bookkeeping data; credit note processing and depreciation schedules committed under bookkeeping activity; backfill bookings to AGL and opening balances for AGL moved from bookkeeping activity to the double-entry GL initiative as committed, since they gate the 5-customer Q3 VAT filing; structured profiles, a persistent homepage and onboarding actions for off-platform tasks committed under accountant efficiency; pay by link for Neno invoices and referral links added to Other commitments. Trimmed 4 Aug 2026 (Matthew): generic platform balance imports moved to later; third-party wallet transaction import, financial reporting, customer project creation & management, native team features & permissions, bookkeeping bug-fixes and inter-company payments removed from the board. The five removed Linear projects are listed in ignored_projectIds so the daily job does not re-surface them as needs-triage.",
+  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). Buckets encode commitments for the month named in period_label: 'now' = committed AND in progress; 'next' = committed, not yet started; 'later' = not committed. The 'Other commitments' card is static (no Linear initiative): the job must leave it untouched and skip it when building context.json. Cards listed in hidden_but_synced_initiatives have no board card but the job still refreshes their memory/context.json and Linear write-back. Edit this file to change curation. The engineer view is fully auto-generated from Linear. Restructured 4 Aug 2026 (Matthew): board is now the four tracked initiatives - source of truth for bookkeeping data, source of truth for bookkeeping activity, make accountants more efficient during onboarding and customer collaboration (renamed from 'Centralise customer data' in Linear too), enable accountants to complete VAT submissions via double-entry GL - plus the static 'Other commitments' card, all five side by side. The leave calendar moved below the board and is rebuilt monthly from Matthew's Google Calendar. Ihor's holiday ended 31 Jul so he is available for August. Re-bucketed 4 Aug 2026 (Matthew, ahead of the P&E retro): payroll (Numbrs) committed under bookkeeping data; credit note processing and depreciation schedules committed under bookkeeping activity; backfill bookings to AGL and opening balances for AGL moved from bookkeeping activity to the double-entry GL initiative as committed, since they gate the 5-customer Q3 VAT filing; structured profiles, a persistent homepage and onboarding actions for off-platform tasks committed under accountant efficiency; pay by link for Neno invoices and referral links added to Other commitments. Trimmed 4 Aug 2026 (Matthew): generic platform balance imports moved to later; third-party wallet transaction import, financial reporting, customer project creation & management, native team features & permissions, bookkeeping bug-fixes and inter-company payments removed from the board. The five removed Linear projects are listed in ignored_projectIds so the daily job does not re-surface them as needs-triage. Re-ordered 4 Aug 2026 (Matthew): each card's items now sit in his stated priority order. 'Investment & loan booking' split into committed 'Investment bookings' and uncommitted 'Loan bookings'; 'Neno invoicing improvements' and 'Stripe' added under bookkeeping data (later); 'Accountant UI improvements' removed from Other commitments.",
   "title": "Engineering Focus",
   "merge_rules": {
     "initiative_view": "Keep buckets and item order exactly as defined below. For items with a projectId, refresh owner (project lead) and status from Linear at run time. Do NOT re-bucket automatically. Buckets encode the current month's commitments: now = in progress, next = committed for the month, later = not committed. The month shown in the bucket headings comes from period_label. Cards with static:true have no Linear initiative - skip them for context.json and needs-triage.",
@@ -127,8 +127,26 @@
         "later": [
           {
             "type": "text",
+            "label": "PEPPOL invoicing",
+            "desc": "Integrate PEPPOL e-invoicing as a data source.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
+            "label": "Neno invoicing improvements",
+            "desc": "Build out neno's own invoicing so customers do not need a third-party invoicing tool as the data source.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
             "label": "Generic platform balance imports",
             "desc": "Generic connector to pull account balances from other platforms customers already use.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
+            "label": "Stripe",
+            "desc": "Pull Stripe balances and settlement data into neno.",
             "show_owner_status": false
           },
           {
@@ -147,12 +165,6 @@
             "type": "text",
             "label": "WeFact Invoicing",
             "desc": "Integrate WeFact invoicing data as a source.",
-            "show_owner_status": false
-          },
-          {
-            "type": "text",
-            "label": "PEPPOL invoicing",
-            "desc": "Integrate PEPPOL e-invoicing as a data source.",
             "show_owner_status": false
           }
         ],
@@ -211,16 +223,9 @@
         "next": [
           {
             "type": "text",
-            "label": "Investment & loan booking",
-            "desc": "Book investment and loan transactions correctly in the ledger.",
+            "label": "Investment bookings",
+            "desc": "Book investment transactions correctly in the ledger. Split from loan bookings 4 Aug 2026.",
             "show_owner_status": false
-          },
-          {
-            "type": "project",
-            "projectId": "6c262f19-7934-4641-ba14-6ff937127454",
-            "label": "Credit note processing (AR & AP)",
-            "show_owner_status": true,
-            "desc": "Process credit notes in both directions (AR & AP)."
           },
           {
             "type": "project",
@@ -228,9 +233,22 @@
             "label": "Depreciation schedules",
             "show_owner_status": true,
             "desc": "Depreciation schedules grouped by asset type, with a fixed asset register."
+          },
+          {
+            "type": "project",
+            "projectId": "6c262f19-7934-4641-ba14-6ff937127454",
+            "label": "Credit note processing (AR & AP)",
+            "show_owner_status": true,
+            "desc": "Process credit notes in both directions (AR & AP)."
           }
         ],
         "later": [
+          {
+            "type": "text",
+            "label": "Loan bookings",
+            "desc": "Book loan transactions correctly in the ledger. Split from investment bookings 4 Aug 2026 and left uncommitted.",
+            "show_owner_status": false
+          },
           {
             "type": "project",
             "projectId": "4ce20eb5-9845-4fa3-b1a9-8f9c8b949a3e",
@@ -401,14 +419,6 @@
         "now": [
           {
             "type": "text",
-            "label": "Accountant UI improvements",
-            "owner_override": "Matthew / Euge",
-            "status_override": "In Progress",
-            "desc": "Matthew pruning and prepping the backlog from Andries's feedback; Euge's reconciliation review design underway.",
-            "show_owner_status": true
-          },
-          {
-            "type": "text",
             "label": "Prepare for Bastion pen test",
             "show_owner_status": true,
             "owner_override": "Joel",
@@ -419,8 +429,14 @@
         "next": [
           {
             "type": "text",
-            "label": "Swan onboarding changes",
-            "desc": "Modify our onboarding flow per Swan's advice to meet the requirements that unlock additional Swan features.",
+            "label": "Pay by link for Neno invoices",
+            "desc": null,
+            "show_owner_status": true
+          },
+          {
+            "type": "text",
+            "label": "Referral links",
+            "desc": "Let existing customers refer new customers and see what they have earned; neno staff initiate payouts. Did not ship in July (vacation and more pressing priorities); prioritised for end of August.",
             "show_owner_status": true
           },
           {
@@ -432,14 +448,8 @@
           },
           {
             "type": "text",
-            "label": "Pay by link for Neno invoices",
-            "desc": null,
-            "show_owner_status": true
-          },
-          {
-            "type": "text",
-            "label": "Referral links",
-            "desc": "Let existing customers refer new customers and see what they have earned; neno staff initiate payouts. Did not ship in July (vacation and more pressing priorities); prioritised for end of August.",
+            "label": "Swan onboarding changes",
+            "desc": "Modify our onboarding flow per Swan's advice to meet the requirements that unlock additional Swan features.",
             "show_owner_status": true
           }
         ],
