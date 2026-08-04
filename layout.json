@@ -1,5 +1,5 @@
 {
-  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). Buckets encode commitments for the month named in period_label: 'now' = committed AND in progress; 'next' = committed, not yet started; 'later' = not committed. The 'Other commitments' card is static (no Linear initiative): the job must leave it untouched and skip it when building context.json. Cards listed in hidden_but_synced_initiatives have no board card but the job still refreshes their memory/context.json and Linear write-back. Edit this file to change curation. The engineer view is fully auto-generated from Linear. Restructured 4 Aug 2026 (Matthew): board is now the four tracked initiatives - source of truth for bookkeeping data, source of truth for bookkeeping activity, make accountants more efficient during onboarding and customer collaboration (renamed from 'Centralise customer data' in Linear too), enable accountants to complete VAT submissions via double-entry GL - plus the static 'Other commitments' card, all five side by side. The leave calendar moved below the board and is rebuilt monthly from Matthew's Google Calendar. Ihor's holiday ended 31 Jul so he is available for August.",
+  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). Buckets encode commitments for the month named in period_label: 'now' = committed AND in progress; 'next' = committed, not yet started; 'later' = not committed. The 'Other commitments' card is static (no Linear initiative): the job must leave it untouched and skip it when building context.json. Cards listed in hidden_but_synced_initiatives have no board card but the job still refreshes their memory/context.json and Linear write-back. Edit this file to change curation. The engineer view is fully auto-generated from Linear. Restructured 4 Aug 2026 (Matthew): board is now the four tracked initiatives - source of truth for bookkeeping data, source of truth for bookkeeping activity, make accountants more efficient during onboarding and customer collaboration (renamed from 'Centralise customer data' in Linear too), enable accountants to complete VAT submissions via double-entry GL - plus the static 'Other commitments' card, all five side by side. The leave calendar moved below the board and is rebuilt monthly from Matthew's Google Calendar. Ihor's holiday ended 31 Jul so he is available for August. Re-bucketed 4 Aug 2026 (Matthew, ahead of the P&E retro): payroll (Numbrs) committed under bookkeeping data; credit note processing and depreciation schedules committed under bookkeeping activity; backfill bookings to AGL and opening balances for AGL moved from bookkeeping activity to the double-entry GL initiative as committed, since they gate the 5-customer Q3 VAT filing; structured profiles, a persistent homepage and onboarding actions for off-platform tasks committed under accountant efficiency; pay by link for Neno invoices and referral links added to Other commitments.",
   "title": "Engineering Focus",
   "merge_rules": {
     "initiative_view": "Keep buckets and item order exactly as defined below. For items with a projectId, refresh owner (project lead) and status from Linear at run time. Do NOT re-bucket automatically. Buckets encode the current month's commitments: now = in progress, next = committed for the month, later = not committed. The month shown in the bucket headings comes from period_label. Cards with static:true have no Linear initiative - skip them for context.json and needs-triage.",
@@ -115,16 +115,16 @@
             "label": "Generic platform balance imports",
             "desc": "Generic connector to pull account balances from other platforms customers already use.",
             "show_owner_status": false
-          }
-        ],
-        "later": [
+          },
           {
             "type": "project",
             "projectId": "2731244b-71c8-44d1-b6bf-ae9434135d05",
             "label": "Payroll (Numbrs integration)",
             "show_owner_status": true,
             "desc": "Payroll via a Numbrs integration, with salary journals flowing into the ledger."
-          },
+          }
+        ],
+        "later": [
           {
             "type": "project",
             "projectId": "8e80b462-b77a-4479-b48e-8031bc8b6f11",
@@ -217,20 +217,6 @@
             "show_owner_status": false
           },
           {
-            "type": "text",
-            "label": "Backfill bookings to AGL",
-            "desc": "Backfill historical bookings into the Agentic General Ledger.",
-            "show_owner_status": false
-          },
-          {
-            "type": "text",
-            "label": "Opening balances for AGL",
-            "desc": "Set opening balances so the AGL starts from an accurate baseline.",
-            "show_owner_status": false
-          }
-        ],
-        "later": [
-          {
             "type": "project",
             "projectId": "6c262f19-7934-4641-ba14-6ff937127454",
             "label": "Credit note processing (AR & AP)",
@@ -243,7 +229,9 @@
             "label": "Depreciation schedules",
             "show_owner_status": true,
             "desc": "Depreciation schedules grouped by asset type, with a fixed asset register."
-          },
+          }
+        ],
+        "later": [
           {
             "type": "project",
             "projectId": "14c0164a-580a-4707-a6f6-039eb30c5969",
@@ -299,7 +287,7 @@
             "show_owner_status": false
           }
         ],
-        "footnote": "Split out of 'Make neno the source of truth for all bookkeeping' (30 Jul 2026). See 'Source of truth for all bookkeeping data' for the external data integrations feeding this work. Committed for Q3: end-to-end AR reconciliation (in progress, Joel)."
+        "footnote": "Split out of 'Make neno the source of truth for all bookkeeping' (30 Jul 2026). See 'Source of truth for all bookkeeping data' for the external data integrations feeding this work. Committed: end-to-end AR reconciliation (in progress, Joel), plus investment & loan booking, credit note processing and depreciation schedules. Backfill bookings to AGL and opening balances for AGL moved to the double-entry GL initiative (4 Aug 2026), where they gate the 5-customer Q3 VAT filing."
       }
     },
     {
@@ -343,8 +331,7 @@
             "desc": "Custom, per-customer financial reports (built on the neno-report-generator)."
           }
         ],
-        "next": [],
-        "later": [
+        "next": [
           {
             "type": "text",
             "label": "Structured profiles for services customers",
@@ -353,11 +340,18 @@
           },
           {
             "type": "text",
+            "label": "Persistent homepage",
+            "desc": "Keep the Home page present after onboarding actions are complete, rather than hiding it on completion.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
             "label": "Onboarding actions for off-platform tasks",
             "desc": "Guided onboarding actions for tasks customers complete off-platform.",
             "show_owner_status": false
           }
-        ]
+        ],
+        "later": []
       }
     },
     {
@@ -408,7 +402,20 @@
             "desc": "From spike to production - real ledger writes for Ocean Ionics. Spike reproduced real books to the cent; the native engine is green-tested behind a flag. Next: run real production data through it."
           }
         ],
-        "next": [],
+        "next": [
+          {
+            "type": "text",
+            "label": "Backfill bookings to AGL",
+            "desc": "Backfill historical bookings into the Agentic General Ledger.",
+            "show_owner_status": false
+          },
+          {
+            "type": "text",
+            "label": "Opening balances for AGL",
+            "desc": "Set opening balances so the AGL starts from an accurate baseline.",
+            "show_owner_status": false
+          }
+        ],
         "later": [
           {
             "type": "text",
@@ -457,6 +464,18 @@
             "label": "Swan Card Cashback for Accounting Customers",
             "show_owner_status": true,
             "desc": "1% monthly cashback on net EUR Swan card spend for accounting customers; v1 is a manual bulk-transfer export."
+          },
+          {
+            "type": "text",
+            "label": "Pay by link for Neno invoices",
+            "desc": null,
+            "show_owner_status": true
+          },
+          {
+            "type": "text",
+            "label": "Referral links",
+            "desc": "Let existing customers refer new customers and see what they have earned; neno staff initiate payouts. Did not ship in July (vacation and more pressing priorities); prioritised for end of August.",
+            "show_owner_status": true
           }
         ],
         "later": []
