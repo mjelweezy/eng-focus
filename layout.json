@@ -1,5 +1,5 @@
 {
-  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). Buckets encode commitments for the month named in period_label: 'now' = committed AND in progress; 'next' = committed, not yet started; 'later' = not committed. The 'Other commitments' card is static (no Linear initiative): the job must leave it untouched and skip it when building context.json. Cards listed in hidden_but_synced_initiatives have no board card but the job still refreshes their memory/context.json and Linear write-back. Edit this file to change curation. The engineer view is fully auto-generated from Linear. Restructured 4 Aug 2026 (Matthew): board is now the four tracked initiatives - source of truth for bookkeeping data, source of truth for bookkeeping activity, make accountants more efficient during onboarding and customer collaboration (renamed from 'Centralise customer data' in Linear too), enable accountants to complete VAT submissions via double-entry GL - plus the static 'Other commitments' card, all five side by side. The leave calendar moved below the board and is rebuilt monthly from Matthew's Google Calendar. Ihor's holiday ended 31 Jul so he is available for August. Re-bucketed 4 Aug 2026 (Matthew, ahead of the P&E retro): payroll (Numbrs) committed under bookkeeping data; credit note processing and depreciation schedules committed under bookkeeping activity; backfill bookings to AGL and opening balances for AGL moved from bookkeeping activity to the double-entry GL initiative as committed, since they gate the 5-customer Q3 VAT filing; structured profiles, a persistent homepage and onboarding actions for off-platform tasks committed under accountant efficiency; pay by link for Neno invoices and referral links added to Other commitments.",
+  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). Buckets encode commitments for the month named in period_label: 'now' = committed AND in progress; 'next' = committed, not yet started; 'later' = not committed. The 'Other commitments' card is static (no Linear initiative): the job must leave it untouched and skip it when building context.json. Cards listed in hidden_but_synced_initiatives have no board card but the job still refreshes their memory/context.json and Linear write-back. Edit this file to change curation. The engineer view is fully auto-generated from Linear. Restructured 4 Aug 2026 (Matthew): board is now the four tracked initiatives - source of truth for bookkeeping data, source of truth for bookkeeping activity, make accountants more efficient during onboarding and customer collaboration (renamed from 'Centralise customer data' in Linear too), enable accountants to complete VAT submissions via double-entry GL - plus the static 'Other commitments' card, all five side by side. The leave calendar moved below the board and is rebuilt monthly from Matthew's Google Calendar. Ihor's holiday ended 31 Jul so he is available for August. Re-bucketed 4 Aug 2026 (Matthew, ahead of the P&E retro): payroll (Numbrs) committed under bookkeeping data; credit note processing and depreciation schedules committed under bookkeeping activity; backfill bookings to AGL and opening balances for AGL moved from bookkeeping activity to the double-entry GL initiative as committed, since they gate the 5-customer Q3 VAT filing; structured profiles, a persistent homepage and onboarding actions for off-platform tasks committed under accountant efficiency; pay by link for Neno invoices and referral links added to Other commitments. Trimmed 4 Aug 2026 (Matthew): generic platform balance imports moved to later; third-party wallet transaction import, financial reporting, customer project creation & management, native team features & permissions, bookkeeping bug-fixes and inter-company payments removed from the board. The five removed Linear projects are listed in ignored_projectIds so the daily job does not re-surface them as needs-triage.",
   "title": "Engineering Focus",
   "merge_rules": {
     "initiative_view": "Keep buckets and item order exactly as defined below. For items with a projectId, refresh owner (project lead) and status from Linear at run time. Do NOT re-bucket automatically. Buckets encode the current month's commitments: now = in progress, next = committed for the month, later = not committed. The month shown in the bucket headings comes from period_label. Cards with static:true have no Linear initiative - skip them for context.json and needs-triage.",
@@ -117,12 +117,6 @@
         "now": [],
         "next": [
           {
-            "type": "text",
-            "label": "Generic platform balance imports",
-            "desc": "Generic connector to pull account balances from other platforms customers already use.",
-            "show_owner_status": false
-          },
-          {
             "type": "project",
             "projectId": "2731244b-71c8-44d1-b6bf-ae9434135d05",
             "label": "Payroll (Numbrs integration)",
@@ -132,11 +126,10 @@
         ],
         "later": [
           {
-            "type": "project",
-            "projectId": "8e80b462-b77a-4479-b48e-8031bc8b6f11",
-            "label": "Third-party wallet transaction import (MVP)",
-            "show_owner_status": true,
-            "desc": "MVP to import third-party wallet transactions - Stripe plus additional channels."
+            "type": "text",
+            "label": "Generic platform balance imports",
+            "desc": "Generic connector to pull account balances from other platforms customers already use.",
+            "show_owner_status": false
           },
           {
             "type": "text",
@@ -240,13 +233,6 @@
         "later": [
           {
             "type": "project",
-            "projectId": "14c0164a-580a-4707-a6f6-039eb30c5969",
-            "label": "Financial reporting",
-            "show_owner_status": true,
-            "desc": "Reporting on top of the ledger - aged receivables (30/60/90/120+) confirmed; full requirements list pending from DP."
-          },
-          {
-            "type": "project",
             "projectId": "4ce20eb5-9845-4fa3-b1a9-8f9c8b949a3e",
             "label": "Related-parties register",
             "show_owner_status": true,
@@ -260,40 +246,13 @@
             "desc": "Accrual and prepayment entries; approval-gated post-close adjustments."
           },
           {
-            "type": "project",
-            "projectId": "8f6881bc-f28a-4b3e-a832-33e61ac1b235",
-            "label": "Customer project creation & management",
-            "show_owner_status": true,
-            "desc": "Let customers create and manage projects."
-          },
-          {
-            "type": "project",
-            "projectId": "81f22936-e57a-4ecf-b68c-373967a9142c",
-            "label": "Native team features & permissions",
-            "show_owner_status": true,
-            "desc": "Native team features and membership permissions."
-          },
-          {
-            "type": "project",
-            "projectId": "2400bbd7-2889-4aa6-9ac4-21815da641f2",
-            "label": "Bookkeeping bug-fixes",
-            "show_owner_status": true,
-            "desc": "Ongoing correctness bug-fixes in reconciliation, matching and ledger allocation."
-          },
-          {
             "type": "text",
             "label": "Corrections / memorandums",
             "desc": "Post corrections as new adjustment entries rather than edits.",
             "show_owner_status": false
-          },
-          {
-            "type": "text",
-            "label": "Inter-company payments",
-            "desc": "Book and reconcile payments between related entities.",
-            "show_owner_status": false
           }
         ],
-        "footnote": "Split out of 'Make neno the source of truth for all bookkeeping' (30 Jul 2026). See 'Source of truth for all bookkeeping data' for the external data integrations feeding this work. Committed: end-to-end AR reconciliation (in progress, Joel), plus investment & loan booking, credit note processing and depreciation schedules. Backfill bookings to AGL and opening balances for AGL moved to the double-entry GL initiative (4 Aug 2026), where they gate the 5-customer Q3 VAT filing."
+        "footnote": "Split out of 'Make neno the source of truth for all bookkeeping' (30 Jul 2026). See 'Source of truth for all bookkeeping data' for the external data integrations feeding this work. Committed: end-to-end AR reconciliation (in progress, Joel), plus investment & loan booking, credit note processing and depreciation schedules. Backfill bookings to AGL and opening balances for AGL moved to the double-entry GL initiative (4 Aug 2026), where they gate the 5-customer Q3 VAT filing. Financial reporting, customer project creation, native team features and bookkeeping bug-fixes were removed from the board 4 Aug 2026 (reporting now lives solely under 'Make accountants more efficient' as Basic reporting)."
       }
     },
     {
@@ -534,5 +493,37 @@
       "note": "Removed from the board (30 Jul 2026) per Matthew's request. The daily job keeps refreshing this initiative's memory file and context.json entry, and keeps writing requirements back to its Linear projects, even though it no longer renders as a card."
     }
   ],
-  "period_label": "August"
+  "period_label": "August",
+  "ignored_projectIds": [
+    {
+      "projectId": "8e80b462-b77a-4479-b48e-8031bc8b6f11",
+      "label": "Third-party wallet transaction import (MVP)",
+      "removed": "2026-08-04",
+      "note": "Deliberately removed from the board by Matthew - do NOT re-surface in needs_triage."
+    },
+    {
+      "projectId": "14c0164a-580a-4707-a6f6-039eb30c5969",
+      "label": "Financial reporting",
+      "removed": "2026-08-04",
+      "note": "Deliberately removed from the board by Matthew - do NOT re-surface in needs_triage."
+    },
+    {
+      "projectId": "8f6881bc-f28a-4b3e-a832-33e61ac1b235",
+      "label": "Customer project creation & management",
+      "removed": "2026-08-04",
+      "note": "Deliberately removed from the board by Matthew - do NOT re-surface in needs_triage."
+    },
+    {
+      "projectId": "81f22936-e57a-4ecf-b68c-373967a9142c",
+      "label": "Native team features & permissions",
+      "removed": "2026-08-04",
+      "note": "Deliberately removed from the board by Matthew - do NOT re-surface in needs_triage."
+    },
+    {
+      "projectId": "2400bbd7-2889-4aa6-9ac4-21815da641f2",
+      "label": "Bookkeeping bug-fixes",
+      "removed": "2026-08-04",
+      "note": "Deliberately removed from the board by Matthew - do NOT re-surface in needs_triage."
+    }
+  ]
 }
