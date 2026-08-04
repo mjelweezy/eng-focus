@@ -1,8 +1,8 @@
 {
-  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). JULY SEMANTICS: buckets encode commitments - 'now' = committed AND in progress; 'next' = committed, not yet started; 'later' = not committed. The 'other-july' card is static (no Linear initiative): the job must leave it untouched and skip it when building context.json. Cards listed in hidden_but_synced_initiatives have no board card but the job still refreshes their memory/context.json and Linear write-back. Edit this file to change curation. The engineer view is fully auto-generated from Linear. Restructured 30 Jul 2026: removed 'Build data by onboarding 5 additional customers' from the board (now hidden-but-synced); split 'Make neno the source of truth for all bookkeeping' into two initiatives (data vs activity); added 'Centralise customer data'; added Art to the engineer roster.",
+  "_comment": "Manual layout spec for the Neno Engineering Focus board. The daily 6am job MERGES live Linear data into THIS fixed structure for the initiative view, and uses each initiative's context_sources to build the context page (context.json). Buckets encode commitments for the month named in period_label: 'now' = committed AND in progress; 'next' = committed, not yet started; 'later' = not committed. The 'Other commitments' card is static (no Linear initiative): the job must leave it untouched and skip it when building context.json. Cards listed in hidden_but_synced_initiatives have no board card but the job still refreshes their memory/context.json and Linear write-back. Edit this file to change curation. The engineer view is fully auto-generated from Linear. Restructured 4 Aug 2026 (Matthew): board is now the four tracked initiatives - source of truth for bookkeeping data, source of truth for bookkeeping activity, make accountants more efficient during onboarding and customer collaboration (renamed from 'Centralise customer data' in Linear too), enable accountants to complete VAT submissions via double-entry GL - plus the static 'Other commitments' card, all five side by side. The leave calendar moved below the board and is rebuilt monthly from Matthew's Google Calendar. Ihor's holiday ended 31 Jul so he is available for August.",
   "title": "Engineering Focus",
   "merge_rules": {
-    "initiative_view": "Keep buckets and item order exactly as defined below. For items with a projectId, refresh owner (project lead) and status from Linear at run time. Do NOT re-bucket automatically. Buckets encode July commitments: now = in progress, next = committed for July, later = not committed. Cards with static:true have no Linear initiative - skip them for context.json and needs-triage.",
+    "initiative_view": "Keep buckets and item order exactly as defined below. For items with a projectId, refresh owner (project lead) and status from Linear at run time. Do NOT re-bucket automatically. Buckets encode the current month's commitments: now = in progress, next = committed for the month, later = not committed. The month shown in the bucket headings comes from period_label. Cards with static:true have no Linear initiative - skip them for context.json and needs-triage.",
     "new_projects": "If a NEW project appears under one of the tracked initiatives in Linear that is not listed below, surface it in a 'Needs triage' note on that card rather than placing it.",
     "removed_projects": "If a listed projectId is completed/cancelled/missing in Linear, render it struck-through with a '(check)' flag.",
     "engineer_view": "Fully regenerate from Linear each run: non-archived issues with statusType 'started' that have an assignee, grouped assignee -> initiative -> project -> issue. Ungrouped items go under 'Not belonging to an initiative'.",
@@ -65,67 +65,8 @@
       "color": "#e5484d"
     }
   ],
-  "team_note": "The engineer view renders one lane per person in this roster, in this order, even if they have no in-progress issues. The daily job matches Linear assignees to these by email/name. Add or remove people here to change who appears. David left 6 Jul 2026 and was removed; Art added 30 Jul 2026. Roster is Dima, Mark, Joel, Ihor, Art.",
+  "team_note": "The engineer view renders one lane per person in the fixed roster - Dima, Mark, Joel, Ihor - in that order, even if they have no issues. The daily job matches Linear assignees to these by email/name. David left 6 Jul 2026. The leave calendar covers the same four people so the two views line up.",
   "initiatives": [
-    {
-      "id": "fef38f90-b82c-4c47-b377-6dcb9b1a3020",
-      "title": "Enable accountants to complete VAT submissions via double-entry GL",
-      "accent": "amber",
-      "tags": [
-        "Active",
-        "Target 30 Sep"
-      ],
-      "blurb": "Begin writing to our own double-entry ledger so we can confidently file Q3 VAT for 5 neno customers.",
-      "url": "https://linear.app/nenotechnology/initiative/enable-accountants-to-complete-vat-submissions-using-neno-double-entry-089e47b575e8",
-      "context_sources": {
-        "linear_initiative_id": "fef38f90-b82c-4c47-b377-6dcb9b1a3020",
-        "granola_folder_id": "bf3574d4-280e-4e6f-8733-72e752f9f626",
-        "granola_keywords": [
-          "ledger",
-          "GL",
-          "AGL",
-          "double-entry",
-          "VAT",
-          "journal",
-          "period close",
-          "Nextens"
-        ],
-        "slack_channels": [
-          "#tech-team",
-          "#accounting-mvp"
-        ],
-        "slack_keywords": [
-          "ledger",
-          "GL",
-          "double-entry",
-          "VAT",
-          "journal",
-          "Exact",
-          "reconciliation"
-        ],
-        "memory_file": "memory/double-entry-gl.md"
-      },
-      "buckets": {
-        "now": [
-          {
-            "type": "project",
-            "projectId": "0383a752-0a73-4bce-b0aa-77379e4f27cf",
-            "label": "Productionise writing to the double-entry GL (Ocean Ionics)",
-            "show_owner_status": true,
-            "desc": "From spike to production - real ledger writes for Ocean Ionics. Spike reproduced real books to the cent; the native engine is green-tested behind a flag. Next: run real production data through it."
-          }
-        ],
-        "next": [],
-        "later": [
-          {
-            "type": "text",
-            "label": "Roll out GL writes beyond Ocean Ionics to the wider cohort",
-            "desc": null,
-            "muted": true
-          }
-        ]
-      }
-    },
     {
       "id": "0f26a21f-cd9b-47e4-9678-a3c5107a1fa0",
       "title": "Source of truth for all bookkeeping data",
@@ -358,18 +299,18 @@
             "show_owner_status": false
           }
         ],
-        "footnote": "New initiative (30 Jul 2026), split out of 'Make neno the source of truth for all bookkeeping'. See 'Source of truth for all bookkeeping data' for the external data integrations feeding this work. Committed for Q3: end-to-end AR reconciliation (in progress, Joel)."
+        "footnote": "Split out of 'Make neno the source of truth for all bookkeeping' (30 Jul 2026). See 'Source of truth for all bookkeeping data' for the external data integrations feeding this work. Committed for Q3: end-to-end AR reconciliation (in progress, Joel)."
       }
     },
     {
       "id": "e78d13c9-27d8-494e-9c3b-8a264412e471",
-      "title": "Centralise customer data",
+      "title": "Make accountants more efficient during onboarding and customer collaboration",
       "accent": "amber",
       "tags": [
         "Active"
       ],
-      "blurb": "One system for every customer's data - faster accountant onboarding, plus visibility into which tools each customer still uses outside neno.",
-      "url": "https://linear.app/nenotechnology/initiative/centralise-customer-data-d0aa599c2497",
+      "blurb": "Cut the time accountants spend onboarding a customer and working alongside them - one place for every customer's data, reporting and off-platform tasks.",
+      "url": "https://linear.app/nenotechnology/initiative/make-accountants-more-efficient-during-onboarding-and-customer-d0aa599c2497",
       "context_sources": {
         "linear_initiative_id": "e78d13c9-27d8-494e-9c3b-8a264412e471",
         "granola_keywords": [
@@ -420,11 +361,70 @@
       }
     },
     {
+      "id": "fef38f90-b82c-4c47-b377-6dcb9b1a3020",
+      "title": "Enable accountants to complete VAT submissions via double-entry GL",
+      "accent": "amber",
+      "tags": [
+        "Active",
+        "Target 30 Sep"
+      ],
+      "blurb": "Begin writing to our own double-entry ledger so we can confidently file Q3 VAT for 5 neno customers.",
+      "url": "https://linear.app/nenotechnology/initiative/enable-accountants-to-complete-vat-submissions-using-neno-double-entry-089e47b575e8",
+      "context_sources": {
+        "linear_initiative_id": "fef38f90-b82c-4c47-b377-6dcb9b1a3020",
+        "granola_folder_id": "bf3574d4-280e-4e6f-8733-72e752f9f626",
+        "granola_keywords": [
+          "ledger",
+          "GL",
+          "AGL",
+          "double-entry",
+          "VAT",
+          "journal",
+          "period close",
+          "Nextens"
+        ],
+        "slack_channels": [
+          "#tech-team",
+          "#accounting-mvp"
+        ],
+        "slack_keywords": [
+          "ledger",
+          "GL",
+          "double-entry",
+          "VAT",
+          "journal",
+          "Exact",
+          "reconciliation"
+        ],
+        "memory_file": "memory/double-entry-gl.md"
+      },
+      "buckets": {
+        "now": [
+          {
+            "type": "project",
+            "projectId": "0383a752-0a73-4bce-b0aa-77379e4f27cf",
+            "label": "Productionise writing to the double-entry GL (Ocean Ionics)",
+            "show_owner_status": true,
+            "desc": "From spike to production - real ledger writes for Ocean Ionics. Spike reproduced real books to the cent; the native engine is green-tested behind a flag. Next: run real production data through it."
+          }
+        ],
+        "next": [],
+        "later": [
+          {
+            "type": "text",
+            "label": "Roll out GL writes beyond Ocean Ionics to the wider cohort",
+            "desc": null,
+            "muted": true
+          }
+        ]
+      }
+    },
+    {
       "static": true,
-      "title": "Other July commitments",
+      "title": "Other commitments - August",
       "accent": "accent",
       "tags": [],
-      "blurb": "July-committed work that sits outside the three tracked initiatives.",
+      "blurb": "August-committed work that sits outside the four tracked initiatives.",
       "buckets": {
         "now": [
           {
@@ -456,8 +456,7 @@
             "projectId": "fa87aac7-1ef5-4587-8f18-2f4c30cc9406",
             "label": "Swan Card Cashback for Accounting Customers",
             "show_owner_status": true,
-            "desc": "1% monthly cashback on net EUR Swan card spend for accounting customers; v1 is a manual bulk-transfer export.",
-            "risk": "Ihor (lead) is away 13 Jul - 31 Aug."
+            "desc": "1% monthly cashback on net EUR Swan card spend for accounting customers; v1 is a manual bulk-transfer export."
           }
         ],
         "later": []
@@ -465,25 +464,21 @@
     }
   ],
   "leave": {
-    "label": "Availability · rest of July",
-    "start": "2026-07-06",
-    "end": "2026-07-31",
-    "note": "Ihor away 13 Jul - 31 Aug · Mark's leave runs to 7 Aug",
+    "label": "Availability - August",
+    "start": "2026-08-01",
+    "end": "2026-08-31",
+    "note": "Mark's leave runs to 7 Aug - everyone else clear for August",
+    "source": "matthew@neno.co Google Calendar, all-day/multi-day leave events, read 4 Aug 2026",
     "people": [
       {
         "name": "Dima",
-        "away": [
-          {
-            "from": "2026-07-07",
-            "to": "2026-07-07"
-          }
-        ]
+        "away": []
       },
       {
         "name": "Mark",
         "away": [
           {
-            "from": "2026-07-23",
+            "from": "2026-08-01",
             "to": "2026-08-07"
           }
         ]
@@ -494,12 +489,7 @@
       },
       {
         "name": "Ihor",
-        "away": [
-          {
-            "from": "2026-07-13",
-            "to": "2026-08-31"
-          }
-        ]
+        "away": []
       }
     ]
   },
@@ -510,5 +500,6 @@
       "memory_file": "memory/onboarding-5-customers.md",
       "note": "Removed from the board (30 Jul 2026) per Matthew's request. The daily job keeps refreshing this initiative's memory file and context.json entry, and keeps writing requirements back to its Linear projects, even though it no longer renders as a card."
     }
-  ]
+  ],
+  "period_label": "August"
 }
