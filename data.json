@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-04T07:19:11Z",
+ "generated_at": "2026-08-04T11:55:20Z",
  "projects": {
   "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
    "status": "In Progress",
@@ -102,14 +102,14 @@
      ]
     },
     {
-     "initiative": "Centralise customer data",
+     "initiative": "Make accountants more efficient during onboarding and customer collaboration",
      "projects": [
       {
        "name": "Custom reporting for Neno customers",
        "issues": [
         {
-         "id": "NEO-1650",
-         "title": "Roll out live management reporting to customers behind a feature flag",
+         "id": "NEO-1668",
+         "title": "Fetch Exact report data and store it in Neno's database on approval",
          "status": "Todo"
         },
         {
@@ -118,8 +118,8 @@
          "status": "Todo"
         },
         {
-         "id": "NEO-1668",
-         "title": "Fetch Exact report data and store it in Neno's database on approval",
+         "id": "NEO-1650",
+         "title": "Roll out live management reporting to customers behind a feature flag",
          "status": "Todo"
         },
         {
@@ -232,14 +232,14 @@
        "name": "End-to-end AR reconciliation",
        "issues": [
         {
-         "id": "NEO-1627",
-         "title": "verify end-to-end AR flow",
-         "status": "In Progress"
-        },
-        {
          "id": "NEO-1560",
          "title": "SPIKE: Exploratory frontend changes for AR",
          "status": "In Progress"
+        },
+        {
+         "id": "NEO-1627",
+         "title": "verify end-to-end AR flow",
+         "status": "Done"
         },
         {
          "id": "NEO-1637",
@@ -316,6 +316,94 @@
    "name": "Ihor",
    "initial": "I",
    "color": "#14b8a6",
+   "groups": []
+  },
+  {
+   "name": "Art",
+   "initial": "A",
+   "color": "#e5484d",
+   "groups": [
+    {
+     "initiative": "__none__",
+     "projects": [
+      {
+       "name": "Smart Bill Review",
+       "issues": [
+        {
+         "id": "NEO-1646",
+         "title": "Group accepts don't teach the supplier IBAN memory",
+         "status": "In Review"
+        },
+        {
+         "id": "NEO-1676",
+         "title": "A bill with no extracted currency shows every amount as a dash",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1537",
+         "title": "D1: Review queue lanes - fast lane and attention lane",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1643",
+         "title": "Offer chart VAT codes at the derived rate when the workspace never ...",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1649",
+         "title": "Tax rate in bill extraction should come from VAT code",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1534",
+         "title": "B2: Description proposal in review, material-edit back way, and the...",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1539",
+         "title": "E2: Supplier IBAN memory - write on match accept, read in the matcher",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1533",
+         "title": "B1: Engine generates description proposals",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "Neno Brain",
+       "issues": [
+        {
+         "id": "NEO-1501",
+         "title": "Authenticate Anthropic API from Cloud Run via Workload Identity Fed...",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "__none__",
+       "issues": [
+        {
+         "id": "NEO-1606",
+         "title": "Tests wait on fire-and-forget writes with fixed sleeps - 33 of them...",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1665",
+         "title": "Bill upload Slack link is broken - admin-host gating blocks the red...",
+         "status": "Done"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Adam",
+   "initial": "A",
+   "color": "#a855f7",
    "groups": []
   }
  ]

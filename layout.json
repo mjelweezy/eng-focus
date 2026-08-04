@@ -63,9 +63,15 @@
       "email": "art@neno.co",
       "initial": "A",
       "color": "#e5484d"
+    },
+    {
+      "name": "Adam",
+      "email": "adam@neno.co",
+      "initial": "A",
+      "color": "#a855f7"
     }
   ],
-  "team_note": "The engineer view renders one lane per person in the fixed roster - Dima, Mark, Joel, Ihor - in that order, even if they have no issues. The daily job matches Linear assignees to these by email/name. David left 6 Jul 2026. The leave calendar covers the same four people so the two views line up.",
+  "team_note": "The engineer view renders one lane per person in the fixed roster - Dima, Mark, Joel, Ihor, Art, Adam - in that order, even if they have no issues. The daily job matches Linear assignees to these by email then name. David left 6 Jul 2026. Art added to the roster 4 Aug 2026 (Linear art@neno.co, joined 20 Jul); Adam Fendri added 4 Aug 2026 (adam@neno.co, joined 3 Aug). Yaroslav, Matthew and Giuseppe stay in this list for avatar colours only and must NOT get lanes. The leave calendar covers the same six people so the two views line up. Keep this roster and the roster in the scheduled task (neno-eng-focus-refresh) in sync.",
   "initiatives": [
     {
       "id": "0f26a21f-cd9b-47e4-9678-a3c5107a1fa0",
@@ -486,7 +492,7 @@
     "label": "Availability - August",
     "start": "2026-08-01",
     "end": "2026-08-31",
-    "note": "Mark's leave runs to 7 Aug - everyone else clear for August",
+    "note": "Mark's leave runs to 7 Aug - no leave recorded for the rest of the roster in August",
     "source": "matthew@neno.co Google Calendar, all-day/multi-day leave events, read 4 Aug 2026",
     "people": [
       {
@@ -508,6 +514,14 @@
       },
       {
         "name": "Ihor",
+        "away": []
+      },
+      {
+        "name": "Art",
+        "away": []
+      },
+      {
+        "name": "Adam",
         "away": []
       }
     ]
