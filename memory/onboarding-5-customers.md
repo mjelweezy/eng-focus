@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-07-30_
+_Last updated: 2026-08-07_
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -72,6 +72,7 @@ _Last updated: 2026-07-30_
 - [2026-07-28] Sandbox WhatsApp account configured (NEO-1581, Joel, Done 28 Jul): a dedicated sandbox number (+31 20 804 0630) replaces the shared old number, with PR-preview message routing so developers can test WhatsApp against their own preview environments; Joel is still working through Meta to finish the new bot setup. (source: Linear NEO-1581; Slack #core-team, 28 Jul)
 
 - [2026-07-29] P&E stand-up: Dima's onboarding-actions work continues - adding a new "add funds" task for Swan users with a zero account balance, and starting to look into keeping the Home page persistent after onboarding actions complete (alongside ongoing mobile-app UI work: native swipe/pull gestures). Yaroslav's stand-up plan for the day listed "retro in the wake of outage discovered last night" - the onboarding-actions blast-radius retro called 28 Jul appears to have gone ahead, but no retro outcomes/decisions were found in Slack or Granola this run. (source: Slack #core-team - P&E stand-up, 29 Jul)
+- [2026-08-06] Automatic Gmail forwarding for customers gets a confirmation loop: Google's forwarding-confirmation email raises a notification in #document-uploads for the team to approve manually, backed by extra DKIM, email and link verification with the existing protection layers left in place. Prompted by a live request from Moshe (QLever) that morning, with his co-founder expected to follow. (source: Slack #tech-team (Ihor), 6 Aug; Linear NEO-1706)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
@@ -136,6 +137,7 @@ _Last updated: 2026-07-30_
 
 - [2026-07-28] Hold the onboarding-actions retro and agree how wide-blast-radius features are planned and gated. (owner: Yaroslav, with Joel/Dima/Matthew, 29 Jul) (source: Slack #tech-team, 28 Jul)
 - [2026-07-28] Finish the Meta setup for the new sandbox WhatsApp bot and build the multi-workspace destination picker (NEO-1604). (owner: Joel) (source: Slack #core-team / #tech-team, 28 Jul)
+- [2026-08-06] Eugenia to extend the Onboarding Actions email-forwarding guidance to state that neno handles the verification step; a customer-facing inbox view of what has been forwarded is wanted in a later iteration. (owner: Eugenia/Matthew) (source: Slack #tech-team, 6 Aug)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._

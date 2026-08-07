@@ -1,44 +1,19 @@
 {
- "generated_at": "2026-08-04T11:55:20Z",
+ "generated_at": "2026-08-07T04:10:00Z",
  "projects": {
-  "75e92a8b-6f94-4b72-aad3-1fccbe953d74": {
-   "status": "In Progress",
-   "owner": "dima"
-  },
-  "18129d5b-6e3a-4288-a3f8-f0b80e62a6ed": {
-   "status": "In Progress",
-   "owner": "Joel"
-  },
-  "bdca02fc-e544-4715-85f2-d11798131506": {
-   "status": "Completed",
-   "owner": "Ihor",
-   "gone": true
-  },
-  "1f7bfeff-7561-4897-99be-ba07ade8948d": {
-   "status": "Planned",
-   "owner": "Matthew"
-  },
-  "d9b51b98-4e68-40c4-9eae-54d2ab936db2": {
-   "status": "Planned",
+  "2731244b-71c8-44d1-b6bf-ae9434135d05": {
+   "status": "Backlog",
    "owner": null
-  },
-  "0383a752-0a73-4bce-b0aa-77379e4f27cf": {
-   "status": "In Progress",
-   "owner": "Mark"
   },
   "b2f06e1b-57d3-4ced-9a3c-daf042c02df0": {
    "status": "In Progress",
    "owner": "Joel"
   },
-  "6c262f19-7934-4641-ba14-6ff937127454": {
-   "status": "Backlog",
-   "owner": null
-  },
   "9dead622-60da-42fc-b4a1-bbc3a2ce606b": {
    "status": "Backlog",
    "owner": null
   },
-  "14c0164a-580a-4707-a6f6-039eb30c5969": {
+  "6c262f19-7934-4641-ba14-6ff937127454": {
    "status": "Backlog",
    "owner": null
   },
@@ -46,37 +21,21 @@
    "status": "Backlog",
    "owner": null
   },
-  "2731244b-71c8-44d1-b6bf-ae9434135d05": {
-   "status": "Backlog",
-   "owner": null
-  },
-  "8e80b462-b77a-4479-b48e-8031bc8b6f11": {
-   "status": "Backlog",
-   "owner": null
-  },
-  "81f22936-e57a-4ecf-b68c-373967a9142c": {
-   "status": "Backlog",
-   "owner": null
-  },
-  "8f6881bc-f28a-4b3e-a832-33e61ac1b235": {
-   "status": "Backlog",
-   "owner": null
-  },
   "78f1d5fa-1b8d-4699-a4c4-69fd20ca7d34": {
    "status": "Backlog",
    "owner": null
   },
-  "2400bbd7-2889-4aa6-9ac4-21815da641f2": {
+  "97add946-ef4d-4f20-8dce-93892999fbfa": {
    "status": "Backlog",
+   "owner": "dima"
+  },
+  "0383a752-0a73-4bce-b0aa-77379e4f27cf": {
+   "status": "In Progress",
    "owner": "Mark"
   },
   "fa87aac7-1ef5-4587-8f18-2f4c30cc9406": {
    "status": "Planned",
    "owner": "Ihor"
-  },
-  "97add946-ef4d-4f20-8dce-93892999fbfa": {
-   "status": "Backlog",
-   "owner": "dima"
   }
  },
  "needs_triage": {},
@@ -87,21 +46,6 @@
    "color": "#5e6ad2",
    "groups": [
     {
-     "initiative": "Build data by onboarding 5 additional customers on neno",
-     "projects": [
-      {
-       "name": "Onboarding Actions for the Next Five Customers",
-       "issues": [
-        {
-         "id": "NEO-1631",
-         "title": "Contact your accountant on WhatsApp from the Home hub accountant card",
-         "status": "In Review"
-        }
-       ]
-      }
-     ]
-    },
-    {
      "initiative": "Make accountants more efficient during onboarding and customer collaboration",
      "projects": [
       {
@@ -110,7 +54,7 @@
         {
          "id": "NEO-1668",
          "title": "Fetch Exact report data and store it in Neno's database on approval",
-         "status": "Todo"
+         "status": "In Progress"
         },
         {
          "id": "NEO-1651",
@@ -121,36 +65,21 @@
          "id": "NEO-1650",
          "title": "Roll out live management reporting to customers behind a feature flag",
          "status": "Todo"
-        },
-        {
-         "id": "NEO-1648",
-         "title": "Translate Custom reporting into all eight banking-app languages",
-         "status": "Done"
         }
        ]
       }
      ]
     },
     {
-     "initiative": "__none__",
+     "initiative": "Build data by onboarding 5 additional customers on neno",
      "projects": [
       {
-       "name": "Smart Bill Review",
+       "name": "Onboarding Actions for the Next Five Customers",
        "issues": [
         {
-         "id": "NEO-1536",
-         "title": "C2: Admin UI to view and edit the workspace accounting context + bu...",
-         "status": "Done"
-        }
-       ]
-      },
-      {
-       "name": "__none__",
-       "issues": [
-        {
-         "id": "NEO-1654",
-         "title": "Modals opened from inside a side drawer are not clickable - clicks ...",
-         "status": "Done"
+         "id": "NEO-1631",
+         "title": "Contact your accountant on WhatsApp from the Home hub accountant card",
+         "status": "In Review"
         }
        ]
       }
@@ -171,7 +100,7 @@
        "issues": [
         {
          "id": "NEO-1143",
-         "title": "Bills can sync to Exact without being reconciled, with no signal to...",
+         "title": "Bills can sync to Exact without being reconciled, with no operator ...",
          "status": "Todo"
         }
        ]
@@ -232,19 +161,14 @@
        "name": "End-to-end AR reconciliation",
        "issues": [
         {
-         "id": "NEO-1560",
-         "title": "SPIKE: Exploratory frontend changes for AR",
+         "id": "NEO-1711",
+         "title": "AR review panel: add Line Items detail + invoice document preview",
          "status": "In Progress"
         },
         {
-         "id": "NEO-1627",
-         "title": "verify end-to-end AR flow",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1637",
-         "title": "AR send flow broken: no approved -> finalized transition (blocks NE...",
-         "status": "Done"
+         "id": "NEO-1560",
+         "title": "SPIKE: Exploratory frontend changes for AR",
+         "status": "In Progress"
         }
        ]
       }
@@ -256,6 +180,36 @@
       {
        "name": "Bastion onboarding + setup",
        "issues": [
+        {
+         "id": "NEO-1700",
+         "title": "Pentest H1 - Open redirect via `redirectTo` on the login flow",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1701",
+         "title": "Pentest H2 - File-type allowlist is client-side only on vault + bil...",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1702",
+         "title": "Pentest H3 - Signed download URLs render inline, no attachment disp...",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1703",
+         "title": "Pentest H4 - No malware scanning on user-uploaded files",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1704",
+         "title": "Pentest M1 (VLN07) - No rate limiting on the API",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1705",
+         "title": "Pentest M2 (VLN13) - Swan session outlives logout (overlapping creds)",
+         "status": "Todo"
+        },
         {
          "id": "NEO-1313",
          "title": "Harden deploy-api-cloud-run env_vars path against YAML/sed injection",
@@ -278,7 +232,7 @@
        "issues": [
         {
          "id": "NEO-1009",
-         "title": "Banking onboarding not showing all bvs as options to open a bank ac...",
+         "title": "Banking onboarding not showing all bvs as options for a bank account",
          "status": "Todo"
         }
        ]
@@ -287,23 +241,28 @@
        "name": "__none__",
        "issues": [
         {
-         "id": "NEO-1408",
-         "title": "Hide the terms-template dropdown on the quote builder (templates ar...",
+         "id": "NEO-1710",
+         "title": "WhatsApp auth eval: flaky scoped-empty cross-card data request fail",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1709",
+         "title": "WhatsApp webhook rejects forwarded messages - schema requires conte...",
          "status": "In Progress"
         },
         {
          "id": "NEO-1480",
-         "title": "WhatsApp agent-info emits a double-+ phone number and a non-canonic...",
+         "title": "WhatsApp agent-info emits a double-+ phone number and non-canonical...",
          "status": "In Progress"
         },
         {
-         "id": "NEO-1607",
-         "title": "Decouple Home Hub demo task from Task model (Frontend & Supporting ...",
-         "status": "Done"
+         "id": "NEO-1408",
+         "title": "Hide the terms-template dropdown on the quote builder",
+         "status": "In Review"
         },
         {
-         "id": "NEO-1666",
-         "title": "BV -> Swan onboarding prefill rejected: relatedIndividuals missing ...",
+         "id": "NEO-1697",
+         "title": "Files uploaded to non-file_upload tasks never enter the bill pipeline",
          "status": "Done"
         }
        ]
@@ -316,7 +275,23 @@
    "name": "Ihor",
    "initial": "I",
    "color": "#14b8a6",
-   "groups": []
+   "groups": [
+    {
+     "initiative": "__none__",
+     "projects": [
+      {
+       "name": "__none__",
+       "issues": [
+        {
+         "id": "NEO-1707",
+         "title": "Limit \"Exact Online connection needs re-auth\" alerts to production ...",
+         "status": "Done"
+        }
+       ]
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Art",
@@ -324,49 +299,49 @@
    "color": "#e5484d",
    "groups": [
     {
+     "initiative": "Platform Improvements",
+     "projects": [
+      {
+       "name": "Wednesday Sweeps",
+       "issues": [
+        {
+         "id": "NEO-1691",
+         "title": "Add Atlas and App to local and preview environments",
+         "status": "In Review"
+        }
+       ]
+      }
+     ]
+    },
+    {
      "initiative": "__none__",
      "projects": [
       {
        "name": "Smart Bill Review",
        "issues": [
         {
-         "id": "NEO-1646",
-         "title": "Group accepts don't teach the supplier IBAN memory",
+         "id": "NEO-1693",
+         "title": "Gemini telemetry: per-call duration and replayable proposer traces",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1640",
+         "title": "Supplier suggestions miss name matches - let AI drafting pick supplier",
          "status": "In Review"
         },
         {
-         "id": "NEO-1676",
-         "title": "A bill with no extracted currency shows every amount as a dash",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1537",
-         "title": "D1: Review queue lanes - fast lane and attention lane",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1643",
-         "title": "Offer chart VAT codes at the derived rate when the workspace never ...",
+         "id": "NEO-1641",
+         "title": "B2a: Approve applies the supplier proposal, creating a vendor if none",
          "status": "Done"
         },
         {
-         "id": "NEO-1649",
-         "title": "Tax rate in bill extraction should come from VAT code",
+         "id": "NEO-1689",
+         "title": "Coding proposer: proposerUnavailable is reported and nothing acts o...",
          "status": "Done"
         },
         {
-         "id": "NEO-1534",
-         "title": "B2: Description proposal in review, material-edit back way, and the...",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1539",
-         "title": "E2: Supplier IBAN memory - write on match accept, read in the matcher",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1533",
-         "title": "B1: Engine generates description proposals",
+         "id": "NEO-1688",
+         "title": "Extraction quality gate is blind to a missing VAT breakdown",
          "status": "Done"
         }
        ]
@@ -378,20 +353,10 @@
          "id": "NEO-1501",
          "title": "Authenticate Anthropic API from Cloud Run via Workload Identity Fed...",
          "status": "Todo"
-        }
-       ]
-      },
-      {
-       "name": "__none__",
-       "issues": [
-        {
-         "id": "NEO-1606",
-         "title": "Tests wait on fire-and-forget writes with fixed sleeps - 33 of them...",
-         "status": "In Progress"
         },
         {
-         "id": "NEO-1665",
-         "title": "Bill upload Slack link is broken - admin-host gating blocks the red...",
+         "id": "NEO-1563",
+         "title": "Cut Anthropic dev/local spend: prompt caching + model defaults",
          "status": "Done"
         }
        ]
@@ -404,7 +369,23 @@
    "name": "Adam",
    "initial": "A",
    "color": "#a855f7",
-   "groups": []
+   "groups": [
+    {
+     "initiative": "__none__",
+     "projects": [
+      {
+       "name": "__none__",
+       "issues": [
+        {
+         "id": "NEO-1130",
+         "title": "Redesign Integrations page (WhatsApp) in banking app",
+         "status": "In Progress"
+        }
+       ]
+      }
+     ]
+    }
+   ]
   }
  ]
 }

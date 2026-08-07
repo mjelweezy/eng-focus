@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-04_
+_Last updated: 2026-08-07_
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -58,6 +58,8 @@ _Last updated: 2026-08-04_
 
 - [2026-08-03] GL accounts are currently read from Exact; neno cannot yet create a GL account from inside the product. Making the neno GL the source of truth for the chart of accounts is deferred until Mark returns from leave. (source: Granola - Book-keeping features: investments, 3 Aug)
 - [2026-08-03] VAT return delivery to the customer is split into two phases: (1) vault upload + task creation + email notification, (2) a Swan "Pay Now" button plus an open-banking PIS payment flow for non-Swan customers. The VAT submission task gets its own dedicated email template that points the customer to the platform rather than carrying sensitive detail inline (Molly precedent), and the VAT upload is modelled as a new task type that deposits a document into the vault with transaction info left empty so it never surfaces in the reconciliation queue. (source: Granola - VAT Return Tasks, 3 Aug)
+- [2026-08-05] Ocean Ionics' Q2 VAT return is a reclaim only (cost-only entity, no revenue in the quarter); any Q2 invoices found missing after filing are handled through a supplemental return during August. (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
+- [2026-08-05] For now the VAT report reaches the customer by both Vault upload and email, and the "pay the VAT return" task surfaces in neno on the Monday; customer email notification cadence is confirmed as weekly, Mondays 9am. (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
 
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
@@ -86,6 +88,8 @@ _Last updated: 2026-08-04_
 - [open] Should neno pull the Exact balance sheet in and make it editable in neno, or wait until customers have fully migrated off Exact? (source: Granola - Book-keeping features: investments, 3 Aug)
 - [open] Can the Swan "Pay Now" flow ship alongside phase one of VAT return tasks, or must it be split out? Effort to be assessed first. (owner: Matthew) (source: Granola - VAT Return Tasks, 3 Aug)
 - [open] How does the accounting firm currently generate payment links to the IBAN - can neno replicate or integrate that? (owner: Eugenia) (source: Granola - VAT Return Tasks, 3 Aug)
+- [open] What is Vukan's direct-debit cut-off date range? Bulk payment matching - one lump supplier payment covering several invoices - stays manual until it is known. (owner: Matthew/Marloes) (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
+- [open] Task-completion visibility: some early Ocean Ionics transactions still showed "attach invoice" prompts after an invoice had already been attached - display bug or state bug? (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
 
 ## Risks
 - [high] Spike code (~13k lines, Claude-generated) took liberties with DB writes; atomicity and no-overlapping-bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew). (source: Granola — Next Steps AGL)
@@ -125,6 +129,8 @@ _Last updated: 2026-08-04_
 - [2026-08-03] Ihor to investigate chart-of-accounts sync if the new Exact GL account does not appear in neno. (owner: Ihor) (source: Granola - Book-keeping features: investments, 3 Aug)
 - [2026-08-03] Review Mark's GL progress with the full team on his return. (owner: Matthew) (source: Granola - Book-keeping features: investments, 3 Aug)
 - [2026-08-03] Matthew to write up the VAT return project spec covering both phases; Eugenia to get an example payment link from the accounting firm; find and restore the missing Tasks page in Atlas (it exists at neno.build but not atlas.neno.com). (owner: Matthew/Eugenia) (source: Granola - VAT Return Tasks, 3 Aug)
+- [2026-08-05] Matthew to check the direct-debit cut-off terms for Vukan and Marloes to confirm them with the supplier, so Andries can match the lump payment to its invoices. (owner: Matthew/Marloes) (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
+- [2026-08-06] Yaroslav has drafted a dynamic-task proposal for VAT to share with the team; review it against the two-phase VAT delivery design. (owner: Yaroslav/Matthew) (source: Slack #tldv-channel - daily stand-up, 6 Aug)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project (this project is In Progress, so they are posted as a proposed comment, not auto-applied)._
