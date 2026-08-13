@@ -1,6 +1,6 @@
 # Running context — Centralise customer data
 _Initiative: e78d13c9-27d8-494e-9c3b-8a264412e471 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-07_
+_Last updated: 2026-08-13
 
 > New initiative created 30 Jul 2026 from the Q3 roadmap deck's "Centralise the data" goal: one
 > system for every customer's data. Covers basic reporting, structured profiles for services
@@ -17,6 +17,8 @@ _Last updated: 2026-08-07_
 - [2026-08-03] A customer hitting the report error screen triggers a Slack notification to the team. (source: Granola - Review reporting, 3 Aug)
 - [2026-08-04] An approval publishes the whole history under a single date and is insert-only - the period pickers are navigation and never scope what is published. The stored snapshot holds one whole-year ledger per fiscal year in the render layer's serialized shape, plus cash and bank movement per period, and carries a version so an unrecognised payload is reported unreadable rather than mis-rendered. The Exact division is its own column, not just a field inside the payload. (source: Linear project description, Custom reporting for Neno customers, 4 Aug)
 - [2026-08-04] The approver is not persisted: attribution reads "Approved by [accountant] on [date]", resolved from Workspace.assignedAccountantId at read time and degrading to "Approved by accountant on [date]" when none is assigned. This supersedes the earlier "Last reviewed by" wording. (source: Linear project description, Custom reporting for Neno customers, 4 Aug)
+- [2026-08-11] The approved management report is now shown to every customer (NEO-1789), rendered by a single audience-agnostic display-and-export component that both admin and the customer app use (NEO-1679) - so the accountant and the customer see the same report surface. (source: Linear NEO-1789 / NEO-1679, 10-11 Aug)
+- [2026-08-12] Custom reporting gets a demo mode in Atlas: pick a business type and a company name and render a sample report for prospects (NEO-1797). (source: Linear NEO-1797, 12 Aug)
 
 ## Open questions
 - [open] Which data points do customers want glanceable on the home page? Ask DP before sharing the current design, to avoid premature sign-off. (owner: Matthew) (source: Granola - Review reporting, 3 Aug)
@@ -37,6 +39,7 @@ _Last updated: 2026-08-07_
 - [2026-08-03] (done) Matthew to generate Linear tickets from the 3 Aug transcript and share with Dmytro and Eugenia - NEO-1652 to NEO-1670 filed on the Custom reporting project the same day.
 - [2026-08-05] Email Marloes (Ocean Ionics) once the balance sheet, P&L and cost-centre dashboard is live on her neno account - expected the week of 10 Aug - so she can assess whether it is useful. (owner: Matthew) (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
 - [2026-08-06] Match the report PDF output to Eugenia's design and add end-to-end tests; Andries can start approving management reports in production from end of day 6 Aug. (owner: Dmytro) (source: Slack #tldv-channel - daily stand-up, 6 Aug)
+- [2026-08-07] Custom reporting functionality is complete and the UI shipped to production; remaining work is the per-customer report layout, hourly Exact refresh, email send, the compare button and the error-screen Slack alert. (owner: Dmytro) (source: Granola - Daily stand up, 7 Aug)
 
 ## Projects (filed in Linear)
 - [2026-07-30] Attached existing project "Custom reporting for Neno customers" (basic reporting). "Structured profiles for services customers" and "Onboarding actions for off-platform tasks" have no Linear project yet - listed as text items on the board only.

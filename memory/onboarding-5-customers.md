@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-08-07_
+_Last updated: 2026-08-13
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -73,6 +73,7 @@ _Last updated: 2026-08-07_
 
 - [2026-07-29] P&E stand-up: Dima's onboarding-actions work continues - adding a new "add funds" task for Swan users with a zero account balance, and starting to look into keeping the Home page persistent after onboarding actions complete (alongside ongoing mobile-app UI work: native swipe/pull gestures). Yaroslav's stand-up plan for the day listed "retro in the wake of outage discovered last night" - the onboarding-actions blast-radius retro called 28 Jul appears to have gone ahead, but no retro outcomes/decisions were found in Slack or Granola this run. (source: Slack #core-team - P&E stand-up, 29 Jul)
 - [2026-08-06] Automatic Gmail forwarding for customers gets a confirmation loop: Google's forwarding-confirmation email raises a notification in #document-uploads for the team to approve manually, backed by extra DKIM, email and link verification with the existing protection layers left in place. Prompted by a live request from Moshe (QLever) that morning, with his co-founder expected to follow. (source: Slack #tech-team (Ihor), 6 Aug; Linear NEO-1706)
+- [2026-08-11] The Home hub accountant card now lets the customer contact their accountant on WhatsApp (NEO-1631 shipped), completing the sixth onboarding step's contact-your-accountant route. (source: Linear NEO-1631, 11 Aug)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)

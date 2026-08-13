@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-08-07T04:10:00Z",
+ "generated_at": "2026-08-13T04:10:00Z",
  "projects": {
   "2731244b-71c8-44d1-b6bf-ae9434135d05": {
    "status": "Backlog",
-   "owner": null
+   "owner": "Adam"
   },
   "b2f06e1b-57d3-4ced-9a3c-daf042c02df0": {
    "status": "In Progress",
@@ -38,7 +38,14 @@
    "owner": "Ihor"
   }
  },
- "needs_triage": {},
+ "needs_triage": {
+  "fef38f90-b82c-4c47-b377-6dcb9b1a3020": [
+   {
+    "id": "7dd3c843-6a3b-499f-8b4f-725d6166e88f",
+    "name": "Close out the ledger's first production run"
+   }
+  ]
+ },
  "engineers": [
   {
    "name": "Dima",
@@ -46,40 +53,20 @@
    "color": "#5e6ad2",
    "groups": [
     {
-     "initiative": "Make accountants more efficient during onboarding and customer collaboration",
+     "initiative": "__none__",
      "projects": [
       {
-       "name": "Custom reporting for Neno customers",
+       "name": "__none__",
        "issues": [
         {
-         "id": "NEO-1668",
-         "title": "Fetch Exact report data and store it in Neno's database on approval",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1651",
-         "title": "Build the \"books are clean\" review flow so the report goes live per...",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-1650",
-         "title": "Roll out live management reporting to customers behind a feature flag",
-         "status": "Todo"
-        }
-       ]
-      }
-     ]
-    },
-    {
-     "initiative": "Build data by onboarding 5 additional customers on neno",
-     "projects": [
-      {
-       "name": "Onboarding Actions for the Next Five Customers",
-       "issues": [
-        {
-         "id": "NEO-1631",
-         "title": "Contact your accountant on WhatsApp from the Home hub accountant card",
+         "id": "NEO-1766",
+         "title": "Home page after completing onboarding (web banking app)",
          "status": "In Review"
+        },
+        {
+         "id": "NEO-1789",
+         "title": "Show the approved management report to every customer",
+         "status": "Done"
         }
        ]
       }
@@ -93,6 +80,56 @@
    "color": "#4cb782",
    "groups": [
     {
+     "initiative": "Enable accountants to complete VAT submissions using neno double-entry GL",
+     "projects": [
+      {
+       "name": "Close out the ledger's first production run",
+       "issues": [
+        {
+         "id": "NEO-1742",
+         "title": "Move every stuck event to its terminal state",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1745",
+         "title": "Show claimed-but-unresolved events on the failure surface",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1748",
+         "title": "Name the unmapped-account and VAT tie-out failures",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1746",
+         "title": "Map the Exact VAT code to the workspace's Neno code at emission",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1747",
+         "title": "Type the fact payloads so unparseable values fail as recorded errors",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1744",
+         "title": "Suppress duplicate import emission at source",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1743",
+         "title": "Enable ledger emission under test",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1741",
+         "title": "Record a terminal result on both skip paths",
+         "status": "Done"
+        }
+       ]
+      }
+     ]
+    },
+    {
      "initiative": "Ocean Ionics: Full AP Loop",
      "projects": [
       {
@@ -100,7 +137,7 @@
        "issues": [
         {
          "id": "NEO-1143",
-         "title": "Bills can sync to Exact without being reconciled, with no operator ...",
+         "title": "Bills can sync to Exact without being reconciled, with no signal to...",
          "status": "Todo"
         }
        ]
@@ -161,11 +198,6 @@
        "name": "End-to-end AR reconciliation",
        "issues": [
         {
-         "id": "NEO-1711",
-         "title": "AR review panel: add Line Items detail + invoice document preview",
-         "status": "In Progress"
-        },
-        {
          "id": "NEO-1560",
          "title": "SPIKE: Exploratory frontend changes for AR",
          "status": "In Progress"
@@ -181,18 +213,23 @@
        "name": "Bastion onboarding + setup",
        "issues": [
         {
-         "id": "NEO-1700",
-         "title": "Pentest H1 - Open redirect via `redirectTo` on the login flow",
-         "status": "In Progress"
+         "id": "NEO-1705",
+         "title": "Pentest M2 (VLN13) - Two overlapping auth credentials; Swan session...",
+         "status": "In Review"
         },
         {
          "id": "NEO-1701",
          "title": "Pentest H2 - File-type allowlist is client-side only on vault + bil...",
-         "status": "Todo"
+         "status": "In Progress"
         },
         {
          "id": "NEO-1702",
-         "title": "Pentest H3 - Signed download URLs render inline, no attachment disp...",
+         "title": "Pentest H3 - Signed download URLs render inline; no Content-Disposi...",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1704",
+         "title": "Pentest M1 (VLN07) - No rate limiting on the API",
          "status": "Todo"
         },
         {
@@ -201,23 +238,8 @@
          "status": "Todo"
         },
         {
-         "id": "NEO-1704",
-         "title": "Pentest M1 (VLN07) - No rate limiting on the API",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-1705",
-         "title": "Pentest M2 (VLN13) - Swan session outlives logout (overlapping creds)",
-         "status": "Todo"
-        },
-        {
          "id": "NEO-1313",
          "title": "Harden deploy-api-cloud-run env_vars path against YAML/sed injection",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-1322",
-         "title": "Bump bcrypt work factor from 10 to 12 in packages/crypto",
          "status": "Todo"
         }
        ]
@@ -228,11 +250,66 @@
      "initiative": "__none__",
      "projects": [
       {
+       "name": "VAT Submission Tasks",
+       "issues": [
+        {
+         "id": "NEO-1779",
+         "title": "VAT Submission Feature",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1770",
+         "title": "M1.2a: Render the VAT card and close it from the customer app",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1771",
+         "title": "M2.1a: Give the customer the bank transfer details",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1772",
+         "title": "M3.1a: Attach the return at create and land it in the customer's vault",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1773",
+         "title": "M3.2a: Let the customer read and download the return",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1774",
+         "title": "M4.1a: Cancel a sent VAT task and purge its document",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1775",
+         "title": "M5.1a: Let the accountant choose the VAT direction on the create form",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1776",
+         "title": "M5.2a: Render refund and nil quarters without payment affordances",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1777",
+         "title": "M6.1a: Send reminder, rate-limited to once per Amsterdam day",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1778",
+         "title": "M7.1a: Run a real quarter for Ocean Ionics",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
        "name": "Bas S.: Post-Incorporation UX improvements",
        "issues": [
         {
          "id": "NEO-1009",
-         "title": "Banking onboarding not showing all bvs as options for a bank account",
+         "title": "Banking onboarding not showing all bvs as options to open a bank ac...",
          "status": "Todo"
         }
        ]
@@ -242,28 +319,18 @@
        "issues": [
         {
          "id": "NEO-1710",
-         "title": "WhatsApp auth eval: flaky scoped-empty cross-card data request fail",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1709",
-         "title": "WhatsApp webhook rejects forwarded messages - schema requires conte...",
+         "title": "WhatsApp auth eval: flaky fail on 'card_x sees scoped empty when re...",
          "status": "In Progress"
         },
         {
          "id": "NEO-1480",
-         "title": "WhatsApp agent-info emits a double-+ phone number and non-canonical...",
+         "title": "WhatsApp agent-info emits a double-+ phone number and a non-canonic...",
          "status": "In Progress"
         },
         {
          "id": "NEO-1408",
-         "title": "Hide the terms-template dropdown on the quote builder",
+         "title": "Hide the terms-template dropdown on the quote builder (templates ar...",
          "status": "In Review"
-        },
-        {
-         "id": "NEO-1697",
-         "title": "Files uploaded to non-file_upload tasks never enter the bill pipeline",
-         "status": "Done"
         }
        ]
       }
@@ -280,12 +347,22 @@
      "initiative": "__none__",
      "projects": [
       {
+       "name": "Fixed Assets & Depreciation Schedules",
+       "issues": [
+        {
+         "id": "NEO-1803",
+         "title": "Build fixed-assets backend plumbing from API through Neno GL and Exact",
+         "status": "In Progress"
+        }
+       ]
+      },
+      {
        "name": "__none__",
        "issues": [
         {
-         "id": "NEO-1707",
-         "title": "Limit \"Exact Online connection needs re-auth\" alerts to production ...",
-         "status": "Done"
+         "id": "NEO-1738",
+         "title": "Send confirmation email to customer after confirming Gmail forwarding",
+         "status": "In Progress"
         }
        ]
       }
@@ -307,7 +384,7 @@
         {
          "id": "NEO-1691",
          "title": "Add Atlas and App to local and preview environments",
-         "status": "In Review"
+         "status": "Done"
         }
        ]
       }
@@ -320,28 +397,38 @@
        "name": "Smart Bill Review",
        "issues": [
         {
-         "id": "NEO-1693",
-         "title": "Gemini telemetry: per-call duration and replayable proposer traces",
+         "id": "NEO-1734",
+         "title": "Split BillFieldEdit.source into actor and provenance: drop APPROVAL...",
          "status": "In Progress"
         },
         {
-         "id": "NEO-1640",
-         "title": "Supplier suggestions miss name matches - let AI drafting pick supplier",
-         "status": "In Review"
+         "id": "NEO-1663",
+         "title": "Prompt to apply VAT code or GL account changes to all line items",
+         "status": "In Progress"
         },
         {
-         "id": "NEO-1641",
-         "title": "B2a: Approve applies the supplier proposal, creating a vendor if none",
+         "id": "NEO-1791",
+         "title": "Score the line-item VAT rate the pipeline actually read",
          "status": "Done"
         },
         {
-         "id": "NEO-1689",
-         "title": "Coding proposer: proposerUnavailable is reported and nothing acts o...",
+         "id": "NEO-1642",
+         "title": "Commit the architecture doc and record the checkpoint decisions in it",
          "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "Transaction Matching",
+       "issues": [
+        {
+         "id": "NEO-1758",
+         "title": "Fix four sources of false suggestions in the review queue",
+         "status": "In Progress"
         },
         {
-         "id": "NEO-1688",
-         "title": "Extraction quality gate is blind to a missing VAT breakdown",
+         "id": "NEO-1755",
+         "title": "Add amount uniqueness as a second route into auto-matching, and the...",
          "status": "Done"
         }
        ]
@@ -353,10 +440,15 @@
          "id": "NEO-1501",
          "title": "Authenticate Anthropic API from Cloud Run via Workload Identity Fed...",
          "status": "Todo"
-        },
+        }
+       ]
+      },
+      {
+       "name": "__none__",
+       "issues": [
         {
-         "id": "NEO-1563",
-         "title": "Cut Anthropic dev/local spend: prompt caching + model defaults",
+         "id": "NEO-1767",
+         "title": "Remove Document AI entirely: drop the docai extraction provider and...",
          "status": "Done"
         }
        ]
@@ -377,9 +469,14 @@
        "name": "__none__",
        "issues": [
         {
-         "id": "NEO-1130",
-         "title": "Redesign Integrations page (WhatsApp) in banking app",
+         "id": "NEO-1804",
+         "title": "Agent tool to record a note on a bill from a later WhatsApp message",
          "status": "In Progress"
+        },
+        {
+         "id": "NEO-1728",
+         "title": "WhatsApp agent discards bill context from users and confirms a save...",
+         "status": "Done"
         }
        ]
       }

@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-07_
+_Last updated: 2026-08-13
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -60,6 +60,12 @@ _Last updated: 2026-08-07_
 - [2026-08-03] VAT return delivery to the customer is split into two phases: (1) vault upload + task creation + email notification, (2) a Swan "Pay Now" button plus an open-banking PIS payment flow for non-Swan customers. The VAT submission task gets its own dedicated email template that points the customer to the platform rather than carrying sensitive detail inline (Molly precedent), and the VAT upload is modelled as a new task type that deposits a document into the vault with transaction info left empty so it never surfaces in the reconciliation queue. (source: Granola - VAT Return Tasks, 3 Aug)
 - [2026-08-05] Ocean Ionics' Q2 VAT return is a reclaim only (cost-only entity, no revenue in the quarter); any Q2 invoices found missing after filing are handled through a supplemental return during August. (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
 - [2026-08-05] For now the VAT report reaches the customer by both Vault upload and email, and the "pay the VAT return" task surfaces in neno on the Monday; customer email notification cadence is confirmed as weekly, Mondays 9am. (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
+- [2026-08-10] The ledger's first production run is now its own Linear project, "Close out the ledger's first production run" (7dd3c843, In Progress, lead Mark), scoped to close every defect the run surfaced so Ocean Ionics can file its Q3 VAT return from neno. The run went live 2026-07-22 for the single allowlisted workspace (Ocean Ionics) and produced 138 ledger events in 19 days, of which 49 never booked - 9 failed with a named reason and 40 stalled with no result. Ledger events are counted alone because the queue also carries staging traffic that would bury a 36% defect rate. (source: Linear project description, Close out the ledger's first production run, 10 Aug)
+- [2026-08-10] The ledger's arithmetic is treated as sound: every bank transaction that booked, booked exactly once, and every failure committed zero lines, so the trial balance never went out of balance. The close-out work fixes queue and surface defects, not a corrupted ledger, and assumes no corrective journal entries. (source: Linear project description, Close out the ledger's first production run, 10 Aug)
+- [2026-08-11] The VAT return will be cleared through a VAT suspense account: after each VAT period a counter-booking zeroes the VAT ledger accounts and posts the net to a suspense account classified as a general account, not a VAT account. The 5 Aug error came from allocating a transaction directly to the BTW receivable account (1520 range), which is blocked by design. (source: Granola - Clearing VAT return via VAT suspense account, 11 Aug)
+- [2026-08-11] Exact's own VAT filing feature - which auto-creates a matchable "fake invoice" payable to the Belastingdienst - is the correct mechanism for this, but has never been used for Ocean Ionics; Venla and Matthew only discovered it on 6 Aug. neno needs a bridge to Exact that generates the equivalent matchable entry. (source: Granola - Clearing VAT return via VAT suspense account, 11 Aug)
+- [2026-08-12] Settled in Mark's VAT collection and return-booking proposal: the net VAT position goes on an ordinary payable/receivable with the Belastingdienst as counterparty, and the tax authority is modelled as just a party. A VAT return then becomes literally a bill being paid, so matching, settlement and the outstanding balance are all already built. (source: Slack #accounting-mvp (Mark), 12 Aug)
+- [2026-08-12] "Supplementary return" is split into two distinct concepts - supplementing the next regular return versus filing a separate correction return for that period - rather than one label, and the one-account-or-a-pair question for corrections was dropped. (source: Slack #accounting-mvp (Mark/Matthew), 12 Aug)
 
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
@@ -90,6 +96,10 @@ _Last updated: 2026-08-07_
 - [open] How does the accounting firm currently generate payment links to the IBAN - can neno replicate or integrate that? (owner: Eugenia) (source: Granola - VAT Return Tasks, 3 Aug)
 - [open] What is Vukan's direct-debit cut-off date range? Bulk payment matching - one lump supplier payment covering several invoices - stays manual until it is known. (owner: Matthew/Marloes) (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
 - [open] Task-completion visibility: some early Ocean Ionics transactions still showed "attach invoice" prompts after an invoice had already been attached - display bug or state bug? (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
+- [open] Ocean Ionics path: backfill the neno ledger from Exact and make neno the source of truth from a clean cut-off, or continue filing VAT in Exact and accept that neno does not become the source of truth? No decision made; it depends on the neno-to-Exact hook investigation. (owner: Mark/Matthew) (source: Granola - Clearing VAT return via VAT suspense account, 11 Aug)
+- [open] Corrections account rule: does late VAT always land in the corrections account, or only once the year's cumulative error passes EUR 1,000? The EUR 1,000 threshold decides whether a separate correction return is filed, not where the booking goes - Matthew's call. (owner: Matthew) (source: Slack #accounting-mvp (Mark), 12 Aug)
+- [open] Are the T-charts in Mark's proposal right for the refund quarter, the payable quarter, and a bill arriving after its quarter was filed? Awaiting an accountant's review. (owner: Venla/Andries) (source: Slack #accounting-mvp (Mark), 12 Aug)
+- [open] Should the VAT suspense account be split in two - one for VAT reported and one for VAT paid - to spot period-by-period discrepancies? (source: Granola - Clearing VAT return via VAT suspense account, 11 Aug)
 
 ## Risks
 - [high] Spike code (~13k lines, Claude-generated) took liberties with DB writes; atomicity and no-overlapping-bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew). (source: Granola — Next Steps AGL)
@@ -102,6 +112,8 @@ _Last updated: 2026-08-07_
 - [low] (2026-07-21) Production go-live was reached before Mark's 23 Jul leave (ledger live for Ocean Ionics); residual risk shifts to post-go-live hardening during his absence - Ledger Failure triage, the still-unbuilt bill-edit correction flow, and neno-vs-Exact trial-balance noise on OI. (source: Slack #accounting-mvp, 21 Jul)
 
 - [med] (2026-08-03) Bus factor: Mark is the only person who has seen the full state of the GL work, and nobody else can speak to it while he is on leave; making the neno GL the source of truth for the chart of accounts is blocked on his return. (source: Granola - Book-keeping features: investments, 3 Aug)
+- [high] (2026-08-10) The ledger queue does not drain and the leak is live: between 33% and 47% of import events have stalled every week since go-live and the rate is not decaying, while the failure surface under-reports by roughly a factor of five (9 of 49 on the 2026-08-10 reading). Q3 VAT filing from neno depends on closing this. (source: Linear project description, Close out the ledger's first production run, 10 Aug)
+- [med] (2026-08-11) neno does not yet hold a full quarter of ledger entries, so it cannot compile the VAT suspense-account booking independently; a strategy for reconciling Belastingdienst payments must be in place before the start of September. (source: Granola - Clearing VAT return via VAT suspense account, 11 Aug)
 
 ## Next steps
 - [2026-06-23] DP to compile full reporting requirements list. (owner: DP, due ASAP)
@@ -131,6 +143,9 @@ _Last updated: 2026-08-07_
 - [2026-08-03] Matthew to write up the VAT return project spec covering both phases; Eugenia to get an example payment link from the accounting firm; find and restore the missing Tasks page in Atlas (it exists at neno.build but not atlas.neno.com). (owner: Matthew/Eugenia) (source: Granola - VAT Return Tasks, 3 Aug)
 - [2026-08-05] Matthew to check the direct-debit cut-off terms for Vukan and Marloes to confirm them with the supplier, so Andries can match the lump payment to its invoices. (owner: Matthew/Marloes) (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
 - [2026-08-06] Yaroslav has drafted a dynamic-task proposal for VAT to share with the team; review it against the two-phase VAT delivery design. (owner: Yaroslav/Matthew) (source: Slack #tldv-channel - daily stand-up, 6 Aug)
+- [2026-08-11] Reconvene on the Belastingdienst reconciliation strategy and the neno-to-Exact hook on Friday 14 August, once the ledger bug work has settled. (owner: Mark/Matthew) (source: Granola - Clearing VAT return via VAT suspense account, 11 Aug)
+- [2026-08-11] Post the VAT filing walkthrough links to the accounting Slack channel. (owner: Venla) (source: Granola - Clearing VAT return via VAT suspense account, 11 Aug)
+- [2026-08-12] Answer the remaining open questions on Mark's VAT collection/return-booking proposal - in particular the corrections-account rule - so the design can be finalised. (owner: Matthew) (source: Slack #accounting-mvp, 12 Aug)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project (this project is In Progress, so they are posted as a proposed comment, not auto-applied)._
@@ -178,6 +193,13 @@ _Expanded 2026-07-17 from the 16 Jul #core-team stand-up. Project is In Progress
 
 _Expanded 2026-07-22 from the 21 Jul production go-live (#accounting-mvp). Project is In Progress, so posted as a proposed comment, not auto-applied._
 - (project: Start writing to neno's double-entry GL) Editing a booked bill must go through a reversing-entry + re-book flow: booking locks the bill's facts, an Edit action reverses the bill and any related settlement to release the evidence, and a Re-book action commits a fresh booking - supporting multiple edits before commit and leaving the existing Exact sync untouched. (source: Slack #accounting-mvp (Mark), 21 Jul 2026)
+- (project: Start writing to neno's double-entry GL) The net VAT position for a period books to an ordinary payable/receivable with the Belastingdienst as counterparty, the authority modelled as an ordinary party - so a VAT return is a bill being paid and reuses the existing matching, settlement and outstanding-balance machinery. (source: Slack #accounting-mvp (Mark), 12 Aug 2026)
+- (project: Start writing to neno's double-entry GL) After each VAT period a counter-booking zeroes the VAT ledger accounts and posts the net to a VAT suspense account, which must be classified as a general account rather than a VAT account; direct allocation to the BTW receivable account (1520 range) stays blocked. (source: Granola - Clearing VAT return via VAT suspense account, 11 Aug 2026)
+- (project: Start writing to neno's double-entry GL) neno needs a bridge to Exact that generates a matchable entry equivalent to Exact's own VAT filing feature (the auto-created payable to the Belastingdienst). (source: Granola - Clearing VAT return via VAT suspense account, 11 Aug 2026)
+- (project: Start writing to neno's double-entry GL) "Supplementary return" must be modelled as two distinct outcomes - supplementing the next regular return, or filing a separate correction return for the affected period. (source: Slack #accounting-mvp (Mark/Matthew), 12 Aug 2026)
+- (project: Close out the ledger's first production run) Ledger-event metrics must be counted over ledger events alone, excluding the staging traffic that shares the queue, so the defect rate is not buried in an all-destination total. (source: Linear project description, 10 Aug 2026)
+- (project: Close out the ledger's first production run) The failure surface must report every unbooked event, not only the named failures - on the 2026-08-10 reading it showed 9 of 49 - and stalled events must reach a terminal state rather than sitting with no result. (source: Linear project description, 10 Aug 2026)
+- (project: Close out the ledger's first production run) Acceptance is an accountant walking the period trial balance against Exact and confirming it reconciles; done means Ocean Ionics files its Q3 VAT return from neno rather than Exact. (source: Linear project description, 10 Aug 2026)
 
 ## Unfiled requirements (needs attribution)
 
