@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-13
+_Last updated: 2026-08-15
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -67,6 +67,10 @@ _Last updated: 2026-08-13
 - [2026-08-12] Settled in Mark's VAT collection and return-booking proposal: the net VAT position goes on an ordinary payable/receivable with the Belastingdienst as counterparty, and the tax authority is modelled as just a party. A VAT return then becomes literally a bill being paid, so matching, settlement and the outstanding balance are all already built. (source: Slack #accounting-mvp (Mark), 12 Aug)
 - [2026-08-12] "Supplementary return" is split into two distinct concepts - supplementing the next regular return versus filing a separate correction return for that period - rather than one label, and the one-account-or-a-pair question for corrections was dropped. (source: Slack #accounting-mvp (Mark/Matthew), 12 Aug)
 
+- [2026-08-14] VAT code semantics and document reconciliation are separated: for reverse_charge, import_vat and intra_eu_acquisition the document-side rate is effectively 0% (net = base, VAT = 0, gross = base), while the code keeps its 21% for the ledger and the VAT return. Filed as NEO-1890, related to NEO-1208. (source: Slack #accounting-mvp (Mark/Art/Venla), 14 Aug)
+- [2026-08-14] The interim "convert to 0% when sending to Exact" agreement was reversed the same day: purchase-entry-sync keeps posting `VATCode: item.vatCode` verbatim, because Exact applies its own treatment from its own code definition and sending 0% "would drop the reverse-charge legs on Exact's side". Scope of the fix is the VAT treatment/code, not vendor country. (source: Slack #accounting-mvp (Mark), 14 Aug)
+- [2026-08-14] Adopted onboarding guidance for customers whose books already live in Exact: each must have a defined transition date; Swan, Open Banking, WeFact and NMBRS are cut off from Exact on that date and enabled on neno, spillover to Exact is cleaned out and missing neno data backfilled to the transition date. Documents and transactions may pre-date the transition date, but reconciliation is decided by transaction date - after it reconcile on neno, before it reconcile in Exact - and the two modes must never overlap on one transaction. Yaroslav flagged that this needs aligning with Mark so the AGL works, and help to make the neno interfaces and matching engine follow the rules. (source: Slack #tech-team (Yaroslav), 14 Aug)
+
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
 - [open] Full reporting requirements list being compiled by DP (potentially 100+ items) — will frame future design. (owner: DP)
@@ -101,6 +105,10 @@ _Last updated: 2026-08-13
 - [open] Are the T-charts in Mark's proposal right for the refund quarter, the payable quarter, and a bill arriving after its quarter was filed? Awaiting an accountant's review. (owner: Venla/Andries) (source: Slack #accounting-mvp (Mark), 12 Aug)
 - [open] Should the VAT suspense account be split in two - one for VAT reported and one for VAT paid - to spot period-by-period discrepancies? (source: Granola - Clearing VAT return via VAT suspense account, 11 Aug)
 
+- [open] Does VAT self-assessment follow the VAT code or the vendor's country? Art proposed "this should apply to all foreign vendors"; Mark rejected that ("whether VAT is self-assessed depends on the code, not on where the vendor sits") and put the question to Venla, citing a Canadian supplier charging real NL 21% because the subscriber's company VAT number was missing. Unanswered. (owner: Venla/Mark) (source: Slack #accounting-mvp, 14 Aug)
+- [open] Bill line-level extraction returns a NULL taxRate, so the review calculation picks 21% up from the selected VAT code rather than from the document; Mark was "surprised the parser didn't use a bill-wide tax extraction". Does bill-wide tax extraction get added? (owner: Art/Mark) (source: Slack #accounting-mvp, 14 Aug)
+- [open] The Ocean Ionics fork - backfill neno's ledger from Exact and take source-of-truth status from a clean cut-off, or keep filing in Exact - was due to be reconvened by Mark and Matthew on Friday 14 August. No outcome appeared in Linear, Slack or Granola this run. (owner: Mark/Matthew)
+
 ## Risks
 - [high] Spike code (~13k lines, Claude-generated) took liberties with DB writes; atomicity and no-overlapping-bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew). (source: Granola — Next Steps AGL)
 - [med] Belgium gapless-ledger scope unconfirmed.
@@ -114,6 +122,9 @@ _Last updated: 2026-08-13
 - [med] (2026-08-03) Bus factor: Mark is the only person who has seen the full state of the GL work, and nobody else can speak to it while he is on leave; making the neno GL the source of truth for the chart of accounts is blocked on his return. (source: Granola - Book-keeping features: investments, 3 Aug)
 - [high] (2026-08-10) The ledger queue does not drain and the leak is live: between 33% and 47% of import events have stalled every week since go-live and the rate is not decaying, while the failure surface under-reports by roughly a factor of five (9 of 49 on the 2026-08-10 reading). Q3 VAT filing from neno depends on closing this. (source: Linear project description, Close out the ledger's first production run, 10 Aug)
 - [med] (2026-08-11) neno does not yet hold a full quarter of ledger entries, so it cannot compile the VAT suspense-account booking independently; a strategy for reconciling Belastingdienst payments must be in place before the start of September. (source: Granola - Clearing VAT return via VAT suspense account, 11 Aug)
+
+- [med] (2026-08-14) The reverse-charge/import/intra-EU VAT codes currently add 21% on top of the line total instead of resolving to an effective 0%, producing wrong bill totals and potentially wrong VAT return figures; the calculation is driven by the selected code because line-level extraction leaves taxRate NULL. Venla is blocked by a downstream "line items don't match" error and the proposed accountant override was withdrawn. (source: Slack #accounting-mvp, 14 Aug)
+- [high] (2026-08-14) FirstRing and QLever were onboarded onto neno while their books were still being reconciled in Exact, and "the two systems have been writing over each other since". The transition-date guidance is adopted for future onboardings but the existing overlap on those two customers is not yet cleaned up. (source: Slack #tech-team (Yaroslav), 14 Aug)
 
 ## Next steps
 - [2026-06-23] DP to compile full reporting requirements list. (owner: DP, due ASAP)
@@ -201,11 +212,17 @@ _Expanded 2026-07-22 from the 21 Jul production go-live (#accounting-mvp). Proje
 - (project: Close out the ledger's first production run) The failure surface must report every unbooked event, not only the named failures - on the 2026-08-10 reading it showed 9 of 49 - and stalled events must reach a terminal state rather than sitting with no result. (source: Linear project description, 10 Aug 2026)
 - (project: Close out the ledger's first production run) Acceptance is an accountant walking the period trial balance against Exact and confirming it reconciles; done means Ocean Ionics files its Q3 VAT return from neno rather than Exact. (source: Linear project description, 10 Aug 2026)
 
+_Expanded 2026-08-15 from #accounting-mvp (14 Aug). Project is In Progress, so posted as a proposed comment, not auto-applied._
+- (project: Start writing to neno's double-entry GL) VAT code semantics stay at 21% for the ledger and the VAT return, while document-side reconciliation treats reverse_charge, import_vat and intra_eu_acquisition as effective 0% - net = base, VAT = 0, gross = base - so the reconciler is told the treatment, not just the letter. (source: Slack #accounting-mvp (Mark), 14 Aug 2026; Linear NEO-1890)
+- (project: Start writing to neno's double-entry GL) purchase-entry-sync must keep posting `VATCode: item.vatCode` verbatim to Exact and must not convert these codes to 0%, because Exact applies its own treatment from its own code definition and a 0% would drop the reverse-charge legs on Exact's side. (source: Slack #accounting-mvp (Mark), 14 Aug 2026)
+
 ## Unfiled requirements (needs attribution)
 
 _New requirements the job could not confidently assign to a project under this initiative._
 - [2026-07-28] The GL/VAT coding proposer must receive the bill's own figures (line net/gross, tax amounts and bill-level tax entries) and derive the VAT rate and inclusive/exclusive treatment arithmetically, using them to narrow the candidate code list, rather than inferring VAT treatment from supplier name and line description alone. Filed in Linear against the Smart Bill Review project (NEO-1595), which sits outside the three tracked initiatives, so it cannot be confidently attributed to "Start writing to neno's double-entry GL"; needs Matthew's attribution. (source: Linear NEO-1595; Slack #tech-team, 28 Jul)
 - [2026-08-03] VAT return delivery and payment: model the VAT submission as a new task type that deposits the VAT document into the vault with transaction info left empty (so it does not appear in the reconciliation queue); capture amount, reference number, IBAN, due date and the document itself; give it a dedicated email template directing the customer to the platform; phase two adds a Swan "Pay Now" button (stored IBAN, reference and amount, one click plus Swan auth) and an open-banking PIS payment route for non-Swan customers, targeted before 31 Oct 2026 (Q3 VAT deadline); a working Tasks page is needed in Atlas, and longer term a documents-queue page with an upload button and document-type dropdown. This is task/payment surface work rather than ledger work, so it cannot be attributed to "Start writing to neno's double-entry GL", and no Linear project exists for it yet; needs Matthew's attribution. (source: Granola - VAT Return Tasks, 3 Aug)
+
+- [2026-08-14] Onboarding transition-date rules for customers migrating from Exact: a defined transition date per customer; Swan, Open Banking, WeFact and NMBRS cut off from Exact and enabled on neno on that date; Exact spillover cleaned out and neno backfilled to the transition date; reconciliation routed by transaction date relative to the transition date, with the two modes never overlapping on one transaction; and the neno interfaces plus the matching engine changed to follow the rules. This spans the AGL, the matching engine and customer onboarding, and Yaroslav explicitly opened it for alignment with Mark rather than filing it - so it cannot be confidently attributed to "Start writing to neno's double-entry GL" or to a project under the onboarding initiative; needs Matthew's attribution. (source: Slack #tech-team (Yaroslav), 14 Aug)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

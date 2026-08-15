@@ -1,6 +1,6 @@
 # Running context — Centralise customer data
 _Initiative: e78d13c9-27d8-494e-9c3b-8a264412e471 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-13
+_Last updated: 2026-08-15
 
 > New initiative created 30 Jul 2026 from the Q3 roadmap deck's "Centralise the data" goal: one
 > system for every customer's data. Covers basic reporting, structured profiles for services
@@ -19,6 +19,10 @@ _Last updated: 2026-08-13
 - [2026-08-04] The approver is not persisted: attribution reads "Approved by [accountant] on [date]", resolved from Workspace.assignedAccountantId at read time and degrading to "Approved by accountant on [date]" when none is assigned. This supersedes the earlier "Last reviewed by" wording. (source: Linear project description, Custom reporting for Neno customers, 4 Aug)
 - [2026-08-11] The approved management report is now shown to every customer (NEO-1789), rendered by a single audience-agnostic display-and-export component that both admin and the customer app use (NEO-1679) - so the accountant and the customer see the same report surface. (source: Linear NEO-1789 / NEO-1679, 10-11 Aug)
 - [2026-08-12] Custom reporting gets a demo mode in Atlas: pick a business type and a company name and render a sample report for prospects (NEO-1797). (source: Linear NEO-1797, 12 Aug)
+
+- [2026-08-13] Accounting features (Tasks, Bill Forwarding, Open Banking, WhatsApp) are gated on a real accounting engagement rather than on the customer having a Swan account (NEO-1830), the Vault is treated as a feature of every workspace with only its email forwarding an accounting feature (NEO-1848), and the accountant card is unified across Home and Tasks (NEO-1847) - all Dima, all shipped 13 Aug. (source: Linear NEO-1830/1847/1848, 13 Aug)
+- [2026-08-14] Management report presentation work is in review: an indigo pie palette and denser PDF typography (NEO-1895, Dima), following the 13 Aug refresh of the restaurant dummy data (NEO-1839). (source: Linear NEO-1839, 13 Aug; NEO-1895, 14 Aug)
+- [2026-08-14] An "Accountant Portfolio Dashboard" (NEO-1840) is now queued to Dima as planned work - the first movement on the accountant-portfolio question that has sat open since Yaroslav proposed Atlas as its home. (source: Linear NEO-1840, 14 Aug)
 
 ## Open questions
 - [open] Which data points do customers want glanceable on the home page? Ask DP before sharing the current design, to avoid premature sign-off. (owner: Matthew) (source: Granola - Review reporting, 3 Aug)

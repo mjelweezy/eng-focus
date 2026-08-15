@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-08-13
+_Last updated: 2026-08-15
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -75,6 +75,8 @@ _Last updated: 2026-08-13
 - [2026-08-06] Automatic Gmail forwarding for customers gets a confirmation loop: Google's forwarding-confirmation email raises a notification in #document-uploads for the team to approve manually, backed by extra DKIM, email and link verification with the existing protection layers left in place. Prompted by a live request from Moshe (QLever) that morning, with his co-founder expected to follow. (source: Slack #tech-team (Ihor), 6 Aug; Linear NEO-1706)
 - [2026-08-11] The Home hub accountant card now lets the customer contact their accountant on WhatsApp (NEO-1631 shipped), completing the sixth onboarding step's contact-your-accountant route. (source: Linear NEO-1631, 11 Aug)
 
+- [2026-08-14] Guiding rules adopted for onboarding customers whose books already live in Exact: a defined transition date per customer; Swan, Open Banking, WeFact and NMBRS cut off from Exact and enabled on neno on that date; Exact spillover cleaned out and neno backfilled to the transition date. Reconciliation is routed by transaction date - after the transition date it happens on neno (documents and transactions land in neno, the accountant matches there, and neno posts the purchase/sales entry, the bank entry and the MatchSet into Exact via link-sync.service.ts and books in AGL), before it the accountant reconciles in Exact and neno's only job is exporting the Swan feed into Exact via swan-exact-sync.ts. The two modes cannot overlap on one transaction. (source: Slack #tech-team (Yaroslav), 14 Aug)
+
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
 - [resolved 2026-06-24] Open-banking provider decision → provider selected: Montoya (contract still unsigned as of 23 Jun; Plaid ~EUR 2k/mo minimum was the prior front-runner).
@@ -90,6 +92,8 @@ _Last updated: 2026-08-13
 
 - [open] Onboarding-actions blast-radius retro (called for 29 Jul by Yaroslav, with Joel, Dima and Matthew): what changes in how features with a wide blast radius are planned, reviewed and gated? (source: Slack #tech-team, 28 Jul)
 
+- [open] Who does the transition-date work? Yaroslav needs alignment with Mark so the AGL follows the rules, and asked for time from Ihor to change the neno interfaces and matching engine - neither is committed. (owner: Yaroslav/Matthew) (source: Slack #tech-team, 14 Aug)
+
 ## Risks
 - [high] 6 Jul onboarding target is tight — onboarding-actions project still in backlog and its stepper depends on the new transactions UI.
 - [med] Email forwarding only accepts workspace-member senders, has no UI yet, rejected-email auto-reply still to build.
@@ -104,6 +108,8 @@ _Last updated: 2026-08-13
 - [med] Recurring (daily) transaction fetching for connected open-banking accounts is not yet available - connected accounts do not refresh automatically; renewal for expiring connections was added 15 Jul. (source: Granola/tldv - stand-up, 15 Jul)
 
 - [high] (2026-07-28) Onboarding-actions provisioning has already reached unintended customers once: the demo task rendered in the BV incorporation checklist and two real BV customers acted on it (NEO-1605). The immediate leak is patched and the data cleaned, but the class of leak - onboarding actions escaping into the launch/BV funnel - is not yet designed out. (source: Slack #tech-team, 28 Jul)
+
+- [high] (2026-08-14) FirstRing and QLever were onboarded onto neno while their books were still being reconciled in Exact, and "the two systems have been writing over each other since". The transition-date guidance prevents a repeat but does not itself clean up the existing overlap on those two customers. (source: Slack #tech-team (Yaroslav), 14 Aug)
 
 ## Next steps
 - Design the user-journey screens + an Ocean Ionics-specific homepage. (owner: Euge)

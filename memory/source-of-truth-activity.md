@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping activity
 _Initiative: b508d2b3-f876-4068-beec-e3c9899dd8c4 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-13
+_Last updated: 2026-08-15
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the
 > accountant-performed bookkeeping actions: AR reconciliation, credit notes, accruals,
@@ -26,6 +26,10 @@ _Last updated: 2026-08-13
 - [2026-08-12] AP reconciliation collapses to a single click: the three-amigos session on the reconciliation flow settled that bill passing and transaction reconciliation merge, so the accountant approves the extracted data and matches it to the payment in one action. (source: Granola - Daily stand up, 12 Aug)
 - [2026-08-12] Payment reminders sent in by clients are accepted rather than rejected: they pass classification and land in a queue to be worked, with only the extra reminder/late-payment fees processed - not the invoice amount plus fees. (source: Slack #accounting-mvp (Venla/Matthew), 12 Aug)
 
+- [2026-08-14] AR coding suggestions shipped end to end (Joel): invoice_field_proposals storage plus an AR precedent query and eval harness (NEO-1865), a proposer service triggered on invoice review (NEO-1866), and suggestedGlAccountCode exposed and wired into the review UI (NEO-1867), closing the AR Coding Suggestion feature (NEO-1864). It reuses Art's bill-coding pattern to code GL and VAT for invoices - the "front half" review/coding stage the AR reconciliation project called for on 30 Jul - but lands on the untracked "AR Coding Suggestions" project. (source: Linear NEO-1864..1867, 14 Aug; Slack #tech-team (Joel), 14 Aug)
+- [2026-08-14] Transaction matching hardened rather than extended: accepting a match is now atomic with clearing its competitors (NEO-1875), a rejected suggestion is recorded instead of deleted (NEO-1850), amount-uniqueness only routes into auto-matching when the bank feed actually covers the window (NEO-1849), supplier merchant-name memory is keyed on counterparty and label (NEO-1757), and the auto-match gate now has a measured baseline and replacement (NEO-1754). (source: Linear NEO-1749..1875, 12-14 Aug)
+- [2026-08-14] The AP sync path gained an approval choke point - bills could previously reach Exact unapproved (NEO-1887, Art). The fix landed on "Bookkeeping bug-fixes", which Matthew removed from the board on 4 Aug, so it is recorded here but not written back to Linear. (source: Linear NEO-1887, 14 Aug)
+
 ## Open questions
 - [open] (carried forward) Full reporting requirements list still being compiled by DP. (project: Financial reporting)
 - [open] (carried forward) Feature sequencing and ownership for the post-GL bookkeeping scope not yet decided. (owner: Matthew)
@@ -45,6 +49,8 @@ _Last updated: 2026-08-13
 - [open] Not discussed on 11 Aug and still unanswered: cost centre on depreciation postings, VAT on disposal, whether depreciation runs in the disposal month, commercial vs fiscal depreciation and investment deductions, the year-end fixed asset statement (verloopstaat) format, and the Dutch bodemwaarde floor for buildings. (project: Depreciation schedules) (source: Granola - Asset Depreciation, 11 Aug)
 - [open] Bulk payment / direct debit matching for Ocean Ionics is noted for a future roadmap but not prioritised - confirm whether it should be scheduled. (source: Granola - Asset Depreciation, 11 Aug)
 
+- [open] Bill upload classification was loosened so non-bills that look like bills are classified as financial_document rather than ignored (NEO-1855, Art, 14 Aug). Does the resulting financial_document queue need an accountant-facing surface, or does it sit behind review? (owner: Art/Matthew) (source: Slack #tech-team, 14 Aug)
+
 ## Risks
 - [med] (carried forward) Scope is broad and unsequenced; nothing staffed yet beyond AR reconciliation.
 - [med] (carried forward) Full reporting requirements not yet enumerated — scope could grow once DP's list lands. (project: Financial reporting)
@@ -52,6 +58,8 @@ _Last updated: 2026-08-13
 - [med] (2026-08-06) Depreciation now has two Linear projects - the tracked "Depreciation schedules" (Backlog, no lead, no issues) and Ihor's unattached "Fixed Assets & Depreciation Schedules" (In Progress) - so the board is tracking the dormant one while the real work runs outside every tracked initiative. (source: Linear + Slack #tech-team, 6 Aug)
 - [med] (2026-08-06) Fixed-asset scope is large: Ihor logged 26-27 distinct options for handling assets and depreciation, plus ledger-synchronisation complexity, and the Exact posting path is explicitly blocked on Mark's return. (source: Slack #tldv-channel - daily stand-up, 6 Aug; Linear decision logs 5-6 Aug)
 - [med] (2026-08-12) Bill extraction plus transaction matching consume 80-90% of Venla's time at 3-4 minutes per bill across 62 clients, so throughput - not feature coverage - is the binding constraint on the bookkeeping activity scope. (source: Slack #tech-team (Art, from a session with Venla), 12 Aug)
+
+- [med] (2026-08-14) Almost all the bookkeeping-activity throughput work this week landed on projects outside every tracked initiative - AR Coding Suggestions, Transaction Matching, Unified Review Queue, Bills & Expenses and the ignored Bookkeeping bug-fixes - so the board's committed items (depreciation, credit notes, related parties, accruals) show no movement while the real work is elsewhere. (source: Linear issue activity, 12-14 Aug)
 
 ## Next steps
 - [carried forward] DP to compile the full reporting requirements list. (owner: DP, ASAP) (project: Financial reporting)

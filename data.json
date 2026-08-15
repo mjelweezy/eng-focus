@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-13T04:10:00Z",
+ "generated_at": "2026-08-15T04:08:28Z",
  "projects": {
   "2731244b-71c8-44d1-b6bf-ae9434135d05": {
    "status": "Backlog",
@@ -53,20 +53,30 @@
    "color": "#5e6ad2",
    "groups": [
     {
+     "initiative": "Make accountants more efficient during onboarding and customer collaboration",
+     "projects": [
+      {
+       "name": "Custom reporting for Neno customers",
+       "issues": [
+        {
+         "id": "NEO-1895",
+         "title": "Management report: indigo pie palette and denser PDF typography",
+         "status": "In Review"
+        }
+       ]
+      }
+     ]
+    },
+    {
      "initiative": "__none__",
      "projects": [
       {
        "name": "__none__",
        "issues": [
         {
-         "id": "NEO-1766",
-         "title": "Home page after completing onboarding (web banking app)",
-         "status": "In Review"
-        },
-        {
-         "id": "NEO-1789",
-         "title": "Show the approved management report to every customer",
-         "status": "Done"
+         "id": "NEO-1840",
+         "title": "Accountant Portfolio Dashboard",
+         "status": "Todo"
         }
        ]
       }
@@ -86,43 +96,33 @@
        "name": "Close out the ledger's first production run",
        "issues": [
         {
-         "id": "NEO-1742",
-         "title": "Move every stuck event to its terminal state",
-         "status": "In Progress"
+         "id": "NEO-1885",
+         "title": "Delete the superseded journal-booking path",
+         "status": "In Review"
         },
         {
-         "id": "NEO-1745",
-         "title": "Show claimed-but-unresolved events on the failure surface",
+         "id": "NEO-1886",
+         "title": "Store a ledger event's fact payload once",
          "status": "Done"
         },
         {
-         "id": "NEO-1748",
-         "title": "Name the unmapped-account and VAT tie-out failures",
+         "id": "NEO-1749",
+         "title": "Backfill the pre-go-live import legs and re-drive what is blocked",
          "status": "Done"
         },
         {
-         "id": "NEO-1746",
-         "title": "Map the Exact VAT code to the workspace's Neno code at emission",
+         "id": "NEO-1868",
+         "title": "Open a uuid search needle on the tab that holds it",
          "status": "Done"
         },
         {
-         "id": "NEO-1747",
-         "title": "Type the fact payloads so unparseable values fail as recorded errors",
+         "id": "NEO-1862",
+         "title": "Find a reconciliation-queue item by its id from the search box",
          "status": "Done"
         },
         {
-         "id": "NEO-1744",
-         "title": "Suppress duplicate import emission at source",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1743",
-         "title": "Enable ledger emission under test",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1741",
-         "title": "Record a terminal result on both skip paths",
+         "id": "NEO-1751",
+         "title": "Backfill the pre-go-live bill leg for Wildkamp 130010333",
          "status": "Done"
         }
        ]
@@ -133,21 +133,21 @@
      "initiative": "Ocean Ionics: Full AP Loop",
      "projects": [
       {
-       "name": "Ocean Ionics sandbox testing",
-       "issues": [
-        {
-         "id": "NEO-1143",
-         "title": "Bills can sync to Exact without being reconciled, with no signal to...",
-         "status": "Todo"
-        }
-       ]
-      },
-      {
        "name": "Exact Online Integration",
        "issues": [
         {
          "id": "NEO-857",
          "title": "Automated daily Exact sync job",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "Ocean Ionics sandbox testing",
+       "issues": [
+        {
+         "id": "NEO-1143",
+         "title": "Bills can sync to Exact without being reconciled, with no operator sig",
          "status": "Todo"
         }
        ]
@@ -171,8 +171,13 @@
        "name": "__none__",
        "issues": [
         {
+         "id": "NEO-1825",
+         "title": "Task lifecycle logs have no message, so they render as a raw JSON blob",
+         "status": "In Progress"
+        },
+        {
          "id": "NEO-999",
-         "title": "Remove `neno_wt_` prefix from worktree database names",
+         "title": "Remove neno_wt_ prefix from worktree database names",
          "status": "In Progress"
         },
         {
@@ -192,21 +197,6 @@
    "color": "#f2994a",
    "groups": [
     {
-     "initiative": "Source of truth for all bookkeeping activity",
-     "projects": [
-      {
-       "name": "End-to-end AR reconciliation",
-       "issues": [
-        {
-         "id": "NEO-1560",
-         "title": "SPIKE: Exploratory frontend changes for AR",
-         "status": "In Progress"
-        }
-       ]
-      }
-     ]
-    },
-    {
      "initiative": "Org + Platform Maturity",
      "projects": [
       {
@@ -214,17 +204,17 @@
        "issues": [
         {
          "id": "NEO-1705",
-         "title": "Pentest M2 (VLN13) - Two overlapping auth credentials; Swan session...",
+         "title": "Pentest M2 (VLN13) - Two overlapping auth credentials; Swan session ou",
          "status": "In Review"
         },
         {
          "id": "NEO-1701",
-         "title": "Pentest H2 - File-type allowlist is client-side only on vault + bil...",
+         "title": "Pentest H2 - File-type allowlist is client-side only on vault + bill u",
          "status": "In Progress"
         },
         {
          "id": "NEO-1702",
-         "title": "Pentest H3 - Signed download URLs render inline; no Content-Disposi...",
+         "title": "Pentest H3 - Signed download URLs render inline; no Content-Dispositio",
          "status": "In Progress"
         },
         {
@@ -247,44 +237,74 @@
      ]
     },
     {
+     "initiative": "Source of truth for all bookkeeping activity",
+     "projects": [
+      {
+       "name": "End-to-end AR reconciliation",
+       "issues": [
+        {
+         "id": "NEO-1560",
+         "title": "SPIKE: Exploratory frontend changes for AR",
+         "status": "In Progress"
+        }
+       ]
+      }
+     ]
+    },
+    {
      "initiative": "__none__",
      "projects": [
       {
+       "name": "AR Coding Suggestions",
+       "issues": [
+        {
+         "id": "NEO-1864",
+         "title": "AR Coding Suggestion Feature",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1865",
+         "title": "Foundation: invoice_field_proposals storage + AR precedent query + eva",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1866",
+         "title": "Proposer + trigger: AR coding-proposal service on invoice review",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1867",
+         "title": "Surface: expose suggestedGlAccountCode + wire proposal into review UI",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "Bas S.: Post-Incorporation UX improvements",
+       "issues": [
+        {
+         "id": "NEO-1009",
+         "title": "Banking onboarding not showing all bvs as options to open a bank accou",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
        "name": "VAT Submission Tasks",
        "issues": [
+        {
+         "id": "NEO-1773",
+         "title": "M3.2a: Let the customer read and download the return",
+         "status": "In Progress"
+        },
         {
          "id": "NEO-1779",
          "title": "VAT Submission Feature",
          "status": "In Progress"
         },
         {
-         "id": "NEO-1770",
-         "title": "M1.2a: Render the VAT card and close it from the customer app",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1771",
-         "title": "M2.1a: Give the customer the bank transfer details",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-1772",
-         "title": "M3.1a: Attach the return at create and land it in the customer's vault",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-1773",
-         "title": "M3.2a: Let the customer read and download the return",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-1774",
-         "title": "M4.1a: Cancel a sent VAT task and purge its document",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-1775",
-         "title": "M5.1a: Let the accountant choose the VAT direction on the create form",
+         "id": "NEO-1778",
+         "title": "M7.1a: Run a real quarter for Ocean Ionics",
          "status": "Todo"
         },
         {
@@ -298,19 +318,29 @@
          "status": "Todo"
         },
         {
-         "id": "NEO-1778",
-         "title": "M7.1a: Run a real quarter for Ocean Ionics",
+         "id": "NEO-1775",
+         "title": "M5.1a: Let the accountant choose the VAT direction on the create form",
          "status": "Todo"
-        }
-       ]
-      },
-      {
-       "name": "Bas S.: Post-Incorporation UX improvements",
-       "issues": [
+        },
         {
-         "id": "NEO-1009",
-         "title": "Banking onboarding not showing all bvs as options to open a bank ac...",
+         "id": "NEO-1774",
+         "title": "M4.1a: Cancel a sent VAT task and purge its document",
          "status": "Todo"
+        },
+        {
+         "id": "NEO-1772",
+         "title": "M3.1a: Attach the return at create and land it in the customer's vault",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1771",
+         "title": "M2.1a: Give the customer the bank transfer details",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1770",
+         "title": "M1.2a: Render the VAT card and close it from the customer app",
+         "status": "Done"
         }
        ]
       },
@@ -319,18 +349,23 @@
        "issues": [
         {
          "id": "NEO-1710",
-         "title": "WhatsApp auth eval: flaky fail on 'card_x sees scoped empty when re...",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1480",
-         "title": "WhatsApp agent-info emits a double-+ phone number and a non-canonic...",
+         "title": "WhatsApp auth eval: flaky fail on card_x sees scoped empty for card_y",
          "status": "In Progress"
         },
         {
          "id": "NEO-1408",
-         "title": "Hide the terms-template dropdown on the quote builder (templates ar...",
+         "title": "Hide the terms-template dropdown on the quote builder",
          "status": "In Review"
+        },
+        {
+         "id": "NEO-1480",
+         "title": "WhatsApp agent-info emits a double-+ phone number and a bad wa.me link",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1884",
+         "title": "Drone queue: isolate per-worktree DBs via setup-worktree --headless",
+         "status": "Done"
         }
        ]
       }
@@ -376,14 +411,14 @@
    "color": "#e5484d",
    "groups": [
     {
-     "initiative": "Platform Improvements",
+     "initiative": "Source of truth for all bookkeeping activity",
      "projects": [
       {
-       "name": "Wednesday Sweeps",
+       "name": "Bookkeeping bug-fixes",
        "issues": [
         {
-         "id": "NEO-1691",
-         "title": "Add Atlas and App to local and preview environments",
+         "id": "NEO-1887",
+         "title": "Bills can reach Exact unapproved: no approval choke point on AP sync",
          "status": "Done"
         }
        ]
@@ -394,41 +429,11 @@
      "initiative": "__none__",
      "projects": [
       {
-       "name": "Smart Bill Review",
+       "name": "Bills & Expenses",
        "issues": [
         {
-         "id": "NEO-1734",
-         "title": "Split BillFieldEdit.source into actor and provenance: drop APPROVAL...",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1663",
-         "title": "Prompt to apply VAT code or GL account changes to all line items",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1791",
-         "title": "Score the line-item VAT rate the pipeline actually read",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1642",
-         "title": "Commit the architecture doc and record the checkpoint decisions in it",
-         "status": "Done"
-        }
-       ]
-      },
-      {
-       "name": "Transaction Matching",
-       "issues": [
-        {
-         "id": "NEO-1758",
-         "title": "Fix four sources of false suggestions in the review queue",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1755",
-         "title": "Add amount uniqueness as a second route into auto-matching, and the...",
+         "id": "NEO-1855",
+         "title": "Make the upload classifier permissive: refuse only obvious non-bills",
          "status": "Done"
         }
        ]
@@ -438,8 +443,73 @@
        "issues": [
         {
          "id": "NEO-1501",
-         "title": "Authenticate Anthropic API from Cloud Run via Workload Identity Fed...",
+         "title": "Authenticate Anthropic API from Cloud Run via Workload Identity Federa",
          "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "Platform",
+       "issues": [
+        {
+         "id": "NEO-1863",
+         "title": "Give tests a way to capture expected logs, and quieten the suite",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1870",
+         "title": "/finish-ticket dead-ends when run from the worktree it should retire",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "Transaction Matching",
+       "issues": [
+        {
+         "id": "NEO-1875",
+         "title": "Make accepting a match atomic with clearing its competitors",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1757",
+         "title": "Key the supplier merchant-name memory on counterparty and label",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1849",
+         "title": "Only auto-match on amount uniqueness when the bank feed covers the win",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1754",
+         "title": "Bill and transaction matching: baseline and a measured auto-match gate",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1850",
+         "title": "Record a rejected match suggestion instead of deleting it",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "Unified Review Queue",
+       "issues": [
+        {
+         "id": "NEO-1893",
+         "title": "Render the line items as a booking recommendation, with the shared rea",
+         "status": "In Review"
+        },
+        {
+         "id": "NEO-1879",
+         "title": "Put the extraction fields in document order, with a verdict footer",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1878",
+         "title": "Show the recommended supplier first in bill review, with the reason",
+         "status": "Done"
         }
        ]
       },
@@ -447,8 +517,18 @@
        "name": "__none__",
        "issues": [
         {
-         "id": "NEO-1767",
-         "title": "Remove Document AI entirely: drop the docai extraction provider and...",
+         "id": "NEO-1856",
+         "title": "Add a merge queue for PRs to main",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1883",
+         "title": "Give the engagement row an explicit Details button",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1854",
+         "title": "Add a /finish-ticket skill to tear down a ticket's worktree and databa",
          "status": "Done"
         }
        ]
@@ -461,28 +541,7 @@
    "name": "Adam",
    "initial": "A",
    "color": "#a855f7",
-   "groups": [
-    {
-     "initiative": "__none__",
-     "projects": [
-      {
-       "name": "__none__",
-       "issues": [
-        {
-         "id": "NEO-1804",
-         "title": "Agent tool to record a note on a bill from a later WhatsApp message",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1728",
-         "title": "WhatsApp agent discards bill context from users and confirms a save...",
-         "status": "Done"
-        }
-       ]
-      }
-     ]
-    }
-   ]
+   "groups": []
   }
  ]
 }

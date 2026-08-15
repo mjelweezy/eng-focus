@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping data
 _Initiative: 0f26a21f-cd9b-47e4-9678-a3c5107a1fa0 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-13
+_Last updated: 2026-08-15
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the external
 > data integrations feeding neno's books: Numbrs, Stripe, Shopify, Shopify Payments, WeFact,
@@ -14,6 +14,8 @@ _Last updated: 2026-08-13
 - [2026-08-10] Payroll journals are on the Nmbrs REST API (api.nmbrsapp.com, shipped Mar 2026); only webhook management is SOAP and that is one-time per-debtor UI config, so the 1 Mar 2027 SOAP retirement does not affect this project. (source: Linear project description, Payroll (Numbrs integration), 10 Aug)
 - [2026-08-10] The WeFact/neno invoicing question is scoped to invoicing completeness only - whether neno customers can send invoices on par with WeFact, even by a different process - not to broader platform gaps. Analysis starts from Cohort 2, where only 3 customers actively use invoicing, and is done by manual review rather than scraping. (source: Granola - kick off wefact/neno invoicing, 10 Aug)
 
+- [2026-08-14] The adopted Exact-to-neno transition-date guidance names WeFact and NMBRS alongside Swan and Open Banking as tools to be cut off from Exact and enabled on neno on a customer's transition date - so the payroll and invoicing cutovers are now bound to the same per-customer date rather than being sequenced independently. (source: Slack #tech-team (Yaroslav), 14 Aug)
+
 ## Open questions
 - [open] (carried forward) Payroll design not yet discussed — open design area for a future session. (project: Payroll (Numbrs integration))
 - [open] (carried forward) When will a direct neno invoicing API be available? A reseller-style prospect's decision to use the WeFact bridge now or wait depends on the roadmap timeline. (owner: Matthew) (source: Granola - Bjorn - Neno Invoicing connect, 28 Jul)
@@ -21,6 +23,8 @@ _Last updated: 2026-08-13
 - [open] Payroll open decisions: TWK corrections into closed or filed periods; the failure mode when the Exact leg fails; whether entries need a source document (leaning no); whether neno's chart already carries the payroll accounts. (project: Payroll (Numbrs integration)) (source: Linear project description, 10 Aug)
 - [open] Is Nmbrs' native Exact export in fact running per client? The 15 Jun Escontrela review found memoriaal entry 26900001 created by an accountant, which reads as hand-entry; settled from the entry's creator field by anyone with Exact access, and the per-client cutover depends on the answer. (project: Payroll (Numbrs integration)) (source: Linear project description, 10 Aug)
 - [open] Which reminder functionality and send methods do cohort customers actually use in WeFact? (source: Granola - kick off wefact/neno invoicing, 10 Aug)
+
+- [open] Does the per-client Nmbrs cutover have to happen on the customer's Exact transition date, or can payroll cut over separately? The 14 Aug onboarding guidance implies the former; the payroll PRD assumes per-client cutover on its own schedule. (owner: Adam/Yaroslav) (source: Slack #tech-team, 14 Aug; Linear project description, 10 Aug)
 
 ## Risks
 _None carried forward yet — see source-of-truth.md for pre-split risk history._
