@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping activity
 _Initiative: b508d2b3-f876-4068-beec-e3c9899dd8c4 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-15
+_Last updated: 2026-08-20
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the
 > accountant-performed bookkeeping actions: AR reconciliation, credit notes, accruals,
@@ -30,6 +30,9 @@ _Last updated: 2026-08-15
 - [2026-08-14] Transaction matching hardened rather than extended: accepting a match is now atomic with clearing its competitors (NEO-1875), a rejected suggestion is recorded instead of deleted (NEO-1850), amount-uniqueness only routes into auto-matching when the bank feed actually covers the window (NEO-1849), supplier merchant-name memory is keyed on counterparty and label (NEO-1757), and the auto-match gate now has a measured baseline and replacement (NEO-1754). (source: Linear NEO-1749..1875, 12-14 Aug)
 - [2026-08-14] The AP sync path gained an approval choke point - bills could previously reach Exact unapproved (NEO-1887, Art). The fix landed on "Bookkeeping bug-fixes", which Matthew removed from the board on 4 Aug, so it is recorded here but not written back to Linear. (source: Linear NEO-1887, 14 Aug)
 
+- [2026-08-19] Credit-note handling settled across two sessions (Andries, then Freddy): in WeFact/Exact a cancelled invoice auto-generates a credit note that cancels the original with no manual accountant action, and neno must make the invoice/credit-note link explicit so the pair visibly cancels out. Cancelled invoices are to be taken out of the matching options so an accountant cannot match a payment against one, and a payment arriving against a cancelled invoice raises a task asking what it is for. Credit notes against already-paid invoices - where money has to move back - are deliberately not built for now; the behaviour will be observed first. (source: Granola - Catch up with Andries on Credit Notes + Catch up with Freddy, 19 Aug)
+- [2026-08-19] The depreciation schedule is still mid-build: Dmytro needs Mark's help to merge items, and whether it is shown live on Atlas or as a Figma mock-up depends on a check with Ihor on implementation progress. (source: Granola - Daily stand up, 19 Aug)
+
 ## Open questions
 - [open] (carried forward) Full reporting requirements list still being compiled by DP. (project: Financial reporting)
 - [open] (carried forward) Feature sequencing and ownership for the post-GL bookkeeping scope not yet decided. (owner: Matthew)
@@ -51,6 +54,9 @@ _Last updated: 2026-08-15
 
 - [open] Bill upload classification was loosened so non-bills that look like bills are classified as financial_document rather than ignored (NEO-1855, Art, 14 Aug). Does the resulting financial_document queue need an accountant-facing surface, or does it sit behind review? (owner: Art/Matthew) (source: Slack #tech-team, 14 Aug)
 
+- [open] Credit-note reconciliation gap: there is no way for an accountant to recognise that an invoice and its credit note cancel each other out and that no money needs to move. Matthew to work it through with Andries on the accounting/matching side. (owner: Matthew/Andries) (project: Credit note processing (AR & AP)) (source: Granola - Catch up with Andries on Credit Notes, 19 Aug)
+- [open] Cancelled invoices in the matching engine: removing them reduces human error, but a payment may already have been sent against one. Is removal unconditional, or does a cancelled invoice stay matchable behind the auto-raised task? (owner: Matthew) (project: Credit note processing (AR & AP)) (source: Granola - Catch up with Andries on Credit Notes + Catch up with Freddy, 19 Aug)
+
 ## Risks
 - [med] (carried forward) Scope is broad and unsequenced; nothing staffed yet beyond AR reconciliation.
 - [med] (carried forward) Full reporting requirements not yet enumerated — scope could grow once DP's list lands. (project: Financial reporting)
@@ -70,6 +76,8 @@ _Last updated: 2026-08-15
 - [2026-08-06] Give Ihor feedback on the Fixed Assets & Depreciation Schedules outline - he asked for it "rather sooner" - and decide whether it replaces the tracked Depreciation schedules project and should be attached to this initiative. (owner: Matthew) (source: Slack #tech-team, 6 Aug)
 - [2026-08-11] Verify whether the pre-June Ocean Ionics transactions are already in Exact and, if so, remove them from the neno queue. (owner: Mark) (source: Granola - Asset Depreciation, 11 Aug)
 - [2026-08-11] Fix the private-use VAT code on energy bills, reinstate the 'update all line items?' prompt and investigate the line-breakdown recalculation bug. (owner: Ihor) (source: Granola - Asset Depreciation, 11 Aug)
+
+- [2026-08-19] Work through with Andries how an invoice/credit-note cancellation should be recognised on the accounting and matching side. (owner: Matthew) (source: Granola - Catch up with Andries on Credit Notes, 19 Aug)
 
 ## Projects (filed in Linear)
 - [2026-07-30] Attached to this new initiative: Financial reporting, Credit note processing (AR & AP), Related-parties register, Depreciation schedules, Accruals, Native team features & permissions, Customer project creation & management, Bookkeeping bug-fixes, End-to-end AR reconciliation. New backlog items from the Q3 roadmap deck not yet filed as Linear projects: Investment & loan booking, Corrections/memorandums, Inter-company payments, Backfill bookings to AGL, Opening balances for AGL.
@@ -105,6 +113,14 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 - (project: Depreciation schedules) Fully depreciated assets sit at zero book value but stay in the register so the accountant knows the asset still exists. (source: Granola - Asset Depreciation, 11 Aug 2026)
 - (project: Depreciation schedules) Disposal need only distinguish proceeds from no proceeds; grouping follows invoice lines and a later additional unit is a new asset entry. (source: Granola - Asset Depreciation, 11 Aug 2026)
 
+_Expanded 2026-08-20 from the 19 Aug credit-note sessions. Credit note processing (AR & AP) is Backlog, so these publish into its managed description block._
+- (project: Credit note processing (AR & AP)) An invoice and its credit note must be explicitly linked in neno, so the pair visibly cancels out. (source: Granola - Catch up with Andries on Credit Notes, 19 Aug 2026)
+- (project: Credit note processing (AR & AP)) Cancelled invoices are removed from the matching options, so an accountant cannot match a payment against a cancelled invoice. (source: Granola - Catch up with Andries on Credit Notes, 19 Aug 2026)
+- (project: Credit note processing (AR & AP)) A payment arriving against a cancelled invoice auto-raises a task asking what the payment is for, rather than failing silently. (source: Granola - Catch up with Andries on Credit Notes, 19 Aug 2026)
+- (project: Credit note processing (AR & AP)) An accountant must be able to see that an invoice and its credit note cancel each other out and that no money needs to move - the reconciliation surface has no such affordance today. (source: Granola - Catch up with Andries on Credit Notes, 19 Aug 2026)
+- (project: Credit note processing (AR & AP)) Reference behaviour to match: in WeFact/Exact, cancelling an invoice auto-generates a credit note and the two cancel out with no manual accountant action. (source: Granola - Catch up with Andries on Credit Notes, 19 Aug 2026)
+- (project: Credit note processing (AR & AP)) Out of scope for now: a refund workflow for a credit note raised against an already-paid invoice. The gap is acknowledged and deliberately unbuilt so its effect on the workflow can be observed. (source: Granola - Catch up with Freddy, 19 Aug 2026)
+
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._
 - [2026-07-16] (carried forward) Expose invoice/quote operations via an MCP server/API plus trustworthy non-reconciled-items / missing-documents lists for external agent use - could belong to End-to-end AR reconciliation, invoicing, or a new API/MCP project; needs Matthew's attribution. (source: Granola/tldv - Sil x Yaroslav API call, 15 Jul)
@@ -116,6 +132,9 @@ _New requirements the job couldn't confidently assign to a project land here for
 - [2026-08-11] Line-item extraction should display amounts exactly as printed on the bill (exclusive or inclusive), not recalculate them, and the accounting-context field should carry client-specific VAT rules (e.g. Ocean Ionics claims no VAT on Croquet runs). These are bill-extraction requirements belonging to Smart Bill Review, which sits under no tracked initiative; needs Matthew's attribution. (source: Granola - Asset Depreciation, 11 Aug)
 - [2026-08-12] Changing one line's VAT code should prompt the accountant to apply it to the other lines rather than auto-applying, and the resulting edits need to be recorded so model performance can be measured and fed back - with the open design question of whether a bulk change indicates bad context rather than a bad model. Belongs to Smart Bill Review (untracked); needs Matthew's attribution. (source: Slack #tech-team (Art/Matthew), 12 Aug; Granola - Asset Depreciation, 11 Aug)
 - [2026-08-12] From Art's session with Venla: surface the invoice-forwarding email in Atlas (NEO-1795), allow task creation during bill extraction rather than only at reconciliation (NEO-1794), add invoice translation for foreign-language bills, and support ledger/rule automation for small transaction fees (usually under 20 cents) after a bill is linked to its payment. These sit on untracked projects; needs Matthew's attribution. (source: Slack #tech-team (Art), 12 Aug)
+
+- [2026-08-19] Credit-note presentation in neno's own invoicing: credit notes are listed as positive numbers on the overview and the customer email shows a positive amount; the expected shape is quantity 1 with a negative price, or quantity -1 as WeFact does. These sit on "fixing MVP issues neno invoicing" (58156aa0) under the untracked "Retire WeFact: all invoicing on neno" initiative and are already filed as NEO-1952/NEO-1976/NEO-1937, so they are not written to the tracked Credit note processing project; needs Matthew's attribution if they should also sit under a tracked initiative. (source: Granola - Catch up with Freddy, 19 Aug; Linear NEO-1937/1952/1976)
+- [2026-08-19] Accountant tasks page redesign: the accountant-facing tasks page is poor (a Bastion/Vata review finding via Joel) and the proposal is to apply the customer-facing task screen design to it. Destined for the untracked "Bookkeeping Improvements" project and Dmytro; needs Matthew's attribution. (source: Granola - Matthew / Euge, 19 Aug)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

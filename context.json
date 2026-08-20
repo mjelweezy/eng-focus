@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-15T04:16:42Z",
+ "generated_at": "2026-08-20T07:50:56Z",
  "lookback_days": 14,
  "initiatives": {
   "cb65425b-cc3d-4f8a-8164-5849f594d708": {
@@ -8,14 +8,20 @@
    "target_date": "2026-07-06",
    "health": "At risk",
    "notes": [],
-   "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno. The 6 Jul target has long passed and the build is now largely in customers' hands - which is exactly how the week's worst moment arrived. On 28 Jul the Home-hub demo task (\"Laptop purchase - receipt needed\") was found rendering inside the customer-facing BV incorporation checklist in the launch app, with a working Upload button, counted in the customer's completion readout: two real BV customers acted on it, one uploading a genuine Coolblue invoice on 27 Jul. Yaroslav cleared the bad onboarding tasks from the database - in time to spare a new paying BV customer - patched the provisioning code, closed it as NEO-1605 (urgent, Done 28 Jul), and called a retrospective for 29 Jul with Joel, Dima and Matthew, saying plainly that features with a wide blast radius are not being thought through. Alongside that, real progress: the Home onboarding hub was extended to Swan banking workspaces behind an admin-managed per-workspace toggle settable on accounting-engagement create and update (NEO-1577, Dima, Done 28 Jul), the sandbox WhatsApp number is configured with PR-preview routing (NEO-1581, Joel, Done 28 Jul, Meta bot setup still in progress), and the long-standing multi-workspace WhatsApp requirement finally has a ticket (NEO-1604, Joel) after First Ring was onboarded onto neno AP across two accounts. Open banking remains live for real customers (QLever from 23 Jul) and Dima keeps working the Open Banking frontend/ingestion pair. Watch-outs are unchanged and now joined by a bigger one: connected accounts still have no recurring daily fetch, the bankTransaction.reference schema change is outstanding, the Exact 60 req/min limit is unsolved, Ihor is away to 31 Aug and Mark to 7 Aug - and onboarding-actions provisioning has proven it can escape into the BV funnel. On 29 Jul the planned blast-radius retro was on the team's stand-up agenda and Dima continued the onboarding-actions build (a new zero-balance \"add funds\" task, and exploring a persistent Home page rather than hide-on-complete); no retro outcomes have surfaced yet in Slack or Granola.",
+   "exec_summary": "Goal: onboard the next 5 hand-picked customers and run AP & AR reconciliation on neno. Off the board since 30 July, still synced in the background. This window the migration finally has an order and a route. Order: simplest first - ZM Legal and Opterra are the targets, with the outliers deferred (First Ring for products, subscriptions, discounts and e-invoicing; JSN Crowd Events for decimal quantities and credit-note volume; Lionheart Music for online payments; Total Bathrooms for mixed products and free-form lines). Only three cohort-2 customers actively use WeFact invoicing at all. Route: rather than wait for neno invoicing to reach WeFact parity, integrate the WeFact API and process invoices raised in WeFact through neno's reconciliation path - roughly one week of Dmytro's time to make the simpler customers migration-ready. The mechanism for the 14 August transition-date guidance also landed: a per-workspace transition date now decides which transactions neno reconciles and exports (NEO-1897), alongside a scheduled pull of WeFact documents into the review queue (NEO-1922). What still gates migration is the invoicing feature list, and it is long: reminders unbuilt, no payment link on invoices, no past-due indicator, the cancelled state not triggering, decimal and negative quantities and prices unsupported, credit-note presentation wrong, no multi-currency for the one cohort customer invoicing in USD. Frederique was closing the MVP issues on 19 August with an MVP planning call set for the next morning, but engineers are stretched. Two operational items carried: Ocean Ionics' team is still forwarding bills by hand, so bills go missing, and it is unresolved whether new customers connect their banks via Lendroom or neno's own open banking.",
    "whats_changed": [
-    "14 Aug, #tech-team: Yaroslav opened guiding rules for onboarding customers whose books already live in Exact - a defined transition date per customer, with Swan, Open Banking, WeFact and NMBRS cut off from Exact and enabled on neno on that date, Exact spillover cleaned out and neno backfilled to the transition date. Reconciliation is routed by transaction date: after the transition date documents and transactions land in neno, the accountant matches there and neno posts the purchase/sales entry, the bank entry and the MatchSet into Exact via link-sync.service.ts and books in AGL; before it the accountant reconciles in Exact and neno's only job is exporting the Swan feed. The two modes cannot overlap on one transaction.",
-    "The reason it was written: FirstRing and QLever were onboarded onto neno while their books were still being reconciled in Exact, and \"the two systems have been writing over each other since\".",
-    "Yaroslav flagged two dependencies he does not yet have - alignment with Mark so the AGL follows the rules, and time from Ihor to change the neno interfaces and matching engine.",
-    "No other movement in the window. This initiative is off the board (30 Jul) but still synced in the background."
+    "10-12 Aug, Granola (kick off wefact/neno invoicing; Freddy <> Matthew): migration order set by simplicity - ZM Legal and Opterra first, outliers deferred. Only three cohort-2 customers actively use WeFact invoicing.",
+    "12-19 Aug: the accepted route is the WeFact API rather than invoicing parity - process WeFact-raised invoices through neno's reconciliation path, roughly one week of Dmytro's time to make simpler customers migration-ready.",
+    "18 Aug, Linear: a per-workspace transition date now decides which transactions neno reconciles and exports (NEO-1897), giving the 14 Aug transition-date guidance a mechanism; WeFact documents are pulled on a schedule into the review queue (NEO-1922).",
+    "18 Aug, Granola: onboarding actions and the forwarding-email banner must move from Vault to Bills & Expenses when it ships; a session with Eugenia and Yaroslav is to settle Lendroom versus neno's own open banking for new customers.",
+    "19 Aug, Granola (Mark <> Wildkamp): Ocean Ionics' team forwards bills by hand and gaps are appearing - set up automatic Gmail forwarding instead.",
+    "19 Aug: Frederique was finishing the invoicing MVP issues, with a 30-minute MVP planning call agreed for the morning of 20 Aug."
    ],
    "risks": [
+    {
+     "severity": "med",
+     "text": "neno invoicing still carries the WeFact-parity gaps that gate migration: invoice reminders unbuilt, no payment link on invoices, no past-due indicator, the cancelled state not triggering, decimal and negative quantities and prices unsupported, credit-note presentation wrong, and no multi-currency for the one cohort customer invoicing in USD. Engineers are stretched."
+    },
     {
      "severity": "high",
      "text": "FirstRing and QLever were onboarded onto neno while their books were still being reconciled in Exact and \"the two systems have been writing over each other since\". The transition-date guidance prevents a repeat but does not itself clean up the existing overlap on those two customers."
@@ -55,48 +61,68 @@
    ],
    "projects": [
     {
-     "name": "Connect external bank accounts (Open Banking)",
+     "name": "Enable customers to connect external bank accounts and view their transactions",
      "status": "In Progress",
      "owner": "dima",
-     "summary": "Provider-agnostic transaction/balance ingestion plus a multi-account Money Management UI rework. Merging to sandbox behind a per-workspace feature flag (prod links live accounts; sandbox uses Yapily mock institutions); reconnect UI from Euge's design next.",
+     "summary": "Provider-agnostic transaction and balance ingestion plus the multi-account Money Management rework. Background sync for connected customers is still the outstanding piece.",
      "blockers": [
-      "bankTransaction.reference schema change needed before reliable ingestion (real ABN AMRO data).",
-      "No recurring (daily) transaction fetch for connected accounts yet."
+      "No recurring (daily) transaction fetch for connected accounts yet.",
+      "bankTransaction.reference schema change still outstanding for real ABN AMRO data.",
+      "Undecided whether new customers connect via Lendroom or neno's own open banking."
      ]
-    },
-    {
-     "name": "Feature re-provisioning for non Swan customers",
-     "status": "In Progress",
-     "owner": "Joel",
-     "summary": "Make WhatsApp, email forwarding, Vault and Money Management work for non-Swan customers. Vault (TC3) shipped; email-forwarding inbox (TC2) in progress; TC4 Money Management remains; team invites for non-Swan accounts now in flight (NEO-1438, minnow-first in preview).",
-     "blockers": []
-    },
-    {
-     "name": "Multi-Client Exact Online Connections",
-     "status": "Completed",
-     "owner": "Ihor",
-     "summary": "Shipped 2 Jul: per-workspace Exact connections managed by Ops, each workspace reads/writes its own division, OAuth grants separated from assignments, dead-connection detection + alerts, fail-closed accountant UI.",
-     "blockers": []
     },
     {
      "name": "Onboarding Actions for the Next Five Customers",
      "status": "Planned",
-     "owner": "Matthew",
-     "summary": "Guided Home onboarding hub for the next-five cohort: connect bank (invokes open banking), learn the three bill/receipt channels, a guided sample task, hide-Home-when-done. Implementation is complete on preview and now extended to Swan banking workspaces behind an admin-managed per-workspace toggle (NEO-1577, Done 28 Jul). On 28 Jul the sample/demo task was found leaking into the customer-facing BV incorporation checklist in the launch app (NEO-1605, urgent, fixed same day; database cleaned).",
+     "owner": "matthew",
+     "summary": "The Home onboarding hub and its per-workspace, segment-aware action set. Wording must move from \"Vault\" to \"Bills & Expenses\" when that ships, and the forwarding-email banner with it.",
      "blockers": [
-      "Provisioning scope: the demo/sample task escaped into the BV incorporation flow and two real customers acted on it (NEO-1605) - the class of leak is patched, not designed out. Retro 29 Jul.",
-      "The Linear project is still Planned although implementation is on preview and the cohort is being onboarded."
+      "The blast-radius retro called on 29 Jul has produced no recorded outcome."
      ]
     },
     {
      "name": "Additional changes for go-live",
      "status": "Planned",
      "owner": null,
-     "summary": "Miscellaneous changes needed to get onboarding customers fully go-live ready.",
+     "summary": "Remaining go-live changes for the cohort. No activity in the window.",
+     "blockers": []
+    },
+    {
+     "name": "Multi-Client Exact Online Connections",
+     "status": "Completed",
+     "owner": "Ihor",
+     "summary": "Multiple Exact Online connections per accountant login. Completed.",
+     "blockers": []
+    },
+    {
+     "name": "Feature re-provisioning for non Swan customers",
+     "status": "Completed",
+     "owner": "Joel",
+     "summary": "WhatsApp, email forwarding, Vault and Money Management for non-Swan customers. Now marked Completed in Linear.",
      "blockers": []
     }
    ],
    "decisions": [
+    {
+     "date": "2026-08-18",
+     "text": "Onboarding-actions wording follows the product: references to \"Vault\" become \"Bills & Expenses\", and the forwarding-email banner moves there when Bills & Expenses ships.",
+     "source": "Granola - Bills & Expenses walk through, 18 Aug"
+    },
+    {
+     "date": "2026-08-18",
+     "text": "The 14 Aug transition-date guidance now has a mechanism: a per-workspace transition date decides which transactions neno reconciles and exports (NEO-1897, Done 18 Aug).",
+     "source": "Linear NEO-1897, 18 Aug"
+    },
+    {
+     "date": "2026-08-12",
+     "text": "Accepted parallel path: rather than wait for neno invoicing to reach WeFact parity, integrate the WeFact API and process invoices raised in WeFact through neno's reconciliation route. Roughly one week of Dmytro's time is the estimate to make the simpler customers migration-ready.",
+     "source": "Granola - Freddy <> Matthew, 12 Aug; Daily stand up, 19 Aug"
+    },
+    {
+     "date": "2026-08-12",
+     "text": "Migration order set by simplicity: target ZM Legal and Opterra first, and defer the outliers - First Ring (products, subscriptions, discounts, e-invoicing), JSN Crowd Events (decimal quantities, high credit-note volume), Lionheart Music (online payments, paid almost immediately) and Total Bathrooms (products plus free-form lines). Only three cohort-2 customers actively use WeFact invoicing.",
+     "source": "Granola - kick off wefact/neno invoicing, 10 Aug; Freddy <> Matthew, 12 Aug"
+    },
     {
      "date": "2026-08-14",
      "text": "Guiding rules adopted for onboarding customers whose books already live in Exact: a defined transition date per customer; Swan, Open Banking, WeFact and NMBRS cut off from Exact and enabled on neno on that date; Exact spillover cleaned out and neno backfilled to the transition date; reconciliation routed by transaction date, with the two modes never overlapping on one transaction.",
@@ -285,6 +311,10 @@
    ],
    "open_questions": [
     {
+     "text": "Do new customers connect their banks via Lendroom or via neno's own open banking? A three-way session (Eugenia, Yaroslav) was actioned to standardise this.",
+     "owner": "Eugenia/Yaroslav"
+    },
+    {
      "text": "Who does the transition-date work? Yaroslav needs alignment with Mark so the AGL follows the rules, and asked for time from Ihor to change the neno interfaces and matching engine - neither is committed.",
      "owner": "Yaroslav/Matthew"
     },
@@ -318,6 +348,21 @@
     }
    ],
    "next_steps": [
+    {
+     "text": "Schedule the Eugenia/Yaroslav session to define Lendroom versus neno open banking for new customers.",
+     "owner": "Eugenia",
+     "due": null
+    },
+    {
+     "text": "Set up automatic Gmail bill forwarding for Ocean Ionics - check whether Marloes is on Gmail and send setup instructions.",
+     "owner": "Matthew",
+     "due": null
+    },
+    {
+     "text": "Hold the 30-minute invoicing MVP planning call agreed for the morning of 20 Aug.",
+     "owner": "Matthew/Frederique",
+     "due": "2026-08-20"
+    },
     {
      "text": "Extend the Onboarding Actions email-forwarding guidance to confirm that neno handles the verification step; add a customer-facing inbox view of forwarded mail in a later iteration.",
      "owner": "Eugenia/Matthew",
@@ -370,6 +415,34 @@
     }
    ],
    "meetings": [
+    {
+     "date": "2026-08-12",
+     "title": "Freddy <> Matthew (WeFact feature audit)",
+     "url": null,
+     "summary": "Audited what cohort customers actually use in WeFact and set the migration strategy. Only three cohort-2 customers actively invoice from WeFact; First Ring, JSN, Lionheart and Total Bathrooms are outliers to defer. Neno invoicing bugs enumerated (translation, cancelled state, past-due indicator, whole-number quantities, credit-note formatting). All fixes estimated at a couple of days, about a week of Dmytro's time to reach migration-ready. A parallel option: integrate the WeFact API and process via reconciliation until parity.",
+     "decisions": [
+      "Target the simpler customers - ZM Legal, Opterra - first and defer the outliers",
+      "Integrate the WeFact API as a parallel route rather than gating on invoicing parity"
+     ],
+     "open_questions": [
+      "neno has no customer overview screen or contacts per organisation, which WeFact does"
+     ],
+     "next_steps": [
+      "Close the neno invoicing MVP bug list",
+      "Estimate the WeFact API route"
+     ]
+    },
+    {
+     "date": "2026-08-10",
+     "title": "kick off wefact/neno invoicing",
+     "url": null,
+     "summary": "Framed the invoicing workstream and kicked off the WeFact feature audit: can neno customers send invoices on par with WeFact, even by a different process. Scope is invoicing completeness rather than branding.",
+     "decisions": [],
+     "open_questions": [],
+     "next_steps": [
+      "Complete the WeFact feature audit per cohort customer"
+     ]
+    },
     {
      "date": "2026-07-15",
      "title": "Workload Distribution: next customer cohort (tldv)",
@@ -495,7 +568,7 @@
      "url": "https://miro.com/app/board/uXjVHFXnKZk=/"
     }
    ],
-   "sources_note": "Sources this run: Slack #tech-team on Yaroslav's Exact-to-neno onboarding transition-date guidance (14 Aug). No Linear issue activity or Granola meeting in the window touched this initiative. Removed from the board on 30 Jul; memory, context and Linear write-back continue in the background."
+   "sources_note": "Sources this run: Granola for 10-19 Aug (kick off wefact/neno invoicing, Freddy <> Matthew, Bills & Expenses walk through, Daily stand up, Mark <> Wildkamp) and Linear issue activity 15-20 Aug (NEO-1897, NEO-1922, NEO-1954). No Slack connector was available on this run, so Slack was not read - Slack-sourced items shown here are carried forward from memory. Removed from the board on 30 Jul; memory, context and Linear write-back continue in the background. Lookback 14 days."
   },
   "fef38f90-b82c-4c47-b377-6dcb9b1a3020": {
    "title": "Enable accountants to complete VAT submissions via double-entry GL",
@@ -516,35 +589,43 @@
      "source": "Granola - DP session, 23 Jun"
     }
    ],
-   "exec_summary": "The ledger is live in production for Ocean Ionics and the close-out project is now visibly draining: Mark has cleared fifteen of its tickets, seven more of them in the last 36 hours - backfilling the pre-go-live import legs and re-driving what was blocked, storing each ledger event's fact payload once, reporting a lost booking race as a race rather than an error, and making a reconciliation-queue item findable by id from the search box. The one remaining piece in review deletes the superseded journal-booking path. Against that, the week's substantive decision was about VAT codes rather than plumbing: for reverse_charge, import_vat and intra_eu_acquisition the document-side rate resolves to an effective 0% while the code keeps its 21% for the ledger and the VAT return, and - after an interim agreement to the contrary was reversed the same day - the Exact purchase-entry sync keeps posting the VAT code verbatim, because converting to 0% would drop the reverse-charge legs on Exact's side. Two things did not move. The Ocean Ionics fork - backfill neno from Exact and take source-of-truth status from a clean cut-off, or keep filing in Exact - was due to be reconvened by Mark and Matthew on Friday 14 August and no outcome reached any source. And the codes are still mis-calculating in production: Venla's bills add 21% on top of the line total, she is blocked behind a downstream \"line items don't match\" error, and the proposed accountant override was withdrawn.",
+   "exec_summary": "Goal: file Q3 VAT for five neno customers out of neno's own double-entry ledger by 30 Sep. The ledger has been live on production for Ocean Ionics since 22 Jul; the work is now almost entirely about closing the defects the first 19-day run surfaced, where 49 of 138 ledger events never booked. That close-out moved this window: Mark landed a documented break-the-glass procedure for repairing written ledger events (NEO-1796, 18 Aug), fixed a GL allocation that booked even when the transaction's import leg had never been booked (NEO-1932, 19 Aug), and is now replacing ledgerState with an open-correction lock plus a derived recognition, because today every bill reports itself as booked (NEO-1971, in progress). His 18 Aug project update - titled \"Recovering from failed Ledger Events caused by bookkeeping bugs\" - reads On track. The strategic decision the quarter hangs on has not moved. Mark and Matthew were due to reconvene on Friday 14 August on the Ocean Ionics fork - backfill neno's ledger from Exact and take source-of-truth status from a clean cut-off, or keep filing VAT in Exact - and six days later there is still no call, while the Belastingdienst reconciliation strategy is needed before the start of September. Underneath it, the filing depends on a reconciliation backlog that got measured this week: 79 Ocean Ionics transactions in neno, only 23 with a corresponding bill pending review, 56 unmatched - and the bill search accountants use to find the counterpart bill truncates its results at volume (a 30 June Wildkamp bill of EUR 10.65 was on the list but absent from search). Q2 is also not clean: Andries closed it early in Exact with manual entries there, and the matching Q2 debit transfers and bills are still open in neno. Two design threads were deliberately parked - manual entries (\"too many variants to resolve in stand-up\", moved to a Matthew/Dmytro catch-up) and bulk direct-debit matching, where one Monday sweep settles several prior-week invoices but the reconciliation API only ever surfaces one best match.",
    "whats_changed": [
-    "14 Aug, #accounting-mvp: VAT code semantics separated from document reconciliation. For reverse_charge, import_vat and intra_eu_acquisition the document rate is 0% - net = base, VAT = 0, gross = base - while the code keeps its 21% for the ledger and the VAT return. Filed as NEO-1890 against Ocean Ionics sandbox testing, related to NEO-1208.",
-    "The same thread reversed itself on the Exact leg: an interim agreement to convert these codes to 0% before sending to Exact was withdrawn by Mark, because purchase-entry-sync posts VATCode verbatim and Exact applies its own treatment - sending 0% \"would drop the reverse-charge legs on Exact's side\". Art's proposal to key the rule on foreign vendors was rejected: the scope is the VAT treatment, not vendor country.",
-    "Root cause named: line-level extraction leaves taxRate NULL, so the review calculation picks 21% up from the selected VAT code rather than from the document, and there is no bill-wide tax extraction.",
-    "Mark closed seven more close-out tickets on 13-14 Aug: backfilling the pre-go-live import legs and re-driving what was blocked (NEO-1749), the Wildkamp 130010333 bill leg (NEO-1751), storing a ledger event's fact payload once (NEO-1886), reporting a lost booking race correctly (NEO-1842), opening the offending item from the ledger-failure list (NEO-1829), finding a reconciliation-queue item by id (NEO-1862) and opening a uuid search needle on the tab that holds it while retiring the standalone admin bill page (NEO-1868). Deleting the superseded journal-booking path (NEO-1885) is in review.",
-    "14 Aug, #tech-team: Yaroslav opened guiding rules for onboarding Exact + Swan customers - a defined transition date per customer, Swan/Open Banking/WeFact/NMBRS cut off from Exact and enabled on neno on that date, and reconciliation routed by transaction date so the two modes never overlap on one transaction. He flagged that it needs aligning with Mark so the AGL works, and help to make the neno interfaces and matching engine follow the rules.",
-    "The Mark/Matthew reconvene on the backfill-versus-Exact fork, due Friday 14 August, produced no outcome in Linear, Slack or Granola this run."
+    "18-19 Aug, Linear: break-the-glass repair procedure for written ledger events shipped (NEO-1796), and a GL allocation that booked without its transaction's import leg was fixed (NEO-1932). NEO-1971 is in progress: replace ledgerState with an open-correction lock and a derived recognition, because every bill currently says it is booked.",
+    "18 Aug, Linear project update (Mark): health On track, \"Recovering from failed Ledger Events caused by bookkeeping bugs\", with a screen recording attached.",
+    "19 Aug, Granola (Mark <> Wildkamp): Ocean Ionics has 79 transactions in neno and only 23 with a bill pending review - 56 unmatched. Pre-June transactions may already be in Exact; Mark to verify and clear them from the queue. Bill search truncates at volume and suggested bills are not ranked by invoice date relative to the transaction (NEO-1972, on the untracked Transaction Matching project).",
+    "19 Aug, Granola (stand-up): late invoices against a closed period are settled as a client conversation - book to the closed period if the report was internal only, otherwise the next open period; the depreciation start date stays settable to the correct historical date. Manual entries pulled out of stand-up into a separate Matthew/Dmytro catch-up.",
+    "19 Aug, Granola (stand-up): Andries closed Q2 early in Exact with manual entries; the corresponding Q2 debit transfers and bills are still open in neno and need closing out against what he actually reconciled.",
+    "No outcome yet on the Ocean Ionics backfill fork - the 14 Aug reconvene between Mark and Matthew has produced nothing in Linear or Granola."
    ],
    "risks": [
     {
-     "severity": "med",
-     "text": "The reverse-charge, import and intra-EU VAT codes still add 21% on top of the line total in production instead of resolving to an effective 0%, producing wrong bill totals and potentially wrong VAT return figures. Venla is blocked behind a downstream \"line items don't match\" error and the proposed accountant override was withdrawn."
-    },
-    {
-     "severity": "med",
-     "text": "FirstRing and QLever were onboarded onto neno while their books were still being reconciled in Exact and \"the two systems have been writing over each other since\". The new transition-date guidance prevents a repeat but does not clean up the existing overlap."
+     "severity": "high",
+     "text": "The Ocean Ionics fork - backfill neno's ledger from Exact and take source-of-truth status from a clean cut-off, or keep filing VAT in Exact - still has no decision six days after the 14 Aug reconvene was due, while the Belastingdienst reconciliation strategy is needed before the start of September."
     },
     {
      "severity": "high",
-     "text": "The ledger queue does not drain and the leak is live: 33-47% of import events have stalled every week since go-live with no sign of decay, and the failure surface reported 9 of 49 unbooked events on the 10 Aug reading. Filing Q3 VAT from neno for five customers by 30 Sep depends on closing this."
+     "text": "The ledger queue does not drain: between 33% and 47% of import events stalled every week since go-live, a rate that is not decaying, and the failure surface under-reported by roughly a factor of five (9 of 49 on the 2026-08-10 reading). Q3 filing from neno depends on closing this."
     },
     {
      "severity": "med",
-     "text": "neno holds no complete quarter of ledger entries yet, so the VAT suspense-account booking cannot be compiled from neno alone; a strategy for reconciling Belastingdienst payments has to be in place before the start of September."
+     "text": "The reconciliation backlog the filing rests on is 56 of 79 Ocean Ionics transactions unmatched, and the bill search accountants use to find the counterpart bill truncates its results at high transaction volume."
     },
     {
      "severity": "med",
-     "text": "Ocean Ionics' path is still forked between backfilling neno from Exact and continuing to file in Exact. Continuing in Exact risks neno never taking source-of-truth status; backfilling requires confidence that neno can handle every accountant action as it arises."
+     "text": "neno does not yet hold a full quarter of ledger entries, so it cannot compile the VAT suspense-account booking independently."
+    },
+    {
+     "severity": "med",
+     "text": "Reverse-charge / import / intra-EU VAT codes still add 21% on top of the line total instead of resolving to an effective 0%, because line-level extraction leaves taxRate NULL and the calculation follows the selected code."
+    },
+    {
+     "severity": "med",
+     "text": "Q2 is not clean: Andries closed it early in Exact with manual entries there while the matching debit transfers and bills stay open in neno."
+    },
+    {
+     "severity": "high",
+     "text": "FirstRing and QLever were onboarded onto neno while their books were still being reconciled in Exact and the two systems have been writing over each other since; the transition-date guidance prevents a repeat but does not clean up the existing overlap."
     }
    ],
    "projects": [
@@ -552,23 +633,55 @@
      "name": "Start writing to neno's double-entry GL",
      "status": "In Progress",
      "owner": "Mark",
-     "summary": "The umbrella GL project: neno-owned chart and VAT codes, event-driven balanced VAT-aware postings, append-only reversals, cash completeness, the VAT return as a report. Live on production for Ocean Ionics since 21 Jul. This run added the VAT-return booking design - net position on an ordinary payable/receivable with the Belastingdienst as counterparty, each period cleared through a general-classified VAT suspense account, and a bridge to Exact that generates the equivalent matchable entry.",
+     "summary": "The ledger itself - live on production for Ocean Ionics since 22 Jul, booking bank transactions on arrival, bills on confirmation and transaction links on settlement. VAT return modelled as an ordinary payable to the Belastingdienst, cleared through a VAT suspense account classified as a general account.",
      "blockers": [
-      "The corrections-account rule (always vs only past the EUR 1,000 annual threshold) is unanswered, and the T-charts for the refund quarter, payable quarter and late-arriving bill still need an accountant's review.",
-      "neno does not yet hold a full quarter of ledger entries, so it cannot compile the suspense-account booking independently."
+      "No decision on the Ocean Ionics backfill fork, which determines whether neno becomes the source of truth.",
+      "No equivalent of Exact's VAT filing feature; a bridge that generates the matchable Belastingdienst entry is still needed.",
+      "Manual-entries design deferred to a separate Matthew/Dmytro catch-up."
      ]
     },
     {
      "name": "Close out the ledger's first production run",
      "status": "In Progress",
      "owner": "Mark",
-     "summary": "Close every defect the ledger's first 19-day production run surfaced so Ocean Ionics' Q3 VAT return can be filed from neno. 49 of 138 ledger events never booked; the queue does not drain and the failure surface under-reports roughly fivefold. Eight milestones: correct the knowledgebase baseline, close the five defect classes, clear the production data left behind, then an accountant reconciles the period trial balance against Exact. Seven tickets closed in the last 36 hours.",
+     "summary": "Close every defect the first 19-day run surfaced so Ocean Ionics can file its Q3 VAT return from neno. Break-the-glass repair (NEO-1796) and the unbooked-import-leg allocation bug (NEO-1932) are done; the ledgerState replacement (NEO-1971) is in flight. Acceptance is an accountant walking the period trial balance against Exact.",
      "blockers": [
-      "Not yet placed on the board - it is the needs-triage item for this initiative."
+      "The stall rate on import events is not decaying.",
+      "56 of 79 Ocean Ionics transactions are unmatched, and bill search truncates at volume (NEO-1972, untracked project)."
      ]
     }
    ],
    "decisions": [
+    {
+     "date": "2026-08-19",
+     "text": "Ocean Ionics' reconciliation backlog quantified: 79 transactions in neno, only 23 of them with a corresponding bill pending review, leaving 56 unmatched. Pre-June transactions may already sit in Exact (Ihor traced them); Mark to verify and remove those from the neno queue.",
+     "source": "Granola - Mark <> Wildkamp, 19 Aug"
+    },
+    {
+     "date": "2026-08-19",
+     "text": "Late invoices against a closed period are a client conversation, not a system rule: a July-dated invoice arriving in August after the July report has been sent is booked either to the closed period (acceptable when the report was internal only) or to the next open period - and the depreciation start date must still be settable to the correct historical date either way.",
+     "source": "Granola - Daily stand up, 19 Aug"
+    },
+    {
+     "date": "2026-08-19",
+     "text": "The manual-entries design was pulled out of the 19 Aug stand-up - too many variants to resolve in stand-up - and moved to a separate Matthew/Dmytro catch-up.",
+     "source": "Granola - Daily stand up, 19 Aug"
+    },
+    {
+     "date": "2026-08-19",
+     "text": "Andries closed Q2 early in Exact and made manual entries there; the corresponding Q2 outstanding debit transfers and bills are still open in neno and have to be closed out against what he actually reconciled.",
+     "source": "Granola - Daily stand up, 19 Aug"
+    },
+    {
+     "date": "2026-08-19",
+     "text": "Bill recognition is being restated: every bill currently reports itself as booked, so ledgerState is being replaced by an open-correction lock plus a derived recognition (NEO-1971, Mark, In Progress).",
+     "source": "Linear NEO-1971"
+    },
+    {
+     "date": "2026-08-18",
+     "text": "Close-out defects from the first production run started landing: a documented break-the-glass procedure for repairing written ledger events (NEO-1796, Mark, Done 18 Aug) and a fix for a GL allocation that booked even when the transaction's import leg had never been booked (NEO-1932, Done 19 Aug). Mark's 18 Aug project update reports health On track.",
+     "source": "Linear NEO-1796/NEO-1932 + project status update, 18-19 Aug"
+    },
     {
      "date": "2026-08-14",
      "text": "VAT code semantics and document reconciliation are separated: for reverse_charge, import_vat and intra_eu_acquisition the document-side rate is effectively 0% (net = base, VAT = 0, gross = base), while the code keeps its 21% for the ledger and the VAT return. Filed as NEO-1890, related to NEO-1208.",
@@ -802,6 +915,10 @@
    ],
    "open_questions": [
     {
+     "text": "The Ocean Ionics fork - backfill neno's ledger from Exact and take source-of-truth status from a clean cut-off, or keep filing in Exact - was due to be reconvened by Mark and Matthew on Friday 14 August. Six days on there is still no decision in Linear or Granola.",
+     "owner": "Mark/Matthew"
+    },
+    {
      "text": "Does VAT self-assessment follow the VAT code or the vendor's country? Art proposed the rule apply to all foreign vendors; Mark rejected that - \"whether VAT is self-assessed depends on the code, not on where the vendor sits\" - and put it to Venla, citing a Canadian supplier charging real NL 21% because the subscriber's company VAT number was missing. Unanswered.",
      "owner": "Venla/Mark"
     },
@@ -895,6 +1012,21 @@
     }
    ],
    "next_steps": [
+    {
+     "text": "Send Andries a screenshot and confirm which Q2 items he reconciled in Exact, so the outstanding Q2 debit transfers and bills can be closed out in neno.",
+     "owner": "Matthew",
+     "due": null
+    },
+    {
+     "text": "Hold the separate Matthew/Dmytro catch-up on manual entries.",
+     "owner": "Matthew/Dmytro",
+     "due": null
+    },
+    {
+     "text": "Make the Ocean Ionics backfill call and settle the Belastingdienst reconciliation strategy.",
+     "owner": "Mark/Matthew",
+     "due": "2026-09-01"
+    },
     {
      "text": "Reconvene on the Belastingdienst reconciliation strategy and the neno-to-Exact hook - the 14 August slot passed with no recorded outcome.",
      "owner": "Mark/Matthew",
@@ -1022,6 +1154,37 @@
     }
    ],
    "meetings": [
+    {
+     "date": "2026-08-19",
+     "title": "Mark <> Wildkamp",
+     "url": null,
+     "summary": "Walked the Ocean Ionics reconciliation state: 79 transactions in neno, 23 with a bill pending review, 56 unmatched. A 30 June Wildkamp bill of EUR 10.65 was visible on the bill list but missing from search, pointing at UI truncation at high volume. Ocean Ionics' Monday direct debit sweeps several prior-week invoices while the reconciliation API surfaces only one best match. The customer team forwards bills by hand, so bills go missing.",
+     "decisions": [
+      "Mark to verify whether the pre-June transactions are already in Exact and clear them from the neno queue"
+     ],
+     "open_questions": [
+      "Bulk direct-debit matching needs a multi-invoice summing mechanism and is not prioritised"
+     ],
+     "next_steps": [
+      "Write tickets for the bill-search truncation and for ranking suggested bills by invoice date relative to the transaction date (NEO-1972)",
+      "Set up automatic Gmail bill forwarding for Ocean Ionics"
+     ]
+    },
+    {
+     "date": "2026-08-19",
+     "title": "Daily stand up",
+     "url": null,
+     "summary": "Manual entries came up and were pulled out of the meeting - too many variants to resolve in stand-up - and moved to a Matthew/Dmytro catch-up. Late invoices against a reported period were settled as a client conversation rather than a system rule. Andries' early Q2 close in Exact leaves matching Q2 items open in neno.",
+     "decisions": [
+      "A late invoice books to the closed period if the report was internal only, otherwise to the next open period",
+      "The depreciation start date stays settable to the correct historical date"
+     ],
+     "open_questions": [],
+     "next_steps": [
+      "Matthew to send Andries a screenshot and confirm which Q2 items were reconciled in Exact",
+      "Matthew and Dmytro to hold a separate manual-entries catch-up"
+     ]
+    },
     {
      "date": "2026-08-11",
      "title": "Clearing VAT return via VAT suspense account",
@@ -1226,7 +1389,7 @@
      "url": "https://github.com/neno-co/monorepo-core/blob/mark/neo-1361-create-neno-general-ledger/knowledgebase/invariants/General%20Ledger%20%E2%80%94%20Invariants.md"
     }
    ],
-   "sources_note": "Sources this run: Slack #accounting-mvp on the VAT code treatment and NEO-1890 (14 Aug) and #tech-team on Yaroslav's Exact-to-neno transition-date guidance (14 Aug); Linear issue activity on \"Close out the ledger's first production run\" (13-14 Aug). Carried forward from memory: the 11 Aug VAT suspense session, Mark's 11-12 Aug VAT collection/return-booking proposal, the 3 Aug VAT Return Tasks design and the native-GL knowledgebase on PR #1128. No Granola meeting in the window touched this initiative."
+   "sources_note": "Sources this run: Linear issue activity on both projects (NEO-1796, NEO-1932, NEO-1971, NEO-1475) plus Mark's 18 Aug project status update; Granola for 18-19 Aug (Daily stand up, Mark <> Wildkamp, Clearing VAT return follow-through). No Slack connector was available on this run, so Slack was not read - Slack-sourced items shown here are carried forward from memory. Lookback 14 days."
   },
   "0f26a21f-cd9b-47e4-9678-a3c5107a1fa0": {
    "title": "Source of truth for all bookkeeping data",
@@ -1234,13 +1397,22 @@
    "target_date": null,
    "health": "On track",
    "notes": [],
-   "exec_summary": "This initiative went from dormant to defined in a week. Payroll now has an owner - Adam Fendri leads it - and a full PRD written into the Linear project on 10 Aug: payroll runs in Nmbrs produce one balanced entry per client per period, triggered on run completion with no approval step, written by neno into both its own GL and the client's Exact administration, with Nmbrs' native Exact export switched off client by client. neno owns the wage-code-to-chart mapping per client, net wage payment clearing is in scope, and the pilot proves on Cohort 2. Separately, a WeFact/neno invoicing kickoff on 10 Aug reframed the invoicing question as a completeness comparison - can neno customers send invoices on par with WeFact, by whatever process - and immediately surfaced two hard gaps: one cohort client invoices in USD and neno has no multi-currency invoicing, and there is no pay-online link on an invoice. Both projects remain in Backlog; neither has issues yet.",
+   "exec_summary": "Goal: own the external data feeding neno's books - bank, wallet, payroll and sales-platform integrations. The one committed item, payroll via Nmbrs, is being built but was not discussed anywhere in the window: the two open tickets are plumbing, a per-workspace Nmbrs connection that keeps its token alive (NEO-1807) and listing a connected client's payroll runs (NEO-1808), both In Progress. Stripe, Shopify, Shopify Payments and PEPPOL - the initiative's \"later\" list - did not come up at all. What did move is WeFact, and it moved outside the initiative. Yaroslav's WeFact connector landed a scheduled pull of WeFact documents so payables reach the review queue (NEO-1922, done 18 Aug) and a per-workspace transition date deciding which transactions neno reconciles and exports (NEO-1897, done 18 Aug), with read-only import of WeFact sales invoices and credit notes in progress (NEO-1950). On 19 August it was called the significant unblocker for the quarter: accountants can process AR and AP from WeFact data without the customer migrating to neno invoicing first. It was only possible after the CI/CD egress fix gave the API a stable Cloud NAT IP for the whitelisting WeFact requires (NEO-1949). All of that sits on \"Neno Services Onboarding\", a project attached to no initiative - so the board's own data-source items read as static while the real integration work happens next to them.",
    "whats_changed": [
-    "Quiet window. Neither Payroll (Numbrs integration) nor the invoicing workstream had any Linear issue activity, Slack traffic or meeting in the 13-15 Aug period; the 10 Aug payroll PRD and WeFact kickoff remain the current state.",
-    "One indirect change: Yaroslav's 14 Aug onboarding guidance names WeFact and NMBRS alongside Swan and Open Banking as tools to be cut off from Exact and enabled on neno on a customer's transition date - which binds the payroll and invoicing cutovers to that per-customer date rather than letting them be sequenced independently.",
-    "Payroll (Numbrs integration) is still Backlog with Adam Fendri as lead and no issues assigned; the two A1/A2 Nmbrs connection tickets on the project remain unassigned."
+    "18 Aug, Linear: WeFact ingestion shipped in two pieces - a scheduled pull of WeFact documents into the review queue (NEO-1922) and a per-workspace transition date deciding which transactions neno reconciles and exports (NEO-1897). Read-only import of WeFact sales invoices and credit notes is in progress (NEO-1950). All on the untracked \"Neno Services Onboarding\" project.",
+    "19 Aug, Granola (stand-up): the WeFact connector was named the significant unblocker - accountants can process AR and AP without the customer migrating to neno invoicing first. Enabled by the Cloud NAT stable-egress fix (NEO-1949) that made WeFact's IP whitelisting possible.",
+    "Payroll (Numbrs) build continues quietly: NEO-1807 (per-workspace Nmbrs connection with a live token) and NEO-1808 (list a connected client's payroll runs) are both In Progress. No new payroll requirements surfaced.",
+    "Stripe, Shopify, Shopify Payments and PEPPOL were not discussed in any meeting in the window."
    ],
    "risks": [
+    {
+     "severity": "med",
+     "text": "The WeFact work that unblocks this initiative sits entirely on \"Neno Services Onboarding\", a project attached to no initiative, so the board's own \"later\" items - PEPPOL, Neno invoicing improvements, Stripe, Shopify, Shopify Payments, WeFact Invoicing - show no movement while the real integration work runs outside the initiative."
+    },
+    {
+     "severity": "med",
+     "text": "Payroll (Numbrs) is the only committed item and it has a lead (Adam) but no requirements discussion in the window; the design rests on the 10 Aug project description alone."
+    },
     {
      "severity": "med",
      "text": "Invoicing feature gaps against WeFact: at least one cohort client invoices in USD and neno has no multi-currency invoicing, and invoices carry no pay-online link. A payment link is wanted before the end of August but the engineers are stretched."
@@ -1255,16 +1427,23 @@
      "name": "Payroll (Numbrs integration)",
      "status": "Backlog",
      "owner": "Adam",
-     "summary": "Payroll runs in Nmbrs produce the journal entries in neno's own GL and in the client's Exact administration, with neno as the writer for both and the native Nmbrs Exact export switched off per client. One balanced entry per client per payroll period, triggered on run completion. neno owns the per-client wage-code mapping; net wage payment clearing is in scope. Success is payroll in the neno GL matching Exact to the cent. Proves on Cohort 2; next thing Adam picks up.",
+     "summary": "Payroll via an Nmbrs integration, with one balanced salary entry per client per payroll period written to both neno's GL and the client's Exact administration, and the native Nmbrs Exact export switched off per client. In flight: a per-workspace Nmbrs connection that keeps its token alive (NEO-1807) and listing a connected client's payroll runs (NEO-1808).",
      "blockers": [
-      "Entry granularity (company total, cost centre or employee level) still to settle with the accountants.",
-      "Whether Nmbrs' native Exact export is actually running per client is unverified - the per-client cutover depends on it.",
-      "The neno GL has no payroll event type, no period locking and no opening balances; Exact needs a payroll service and a memoriaal journal code.",
-      "Client payroll inventory requested from the accountants on 3 Aug is still outstanding, so rollout beyond the pilot cannot be sized."
+      "neno owns the per-client mapping from Nmbrs wage codes to the neno chart to the client's Exact chart, and the Nmbrs GL schema is not exportable."
      ]
     }
    ],
    "decisions": [
+    {
+     "date": "2026-08-19",
+     "text": "The WeFact connector is treated as the significant unblocker for this initiative: accountants can process AR and AP from WeFact data without the customer first migrating to neno invoicing. It only became possible after the CI/CD egress fix gave the API a stable Cloud NAT IP for the IP whitelisting WeFact requires (NEO-1949).",
+     "source": "Granola - Daily stand up, 19 Aug; Linear NEO-1949"
+    },
+    {
+     "date": "2026-08-18",
+     "text": "WeFact ingestion landed as two pieces, both on the untracked \"Neno Services Onboarding\" project: a scheduled pull of WeFact documents so payables reach the review queue (NEO-1922, Yaroslav) and a per-workspace transition date deciding which transactions neno reconciles and exports (NEO-1897). Importing WeFact sales invoices and credit notes as read-only neno invoices through a single shaping function is in progress (NEO-1950).",
+     "source": "Linear NEO-1897/1922/1950, 18 Aug"
+    },
     {
      "date": "2026-08-14",
      "text": "The adopted Exact-to-neno transition-date guidance names WeFact and NMBRS alongside Swan and Open Banking as tools to be cut off from Exact and enabled on neno on a customer's transition date, so the payroll and invoicing cutovers are bound to that same date.",
@@ -1350,6 +1529,19 @@
    ],
    "meetings": [
     {
+     "date": "2026-08-19",
+     "title": "Daily stand up",
+     "url": null,
+     "summary": "The WeFact connector was framed as the quarter's significant unblocker for processing AR and AP without first migrating customers to neno invoicing, made possible by the stable-egress CI/CD fix. Frederique was closing out the invoicing MVP issues, with a 30-minute MVP planning call agreed for the next morning.",
+     "decisions": [
+      "Process AR and AP via the WeFact connector rather than gating on invoicing parity"
+     ],
+     "open_questions": [],
+     "next_steps": [
+      "Hold the invoicing MVP planning call on 20 Aug"
+     ]
+    },
+    {
      "date": "2026-08-10",
      "title": "kick off wefact/neno invoicing",
      "url": null,
@@ -1374,7 +1566,7 @@
      "url": "https://linear.app/nenotechnology/initiative/source-of-truth-for-all-bookkeeping-data-b8e639c8bc40"
     }
    ],
-   "sources_note": "Sources this run: Slack #tech-team on Yaroslav's Exact-to-neno transition-date guidance (14 Aug). No Linear issue activity, Granola meeting or other Slack traffic touched this initiative in the 13-15 Aug period. Carried forward from memory: the 10 Aug payroll PRD, the 10 Aug WeFact/neno invoicing kickoff and the 28 Jul Bjorn call. Third-party wallet transaction import (MVP) was removed from the board on 4 Aug and is no longer tracked here."
+   "sources_note": "Sources this run: Linear issue activity 15-20 Aug (NEO-1897, NEO-1922, NEO-1949, NEO-1950, NEO-1807, NEO-1808) and Granola for 18-19 Aug. Payroll, Stripe, Shopify and PEPPOL produced no meeting material in the window. No Slack connector was available on this run, so Slack was not read. Lookback 14 days."
   },
   "b508d2b3-f876-4068-beec-e3c9899dd8c4": {
    "title": "Source of truth for all bookkeeping activity",
@@ -1387,43 +1579,43 @@
      "source": "Matthew, 23 Jun"
     }
    ],
-   "exec_summary": "A heavy build week that almost entirely missed the board. Joel shipped AR coding suggestions end to end on 14 August - proposal storage with an AR precedent query and eval harness, a proposer triggered on invoice review, and suggestedGlAccountCode wired into the review UI - which is exactly the per-line GL/VAT coding stage the AR reconciliation project identified as its missing front half on 30 July, except it landed on the untracked \"AR Coding Suggestions\" project rather than on the tracked one. Art spent the same days hardening transaction matching: accepting a match is now atomic with clearing its competitors, a rejected suggestion is recorded rather than deleted, amount-uniqueness only routes into auto-matching when the bank feed covers the window, and the auto-match gate finally has a measured baseline. He also closed the gap that let bills reach Exact unapproved - on \"Bookkeeping bug-fixes\", which Matthew removed from the board on 4 August. Meanwhile the four committed board items - depreciation, credit notes, related parties and accruals - sat still, their Linear projects unowned and empty, and the depreciation split flagged last week is unchanged: the tracked \"Depreciation schedules\" is dormant while Ihor builds fixed assets under no initiative at all. The throughput signal from 12 August still stands: extraction and matching take 80-90% of Venla's time at 3-4 minutes a bill across 62 clients, which is what this week's work was actually aimed at.",
+   "exec_summary": "Goal: own the accountant-performed bookkeeping actions on top of neno's data - reconciliation, corrections, accruals, depreciation, credit notes. The window's real content was credit notes, which went from an empty Backlog project with a single placeholder line to a specified feature. Two sessions on 19 August - one with Andries, one with Frederique - settled that neno must make the invoice/credit-note link explicit so the pair visibly cancels out, that cancelled invoices come out of the matching options so an accountant cannot match a payment against one, and that a payment arriving against a cancelled invoice raises a task asking what it is for. The reference behaviour is WeFact/Exact, where cancelling an invoice auto-generates a credit note and the two cancel with no manual action. One thing was deliberately left unbuilt: a refund workflow for a credit note raised against an already-paid invoice, where money has to move back - the team agreed to observe the effect first. A real gap stayed open: an accountant still has no way to see that an invoice and its credit note cancel out and that no money needs to move, which Matthew is to work through with Andries. Elsewhere: AR reconciliation remains in its first phase of live testing with Andries including the push to Exact, and the depreciation schedule is mid-build with Dmytro needing Mark's help to merge items and an open call on whether to show it live on Atlas or as a Figma mock-up. The structural problem flagged last week has not changed - the throughput work that actually moves accountant productivity (Smart Bill Review, Transaction Matching, Unified Review Queue, Fixed Assets) keeps landing on projects attached to no tracked initiative, so the board's committed items look static while the work happens next door.",
    "whats_changed": [
-    "14 Aug: AR coding suggestions shipped end to end (Joel) - invoice_field_proposals storage plus an AR precedent query and eval harness (NEO-1865), a proposer service triggered on invoice review (NEO-1866), and suggestedGlAccountCode exposed and wired into the review UI (NEO-1867), closing NEO-1864. It reuses Art's bill-coding pattern to code GL and VAT for invoices - the front-half review/coding stage the AR project called for - but sits on the untracked \"AR Coding Suggestions\" project.",
-    "12-14 Aug: transaction matching hardened rather than extended (Art) - match acceptance made atomic with clearing competitors (NEO-1875), rejected suggestions recorded instead of deleted (NEO-1850), amount-uniqueness gated on the bank feed actually covering the window (NEO-1849), supplier merchant-name memory keyed on counterparty and label (NEO-1757), and a measured baseline and replacement for the auto-match gate (NEO-1754).",
-    "14 Aug: the AP sync path gained an approval choke point - bills could previously reach Exact unapproved (NEO-1887). The fix landed on \"Bookkeeping bug-fixes\", removed from the board on 4 Aug, so it is recorded in memory but not written back to Linear.",
-    "14 Aug: bill upload classification loosened so non-bills that look like bills are classified as financial_document rather than ignored (NEO-1855), with classification decisions now persisted rather than only logged (NEO-1843).",
-    "No movement on any of the four committed board items. Depreciation schedules, Credit note processing, Related-parties register and Accruals are all still Backlog with no lead and no issues; the 11 Aug depreciation requirements remain published but unstarted.",
-    "The depreciation split is unchanged: the board tracks \"Depreciation schedules\" (Backlog, unowned, empty) while Ihor's \"Fixed Assets & Depreciation Schedules\" carries the live work (NEO-1803 in progress) under no tracked initiative."
+    "19 Aug, Granola (Catch up with Andries on Credit Notes; Catch up with Freddy): credit-note behaviour specified - explicit invoice/credit-note linking, cancelled invoices out of the matching options, an auto-raised task when a payment lands against a cancelled invoice, and no refund workflow for credit notes against paid invoices for now.",
+    "19 Aug: the reconciliation gap is named - there is no affordance for an accountant to recognise that an invoice and its credit note cancel out and no money needs to move. Matthew to work it through with Andries.",
+    "19 Aug, Granola (stand-up): the depreciation schedule is still in progress; Dmytro needs Mark's help to merge items and a check with Ihor decides whether it is shown live on Atlas or as a Figma mock-up.",
+    "18-19 Aug, Linear: the accountant-facing throughput work continued outside this initiative - the portfolio dashboard as admin home page (NEO-1911, Unified Review Queue), the fixed-assets schedule kernel (NEO-1947) and the register-asset route (NEO-1945) on Ihor's untracked Fixed Assets project, and further Smart Bill Review VAT/extraction fixes.",
+    "Related parties were not discussed anywhere in the window; accruals only came up indirectly, as a prerequisite named alongside depreciation and manual entries before neno can take over from Exact.",
+    "Credit note processing (AR & AP) now carries a real requirements block in Linear for the first time."
    ],
    "risks": [
     {
      "severity": "med",
-     "text": "Almost every piece of bookkeeping-activity throughput work this week landed on projects outside every tracked initiative - AR Coding Suggestions, Transaction Matching, Unified Review Queue, Bills & Expenses and the off-board Bookkeeping bug-fixes - so the board's four committed items show no movement while the real work runs elsewhere."
+     "text": "The committed board items (depreciation, credit notes, related parties, accruals) still sit in Backlog with no lead, while the work that actually raises accountant throughput runs on projects attached to no tracked initiative - Smart Bill Review, Transaction Matching, Unified Review Queue, Fixed Assets & Depreciation Schedules."
     },
     {
      "severity": "med",
-     "text": "Bill extraction plus transaction matching consume 80-90% of Venla's time at 3-4 minutes per bill across 62 clients - throughput, not feature coverage, is the binding constraint on this initiative."
+     "text": "Depreciation has two Linear projects - the tracked, empty \"Depreciation schedules\" and Ihor's unattached \"Fixed Assets & Depreciation Schedules\", which is where the code is being written."
     },
     {
      "severity": "med",
-     "text": "Depreciation has two Linear projects - the tracked 'Depreciation schedules' (Backlog, no lead, no issues) and Ihor's unattached 'Fixed Assets & Depreciation Schedules' (In Progress) - so the board tracks the dormant one while the real work runs outside every tracked initiative."
+     "text": "Bill extraction plus transaction matching consume 80-90% of Venla's time at 3-4 minutes per bill across 62 clients, so throughput, not feature coverage, is the binding constraint."
     },
     {
      "severity": "med",
-     "text": "Fixed-asset scope is large: 26-27 distinct options for handling assets and depreciation, plus ledger-synchronisation complexity, and the Exact posting path is explicitly blocked on Mark's return."
+     "text": "Credit notes against already-paid invoices are knowingly unbuilt: if a refund is needed there is no workflow to signal it, and the team chose to observe the consequences rather than design for them."
     },
     {
      "severity": "med",
-     "text": "Scope is broad and unsequenced; nothing staffed yet beyond AR reconciliation (Joel)."
+     "text": "Full reporting requirements were never enumerated by DP; the scope could still grow."
     },
     {
      "severity": "med",
-     "text": "Full reporting requirements not yet enumerated - scope could grow once DP's list lands. (project: Financial reporting)"
+     "text": "~EUR 15K in outstanding receivables with no active debtor management yet."
     },
     {
      "severity": "med",
-     "text": "~EUR 15K in outstanding receivables flagged with no active debtor management yet. (project: End-to-end AR reconciliation)"
+     "text": "Scope remains broad and unsequenced; nothing is staffed beyond AR reconciliation."
     }
    ],
    "projects": [
@@ -1431,46 +1623,58 @@
      "name": "End-to-end AR reconciliation",
      "status": "In Progress",
      "owner": "Joel",
-     "summary": "The only committed item in progress. In its first phase of live testing with Andries as of 7 Aug - reconciliation, VAT coding, the ledger write and the Exact export exercised end to end - to collect accountant feedback and confirm the Exact pairing. The missing AR front half flagged on 30 Jul is built: queue entry is gated on the invoice being approved rather than finalized, and sent-but-unapproved AR invoices surface in Pending Review.",
+     "summary": "Incoming-payment reconciliation end to end. In its first phase of live testing with Andries, including the push to Exact, to collect accountant feedback and confirm the Exact pairing works.",
      "blockers": [
-      "No live AR customer yet, so validation runs on seeded invoices and credit transactions against a sandbox Exact division."
+      "The credit-note cancellation case has no reconciliation affordance yet."
      ]
     },
     {
      "name": "Depreciation schedules",
      "status": "Backlog",
      "owner": null,
-     "summary": "Committed for August. The 11 Aug session gave it a full product definition - line-item capitalisation on mixed bills, asset groups with derived end dates, a EUR 400 threshold, an asset suspense account, editable schedules and a backdatable start date, and a register showing group, start date, depreciated-to-date, monthly amount, end date and book value. The build itself is running in Ihor's separate \"Fixed Assets & Depreciation Schedules\" project, which sits under no tracked initiative.",
+     "summary": "Depreciation grouped by asset type with a fixed asset register. v1 shape settled on 11 Aug (line-item capitalisation on mixed bills, asset groups driving useful life, EUR 400 threshold, monthly cadence, editable schedules). The build itself is happening on Ihor's untracked Fixed Assets project.",
      "blockers": [
-      "Two Linear projects cover depreciation - this tracked, empty one and Ihor's unattached in-progress one. Attribution is Matthew's call.",
-      "Disposal date definition and partial disposal are unresolved; several tax-treatment questions were never discussed."
+      "Two competing Linear projects; attribution is Matthew's call.",
+      "Balance-sheet strategy - pull Exact's balance sheet into neno or wait for full migration - undecided.",
+      "Dmytro needs Mark's help to merge items."
      ]
     },
     {
      "name": "Credit note processing (AR & AP)",
      "status": "Backlog",
      "owner": null,
-     "summary": "Committed for August, still unspecced and unstaffed. Likely intersects the GL period-close and correction rules, where corrections post as new adjustment entries rather than edits.",
+     "summary": "Credit notes in both directions. Specified on 19 Aug: explicit invoice/credit-note linking so the pair visibly cancels out, cancelled invoices removed from matching options, an auto-raised task when a payment arrives against a cancelled invoice, and no refund workflow for credit notes against paid invoices for now.",
      "blockers": [
-      "No requirements captured beyond the 23 Jun Q3-planning note."
+      "No accountant-facing way to recognise that an invoice and credit note cancel out - Matthew to work it through with Andries.",
+      "Unresolved whether cancelled invoices are removed from matching unconditionally, given a payment may already have been sent."
      ]
     },
     {
      "name": "Related-parties register",
      "status": "Backlog",
      "owner": null,
-     "summary": "Not committed. Requirements captured: every related-party transaction carries a counterparty tag, GL drill-down shows the related party per line, and neno tracks only money movement between the client entity and each counterparty rather than holding their books.",
+     "summary": "Register of related parties for intercompany bookings, with a counterparty tag on every related-party transaction and drill-down per line. Not discussed anywhere in the window.",
      "blockers": []
     },
     {
      "name": "Accruals",
      "status": "Backlog",
      "owner": null,
-     "summary": "Not committed. Requirements captured: accruals book an expected expense when no invoice exists and are manually reversed when the real invoice arrives; material post-close accruals go through approval-gated, insert-only adjustment entries with a full audit log.",
+     "summary": "Accrual and prepayment entries; material post-close accruals via approval-gated, insert-only adjustments. Only surfaced indirectly this window, as a capability neno must cover before it can replace Exact.",
      "blockers": []
     }
    ],
    "decisions": [
+    {
+     "date": "2026-08-19",
+     "text": "Credit-note handling settled across two sessions (Andries, then Frederique): in WeFact/Exact a cancelled invoice auto-generates a credit note that cancels the original with no manual accountant action, and neno must make the invoice/credit-note link explicit so the pair visibly cancels out. Cancelled invoices are to be taken out of the matching options so an accountant cannot match a payment against one, and a payment arriving against a cancelled invoice raises a task asking what it is for. Credit notes against already-paid invoices - where money has to move back - are deliberately not built for now; the behaviour will be observed first.",
+     "source": "Granola - Catch up with Andries on Credit Notes + Catch up with Freddy, 19 Aug"
+    },
+    {
+     "date": "2026-08-19",
+     "text": "The depreciation schedule is still mid-build: Dmytro needs Mark's help to merge items, and whether it is shown live on Atlas or as a Figma mock-up depends on a check with Ihor on implementation progress.",
+     "source": "Granola - Daily stand up, 19 Aug"
+    },
     {
      "date": "2026-08-14",
      "text": "AR coding suggestions shipped end to end: proposal storage with an AR precedent query and eval harness, a proposer triggered on invoice review, and suggestedGlAccountCode wired into the review UI - reusing the bill-coding pattern to code GL and VAT for invoices.",
@@ -1559,6 +1763,14 @@
    ],
    "open_questions": [
     {
+     "text": "Credit-note reconciliation gap: there is no way for an accountant to recognise that an invoice and its credit note cancel each other out and that no money needs to move. Matthew to work it through with Andries on the accounting/matching side.",
+     "owner": "Matthew/Andries"
+    },
+    {
+     "text": "Cancelled invoices in the matching engine: removing them reduces human error, but a payment may already have been sent against one. Is removal unconditional, or does a cancelled invoice stay matchable behind the auto-raised task?",
+     "owner": "Matthew"
+    },
+    {
      "text": "Bill upload classification was loosened so non-bills that look like bills become financial_document rather than being ignored. Does that queue need an accountant-facing surface, or does it sit behind review?",
      "owner": "Art/Matthew"
     },
@@ -1617,6 +1829,11 @@
    ],
    "next_steps": [
     {
+     "text": "Work through with Andries how an invoice/credit-note cancellation should be recognised on the accounting and matching side.",
+     "owner": "Matthew",
+     "due": null
+    },
+    {
      "text": "Verify whether the pre-June Ocean Ionics transactions are already in Exact and, if so, remove them from the neno queue.",
      "owner": "Mark",
      "due": null
@@ -1658,6 +1875,36 @@
     }
    ],
    "meetings": [
+    {
+     "date": "2026-08-19",
+     "title": "Catch up with Andries on Credit Notes",
+     "url": null,
+     "summary": "Worked the accounting side of credit notes. In WeFact/Exact a cancelled invoice auto-generates a credit note and the two cancel with no manual action; neno needs the link to be explicit. Cancelled invoices should come out of the matching options to stop an accountant matching a payment against one, and a payment arriving against a cancelled invoice should raise a task asking what it is for. The gap that remains is recognition: nothing tells the accountant that an invoice and its credit note cancel out and no money needs to move.",
+     "decisions": [
+      "Link invoices and credit notes explicitly in neno so they visibly cancel out",
+      "Explore removing cancelled invoices from the matching options",
+      "Auto-raise a task when a payment arrives against a cancelled invoice"
+     ],
+     "open_questions": [
+      "How should an accountant recognise that an invoice and credit note cancel out?"
+     ],
+     "next_steps": [
+      "Matthew to speak to Andries about how the cancellation should work on the accounting and matching side"
+     ]
+    },
+    {
+     "date": "2026-08-19",
+     "title": "Catch up with Freddy",
+     "url": null,
+     "summary": "Credit notes from the invoicing side. Agreed to skip building a refund workflow for credit notes raised against already-paid invoices for now and observe how it affects the workflow. Credit-note presentation in neno's own invoicing is broken - positive amounts on the overview and in the customer email, where the expected shape is quantity 1 with a negative price, or quantity -1 as WeFact does.",
+     "decisions": [
+      "No refund workflow for credit notes against paid invoices for now"
+     ],
+     "open_questions": [],
+     "next_steps": [
+      "Fix credit-note presentation on the invoicing MVP tickets"
+     ]
+    },
     {
      "date": "2026-08-11",
      "title": "Asset Depreciation",
@@ -1707,7 +1954,7 @@
      "url": "https://linear.app/nenotechnology/initiative/source-of-truth-for-all-bookkeeping-activity-5bc71f1a5359"
     }
    ],
-   "sources_note": "Sources this run: Linear issue activity across AR Coding Suggestions, Transaction Matching, Unified Review Queue, Bills & Expenses and Bookkeeping bug-fixes (12-14 Aug); Slack #tech-team (Joel and Art, 14 Aug). Carried forward from memory: Joel's 7 Aug AR status update, the 11 Aug Asset Depreciation session and the 12 Aug three-amigos on AP reconciliation. Financial reporting, Bookkeeping bug-fixes, Customer project creation & management and Native team features & permissions remain removed from the board (4 Aug); their history stays in the memory file."
+   "sources_note": "Sources this run: Granola for 18-19 Aug (Catch up with Andries on Credit Notes, Catch up with Freddy, Daily stand up, Bills & Expenses walk through) and Linear issue activity 15-20 Aug. No Slack connector was available on this run, so Slack was not read - Slack-sourced items shown here are carried forward from memory. Lookback 14 days."
   },
   "e78d13c9-27d8-494e-9c3b-8a264412e471": {
    "title": "Make accountants more efficient during onboarding and customer collaboration",
@@ -1715,28 +1962,62 @@
    "target_date": null,
    "health": "On track",
    "notes": [],
-   "exec_summary": "Reporting has shipped and is now being tuned rather than built: after custom reporting went to production on 7 August and the approved management report reached every customer on 11 August, this week was presentation and plumbing - refreshed restaurant dummy data on 13 August and, in review on 14 August, an indigo pie palette with denser PDF typography. The more interesting movement is next to it. On 13 August Dima shipped the gating change the initiative has needed for a while: Tasks, Bill Forwarding, Open Banking and WhatsApp are now gated on a real accounting engagement rather than on the customer having a Swan account, the Vault is treated as belonging to every workspace with only its email forwarding an accounting feature, and the accountant card is unified across Home and Tasks. And an \"Accountant Portfolio Dashboard\" is now queued to Dima - the first movement on the accountant-portfolio question that has sat open since Yaroslav proposed Atlas as its home. The reporting tail is still there: the per-customer layout, the hourly Exact refresh, emailing the report from admin, the compare button and the presentation fixes remain unstarted. The other two committed items, structured profiles for services customers and onboarding actions for off-platform tasks, still have no Linear project and no movement at all.",
+   "exec_summary": "Goal: cut the time accountants spend onboarding a customer and working alongside them. Reporting - the one committed, in-flight item - kept moving and kept collecting polish: demo mode is being extended to accept a CSV import so a prospect's sample report is built from their own figures (NEO-1953), and the management report picked up an indigo pie palette and denser PDF typography (NEO-1895). The report header is not settled: Nick is still unhappy with the \"Powered by Neno\" treatment, so Eugenia is timeboxing two hours on variants and escalating if all are rejected. The accountant surface moved further than the board shows. The accountant portfolio dashboard shipped as the admin home page (NEO-1911, Dima, 19 Aug) - but on the untracked Unified Review Queue project - with a platform metrics page alongside it that is considered useful beyond accountants, mirrorable on a TV screen and inside Atlas, and in need of a wording pass. Direction was also agreed for the accounting-engagement screen from Art's proposal: drop per-workspace accountant assignment so all workspaces sit under one accountant, put a copy icon inline next to the bill-forwarding email address, and render the signs-in-with field as a link when it is a magic link. Against that, the accountant tasks page was called poor in a review and needs a redesign borrowed from the customer-facing task screen - destined for Bookkeeping Improvements and Dmytro, outside this initiative. The two uncommitted board items barely moved: structured profiles for services customers acquired a concrete gap - WeFact has a customer overview screen with multiple contacts per organisation while neno has a name field and nothing else - and onboarding actions need re-pointing from \"Vault\" to \"Bills & Expenses\" when that ships.",
    "whats_changed": [
-    "13 Aug: accounting features (Tasks, Bill Forwarding, Open Banking, WhatsApp) are now gated on a real accounting engagement rather than on having a Swan account (NEO-1830); the Vault belongs to every workspace with only its email forwarding an accounting feature (NEO-1848); the accountant card is unified across Home and Tasks (NEO-1847). All Dima.",
-    "13 Aug: restaurant dummy data refreshed for the report demos (NEO-1839). 14 Aug: an indigo pie palette and denser PDF typography for the management report are in review (NEO-1895).",
-    "14 Aug: an \"Accountant Portfolio Dashboard\" (NEO-1840) is queued to Dima as planned work - the first movement on the accountant-portfolio question open since Yaroslav proposed Atlas as its home.",
-    "The reporting tail is unchanged and unstarted: per-customer report layout, hourly Exact refresh once a customer is enabled, emailing the report from admin, the compare button, cash balance at the last close date, personnel-cost grouping with collapsible opex, minus signs instead of brackets, and the Slack alert on the customer error screen.",
-    "Structured profiles for services customers and onboarding actions for off-platform tasks - both committed for August - still have no Linear project and no activity."
+    "18 Aug, Linear: demo mode in custom reporting is being extended to import a CSV so the sample report is built from the prospect's own figures (NEO-1953, In Progress). The management report also picked up an indigo pie palette and denser PDF typography (NEO-1895).",
+    "18 Aug, Granola (Bills & Expenses walk through): Nick is still not satisfied with the \"Powered by Neno\" reporting header; Eugenia to timebox two hours on variants and escalate if all are rejected. Onboarding actions must be re-pointed from \"Vault\" to \"Bills & Expenses\" when it ships, and the forwarding-email banner moves with them.",
+    "19 Aug, Linear + Granola: the accountant portfolio dashboard shipped as the admin home page (NEO-1911, Dima) - on the untracked Unified Review Queue project - with a platform metrics page alongside it that needs a wording polish pass.",
+    "19 Aug, Granola (Matthew / Euge): accounting-engagement screen direction agreed from Art's proposal - no per-workspace accountant assignment, inline copy icon next to the bill-forwarding email address, signs-in-with rendered as a link when it is a magic link.",
+    "19 Aug, Granola (Matthew / Euge): the accountant tasks page was called poor in review; the proposal is to reuse the customer-facing task screen design, filed against Bookkeeping Improvements and Dmytro - outside this initiative.",
+    "12 Aug, Granola (Freddy <> Matthew): the structured-profiles gap is now concrete - WeFact has a customer overview screen with multiple contacts per organisation, neno has only a name field, no contacts and no overview screen."
    ],
-   "risks": [],
+   "risks": [
+    {
+     "severity": "med",
+     "text": "Two of the three committed items - structured profiles for services customers and onboarding actions for off-platform tasks - are still board text with no Linear project, no owner and no dated plan, while only reporting is actually being built."
+    },
+    {
+     "severity": "med",
+     "text": "The accountant surfaces that most affect efficiency - the portfolio dashboard, the tasks page redesign, the accounting-engagement screen - are all landing on projects outside this initiative (Unified Review Queue, Bookkeeping Improvements), so the initiative under-reports its own progress."
+    },
+    {
+     "severity": "low",
+     "text": "The reporting header is blocked on a subjective call: Nick has rejected the treatment so far and Eugenia's exploration is timeboxed to two hours before escalation."
+    }
+   ],
    "projects": [
     {
      "name": "Custom reporting for Neno customers",
      "status": "Backlog",
      "owner": "dima",
-     "summary": "Live: the functionality and UI shipped to production on 7 Aug, admin and customer render one shared component (NEO-1679), the approved report is visible to every customer (NEO-1789) and Atlas has a prospect demo mode (NEO-1797). Remaining: per-customer report layout, hourly Exact refresh, email from admin, the compare button, cash balance at the last close date, personnel-cost grouping with collapsible opex, minus signs instead of brackets, and a Slack alert on the customer error screen.",
+     "summary": "Bespoke per-customer financial reports built on the neno-report-generator, published by accountant approval as an insert-only full-history snapshot that the customer view renders from neno's own database. In flight: CSV import for demo mode so prospects see their own figures (NEO-1953), plus report styling and PDF typography (NEO-1895).",
      "blockers": [
-      "Which workspace an approval publishes to is unresolved - the admin page selects an Exact division and roughly 118 divisions have no neno workspace.",
-      "Whether approving a still-open month should be allowed, and whether a month with no bookings renders as zero or as a visible no-data marker."
+      "The \"Powered by Neno\" header treatment is unresolved with Nick.",
+      "Still open in the project: which workspace an approval publishes to, whether a still-open month may be approved, and whether a no-booking month renders as zero or as a hole."
      ]
     }
    ],
    "decisions": [
+    {
+     "date": "2026-08-19",
+     "text": "Accounting-engagement screen direction agreed from Art's proposal: drop per-workspace accountant assignment so all workspaces sit under one accountant, put a copy icon inline next to the bill-forwarding email address, and render the signs-in-with field as a link when it is a magic link rather than a dropdown.",
+     "source": "Granola - Matthew / Euge, 19 Aug"
+    },
+    {
+     "date": "2026-08-19",
+     "text": "The accountant portfolio dashboard shipped as the admin home page (NEO-1911, Dima, Done 19 Aug) - but on the untracked \"Unified Review Queue\" project rather than under this initiative. A platform metrics page was added alongside it; it is considered useful beyond accountants (mirrorable on a TV screen and inside Atlas) and needs a wording polish pass.",
+     "source": "Linear NEO-1911, 19 Aug; Granola - Matthew / Euge, 19 Aug"
+    },
+    {
+     "date": "2026-08-18",
+     "text": "The reporting header is not settled: Nick is still unhappy with the \"Powered by Neno\" treatment, so Eugenia is to timebox two hours on variants and escalate for more time if all of them are rejected.",
+     "source": "Granola - Bills & Expenses walk through, 18 Aug"
+    },
+    {
+     "date": "2026-08-18",
+     "text": "Onboarding actions must be re-pointed from \"Vault\" to \"Bills & Expenses\" when Bills & Expenses ships, and the forwarding-email banner moves with them.",
+     "source": "Granola - Bills & Expenses walk through, 18 Aug"
+    },
     {
      "date": "2026-08-13",
      "text": "Accounting features (Tasks, Bill Forwarding, Open Banking, WhatsApp) are gated on a real accounting engagement rather than on the customer having a Swan account; the Vault belongs to every workspace with only its email forwarding an accounting feature; and the accountant card is unified across Home and Tasks.",
@@ -1810,6 +2091,10 @@
    ],
    "open_questions": [
     {
+     "text": "Structured profiles for services customers: WeFact has a customer overview screen with multiple contacts per organisation, while neno has only a name field, no contacts and no customer overview screen. What is the data model, and does it come before or after the HubSpot-backed profile view Frederique owns?",
+     "owner": "Frederique/Matthew"
+    },
+    {
      "text": "Which workspace does an approval publish to? The admin page selects an Exact division and roughly 118 divisions have no neno workspace at all; resolving through WorkspaceExactConnection and refusing to approve an unattached division is the proposed route.",
      "owner": "Dmytro/Matthew"
     },
@@ -1843,6 +2128,21 @@
     }
    ],
    "next_steps": [
+    {
+     "text": "Timebox two hours on reporting-header variants for Nick, and escalate if all are rejected.",
+     "owner": "Eugenia",
+     "due": null
+    },
+    {
+     "text": "File the accountant tasks-page redesign ticket against Bookkeeping Improvements and assign it to Dmytro.",
+     "owner": "Matthew",
+     "due": null
+    },
+    {
+     "text": "Share the accounting-engagement screen design with Art for feedback.",
+     "owner": "Eugenia",
+     "due": null
+    },
     {
      "text": "Work the ten remaining reporting issues - per-customer layout, hourly Exact refresh, email from admin, the compare button and the presentation fixes.",
      "owner": "Dmytro",
@@ -1880,6 +2180,38 @@
     }
    ],
    "meetings": [
+    {
+     "date": "2026-08-19",
+     "title": "Matthew / Euge: Coolest meeting of the week",
+     "url": null,
+     "summary": "Reviewed the accountant surfaces. The platform metrics page on the accountant dashboard is useful beyond accountants and needs a wording pass. The accountant tasks page was called poor in review and should reuse the customer-facing task screen design, filed against Bookkeeping Improvements for Dmytro. Eugenia's accounting-engagement screen is close to Art's proposal, with three changes agreed.",
+     "decisions": [
+      "Remove per-workspace accountant assignment - all workspaces under one accountant",
+      "Add an inline copy icon next to the bill-forwarding email address",
+      "Render the signs-in-with field as a link when it is a magic link"
+     ],
+     "open_questions": [],
+     "next_steps": [
+      "Create the accountant tasks-page Linear ticket and assign it to Dmytro",
+      "Share the accounting-engagement screen design with Art"
+     ]
+    },
+    {
+     "date": "2026-08-18",
+     "title": "Bills & Expenses walk through",
+     "url": null,
+     "summary": "Walked the Bills & Expenses surface with Eugenia and Dmytro. The reporting header's \"Powered by Neno\" treatment is still rejected by Nick; Eugenia to timebox two hours on variants. Onboarding actions and the forwarding-email banner must move from Vault to Bills & Expenses when it ships.",
+     "decisions": [
+      "Onboarding actions reference Bills & Expenses, not Vault, once it ships"
+     ],
+     "open_questions": [
+      "When do new customers connect via Lendroom versus neno's own open banking?"
+     ],
+     "next_steps": [
+      "Eugenia to timebox two hours on reporting-header variants",
+      "Schedule a session with Eugenia and Yaroslav on Lendroom versus neno open banking"
+     ]
+    },
     {
      "date": "2026-08-03",
      "title": "Review reporting",
@@ -1928,7 +2260,7 @@
      "url": "https://linear.app/nenotechnology/initiative/centralise-customer-data-d0aa599c2497"
     }
    ],
-   "sources_note": "Sources this run: Linear issue activity on Custom reporting for Neno customers and the accounting-engagement gating work (NEO-1830, NEO-1839, NEO-1840, NEO-1847, NEO-1848, NEO-1895; 13-14 Aug). No Granola meeting or Slack thread in the window touched this initiative. Carried forward from memory: the 30 Jul and 3 Aug reporting sessions and the 4 Aug project-description decisions on the approval snapshot model."
+   "sources_note": "Sources this run: Granola for 18-19 Aug (Matthew / Euge, Bills & Expenses walk through, Daily stand up) plus the 12 Aug Freddy <> Matthew WeFact audit, and Linear issue activity 15-20 Aug (NEO-1953, NEO-1895, NEO-1911). No Slack connector was available on this run, so Slack was not read. Lookback 14 days."
   }
  }
 }

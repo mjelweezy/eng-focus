@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping data
 _Initiative: 0f26a21f-cd9b-47e4-9678-a3c5107a1fa0 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-15
+_Last updated: 2026-08-20
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the external
 > data integrations feeding neno's books: Numbrs, Stripe, Shopify, Shopify Payments, WeFact,
@@ -16,6 +16,10 @@ _Last updated: 2026-08-15
 
 - [2026-08-14] The adopted Exact-to-neno transition-date guidance names WeFact and NMBRS alongside Swan and Open Banking as tools to be cut off from Exact and enabled on neno on a customer's transition date - so the payroll and invoicing cutovers are now bound to the same per-customer date rather than being sequenced independently. (source: Slack #tech-team (Yaroslav), 14 Aug)
 
+- [2026-08-18] WeFact ingestion landed as two pieces, both on the untracked "Neno Services Onboarding" project: a scheduled pull of WeFact documents so payables reach the review queue (NEO-1922, Yaroslav, Done 18 Aug) and a per-workspace transition date deciding which transactions neno reconciles and exports (NEO-1897, Done 18 Aug). Importing WeFact sales invoices and credit notes as read-only neno invoices through a single shaping function is in progress (NEO-1950). (source: Linear NEO-1897/1922/1950, 18 Aug)
+- [2026-08-19] The WeFact connector is treated as the significant unblocker for this initiative: accountants can process AR and AP from WeFact data without the customer first migrating to neno invoicing. It only became possible after the CI/CD egress fix gave the API a stable Cloud NAT IP for the IP whitelisting WeFact requires (NEO-1949). (source: Granola - Daily stand up, 19 Aug; Linear NEO-1949)
+- [2026-08-19] Nothing moved on Numbrs payroll requirements in the window - the two open Nmbrs tickets are build work, a per-workspace Nmbrs connection with a live token (NEO-1807) and listing a connected client's payroll runs (NEO-1808), both In Progress. Stripe, Shopify and PEPPOL were not discussed in any meeting in the window. (source: Linear NEO-1807/1808; Granola, 6-20 Aug)
+
 ## Open questions
 - [open] (carried forward) Payroll design not yet discussed — open design area for a future session. (project: Payroll (Numbrs integration))
 - [open] (carried forward) When will a direct neno invoicing API be available? A reseller-style prospect's decision to use the WeFact bridge now or wait depends on the roadmap timeline. (owner: Matthew) (source: Granola - Bjorn - Neno Invoicing connect, 28 Jul)
@@ -30,6 +34,8 @@ _Last updated: 2026-08-15
 _None carried forward yet — see source-of-truth.md for pre-split risk history._
 - [med] (2026-08-10) Invoicing feature gaps against WeFact: at least one cohort client invoices in USD and neno has no multi-currency invoicing, and there is no pay-online link on invoices. A payment link is wanted before the end of August but the engineers are stretched. (source: Granola - kick off wefact/neno invoicing, 10 Aug)
 - [low] (2026-08-10) Rollout beyond the payroll pilot cannot be sized until the client payroll inventory requested from the accountants on 3 Aug comes back. (source: Linear project description, Payroll (Numbrs integration), 10 Aug)
+
+- [med] (2026-08-19) The WeFact work that unblocks this initiative sits entirely on "Neno Services Onboarding", a project attached to no initiative, so the board's own "later" items (PEPPOL, Neno invoicing improvements, Stripe, Shopify, Shopify Payments, WeFact Invoicing) show no movement while the real integration work runs outside the initiative. (source: Linear, 18-19 Aug)
 
 ## Next steps
 - [2026-07-15] (carried forward) Matthew to grab CSV examples from Numbrs customers to understand the payroll reconciliation shape. (owner: Matthew) (source: Granola/tldv - stand-up, 15 Jul)

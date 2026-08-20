@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-08-15
+_Last updated: 2026-08-20
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -77,6 +77,11 @@ _Last updated: 2026-08-15
 
 - [2026-08-14] Guiding rules adopted for onboarding customers whose books already live in Exact: a defined transition date per customer; Swan, Open Banking, WeFact and NMBRS cut off from Exact and enabled on neno on that date; Exact spillover cleaned out and neno backfilled to the transition date. Reconciliation is routed by transaction date - after the transition date it happens on neno (documents and transactions land in neno, the accountant matches there, and neno posts the purchase/sales entry, the bank entry and the MatchSet into Exact via link-sync.service.ts and books in AGL), before it the accountant reconciles in Exact and neno's only job is exporting the Swan feed into Exact via swan-exact-sync.ts. The two modes cannot overlap on one transaction. (source: Slack #tech-team (Yaroslav), 14 Aug)
 
+- [2026-08-12] Migration order set by simplicity: target ZM Legal and Opterra first, and defer the outliers - First Ring (products, subscriptions, discounts, e-invoicing), JSN Crowd Events (decimal quantities, high credit-note volume), Lionheart Music (online payments, paid almost immediately) and Total Bathrooms (products plus free-form lines). Only three cohort-2 customers actively use WeFact invoicing. (source: Granola - kick off wefact/neno invoicing, 10 Aug; Freddy <> Matthew, 12 Aug)
+- [2026-08-12] Accepted parallel path: rather than wait for neno invoicing to reach WeFact parity, integrate the WeFact API and process invoices raised in WeFact through neno's reconciliation route. Roughly one week of Dmytro's time is the estimate to make the simpler customers migration-ready. (source: Granola - Freddy <> Matthew, 12 Aug; Daily stand up, 19 Aug)
+- [2026-08-18] The 14 Aug transition-date guidance now has a mechanism: a per-workspace transition date decides which transactions neno reconciles and exports (NEO-1897, Done 18 Aug). (source: Linear NEO-1897, 18 Aug)
+- [2026-08-18] Onboarding-actions wording follows the product: references to "Vault" become "Bills & Expenses", and the forwarding-email banner moves there when Bills & Expenses ships. (source: Granola - Bills & Expenses walk through, 18 Aug)
+
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
 - [resolved 2026-06-24] Open-banking provider decision → provider selected: Montoya (contract still unsigned as of 23 Jun; Plaid ~EUR 2k/mo minimum was the prior front-runner).
@@ -94,6 +99,8 @@ _Last updated: 2026-08-15
 
 - [open] Who does the transition-date work? Yaroslav needs alignment with Mark so the AGL follows the rules, and asked for time from Ihor to change the neno interfaces and matching engine - neither is committed. (owner: Yaroslav/Matthew) (source: Slack #tech-team, 14 Aug)
 
+- [open] Do new customers connect their banks via Lendroom or via neno's own open banking? A three-way session (Eugenia, Yaroslav) was actioned to standardise this. (owner: Eugenia/Yaroslav) (source: Granola - Bills & Expenses walk through, 18 Aug)
+
 ## Risks
 - [high] 6 Jul onboarding target is tight — onboarding-actions project still in backlog and its stepper depends on the new transactions UI.
 - [med] Email forwarding only accepts workspace-member senders, has no UI yet, rejected-email auto-reply still to build.
@@ -110,6 +117,8 @@ _Last updated: 2026-08-15
 - [high] (2026-07-28) Onboarding-actions provisioning has already reached unintended customers once: the demo task rendered in the BV incorporation checklist and two real BV customers acted on it (NEO-1605). The immediate leak is patched and the data cleaned, but the class of leak - onboarding actions escaping into the launch/BV funnel - is not yet designed out. (source: Slack #tech-team, 28 Jul)
 
 - [high] (2026-08-14) FirstRing and QLever were onboarded onto neno while their books were still being reconciled in Exact, and "the two systems have been writing over each other since". The transition-date guidance prevents a repeat but does not itself clean up the existing overlap on those two customers. (source: Slack #tech-team (Yaroslav), 14 Aug)
+
+- [med] (2026-08-19) neno invoicing still carries the WeFact-parity gaps that gate migration: invoice reminders unbuilt, no payment link on invoices, no past-due indicator, the cancelled state not triggering, decimal and negative quantities/prices unsupported, credit-note presentation wrong, and no multi-currency for the one cohort customer invoicing in USD. Frederique was closing the MVP issues on 19 Aug, but engineers are stretched. (source: Granola - Freddy <> Matthew, 12 Aug; Daily stand up, 19 Aug; Linear NEO-1915/1937/1948/1951/1952/1961/1963/1973/1975/1976)
 
 ## Next steps
 - Design the user-journey screens + an Ocean Ionics-specific homepage. (owner: Euge)
@@ -145,6 +154,10 @@ _Last updated: 2026-08-15
 - [2026-07-28] Hold the onboarding-actions retro and agree how wide-blast-radius features are planned and gated. (owner: Yaroslav, with Joel/Dima/Matthew, 29 Jul) (source: Slack #tech-team, 28 Jul)
 - [2026-07-28] Finish the Meta setup for the new sandbox WhatsApp bot and build the multi-workspace destination picker (NEO-1604). (owner: Joel) (source: Slack #core-team / #tech-team, 28 Jul)
 - [2026-08-06] Eugenia to extend the Onboarding Actions email-forwarding guidance to state that neno handles the verification step; a customer-facing inbox view of what has been forwarded is wanted in a later iteration. (owner: Eugenia/Matthew) (source: Slack #tech-team, 6 Aug)
+
+- [2026-08-18] Schedule the Eugenia/Yaroslav session to define Lendroom versus neno open banking for new customers. (owner: Eugenia) (source: Granola - Bills & Expenses walk through, 18 Aug)
+- [2026-08-19] Set up automatic Gmail bill forwarding for Ocean Ionics - the customer team is forwarding bills by hand and gaps are appearing; check whether Marloes is on Gmail and send setup instructions. (owner: Matthew) (source: Granola - Mark <> Wildkamp, 19 Aug)
+- [2026-08-19] Hold the 30-minute invoicing MVP planning call agreed for the morning of 20 Aug; Nick wants visibility on the outlook. (owner: Matthew/Frederique) (source: Granola - Daily stand up, 19 Aug)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._

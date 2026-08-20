@@ -1,6 +1,6 @@
 # Running context — Centralise customer data
 _Initiative: e78d13c9-27d8-494e-9c3b-8a264412e471 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-15
+_Last updated: 2026-08-20
 
 > New initiative created 30 Jul 2026 from the Q3 roadmap deck's "Centralise the data" goal: one
 > system for every customer's data. Covers basic reporting, structured profiles for services
@@ -24,6 +24,11 @@ _Last updated: 2026-08-15
 - [2026-08-14] Management report presentation work is in review: an indigo pie palette and denser PDF typography (NEO-1895, Dima), following the 13 Aug refresh of the restaurant dummy data (NEO-1839). (source: Linear NEO-1839, 13 Aug; NEO-1895, 14 Aug)
 - [2026-08-14] An "Accountant Portfolio Dashboard" (NEO-1840) is now queued to Dima as planned work - the first movement on the accountant-portfolio question that has sat open since Yaroslav proposed Atlas as its home. (source: Linear NEO-1840, 14 Aug)
 
+- [2026-08-18] The reporting header is not settled: Nick is still unhappy with the "Powered by Neno" treatment, so Eugenia is to timebox two hours on variants and escalate for more time if all of them are rejected. (source: Granola - Bills & Expenses walk through, 18 Aug)
+- [2026-08-18] Onboarding actions must be re-pointed from "Vault" to "Bills & Expenses" when Bills & Expenses ships, and the forwarding-email banner moves with them. (source: Granola - Bills & Expenses walk through, 18 Aug)
+- [2026-08-19] The accountant portfolio dashboard shipped as the admin home page (NEO-1911, Dima, Done 19 Aug) - but on the untracked "Unified Review Queue" project rather than under this initiative. A platform metrics page was added alongside it; it is considered useful beyond accountants (mirrorable on a TV screen and inside Atlas) and needs a wording polish pass. (source: Linear NEO-1911, 19 Aug; Granola - Matthew / Euge, 19 Aug)
+- [2026-08-19] Accounting-engagement screen direction agreed from Art's proposal: drop per-workspace accountant assignment so all workspaces sit under one accountant, put a copy icon inline next to the bill-forwarding email address, and render the signs-in-with field as a link when it is a magic link rather than a dropdown. (source: Granola - Matthew / Euge, 19 Aug)
+
 ## Open questions
 - [open] Which data points do customers want glanceable on the home page? Ask DP before sharing the current design, to avoid premature sign-off. (owner: Matthew) (source: Granola - Review reporting, 3 Aug)
 - [open] Exact PDF phrasing for the approved-on date ("Last updated" vs "Approved on"), and how the reviewed-by line should read - to confirm with DP. (owner: Eugenia) (source: Granola - Review reporting, 3 Aug)
@@ -33,6 +38,8 @@ _Last updated: 2026-08-15
 - [open] Which workspace does an approval publish to? The admin page selects an Exact division and roughly 118 divisions have no neno workspace at all; resolving through WorkspaceExactConnection and refusing to approve an unattached division is the proposed route. (project: Custom reporting for Neno customers) (source: Linear project description + NEO-1651, 4 Aug)
 - [open] Should approving a still-open month be allowed - approving on the 4th publishes a month holding four days of bookings - or should the accountant be able to view but not publish it? (project: Custom reporting for Neno customers) (source: Linear project description, 4 Aug)
 - [open] Inside a covered range, should a month with no bookings render as zero (what Exact's absent rows produce today) or as a visible "no data" marker? (project: Custom reporting for Neno customers) (source: Linear project description, 4 Aug)
+
+- [open] Structured profiles for services customers: WeFact has a customer overview screen with multiple contacts per organisation, while neno has only a name field, no contacts and no customer overview screen. What is the data model, and does it come before or after the HubSpot-backed profile view Frederique owns? (owner: Frederique/Matthew) (source: Granola - Freddy <> Matthew, 12 Aug)
 
 ## Risks
 
@@ -44,6 +51,10 @@ _Last updated: 2026-08-15
 - [2026-08-05] Email Marloes (Ocean Ionics) once the balance sheet, P&L and cost-centre dashboard is live on her neno account - expected the week of 10 Aug - so she can assess whether it is useful. (owner: Matthew) (source: Granola - Ocean Ionics Monthly Neno catch up, 5 Aug)
 - [2026-08-06] Match the report PDF output to Eugenia's design and add end-to-end tests; Andries can start approving management reports in production from end of day 6 Aug. (owner: Dmytro) (source: Slack #tldv-channel - daily stand-up, 6 Aug)
 - [2026-08-07] Custom reporting functionality is complete and the UI shipped to production; remaining work is the per-customer report layout, hourly Exact refresh, email send, the compare button and the error-screen Slack alert. (owner: Dmytro) (source: Granola - Daily stand up, 7 Aug)
+
+- [2026-08-18] Timebox two hours on reporting-header variants for Nick, and escalate if all are rejected. (owner: Eugenia) (source: Granola - Bills & Expenses walk through, 18 Aug)
+- [2026-08-19] File the accountant tasks-page redesign ticket against Bookkeeping Improvements and assign it to Dmytro. (owner: Matthew) (source: Granola - Matthew / Euge, 19 Aug)
+- [2026-08-19] Share the accounting-engagement screen design with Art for feedback. (owner: Eugenia) (source: Granola - Matthew / Euge, 19 Aug)
 
 ## Projects (filed in Linear)
 - [2026-07-30] Attached existing project "Custom reporting for Neno customers" (basic reporting). "Structured profiles for services customers" and "Onboarding actions for off-platform tasks" have no Linear project yet - listed as text items on the board only.
@@ -72,8 +83,13 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 - (project: Custom reporting for Neno customers) Attribution reads "Approved by [accountant] on [date]", resolved from Workspace.assignedAccountantId at read time and degrading to "Approved by accountant on [date]" when none is assigned - the date is never dropped. This supersedes the earlier "Last reviewed by" wording. (source: Linear project description, 4 Aug 2026)
 - (project: Custom reporting for Neno customers) A window read out of a snapshot takes the requested months in order, sums them for the period total, takes the comparative from the same months of the previous year in the same snapshot, and treats the cash balance as cumulative point-in-time - never summed across windows. (source: Linear project description, 4 Aug 2026)
 
+_Expanded 2026-08-20 from Linear (18 Aug). Custom reporting for Neno customers is Backlog, so this publishes into its managed description block._
+- (project: Custom reporting for Neno customers) Demo mode must accept a CSV import so the sample report is built from the prospect's own figures rather than generic sample data. (source: Linear NEO-1953, 18 Aug 2026)
+
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._
+
+- [2026-08-19] Structured customer profiles for services customers - a customer overview screen with multiple contacts per organisation, matching what WeFact offers - is a board text item under this initiative with no Linear project, and it overlaps Frederique's HubSpot-backed profile view; needs Matthew's attribution. (source: Granola - Freddy <> Matthew, 12 Aug; Granola - Matthew / Euge, 19 Aug)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->
