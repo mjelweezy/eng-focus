@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-08-20
+_Last updated: 2026-08-27
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -82,6 +82,8 @@ _Last updated: 2026-08-20
 - [2026-08-18] The 14 Aug transition-date guidance now has a mechanism: a per-workspace transition date decides which transactions neno reconciles and exports (NEO-1897, Done 18 Aug). (source: Linear NEO-1897, 18 Aug)
 - [2026-08-18] Onboarding-actions wording follows the product: references to "Vault" become "Bills & Expenses", and the forwarding-email banner moves there when Bills & Expenses ships. (source: Granola - Bills & Expenses walk through, 18 Aug)
 
+- [2026-08-27] Two new customers onboarded this window: Sane Netherlands (AI safety org) went live 25 Aug on the full neno stack (Exact as system of record, bills/expenses via forwarding mailbox, WhatsApp and receipt scanning, cost centers rolling out within two weeks); a second, unnamed Dutch company with a Revolut USD account was onboarded 26 Aug with an empty Exact ledger. (source: Granola - Matthew/Andries call different branches, 25 Aug; Multi-Currency in Exact, 26 Aug 2026)
+
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
 - [resolved 2026-06-24] Open-banking provider decision → provider selected: Montoya (contract still unsigned as of 23 Jun; Plaid ~EUR 2k/mo minimum was the prior front-runner).
@@ -101,6 +103,8 @@ _Last updated: 2026-08-20
 
 - [open] Do new customers connect their banks via Lendroom or via neno's own open banking? A three-way session (Eugenia, Yaroslav) was actioned to standardise this. (owner: Eugenia/Yaroslav) (source: Granola - Bills & Expenses walk through, 18 Aug)
 
+- [2026-08-27] Whether Exact can properly handle multi-currency for the new EUR/USD customer is unconfirmed with Yako, and the strategy is unresolved pending DP, Yako and Jean Lava input. (source: Granola - Multi-Currency in Exact, 26 Aug 2026)
+
 ## Risks
 - [high] 6 Jul onboarding target is tight — onboarding-actions project still in backlog and its stepper depends on the new transactions UI.
 - [med] Email forwarding only accepts workspace-member senders, has no UI yet, rejected-email auto-reply still to build.
@@ -119,6 +123,8 @@ _Last updated: 2026-08-20
 - [high] (2026-08-14) FirstRing and QLever were onboarded onto neno while their books were still being reconciled in Exact, and "the two systems have been writing over each other since". The transition-date guidance prevents a repeat but does not itself clean up the existing overlap on those two customers. (source: Slack #tech-team (Yaroslav), 14 Aug)
 
 - [med] (2026-08-19) neno invoicing still carries the WeFact-parity gaps that gate migration: invoice reminders unbuilt, no payment link on invoices, no past-due indicator, the cancelled state not triggering, decimal and negative quantities/prices unsupported, credit-note presentation wrong, and no multi-currency for the one cohort customer invoicing in USD. Frederique was closing the MVP issues on 19 Aug, but engineers are stretched. (source: Granola - Freddy <> Matthew, 12 Aug; Daily stand up, 19 Aug; Linear NEO-1915/1937/1948/1951/1952/1961/1963/1973/1975/1976)
+
+- [2026-08-27] Run the Nano card eligibility precheck for Sane's stichting structure; set up a Slack channel with Sane, Sienna and the payroll/employer-registration contacts. (owner: Matthew) (source: Granola - Matthew/Andries call different branches, 25 Aug 2026)
 
 ## Next steps
 - Design the user-journey screens + an Ocean Ionics-specific homepage. (owner: Euge)

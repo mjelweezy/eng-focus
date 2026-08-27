@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping activity
 _Initiative: b508d2b3-f876-4068-beec-e3c9899dd8c4 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-20
+_Last updated: 2026-08-27
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the
 > accountant-performed bookkeeping actions: AR reconciliation, credit notes, accruals,
@@ -33,6 +33,10 @@ _Last updated: 2026-08-20
 - [2026-08-19] Credit-note handling settled across two sessions (Andries, then Freddy): in WeFact/Exact a cancelled invoice auto-generates a credit note that cancels the original with no manual accountant action, and neno must make the invoice/credit-note link explicit so the pair visibly cancels out. Cancelled invoices are to be taken out of the matching options so an accountant cannot match a payment against one, and a payment arriving against a cancelled invoice raises a task asking what it is for. Credit notes against already-paid invoices - where money has to move back - are deliberately not built for now; the behaviour will be observed first. (source: Granola - Catch up with Andries on Credit Notes + Catch up with Freddy, 19 Aug)
 - [2026-08-19] The depreciation schedule is still mid-build: Dmytro needs Mark's help to merge items, and whether it is shown live on Atlas or as a Figma mock-up depends on a check with Ihor on implementation progress. (source: Granola - Daily stand up, 19 Aug)
 
+- [2026-08-27] Credit note handling settled (two sessions, 19 Aug): cancelled invoices with a linked credit note are visually surfaced as cancelling out with no accountant action required; a credit note against an already-paid invoice gets no refund-workflow build for now (observe impact first); an unpaid invoice with a credit note issued is set to 'cancelled' so no payment is expected. (project: Credit note processing (AR & AP)) (source: Granola - Credit Notes w/ Andries and w/ Freddy, 19 Aug 2026)
+- [2026-08-27] Async Exact booking proposed - trigger the Exact write off the reconciliation ledger event rather than synchronously at reconciliation time - so the same event can feed other external systems; not yet decided, needs wider team sign-off. (source: Granola - Backfill & Manual Entries, 24 Aug 2026)
+- [2026-08-27] Depreciation schedules V1 scope reaffirmed from the 11 Aug discovery session: monthly cadence for all current clients; asset group (not item) drives useful life with no manual entry; mixed asset/expense bills must let individual lines be capitalised; start date configurable incl. backdating. Work was ongoing as of the 19 Aug standup (Dmytro needed Mark's help to merge). Note: the Depreciation schedules, Credit note processing, Related-parties register and Accruals Linear projects were all canceled in Linear between 20-25 Aug 2026 - flagging for Matthew to confirm whether that reflects a deliberate de-scope or should be reopened, since this memory's committed/next bucket still assumes them active. (source: Linear, 20-25 Aug 2026; Granola - Asset Depreciation, 11 Aug 2026)
+
 ## Open questions
 - [open] (carried forward) Full reporting requirements list still being compiled by DP. (project: Financial reporting)
 - [open] (carried forward) Feature sequencing and ownership for the post-GL bookkeeping scope not yet decided. (owner: Matthew)
@@ -57,6 +61,8 @@ _Last updated: 2026-08-20
 - [open] Credit-note reconciliation gap: there is no way for an accountant to recognise that an invoice and its credit note cancel each other out and that no money needs to move. Matthew to work it through with Andries on the accounting/matching side. (owner: Matthew/Andries) (project: Credit note processing (AR & AP)) (source: Granola - Catch up with Andries on Credit Notes, 19 Aug)
 - [open] Cancelled invoices in the matching engine: removing them reduces human error, but a payment may already have been sent against one. Is removal unconditional, or does a cancelled invoice stay matchable behind the auto-raised task? (owner: Matthew) (project: Credit note processing (AR & AP)) (source: Granola - Catch up with Andries on Credit Notes + Catch up with Freddy, 19 Aug)
 
+- [2026-08-27] Q2 reconciliation status for Ocean Ionics is unresolved: Andrew closed Q2 early and believes it's correctly closed, but outstanding debit transfers and bills from Q2 are still open in neno. (source: Granola - Mark <> Wildkamp, 19 Aug 2026)
+
 ## Risks
 - [med] (carried forward) Scope is broad and unsequenced; nothing staffed yet beyond AR reconciliation.
 - [med] (carried forward) Full reporting requirements not yet enumerated — scope could grow once DP's list lands. (project: Financial reporting)
@@ -66,6 +72,10 @@ _Last updated: 2026-08-20
 - [med] (2026-08-12) Bill extraction plus transaction matching consume 80-90% of Venla's time at 3-4 minutes per bill across 62 clients, so throughput - not feature coverage - is the binding constraint on the bookkeeping activity scope. (source: Slack #tech-team (Art, from a session with Venla), 12 Aug)
 
 - [med] (2026-08-14) Almost all the bookkeeping-activity throughput work this week landed on projects outside every tracked initiative - AR Coding Suggestions, Transaction Matching, Unified Review Queue, Bills & Expenses and the ignored Bookkeeping bug-fixes - so the board's committed items (depreciation, credit notes, related parties, accruals) show no movement while the real work is elsewhere. (source: Linear issue activity, 12-14 Aug)
+
+- [2026-08-27] Matthew to send Andrew a screenshot and confirm Q2 reconciliation status; Andrew to send Mark a list of Ocean Ionics items reconciled in Exact so Mark can close them in neno. (owner: Matthew/Andrew) (source: Granola - Mark <> Wildkamp, 19 Aug 2026)
+- [2026-08-27] Link credit notes to invoices in neno so the cancellation is visually explicit, and explore removing cancelled invoices from matching options to cut human error. (source: Granola - Credit Notes w/ Andries, 19 Aug 2026)
+- [2026-08-27] Discuss and validate the async Exact booking approach with the wider engineering team. (source: Granola - Backfill & Manual Entries, 24 Aug 2026)
 
 ## Next steps
 - [carried forward] DP to compile the full reporting requirements list. (owner: DP, ASAP) (project: Financial reporting)

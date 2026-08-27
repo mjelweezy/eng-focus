@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping data
 _Initiative: 0f26a21f-cd9b-47e4-9678-a3c5107a1fa0 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-20
+_Last updated: 2026-08-27
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the external
 > data integrations feeding neno's books: Numbrs, Stripe, Shopify, Shopify Payments, WeFact,
@@ -20,6 +20,8 @@ _Last updated: 2026-08-20
 - [2026-08-19] The WeFact connector is treated as the significant unblocker for this initiative: accountants can process AR and AP from WeFact data without the customer first migrating to neno invoicing. It only became possible after the CI/CD egress fix gave the API a stable Cloud NAT IP for the IP whitelisting WeFact requires (NEO-1949). (source: Granola - Daily stand up, 19 Aug; Linear NEO-1949)
 - [2026-08-19] Nothing moved on Numbrs payroll requirements in the window - the two open Nmbrs tickets are build work, a per-workspace Nmbrs connection with a live token (NEO-1807) and listing a connected client's payroll runs (NEO-1808), both In Progress. Stripe, Shopify and PEPPOL were not discussed in any meeting in the window. (source: Linear NEO-1807/1808; Granola, 6-20 Aug)
 
+- [2026-08-27] WeFact connector unblocked (CI/CD egress / Cloud NAT fix), landed 19 Aug - a significant accelerant for AR/AP, since accountants can process both without the customer migrating to neno invoicing first; relevant to the 'later' WeFact Invoicing item on this initiative. (source: Granola - WeFact/Credit Notes sessions, 19 Aug 2026)
+
 ## Open questions
 - [open] (carried forward) Payroll design not yet discussed — open design area for a future session. (project: Payroll (Numbrs integration))
 - [open] (carried forward) When will a direct neno invoicing API be available? A reseller-style prospect's decision to use the WeFact bridge now or wait depends on the roadmap timeline. (owner: Matthew) (source: Granola - Bjorn - Neno Invoicing connect, 28 Jul)
@@ -29,6 +31,8 @@ _Last updated: 2026-08-20
 - [open] Which reminder functionality and send methods do cohort customers actually use in WeFact? (source: Granola - kick off wefact/neno invoicing, 10 Aug)
 
 - [open] Does the per-client Nmbrs cutover have to happen on the customer's Exact transition date, or can payroll cut over separately? The 14 Aug onboarding guidance implies the former; the payroll PRD assumes per-client cutover on its own schedule. (owner: Adam/Yaroslav) (source: Slack #tech-team, 14 Aug; Linear project description, 10 Aug)
+
+- [2026-08-27] No Granola/Slack activity found in the last 14 days on Stripe, Shopify, Shopify Payments, PEPPOL or generic platform balance imports - all remain undiscussed 'later' items. (source: run review, 2026-08-27)
 
 ## Risks
 _None carried forward yet — see source-of-truth.md for pre-split risk history._

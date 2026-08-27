@@ -1,6 +1,6 @@
 # Running context — Centralise customer data
 _Initiative: e78d13c9-27d8-494e-9c3b-8a264412e471 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-20
+_Last updated: 2026-08-27
 
 > New initiative created 30 Jul 2026 from the Q3 roadmap deck's "Centralise the data" goal: one
 > system for every customer's data. Covers basic reporting, structured profiles for services
@@ -29,6 +29,9 @@ _Last updated: 2026-08-20
 - [2026-08-19] The accountant portfolio dashboard shipped as the admin home page (NEO-1911, Dima, Done 19 Aug) - but on the untracked "Unified Review Queue" project rather than under this initiative. A platform metrics page was added alongside it; it is considered useful beyond accountants (mirrorable on a TV screen and inside Atlas) and needs a wording polish pass. (source: Linear NEO-1911, 19 Aug; Granola - Matthew / Euge, 19 Aug)
 - [2026-08-19] Accounting-engagement screen direction agreed from Art's proposal: drop per-workspace accountant assignment so all workspaces sit under one accountant, put a copy icon inline next to the bill-forwarding email address, and render the signs-in-with field as a link when it is a magic link rather than a dropdown. (source: Granola - Matthew / Euge, 19 Aug)
 
+- [2026-08-27] Reporting stays in EUR for all customers, with FX conversion applied at the ledger level, not per report. (project: Custom reporting for Neno customers) (source: Granola - Reporting/Platform sync, week of 24 Aug 2026)
+- [2026-08-27] Accountant homepage: a platform metrics page was added to the accountant dashboard (mirrors on TV/Atlas); the accountant tasks page was agreed to be redesigned onto the user-facing task screen design, with a Linear ticket to be filed under Bookkeeping Improvements and assigned to Dima; quick filters for accountants agreed (filter by client with open task count, dropdown not chips, first card open by default); glass effect confirmed accountant-only screens should diverge from customer UI and not get the glass treatment. (source: Granola - Platform/accountant UI sessions, week of 24 Aug 2026)
+
 ## Open questions
 - [open] Which data points do customers want glanceable on the home page? Ask DP before sharing the current design, to avoid premature sign-off. (owner: Matthew) (source: Granola - Review reporting, 3 Aug)
 - [open] Exact PDF phrasing for the approved-on date ("Last updated" vs "Approved on"), and how the reviewed-by line should read - to confirm with DP. (owner: Eugenia) (source: Granola - Review reporting, 3 Aug)
@@ -41,7 +44,13 @@ _Last updated: 2026-08-20
 
 - [open] Structured profiles for services customers: WeFact has a customer overview screen with multiple contacts per organisation, while neno has only a name field, no contacts and no customer overview screen. What is the data model, and does it come before or after the HubSpot-backed profile view Frederique owns? (owner: Frederique/Matthew) (source: Granola - Freddy <> Matthew, 12 Aug)
 
+- [2026-08-27] Reporting header treatment ('Powered by Neno') still not signed off by Nick; Euge timeboxed to 2 hours on variants - if all are rejected this needs escalation. (project: Custom reporting for Neno customers) (source: Granola, week of 24 Aug 2026)
+
 ## Risks
+
+- [2026-08-27] Euge to present reporting header variants to Nick within the 2-hour timebox. (owner: Eugenia) (source: Granola, week of 24 Aug 2026)
+- [2026-08-27] Euge to file a Linear ticket for the accountant tasks page redesign, assigned to Dima under Bookkeeping Improvements; update task card designs before Dima picks them up. (owner: Eugenia) (source: Granola, week of 24 Aug 2026)
+- [2026-08-27] Schedule the open banking onboarding standardization meeting (Matthew, Euge, Yaroslav) to define when new customers connect via Lendroom vs. neno's own open banking - not yet held as of 27 Aug. (owner: Eugenia) (source: Granola - Bills & Expenses walkthrough, 18 Aug 2026)
 
 ## Next steps
 - [2026-08-03] Ask DP which home-page data points customers want, before sharing the current design. (owner: Matthew) (source: Granola - Review reporting, 3 Aug)
@@ -85,6 +94,7 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 
 _Expanded 2026-08-20 from Linear (18 Aug). Custom reporting for Neno customers is Backlog, so this publishes into its managed description block._
 - (project: Custom reporting for Neno customers) Demo mode must accept a CSV import so the sample report is built from the prospect's own figures rather than generic sample data. (source: Linear NEO-1953, 18 Aug 2026)
+- (project: Custom reporting for Neno customers) Reporting is presented in EUR for all customers, with FX conversion applied at the ledger level rather than per report. (source: Granola - Reporting/platform sync, week of 24 Aug 2026)
 
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._

@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-20
+_Last updated: 2026-08-27
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -78,6 +78,11 @@ _Last updated: 2026-08-20
 - [2026-08-19] Ocean Ionics' reconciliation backlog quantified: 79 transactions in neno, only 23 of them with a corresponding bill pending review, leaving 56 unmatched. Pre-June transactions may already sit in Exact (Ihor traced them); Mark to verify and remove those from the neno queue. (source: Granola - Mark <> Wildkamp, 19 Aug)
 - [2026-08-19] Andries closed Q2 early in Exact and made manual entries there; the corresponding Q2 outstanding debit transfers and bills are still open in neno and have to be closed out against what he actually reconciled. (source: Granola - Daily stand up, 19 Aug)
 
+- [2026-08-27] Ledger event model locked (24 Aug): the queue books solely from payload facts at booking time - no source lookup or inference after the fact; editing a booked bill now requires two explicit steps (remove ledger entry and edit bill, then confirm and rebook) rather than the previous live-edit flow. (project: Start writing to neno's double-entry GL) (source: Granola - Backfill & Manual Entries, 24 Aug 2026)
+- [2026-08-27] Async Exact booking proposed - trigger the Exact write off the reconciliation ledger event instead of synchronously - not yet decided, needs wider team validation. (source: Granola - Backfill & Manual Entries, 24 Aug 2026)
+- [2026-08-27] Multi-currency: all ledger entries write to Exact in EUR for now, with FX conversion applied for reporting; a USD account is kept separate while active. Whether Exact's ledger can actually handle multi-currency properly is unconfirmed with Yako, and FX write-offs need Jean Lava's input once accounting is involved. (source: Granola - Multi-Currency in Exact, 26 Aug 2026)
+- [2026-08-27] Discovered a Linear project under this initiative not on the board: 'Close out the ledger's first production run' (has active issues from Mark and Dima on grouped-match settlement and missing booked bills) - flagged to Matthew as needs-triage rather than added to the board. (source: Linear, 2026-08-27)
+
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
 - [open] Full reporting requirements list being compiled by DP (potentially 100+ items) — will frame future design. (owner: DP)
@@ -116,6 +121,8 @@ _Last updated: 2026-08-20
 - [open] Bill line-level extraction returns a NULL taxRate, so the review calculation picks 21% up from the selected VAT code rather than from the document; Mark was "surprised the parser didn't use a bill-wide tax extraction". Does bill-wide tax extraction get added? (owner: Art/Mark) (source: Slack #accounting-mvp, 14 Aug)
 - [open] The Ocean Ionics fork - backfill neno's ledger from Exact and take source-of-truth status from a clean cut-off, or keep filing in Exact - was due to be reconvened by Mark and Matthew on Friday 14 August. No outcome appeared in Linear, Slack or Granola this run. (owner: Mark/Matthew)
 
+- [2026-08-27] Ocean Ionics has no hard cutover date - neno and Exact totals will not fully align without a backfill of historical data using external proof followed by a clean cutover; Q2 items Andrew reconciled in Exact are not yet confirmed or closed in neno. (source: Granola - Mark <> Wildkamp / Backfill & Manual Entries, 19 and 24 Aug 2026)
+
 ## Risks
 - [high] Spike code (~13k lines, Claude-generated) took liberties with DB writes; atomicity and no-overlapping-bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew). (source: Granola — Next Steps AGL)
 - [med] Belgium gapless-ledger scope unconfirmed.
@@ -135,6 +142,9 @@ _Last updated: 2026-08-20
 
 - [med] (2026-08-19) The Ocean Ionics queue that the Q3 filing depends on is 56 of 79 transactions unmatched, and the bill search accountants use to find the counterpart bill truncates its results at high transaction volume - a 30 June Wildkamp bill of EUR 10.65 was visible on the bill list but absent from search. (source: Granola - Mark <> Wildkamp, 19 Aug; Linear NEO-1972)
 - [high] (2026-08-20) The Ocean Ionics fork - backfill neno's ledger from Exact and take source-of-truth status from a clean cut-off, or keep filing VAT in Exact - still has no decision six days after the 14 Aug reconvene was due, while the Belastingdienst reconciliation strategy is needed before the start of September. (source: Granola, 19 Aug)
+
+- [2026-08-27] Matthew to make the trial balance comparison page useful: link journal lines back to source bills and surface bank transaction detail alongside ledger bookings. (owner: Matthew) (source: Granola - Backfill & Manual Entries, 24 Aug 2026)
+- [2026-08-27] Matthew to contact Marloes about setting up automatic Gmail bill forwarding for Ocean Ionics (current manual forwarding is causing gaps), and to follow up on the backlog of open tasks and unresolved bills. (owner: Matthew) (source: Granola - Mark <> Wildkamp, 19 Aug 2026)
 
 ## Next steps
 - [2026-06-23] DP to compile full reporting requirements list. (owner: DP, due ASAP)
@@ -230,6 +240,7 @@ _Expanded 2026-08-15 from #accounting-mvp (14 Aug). Project is In Progress, so p
 - (project: Start writing to neno's double-entry GL) purchase-entry-sync must keep posting `VATCode: item.vatCode` verbatim to Exact and must not convert these codes to 0%, because Exact applies its own treatment from its own code definition and a 0% would drop the reverse-charge legs on Exact's side. (source: Slack #accounting-mvp (Mark), 14 Aug 2026)
 
 ## Unfiled requirements (needs attribution)
+- [2026-08-27] Ledger event model is now locked (queue books solely from payload facts at booking time, no post-hoc source lookup; edit-and-rebook requires two explicit steps) but it is unclear whether this requirement belongs to 'Start writing to neno's double-entry GL' or 'Close out the ledger's first production run' - both projects touch booking/edit flow. Left unfiled for Matthew to attribute. (source: Granola - Backfill & Manual Entries, 24 Aug 2026)
 
 _New requirements the job could not confidently assign to a project under this initiative._
 - [2026-07-28] The GL/VAT coding proposer must receive the bill's own figures (line net/gross, tax amounts and bill-level tax entries) and derive the VAT rate and inclusive/exclusive treatment arithmetically, using them to narrow the candidate code list, rather than inferring VAT treatment from supplier name and line description alone. Filed in Linear against the Smart Bill Review project (NEO-1595), which sits outside the three tracked initiatives, so it cannot be confidently attributed to "Start writing to neno's double-entry GL"; needs Matthew's attribution. (source: Linear NEO-1595; Slack #tech-team, 28 Jul)
