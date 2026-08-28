@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping data
 _Initiative: 0f26a21f-cd9b-47e4-9678-a3c5107a1fa0 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-27
+_Last updated: 2026-08-28
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the external
 > data integrations feeding neno's books: Numbrs, Stripe, Shopify, Shopify Payments, WeFact,
@@ -21,6 +21,10 @@ _Last updated: 2026-08-27
 - [2026-08-19] Nothing moved on Numbrs payroll requirements in the window - the two open Nmbrs tickets are build work, a per-workspace Nmbrs connection with a live token (NEO-1807) and listing a connected client's payroll runs (NEO-1808), both In Progress. Stripe, Shopify and PEPPOL were not discussed in any meeting in the window. (source: Linear NEO-1807/1808; Granola, 6-20 Aug)
 
 - [2026-08-27] WeFact connector unblocked (CI/CD egress / Cloud NAT fix), landed 19 Aug - a significant accelerant for AR/AP, since accountants can process both without the customer migrating to neno invoicing first; relevant to the 'later' WeFact Invoicing item on this initiative. (source: Granola - WeFact/Credit Notes sessions, 19 Aug 2026)
+- [2026-08-28] Payroll instalment strategy settled against a real Exact administration: send the payroll and every payment to Exact as they happen and tie them off once the payments for a given debt add up to it, because Exact accepts a group of payments against one debt when the totals agree - which needs no leftover account. Testing confirmed Exact does tie off a payment when the amounts agree, and does accept a payment smaller than the debt but then asks which account takes the remainder. Practical effect: a partly-paid payroll shows in Exact as still outstanding for a few weeks; the client's balances are right throughout, only the tick-off is late. (project: Payroll (Numbrs integration)) (source: Linear project update, Payroll (Numbrs integration), 21 Aug 2026)
+- [2026-08-28] Payroll now reaches both sets of books: a Nmbrs run lands in neno's own ledger, and once an accountant reconciles a payment against it, in the client's Exact administration too; accountants can see how far each run has been paid down - settled, still owed, and which payments did the clearing - on its own tab in the reconciliation view. NEO-1807 (per-workspace Nmbrs connection with a live token) completed 27 Aug. (project: Payroll (Numbrs integration)) (source: Linear project update, 21 Aug 2026; Linear NEO-1807, 27 Aug 2026)
+- [2026-08-28] A sign bug that would have increased rather than reduced the amount owed in Exact was found and fixed with a test. It had gone unnoticed because the automated tests simulate Exact rather than talking to it; both this and the instalment question only surfaced once the code was pointed at a real administration - the argument for doing that before any client is switched on. (project: Payroll (Numbrs integration)) (source: Linear project update, 21 Aug 2026)
+- [2026-08-28] Stripe moved from an undiscussed 'later' item to active discovery. Being unable to receive payments through Stripe on the neno side is blocking a prospect, and Matthew said neno would look directly at the problem 'starting today' and decide whether to let accountants manage Stripe balances manually on the platform for now so it stops being a blocker to board this type of customer. (source: Slack #tech-team, 28 Aug 2026)
 
 ## Open questions
 - [open] (carried forward) Payroll design not yet discussed — open design area for a future session. (project: Payroll (Numbrs integration))
@@ -33,6 +37,10 @@ _Last updated: 2026-08-27
 - [open] Does the per-client Nmbrs cutover have to happen on the customer's Exact transition date, or can payroll cut over separately? The 14 Aug onboarding guidance implies the former; the payroll PRD assumes per-client cutover on its own schedule. (owner: Adam/Yaroslav) (source: Slack #tech-team, 14 Aug; Linear project description, 10 Aug)
 
 - [2026-08-27] No Granola/Slack activity found in the last 14 days on Stripe, Shopify, Shopify Payments, PEPPOL or generic platform balance imports - all remain undiscussed 'later' items. (source: run review, 2026-08-27)
+- [open] Does Exact leave the remainder of a part-payment still owed, or write it off? Our test administration has no leftover account configured, so this could not be observed. The chosen group-tie-off approach avoids the question, but the answer decides whether neno can do better later; it needs an administration with the relevant setting configured. (owner: Adam) (project: Payroll (Numbrs integration)) (source: Linear project update, 21 Aug 2026)
+- [open] An accountant needs to settle two payroll points: whether to enable Exact's 'track open items' setting on payroll accounts (off by default), and which account absorbs small differences when a payment does not exactly match what was owed. (owner: Accounting) (project: Payroll (Numbrs integration)) (source: Linear project update, 21 Aug 2026)
+- [open] When should the cost of an approved-but-unpaid payroll run first land? Today such a run does not appear in Exact at all, because the first payment is what carries it across; written up separately. (project: Payroll (Numbrs integration)) (source: Linear project update, 21 Aug 2026)
+- [open] Should accountants be able to manage Stripe balances manually on neno as an interim unblock, and is invoice creation via a public MCP the first surface neno exposes? Matthew put roughly a two-week horizon on clearer timelines. (owner: Matthew) (source: Slack #tech-team, 28 Aug 2026)
 
 ## Risks
 _None carried forward yet — see source-of-truth.md for pre-split risk history._
@@ -40,12 +48,16 @@ _None carried forward yet — see source-of-truth.md for pre-split risk history.
 - [low] (2026-08-10) Rollout beyond the payroll pilot cannot be sized until the client payroll inventory requested from the accountants on 3 Aug comes back. (source: Linear project description, Payroll (Numbrs integration), 10 Aug)
 
 - [med] (2026-08-19) The WeFact work that unblocks this initiative sits entirely on "Neno Services Onboarding", a project attached to no initiative, so the board's own "later" items (PEPPOL, Neno invoicing improvements, Stripe, Shopify, Shopify Payments, WeFact Invoicing) show no movement while the real integration work runs outside the initiative. (source: Linear, 18-19 Aug)
+- [med] (2026-08-28) Payroll is switched on for no client, and the two remaining blockers are not engineering: the payroll provider's credentials must be installed in the production environment, and each client must stop having payroll typed into Exact by hand before neno starts sending it, or they get it twice. (source: Linear project update, 21 Aug 2026)
+- [med] (2026-08-28) The inability to receive payments through Stripe is now a live commercial blocker; inventory/COGS visibility and API/MCP access are recurring asks across roughly EUR 45k of e-commerce pipeline raised in #tech-team. (source: Slack #tech-team, 28 Aug 2026)
 
 ## Next steps
 - [2026-07-15] (carried forward) Matthew to grab CSV examples from Numbrs customers to understand the payroll reconciliation shape. (owner: Matthew) (source: Granola/tldv - stand-up, 15 Jul)
 - [2026-07-28] (carried forward) Send Bjorn (Smart Data Solutions) a proposal covering how the WeFact invoicing route would work now and when direct neno API integration is expected, so he can decide whether to proceed or wait. (owner: Matthew) (source: Granola - Bjorn - Neno Invoicing connect, 28 Jul)
 - [2026-08-10] Share the next 10 Cohort 3 customers to narrow the invoicing gap analysis, and send Frederique the known invoicing feature-gap list. (owner: Matthew) (source: Granola - kick off wefact/neno invoicing, 10 Aug)
 - [2026-08-10] Frederique to complete Swan sandbox ID verification to unlock full neno feature access, and run a comparison of the neno monorepo/Linear against WeFact's public pages to catch commercially promoted features neno may be missing. (owner: Frederique) (source: Granola - kick off wefact/neno invoicing, 10 Aug)
+- [2026-08-28] Install the Nmbrs credentials in production and agree the per-client 'stop typing payroll into Exact' cutover before switching any client on. (owner: Adam) (source: Linear project update, 21 Aug 2026)
+- [2026-08-28] Decide whether accountants can manage Stripe balances manually on neno as an interim unblock. (owner: Matthew) (source: Slack #tech-team, 28 Aug 2026)
 
 ## Projects (filed in Linear)
 - [2026-07-30] Attached to this new initiative: Payroll (Numbrs integration), Third-party wallet transaction import (MVP). New backlog items from the Q3 roadmap deck not yet filed as Linear projects: Shopify, Shopify Payments, WeFact Invoicing, PEPPOL invoicing, Generic platform balance imports.
@@ -61,9 +73,15 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 - (project: Payroll (Numbrs integration)) Net wage payment clearing is in scope: salary payments must be reconcilable against the payable the entry creates, including advances, remainders and split payments. (source: Linear project description, 10 Aug 2026)
 - (project: Payroll (Numbrs integration)) Payroll postings appear in booking history alongside other postings, drillable to line level; no dedicated payroll screen in v1. Both monthly and 4-weekly (13-period) payroll must record correctly. (source: Linear project description, 10 Aug 2026)
 - (project: Payroll (Numbrs integration)) Out of scope: running payroll in neno, HR/employee data, initiating salary payments, other payroll providers, EOR/foreign payroll, wage tax declarations and pension exports. (source: Linear project description, 10 Aug 2026)
+- (project: Payroll (Numbrs integration)) Send the payroll and every payment to Exact as they happen and tie them off once the payments for a given debt add up to it; Exact accepts a group of payments against one debt when the totals agree, so no leftover or small-difference account is required. A partly-paid payroll therefore shows in Exact as still outstanding until fully paid. (source: Linear project update, 21 Aug 2026)
+- (project: Payroll (Numbrs integration)) Accountants must be able to see how far each payroll run has been paid down - what is settled, what is still owed, and which payments did the clearing - on its own tab in the reconciliation view. (source: Linear project update, 21 Aug 2026)
+- (project: Payroll (Numbrs integration)) Payments sent to Exact must carry the correct sign so they reduce rather than increase the amount owed, covered by a test run against a real Exact administration rather than the simulator. (source: Linear project update, 21 Aug 2026)
+- (project: Payroll (Numbrs integration)) Before any client is switched on, the payroll provider's credentials must be installed in the production environment and the client must stop having payroll typed into Exact by hand, or the payroll lands twice. (source: Linear project update, 21 Aug 2026)
 
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._
+- [2026-08-28] Let accountants manage Stripe balances manually on the neno platform as an interim, so the absence of a Stripe integration stops blocking onboarding of e-commerce and agency customers. Stripe is a board text item with no Linear project, so this cannot be filed to a project; needs Matthew's attribution. (source: Slack #tech-team, 28 Aug 2026)
+- [2026-08-28] Expose Neno reporting/accounting data over MCP or an API, starting with outbound invoice creation, and link those invoices automatically to incoming payments. Raised by four prospects (~EUR 45k combined ACV); there is no Linear project for the MCP/API surface, so it cannot be filed; needs Matthew's attribution. (source: Slack #tech-team, 28 Aug 2026)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

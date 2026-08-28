@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-27T04:06:21Z",
+ "generated_at": "2026-08-28T11:56:34Z",
  "projects": {
   "2731244b-71c8-44d1-b6bf-ae9434135d05": {
    "status": "Backlog",
@@ -79,7 +79,7 @@
        "issues": [
         {
          "id": "NEO-2030",
-         "title": "Show customer response timestamps and open task files in bill review from Atlas",
+         "title": "Show customer response timestamps and open task files in bill review",
          "status": "In Progress"
         },
         {
@@ -89,7 +89,7 @@
         },
         {
          "id": "NEO-2026",
-         "title": "Allow users to mark clarification tasks completed after replying or uploading documents",
+         "title": "Mark clarification tasks completed after replying or uploading",
          "status": "Todo"
         },
         {
@@ -99,8 +99,18 @@
         },
         {
          "id": "NEO-2034",
-         "title": "Close open transaction tasks when Allocate to G/L books the transaction",
+         "title": "Close open transaction tasks when Allocate to G/L books the",
          "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "Bills & Expenses Page",
+       "issues": [
+        {
+         "id": "NEO-1912",
+         "title": "Bills and Expenses page for the customer (MVP scope)",
+         "status": "In Progress"
         }
        ]
       },
@@ -111,11 +121,6 @@
          "id": "NEO-2017",
          "title": "Add Excel/CSV export for management report",
          "status": "Todo"
-        },
-        {
-         "id": "NEO-1840",
-         "title": "Accountant Portfolio Dashboard",
-         "status": "Done"
         }
        ]
       }
@@ -129,7 +134,7 @@
    "color": "#4cb782",
    "groups": [
     {
-     "initiative": "__none__",
+     "initiative": "Ocean Ionics: Full AP Loop",
      "projects": [
       {
        "name": "Exact Online Integration",
@@ -146,8 +151,23 @@
        "issues": [
         {
          "id": "NEO-1143",
-         "title": "Bills can sync to Exact without being reconciled, with no signal to the operator",
+         "title": "Bills can sync to Exact without being reconciled, with no signal to",
          "status": "Todo"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "initiative": "__none__",
+     "projects": [
+      {
+       "name": "Smart Bill Review",
+       "issues": [
+        {
+         "id": "NEO-1962",
+         "title": "A coded line is refused for a missing tax rate its VAT code already",
+         "status": "Done"
         }
        ]
       },
@@ -171,7 +191,7 @@
         },
         {
          "id": "NEO-999",
-         "title": "Remove neno_wt_ prefix from worktree database names",
+         "title": "Remove `neno_wt_` prefix from worktree database names",
          "status": "In Progress"
         },
         {
@@ -206,24 +226,24 @@
      ]
     },
     {
-     "initiative": "__none__",
+     "initiative": "Org + Platform Maturity",
      "projects": [
       {
        "name": "Bastion onboarding + setup",
        "issues": [
         {
          "id": "NEO-1702",
-         "title": "Pentest H3 - Signed download URLs render inline; no Content-Disposition: attachment",
+         "title": "Pentest H3 - Signed download URLs render inline; no",
          "status": "In Review"
         },
         {
          "id": "NEO-1705",
-         "title": "Pentest M2 (VLN13) - Two overlapping auth credentials; Swan session outlives logout",
+         "title": "Pentest M2 (VLN13) - Two overlapping auth credentials; Swan session",
          "status": "In Review"
         },
         {
          "id": "NEO-1701",
-         "title": "Pentest H2 - File-type allowlist is client-side only on vault + bill uploads",
+         "title": "Pentest H2 - File-type allowlist is client-side only on vault + bill",
          "status": "In Progress"
         },
         {
@@ -242,19 +262,29 @@
          "status": "Todo"
         }
        ]
-      },
+      }
+     ]
+    },
+    {
+     "initiative": "__none__",
+     "projects": [
       {
        "name": "VAT Submission Tasks",
        "issues": [
         {
-         "id": "NEO-1779",
-         "title": "VAT Submission Feature",
+         "id": "NEO-2094",
+         "title": "Auto-extract VAT task fields from uploaded Nextens PDF",
          "status": "In Progress"
         },
         {
          "id": "NEO-1778",
          "title": "M7.1a: Run a real quarter for Ocean Ionics",
          "status": "Todo"
+        },
+        {
+         "id": "NEO-1779",
+         "title": "VAT Submission Feature",
+         "status": "Done"
         }
        ]
       },
@@ -263,7 +293,7 @@
        "issues": [
         {
          "id": "NEO-1009",
-         "title": "Banking onboarding not showing all bvs as options to open a bank account",
+         "title": "Banking onboarding not showing all bvs as options to open a bank",
          "status": "Todo"
         }
        ]
@@ -278,17 +308,22 @@
         },
         {
          "id": "NEO-1964",
-         "title": "Mark an outbound invoice as paid when reconciliation matches it to a bank transaction",
+         "title": "Mark an outbound invoice as paid when reconciliation matches a bank",
          "status": "In Progress"
         },
         {
          "id": "NEO-1710",
-         "title": "WhatsApp auth eval: flaky fail on 'card_x sees scoped empty when requesting card_y data'",
+         "title": "WhatsApp auth eval: flaky fail on card_x sees scoped empty for card_y",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1480",
+         "title": "WhatsApp agent-info emits a double-+ phone number and a non-canonical",
          "status": "In Progress"
         },
         {
          "id": "NEO-1408",
-         "title": "Hide the terms-template dropdown on the quote builder (templates are invoice-worded)",
+         "title": "Hide the terms-template dropdown on the quote builder",
          "status": "In Review"
         }
        ]
@@ -306,32 +341,22 @@
      "initiative": "__none__",
      "projects": [
       {
-       "name": "Wednesday Sweeps",
-       "issues": [
-        {
-         "id": "NEO-2067",
-         "title": "Remove avoidable work from local test validation",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-2066",
-         "title": "Use unique lookup data in Swan context error test",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-2065",
-         "title": "Isolate Yapily sync priority test from parallel queued runs",
-         "status": "Done"
-        }
-       ]
-      },
-      {
        "name": "__none__",
        "issues": [
+        {
+         "id": "NEO-2099",
+         "title": "Stop tracking generated Pothos types",
+         "status": "In Progress"
+        },
         {
          "id": "NEO-1738",
          "title": "Send confirmation email to customer after confirming Gmail forwarding",
          "status": "In Progress"
+        },
+        {
+         "id": "NEO-2096",
+         "title": "Require dependency-first implementation decisions in agent rules",
+         "status": "Done"
         }
        ]
       }
@@ -348,31 +373,61 @@
      "initiative": "__none__",
      "projects": [
       {
-       "name": "Smart Bill Review",
+       "name": "Transaction Matching",
        "issues": [
         {
-         "id": "NEO-2040",
-         "title": "LINE_ITEMS_SUM_MISMATCH misses a line set that covers only part of the bill's net",
+         "id": "NEO-1987",
+         "title": "The matcher converts currency with a hardcoded rate table, hiding",
          "status": "In Review"
         },
         {
+         "id": "NEO-2008",
+         "title": "A payment candidate with no counterparty renders as a dash, hiding",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-2009",
+         "title": "The rival count only looks forward, so a subscription auto-matches on",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "Smart Bill Review",
+       "issues": [
+        {
          "id": "NEO-1994",
-         "title": "Extraction computes line amounts instead of transcribing them, and never records whether a line amount includes VAT",
+         "title": "Extraction computes line amounts instead of transcribing them, and",
          "status": "In Progress"
         },
         {
          "id": "NEO-1798",
-         "title": "Line VAT rate is 39% because extraction returns nothing, not because it reads wrong",
+         "title": "Line VAT rate is 39% because extraction returns nothing, not because",
          "status": "In Progress"
         },
         {
-         "id": "NEO-1799",
-         "title": "The approval gate never ties VAT, so a bill coded at the wrong rate approves and fails at booking",
+         "id": "NEO-2080",
+         "title": "Retire the asExtracted arrangement from BillDataPanel",
          "status": "Done"
         },
         {
-         "id": "NEO-2047",
-         "title": "A combined PDF holding several invoices has no path other than overwriting one bill by hand",
+         "id": "NEO-1724",
+         "title": "Type the proposal write path so a new field cannot skip the coverage",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1592",
+         "title": "Unify the GL account and VAT code line pickers - one combobox, two",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-2061",
+         "title": "Remove the bill detail header Confirm button no host can render",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-2040",
+         "title": "LINE_ITEMS_SUM_MISMATCH misses a line set covering only part of the",
          "status": "Done"
         }
        ]
@@ -382,18 +437,23 @@
        "issues": [
         {
          "id": "NEO-1972",
-         "title": "Bill search and suggested bills need deterministic ranking and scalable drawer handling",
+         "title": "Bill search and suggested bills need deterministic ranking and",
          "status": "Todo"
         },
         {
          "id": "NEO-1927",
-         "title": "Booked bill line items remain editable when an expanded line survives approval",
+         "title": "Booked bill line items remain editable when an expanded line survives",
          "status": "Todo"
         },
         {
          "id": "NEO-1826",
          "title": "Lift residual routing (write-off) cap and update terminology",
          "status": "Todo"
+        },
+        {
+         "id": "NEO-2013",
+         "title": "Show a reviewer the other documents for the same charge",
+         "status": "Done"
         }
        ]
       },
@@ -402,8 +462,18 @@
        "issues": [
         {
          "id": "NEO-1501",
-         "title": "Authenticate Anthropic API from Cloud Run via Workload Identity Federation (no static keys)",
+         "title": "Authenticate Anthropic API from Cloud Run via Workload Identity",
          "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "LLM Observability & Agent Framework Boundaries",
+       "issues": [
+        {
+         "id": "NEO-2098",
+         "title": "Put the three bill pipeline metrics on an Atlas page",
+         "status": "Done"
         }
        ]
       },
@@ -427,6 +497,21 @@
    "color": "#a855f7",
    "groups": [
     {
+     "initiative": "Source of truth for all bookkeeping data",
+     "projects": [
+      {
+       "name": "Payroll (Numbrs integration)",
+       "issues": [
+        {
+         "id": "NEO-1807",
+         "title": "A1: Store a per-workspace Nmbrs connection and keep its token alive",
+         "status": "Done"
+        }
+       ]
+      }
+     ]
+    },
+    {
      "initiative": "__none__",
      "projects": [
       {
@@ -434,8 +519,8 @@
        "issues": [
         {
          "id": "NEO-2020",
-         "title": "Product Performance dashboard in Atlas: how well each stage of the bill pipeline works",
-         "status": "In Progress"
+         "title": "Product Performance dashboard in Atlas: how well each bill pipeline",
+         "status": "Done"
         }
        ]
       }

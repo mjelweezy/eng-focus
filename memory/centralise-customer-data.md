@@ -1,6 +1,6 @@
 # Running context — Centralise customer data
 _Initiative: e78d13c9-27d8-494e-9c3b-8a264412e471 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-27
+_Last updated: 2026-08-28
 
 > New initiative created 30 Jul 2026 from the Q3 roadmap deck's "Centralise the data" goal: one
 > system for every customer's data. Covers basic reporting, structured profiles for services
@@ -31,6 +31,7 @@ _Last updated: 2026-08-27
 
 - [2026-08-27] Reporting stays in EUR for all customers, with FX conversion applied at the ledger level, not per report. (project: Custom reporting for Neno customers) (source: Granola - Reporting/Platform sync, week of 24 Aug 2026)
 - [2026-08-27] Accountant homepage: a platform metrics page was added to the accountant dashboard (mirrors on TV/Atlas); the accountant tasks page was agreed to be redesigned onto the user-facing task screen design, with a Linear ticket to be filed under Bookkeeping Improvements and assigned to Dima; quick filters for accountants agreed (filter by client with open task count, dropdown not chips, first card open by default); glass effect confirmed accountant-only screens should diverge from customer UI and not get the glass treatment. (source: Granola - Platform/accountant UI sessions, week of 24 Aug 2026)
+- [2026-08-28] Reporting scope is under commercial pressure from e-commerce prospects: three deals raised in #tech-team (~EUR 45k combined ACV) want inventory visibility inside financial reporting, live inventory valuation, COGS tracking down to the purchase batch and gross-margin analysis, and a fourth wants Neno reporting data pulled into his own dashboard over MCP. Matthew's read, not yet a decision: neno is more likely to integrate with best-in-class e-commerce tooling that already solves inventory - as POS tooling like Tebi does for horeca - than to build inventory management itself, and this needs discovery. (source: Slack #tech-team, 28 Aug 2026)
 
 ## Open questions
 - [open] Which data points do customers want glanceable on the home page? Ask DP before sharing the current design, to avoid premature sign-off. (owner: Matthew) (source: Granola - Review reporting, 3 Aug)
@@ -45,6 +46,7 @@ _Last updated: 2026-08-27
 - [open] Structured profiles for services customers: WeFact has a customer overview screen with multiple contacts per organisation, while neno has only a name field, no contacts and no customer overview screen. What is the data model, and does it come before or after the HubSpot-backed profile view Frederique owns? (owner: Frederique/Matthew) (source: Granola - Freddy <> Matthew, 12 Aug)
 
 - [2026-08-27] Reporting header treatment ('Powered by Neno') still not signed off by Nick; Euge timeboxed to 2 hours on variants - if all are rejected this needs escalation. (project: Custom reporting for Neno customers) (source: Granola, week of 24 Aug 2026)
+- [open] How much of the inventory-management and inventory-reporting space should neno slice off itself versus integrate with existing e-commerce tooling? Needs discovery before Q4, when e-commerce becomes a focus vertical. (owner: Matthew) (source: Slack #tech-team, 28 Aug 2026)
 
 ## Risks
 
@@ -64,6 +66,7 @@ _Last updated: 2026-08-27
 - [2026-08-18] Timebox two hours on reporting-header variants for Nick, and escalate if all are rejected. (owner: Eugenia) (source: Granola - Bills & Expenses walk through, 18 Aug)
 - [2026-08-19] File the accountant tasks-page redesign ticket against Bookkeeping Improvements and assign it to Dmytro. (owner: Matthew) (source: Granola - Matthew / Euge, 19 Aug)
 - [2026-08-19] Share the accounting-engagement screen design with Art for feedback. (owner: Eugenia) (source: Granola - Matthew / Euge, 19 Aug)
+- [2026-08-28] Matthew to meet Max next week on the API/MCP roadmap and the e-commerce reporting asks (inventory, COGS, margin). (owner: Matthew) (source: Slack #tech-team, 28 Aug 2026)
 
 ## Projects (filed in Linear)
 - [2026-07-30] Attached existing project "Custom reporting for Neno customers" (basic reporting). "Structured profiles for services customers" and "Onboarding actions for off-platform tasks" have no Linear project yet - listed as text items on the board only.

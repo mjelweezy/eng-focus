@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-27
+_Last updated: 2026-08-28
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -82,6 +82,7 @@ _Last updated: 2026-08-27
 - [2026-08-27] Async Exact booking proposed - trigger the Exact write off the reconciliation ledger event instead of synchronously - not yet decided, needs wider team validation. (source: Granola - Backfill & Manual Entries, 24 Aug 2026)
 - [2026-08-27] Multi-currency: all ledger entries write to Exact in EUR for now, with FX conversion applied for reporting; a USD account is kept separate while active. Whether Exact's ledger can actually handle multi-currency properly is unconfirmed with Yako, and FX write-offs need Jean Lava's input once accounting is involved. (source: Granola - Multi-Currency in Exact, 26 Aug 2026)
 - [2026-08-27] Discovered a Linear project under this initiative not on the board: 'Close out the ledger's first production run' (has active issues from Mark and Dima on grouped-match settlement and missing booked bills) - flagged to Matthew as needs-triage rather than added to the board. (source: Linear, 2026-08-27)
+- [2026-08-28] VAT submission work moved from feature to dataset: the VAT Submission Feature (NEO-1779) completed 27 Aug, and Joel is now collecting roughly ten Nextens VAT submission PDFs from the accounting team - Venla is supplying them - to build a dataset for auto-extracting VAT task fields from an uploaded Nextens PDF (NEO-2094, In Progress). (source: Slack #accounting-mvp, 27 Aug 2026; Linear NEO-1779/NEO-2094)
 
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
@@ -180,6 +181,7 @@ _Last updated: 2026-08-27
 
 - [2026-08-19] Send Andries a screenshot and confirm which Q2 items he reconciled in Exact, so the outstanding Q2 debit transfers and bills can be closed out in neno. (owner: Matthew) (source: Granola - Daily stand up, 19 Aug)
 - [2026-08-19] Hold the separate Matthew/Dmytro catch-up on manual entries. (owner: Matthew/Dmytro) (source: Granola - Daily stand up, 19 Aug)
+- [2026-08-28] Joel to assemble the Nextens VAT submission PDF dataset from Venla and land NEO-2094 (auto-extract VAT task fields from an uploaded Nextens PDF). (owner: Joel) (source: Slack #accounting-mvp, 27 Aug 2026)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project (this project is In Progress, so they are posted as a proposed comment, not auto-applied)._

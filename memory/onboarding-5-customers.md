@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-08-27
+_Last updated: 2026-08-28
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -83,6 +83,7 @@ _Last updated: 2026-08-27
 - [2026-08-18] Onboarding-actions wording follows the product: references to "Vault" become "Bills & Expenses", and the forwarding-email banner moves there when Bills & Expenses ships. (source: Granola - Bills & Expenses walk through, 18 Aug)
 
 - [2026-08-27] Two new customers onboarded this window: Sane Netherlands (AI safety org) went live 25 Aug on the full neno stack (Exact as system of record, bills/expenses via forwarding mailbox, WhatsApp and receipt scanning, cost centers rolling out within two weeks); a second, unnamed Dutch company with a Revolut USD account was onboarded 26 Aug with an empty Exact ledger. (source: Granola - Matthew/Andries call different branches, 25 Aug; Multi-Currency in Exact, 26 Aug 2026)
+- [2026-08-28] Yaroslav is capturing an '{other platform} -> Exact' migration playbook while Venla migrates a customer off Yuki, with the stated intent of building up the knowledge of what accountants normally do by hand to audit state and migrate data - hours of work - into an agentic playbook, then substituting neno for Exact as the destination. (source: Slack #accounting-mvp, 28 Aug 2026)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
