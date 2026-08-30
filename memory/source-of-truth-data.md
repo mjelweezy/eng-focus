@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping data
 _Initiative: 0f26a21f-cd9b-47e4-9678-a3c5107a1fa0 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-28
+_Last updated: 2026-08-30
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the external
 > data integrations feeding neno's books: Numbrs, Stripe, Shopify, Shopify Payments, WeFact,
@@ -25,6 +25,7 @@ _Last updated: 2026-08-28
 - [2026-08-28] Payroll now reaches both sets of books: a Nmbrs run lands in neno's own ledger, and once an accountant reconciles a payment against it, in the client's Exact administration too; accountants can see how far each run has been paid down - settled, still owed, and which payments did the clearing - on its own tab in the reconciliation view. NEO-1807 (per-workspace Nmbrs connection with a live token) completed 27 Aug. (project: Payroll (Numbrs integration)) (source: Linear project update, 21 Aug 2026; Linear NEO-1807, 27 Aug 2026)
 - [2026-08-28] A sign bug that would have increased rather than reduced the amount owed in Exact was found and fixed with a test. It had gone unnoticed because the automated tests simulate Exact rather than talking to it; both this and the instalment question only surfaced once the code was pointed at a real administration - the argument for doing that before any client is switched on. (project: Payroll (Numbrs integration)) (source: Linear project update, 21 Aug 2026)
 - [2026-08-28] Stripe moved from an undiscussed 'later' item to active discovery. Being unable to receive payments through Stripe on the neno side is blocking a prospect, and Matthew said neno would look directly at the problem 'starting today' and decide whether to let accountants manage Stripe balances manually on the platform for now so it stops being a blocker to board this type of customer. (source: Slack #tech-team, 28 Aug 2026)
+- [2026-08-28] Payroll pushes to Exact now retry a failed push and stop once it is hopeless rather than retrying indefinitely (NEO-1821, completed by Adam). Six further payroll tickets - A2, B2, C1, C2, D1 and F1 - sit In Review, and NEO-2012 (matching payroll payables in Exact without a relation) is in progress. (source: Linear NEO-1821 / Payroll (Numbrs integration), 28 Aug 2026)
 
 ## Open questions
 - [open] (carried forward) Payroll design not yet discussed — open design area for a future session. (project: Payroll (Numbrs integration))
@@ -77,6 +78,9 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 - (project: Payroll (Numbrs integration)) Accountants must be able to see how far each payroll run has been paid down - what is settled, what is still owed, and which payments did the clearing - on its own tab in the reconciliation view. (source: Linear project update, 21 Aug 2026)
 - (project: Payroll (Numbrs integration)) Payments sent to Exact must carry the correct sign so they reduce rather than increase the amount owed, covered by a test run against a real Exact administration rather than the simulator. (source: Linear project update, 21 Aug 2026)
 - (project: Payroll (Numbrs integration)) Before any client is switched on, the payroll provider's credentials must be installed in the production environment and the client must stop having payroll typed into Exact by hand, or the payroll lands twice. (source: Linear project update, 21 Aug 2026)
+
+_Expanded 2026-08-30 from Linear (NEO-1821, 28 Aug). Payroll (Numbrs integration) is Backlog, so this publishes into its managed description block._
+- (project: Payroll (Numbrs integration)) A failed payroll push to Exact retries and stops once it is hopeless, rather than retrying indefinitely. (source: Linear NEO-1821, 28 Aug 2026)
 
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._

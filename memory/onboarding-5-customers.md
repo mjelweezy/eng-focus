@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-08-28
+_Last updated: 2026-08-30
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -84,6 +84,8 @@ _Last updated: 2026-08-28
 
 - [2026-08-27] Two new customers onboarded this window: Sane Netherlands (AI safety org) went live 25 Aug on the full neno stack (Exact as system of record, bills/expenses via forwarding mailbox, WhatsApp and receipt scanning, cost centers rolling out within two weeks); a second, unnamed Dutch company with a Revolut USD account was onboarded 26 Aug with an empty Exact ledger. (source: Granola - Matthew/Andries call different branches, 25 Aug; Multi-Currency in Exact, 26 Aug 2026)
 - [2026-08-28] Yaroslav is capturing an '{other platform} -> Exact' migration playbook while Venla migrates a customer off Yuki, with the stated intent of building up the knowledge of what accountants normally do by hand to audit state and migrate data - hours of work - into an agentic playbook, then substituting neno for Exact as the destination. (source: Slack #accounting-mvp, 28 Aug 2026)
+- [2026-08-25] Sane onboarding agreed: existing Excel records are imported and matched to GL accounts so the ledger starts clean; the customer works in the neno platform while Exact runs behind it as the system of record; each chapter lead gets a dedicated payment card tied to a cost centre with a rolling spend cap, larger transactions needing Alexander's approval; cost centres roll out within two weeks and invoicing is ad hoc per agreement. (source: Granola - Matthew / Andries - Call different branches, 25 Aug 2026)
+- [2026-08-24] Propular's bookkeeping migration has not started and is not urgent - Dale has had no time since launch - and bills and expenses can be sent to neno ahead of the VAT submission. (source: Granola - Chat with Matthew (Dale Owen), 24 Aug 2026)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
@@ -105,6 +107,7 @@ _Last updated: 2026-08-28
 - [open] Do new customers connect their banks via Lendroom or via neno's own open banking? A three-way session (Eugenia, Yaroslav) was actioned to standardise this. (owner: Eugenia/Yaroslav) (source: Granola - Bills & Expenses walk through, 18 Aug)
 
 - [2026-08-27] Whether Exact can properly handle multi-currency for the new EUR/USD customer is unconfirmed with Yako, and the strategy is unresolved pending DP, Yako and Jean Lava input. (source: Granola - Multi-Currency in Exact, 26 Aug 2026)
+- [open] Does Sane's stichting structure qualify for the payment cards? An eligibility precheck was outstanding as of 25 Aug. (owner: Matthew) (source: Granola - Matthew / Andries - Call different branches, 25 Aug 2026)
 
 ## Risks
 - [high] 6 Jul onboarding target is tight — onboarding-actions project still in backlog and its stepper depends on the new transactions UI.
@@ -165,6 +168,8 @@ _Last updated: 2026-08-28
 - [2026-08-18] Schedule the Eugenia/Yaroslav session to define Lendroom versus neno open banking for new customers. (owner: Eugenia) (source: Granola - Bills & Expenses walk through, 18 Aug)
 - [2026-08-19] Set up automatic Gmail bill forwarding for Ocean Ionics - the customer team is forwarding bills by hand and gaps are appearing; check whether Marloes is on Gmail and send setup instructions. (owner: Matthew) (source: Granola - Mark <> Wildkamp, 19 Aug)
 - [2026-08-19] Hold the 30-minute invoicing MVP planning call agreed for the morning of 20 Aug; Nick wants visibility on the outlook. (owner: Matthew/Frederique) (source: Granola - Daily stand up, 19 Aug)
+- [2026-08-30] Run the card eligibility precheck for Sane and report back. (owner: Matthew) (source: Granola - Matthew / Andries - Call different branches, 25 Aug 2026)
+- [2026-08-30] Schedule the Kenya kickoff, Thursday 3 September preferred, and share the Sue call recording and prototype link with Frederique. (owner: Matthew) (source: Granola - Matthew / Frederique kick off expense management, 25 Aug 2026)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._

@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-28
+_Last updated: 2026-08-30
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -182,6 +182,7 @@ _Last updated: 2026-08-28
 - [2026-08-19] Send Andries a screenshot and confirm which Q2 items he reconciled in Exact, so the outstanding Q2 debit transfers and bills can be closed out in neno. (owner: Matthew) (source: Granola - Daily stand up, 19 Aug)
 - [2026-08-19] Hold the separate Matthew/Dmytro catch-up on manual entries. (owner: Matthew/Dmytro) (source: Granola - Daily stand up, 19 Aug)
 - [2026-08-28] Joel to assemble the Nextens VAT submission PDF dataset from Venla and land NEO-2094 (auto-extract VAT task fields from an uploaded Nextens PDF). (owner: Joel) (source: Slack #accounting-mvp, 27 Aug 2026)
+- [2026-08-30] Add cost centres to the existing bookings so a post-month-close overview by GL account and cost centre becomes possible; the bookings are already there, the cost centres are not. (owner: Matthew) (source: Granola - Matthew / Andries - Call different branches, 25 Aug 2026)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project (this project is In Progress, so they are posted as a proposed comment, not auto-applied)._

@@ -1,6 +1,6 @@
 # Running context — Centralise customer data
 _Initiative: e78d13c9-27d8-494e-9c3b-8a264412e471 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-28
+_Last updated: 2026-08-30
 
 > New initiative created 30 Jul 2026 from the Q3 roadmap deck's "Centralise the data" goal: one
 > system for every customer's data. Covers basic reporting, structured profiles for services
@@ -32,6 +32,7 @@ _Last updated: 2026-08-28
 - [2026-08-27] Reporting stays in EUR for all customers, with FX conversion applied at the ledger level, not per report. (project: Custom reporting for Neno customers) (source: Granola - Reporting/Platform sync, week of 24 Aug 2026)
 - [2026-08-27] Accountant homepage: a platform metrics page was added to the accountant dashboard (mirrors on TV/Atlas); the accountant tasks page was agreed to be redesigned onto the user-facing task screen design, with a Linear ticket to be filed under Bookkeeping Improvements and assigned to Dima; quick filters for accountants agreed (filter by client with open task count, dropdown not chips, first card open by default); glass effect confirmed accountant-only screens should diverge from customer UI and not get the glass treatment. (source: Granola - Platform/accountant UI sessions, week of 24 Aug 2026)
 - [2026-08-28] Reporting scope is under commercial pressure from e-commerce prospects: three deals raised in #tech-team (~EUR 45k combined ACV) want inventory visibility inside financial reporting, live inventory valuation, COGS tracking down to the purchase batch and gross-margin analysis, and a fourth wants Neno reporting data pulled into his own dashboard over MCP. Matthew's read, not yet a decision: neno is more likely to integrate with best-in-class e-commerce tooling that already solves inventory - as POS tooling like Tebi does for horeca - than to build inventory management itself, and this needs discovery. (source: Slack #tech-team, 28 Aug 2026)
+- [2026-08-26] Natural-language invoicing is being explored as a prototype: typing "send invoice to <customer>" in the search bar opens the composer inline, and the preferred direction is to move that to full screen with the chat on the left and a live invoice preview on the right. Not committed; the surrounding invoicing UI improvements are ticketed in Linear under "Invoicing Improvements" for Dima. (source: Granola - Matthew / Euge: Coolest meeting of the week, 26 Aug 2026)
 
 ## Open questions
 - [open] Which data points do customers want glanceable on the home page? Ask DP before sharing the current design, to avoid premature sign-off. (owner: Matthew) (source: Granola - Review reporting, 3 Aug)
@@ -67,6 +68,8 @@ _Last updated: 2026-08-28
 - [2026-08-19] File the accountant tasks-page redesign ticket against Bookkeeping Improvements and assign it to Dmytro. (owner: Matthew) (source: Granola - Matthew / Euge, 19 Aug)
 - [2026-08-19] Share the accounting-engagement screen design with Art for feedback. (owner: Eugenia) (source: Granola - Matthew / Euge, 19 Aug)
 - [2026-08-28] Matthew to meet Max next week on the API/MCP roadmap and the e-commerce reporting asks (inventory, COGS, margin). (owner: Matthew) (source: Slack #tech-team, 28 Aug 2026)
+- [2026-08-30] Scope a CSV export of filtered or searched transactions and validate the need with customers beyond Dale, who screenshotted transactions by hand to complete an audit. (owner: Matthew) (source: Granola - Chat with Matthew (Dale Owen), 24 Aug 2026)
+- [2026-08-30] Euge starts the expense-management designs in the week of 31 August, after reviewing the Moss/Suu walkthrough. (owner: Euge) (source: Granola - Matthew / Euge: Coolest meeting of the week, 26 Aug 2026)
 
 ## Projects (filed in Linear)
 - [2026-07-30] Attached existing project "Custom reporting for Neno customers" (basic reporting). "Structured profiles for services customers" and "Onboarding actions for off-platform tasks" have no Linear project yet - listed as text items on the board only.
@@ -103,6 +106,7 @@ _Expanded 2026-08-20 from Linear (18 Aug). Custom reporting for Neno customers i
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._
 
 - [2026-08-19] Structured customer profiles for services customers - a customer overview screen with multiple contacts per organisation, matching what WeFact offers - is a board text item under this initiative with no Linear project, and it overlaps Frederique's HubSpot-backed profile view; needs Matthew's attribution. (source: Granola - Freddy <> Matthew, 12 Aug; Granola - Matthew / Euge, 19 Aug)
+- [2026-08-30] Export the filtered/searched transaction list as CSV, so a customer can complete an audit without screenshotting rows by hand. This is a transaction-list export rather than the management report covered by "Custom reporting for Neno customers" (NEO-2017 covers the report itself), so it cannot be confidently filed there; needs Matthew's attribution. (source: Granola - Chat with Matthew (Dale Owen), 24 Aug 2026)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

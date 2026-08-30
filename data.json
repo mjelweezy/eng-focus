@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-28T11:56:34Z",
+ "generated_at": "2026-08-30T09:54:58Z",
  "projects": {
   "2731244b-71c8-44d1-b6bf-ae9434135d05": {
    "status": "Backlog",
@@ -165,9 +165,9 @@
        "name": "Smart Bill Review",
        "issues": [
         {
-         "id": "NEO-1962",
-         "title": "A coded line is refused for a missing tax rate its VAT code already",
-         "status": "Done"
+         "id": "NEO-2106",
+         "title": "A bill amount field discards a typed minus, so a credit line's",
+         "status": "In Review"
         }
        ]
       },
@@ -191,7 +191,7 @@
         },
         {
          "id": "NEO-999",
-         "title": "Remove `neno_wt_` prefix from worktree database names",
+         "title": "Remove neno_wt_ prefix from worktree database names",
          "status": "In Progress"
         },
         {
@@ -211,26 +211,16 @@
    "color": "#f2994a",
    "groups": [
     {
-     "initiative": "Source of truth for all bookkeeping activity",
-     "projects": [
-      {
-       "name": "End-to-end AR reconciliation",
-       "issues": [
-        {
-         "id": "NEO-1560",
-         "title": "SPIKE: Exploratory frontend changes for AR",
-         "status": "In Progress"
-        }
-       ]
-      }
-     ]
-    },
-    {
      "initiative": "Org + Platform Maturity",
      "projects": [
       {
        "name": "Bastion onboarding + setup",
        "issues": [
+        {
+         "id": "NEO-1701",
+         "title": "Pentest H2 - File-type allowlist is client-side only on vault + bill",
+         "status": "In Progress"
+        },
         {
          "id": "NEO-1702",
          "title": "Pentest H3 - Signed download URLs render inline; no",
@@ -242,13 +232,8 @@
          "status": "In Review"
         },
         {
-         "id": "NEO-1701",
-         "title": "Pentest H2 - File-type allowlist is client-side only on vault + bill",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1704",
-         "title": "Pentest M1 (VLN07) - No rate limiting on the API",
+         "id": "NEO-1313",
+         "title": "Harden deploy-api-cloud-run env_vars path against YAML/sed injection",
          "status": "Todo"
         },
         {
@@ -257,9 +242,24 @@
          "status": "Todo"
         },
         {
-         "id": "NEO-1313",
-         "title": "Harden deploy-api-cloud-run env_vars path against YAML/sed injection",
+         "id": "NEO-1704",
+         "title": "Pentest M1 (VLN07) - No rate limiting on the API",
          "status": "Todo"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "initiative": "Source of truth for all bookkeeping activity",
+     "projects": [
+      {
+       "name": "End-to-end AR reconciliation",
+       "issues": [
+        {
+         "id": "NEO-1560",
+         "title": "SPIKE: Exploratory frontend changes for AR",
+         "status": "In Progress"
         }
        ]
       }
@@ -280,11 +280,16 @@
          "id": "NEO-1778",
          "title": "M7.1a: Run a real quarter for Ocean Ionics",
          "status": "Todo"
-        },
+        }
+       ]
+      },
+      {
+       "name": "Platform",
+       "issues": [
         {
-         "id": "NEO-1779",
-         "title": "VAT Submission Feature",
-         "status": "Done"
+         "id": "NEO-2104",
+         "title": "Route API traffic through Cloudflare (proxy flip + origin lock)",
+         "status": "Todo"
         }
        ]
       },
@@ -302,19 +307,9 @@
        "name": "__none__",
        "issues": [
         {
-         "id": "NEO-1906",
-         "title": "Admin task close returns 500 for unsubmitted reconciliation task",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1964",
-         "title": "Mark an outbound invoice as paid when reconciliation matches a bank",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1710",
-         "title": "WhatsApp auth eval: flaky fail on card_x sees scoped empty for card_y",
-         "status": "In Progress"
+         "id": "NEO-1408",
+         "title": "Hide the terms-template dropdown on the quote builder (templates are",
+         "status": "In Review"
         },
         {
          "id": "NEO-1480",
@@ -322,9 +317,14 @@
          "status": "In Progress"
         },
         {
-         "id": "NEO-1408",
-         "title": "Hide the terms-template dropdown on the quote builder",
-         "status": "In Review"
+         "id": "NEO-1710",
+         "title": "WhatsApp auth eval: flaky fail on card_x sees scoped empty when",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1906",
+         "title": "Admin task close returns 500 for unsubmitted reconciliation task",
+         "status": "In Progress"
         }
        ]
       }
@@ -344,19 +344,14 @@
        "name": "__none__",
        "issues": [
         {
-         "id": "NEO-2099",
-         "title": "Stop tracking generated Pothos types",
-         "status": "In Progress"
-        },
-        {
          "id": "NEO-1738",
          "title": "Send confirmation email to customer after confirming Gmail forwarding",
          "status": "In Progress"
         },
         {
-         "id": "NEO-2096",
-         "title": "Require dependency-first implementation decisions in agent rules",
-         "status": "Done"
+         "id": "NEO-2099",
+         "title": "Stop tracking generated Pothos types",
+         "status": "In Progress"
         }
        ]
       }
@@ -373,62 +368,17 @@
      "initiative": "__none__",
      "projects": [
       {
-       "name": "Transaction Matching",
-       "issues": [
-        {
-         "id": "NEO-1987",
-         "title": "The matcher converts currency with a hardcoded rate table, hiding",
-         "status": "In Review"
-        },
-        {
-         "id": "NEO-2008",
-         "title": "A payment candidate with no counterparty renders as a dash, hiding",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-2009",
-         "title": "The rival count only looks forward, so a subscription auto-matches on",
-         "status": "Done"
-        }
-       ]
-      },
-      {
        "name": "Smart Bill Review",
        "issues": [
-        {
-         "id": "NEO-1994",
-         "title": "Extraction computes line amounts instead of transcribing them, and",
-         "status": "In Progress"
-        },
         {
          "id": "NEO-1798",
          "title": "Line VAT rate is 39% because extraction returns nothing, not because",
          "status": "In Progress"
         },
         {
-         "id": "NEO-2080",
-         "title": "Retire the asExtracted arrangement from BillDataPanel",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1724",
-         "title": "Type the proposal write path so a new field cannot skip the coverage",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-1592",
-         "title": "Unify the GL account and VAT code line pickers - one combobox, two",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-2061",
-         "title": "Remove the bill detail header Confirm button no host can render",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-2040",
-         "title": "LINE_ITEMS_SUM_MISMATCH misses a line set covering only part of the",
-         "status": "Done"
+         "id": "NEO-1994",
+         "title": "Extraction computes line amounts instead of transcribing them, and",
+         "status": "In Progress"
         }
        ]
       },
@@ -436,8 +386,8 @@
        "name": "Bookkeeping Improvements",
        "issues": [
         {
-         "id": "NEO-1972",
-         "title": "Bill search and suggested bills need deterministic ranking and",
+         "id": "NEO-1826",
+         "title": "Lift residual routing (write-off) cap and update terminology",
          "status": "Todo"
         },
         {
@@ -446,14 +396,9 @@
          "status": "Todo"
         },
         {
-         "id": "NEO-1826",
-         "title": "Lift residual routing (write-off) cap and update terminology",
+         "id": "NEO-1972",
+         "title": "Bill search and suggested bills need deterministic ranking and",
          "status": "Todo"
-        },
-        {
-         "id": "NEO-2013",
-         "title": "Show a reviewer the other documents for the same charge",
-         "status": "Done"
         }
        ]
       },
@@ -468,11 +413,11 @@
        ]
       },
       {
-       "name": "LLM Observability & Agent Framework Boundaries",
+       "name": "Transaction Matching",
        "issues": [
         {
-         "id": "NEO-2098",
-         "title": "Put the three bill pipeline metrics on an Atlas page",
+         "id": "NEO-1987",
+         "title": "The matcher converts currency with a hardcoded rate table, and the",
          "status": "Done"
         }
        ]
@@ -497,30 +442,15 @@
    "color": "#a855f7",
    "groups": [
     {
-     "initiative": "Source of truth for all bookkeeping data",
-     "projects": [
-      {
-       "name": "Payroll (Numbrs integration)",
-       "issues": [
-        {
-         "id": "NEO-1807",
-         "title": "A1: Store a per-workspace Nmbrs connection and keep its token alive",
-         "status": "Done"
-        }
-       ]
-      }
-     ]
-    },
-    {
      "initiative": "__none__",
      "projects": [
       {
-       "name": "__none__",
+       "name": "Neno Services Onboarding",
        "issues": [
         {
-         "id": "NEO-2020",
-         "title": "Product Performance dashboard in Atlas: how well each bill pipeline",
-         "status": "Done"
+         "id": "NEO-1897",
+         "title": "Add a per-workspace transition date that decides which transactions",
+         "status": "In Progress"
         }
        ]
       }
