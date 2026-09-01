@@ -1,11 +1,44 @@
 {
- "generated_at": "2026-08-31T04:54:17.446Z",
+ "generated_at": "2026-09-01T04:07:11.591276Z",
  "projects": {},
- "needs_triage": {},
+ "needs_triage": {
+  "0f26a21f-cd9b-47e4-9678-a3c5107a1fa0": [],
+  "b508d2b3-f876-4068-beec-e3c9899dd8c4": [],
+  "e78d13c9-27d8-494e-9c3b-8a264412e471": [],
+  "fef38f90-b82c-4c47-b377-6dcb9b1a3020": [],
+  "cb65425b-cc3d-4f8a-8164-5849f594d708": []
+ },
  "engineers": [
   {
    "name": "Dima",
-   "groups": []
+   "groups": [
+    {
+     "initiative": null,
+     "project": null,
+     "issues": [
+      {
+       "id": "NEO-2030",
+       "title": "Show customer response timestamps and open task files in bill review f",
+       "status": "In Progress"
+      },
+      {
+       "id": "NEO-2032",
+       "title": "Add direct navigation from task detail to linked transaction or bill",
+       "status": "In Progress"
+      },
+      {
+       "id": "NEO-1912",
+       "title": "Bills and Expenses page for the customer (MVP scope)",
+       "status": "In Progress"
+      },
+      {
+       "id": "NEO-2026",
+       "title": "Mark clarification tasks completed after replying or uploading documen",
+       "status": "Todo"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Mark",
@@ -13,19 +46,77 @@
   },
   {
    "name": "Joel",
-   "groups": []
+   "groups": [
+    {
+     "initiative": null,
+     "project": null,
+     "issues": [
+      {
+       "id": "NEO-2104",
+       "title": "Route API traffic through Cloudflare (proxy flip + origin lock)",
+       "status": "Todo"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Ihor",
-   "groups": []
+   "groups": [
+    {
+     "initiative": null,
+     "project": null,
+     "issues": [
+      {
+       "id": "NEO-2144",
+       "title": "Show depreciation details for selected asset lines",
+       "status": "Done"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Art",
-   "groups": []
+   "groups": [
+    {
+     "initiative": null,
+     "project": null,
+     "issues": [
+      {
+       "id": "NEO-2148",
+       "title": "Make the review panel the single place a supplier is created or linked",
+       "status": "In Review"
+      },
+      {
+       "id": "NEO-2146",
+       "title": "Accepting the supplier we recommended is counted as typing it in",
+       "status": "Done"
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Adam",
-   "groups": []
+   "groups": [
+    {
+     "initiative": null,
+     "project": null,
+     "issues": [
+      {
+       "id": "NEO-2147",
+       "title": "One Product Performance page, on the Quality page's bones",
+       "status": "In Progress"
+      },
+      {
+       "id": "NEO-2143",
+       "title": "Payroll settlement follows the approval, not the native ledger",
+       "status": "In Progress"
+      }
+     ]
+    }
+   ]
   }
  ]
 }

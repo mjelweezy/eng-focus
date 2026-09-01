@@ -1,85 +1,92 @@
 {
  "0f26a21f-cd9b-47e4-9678-a3c5107a1fa0": {
-  "initiative": "Source of truth for all bookkeeping data",
-  "health": "unknown",
+  "health": null,
   "exec_summary": "",
   "whats_changed": [],
   "notes": [],
   "risks": [],
   "projects": [],
-  "decisions": [],
+  "decisions": {
+   "log": []
+  },
   "open_questions": [],
   "next_steps": [],
   "meetings": [],
   "resources": {
-   "url": "https://linear.app/nenotechnology/initiative/source-of-truth-for-all-bookkeeping-data-b8e639c8bc40"
+   "linear_url": ""
   },
-  "sources_note": "Refreshed 2026-08-31"
+  "sources_note": ""
  },
  "b508d2b3-f876-4068-beec-e3c9899dd8c4": {
-  "initiative": "Source of truth for all bookkeeping activity",
-  "health": "unknown",
+  "health": null,
   "exec_summary": "",
   "whats_changed": [],
   "notes": [],
   "risks": [],
   "projects": [],
-  "decisions": [],
+  "decisions": {
+   "log": []
+  },
   "open_questions": [],
   "next_steps": [],
   "meetings": [],
   "resources": {
-   "url": "https://linear.app/nenotechnology/initiative/source-of-truth-for-all-bookkeeping-activity-5bc71f1a5359"
+   "linear_url": ""
   },
-  "sources_note": "Refreshed 2026-08-31"
+  "sources_note": ""
  },
  "e78d13c9-27d8-494e-9c3b-8a264412e471": {
-  "initiative": "Make accountants more efficient during onboarding and customer collaboration",
-  "health": "unknown",
+  "health": null,
   "exec_summary": "",
   "whats_changed": [],
   "notes": [],
   "risks": [],
   "projects": [],
-  "decisions": [],
+  "decisions": {
+   "log": []
+  },
   "open_questions": [],
   "next_steps": [],
   "meetings": [],
   "resources": {
-   "url": "https://linear.app/nenotechnology/initiative/make-accountants-more-efficient-during-onboarding-and-customer-d0aa599c2497"
+   "linear_url": ""
   },
-  "sources_note": "Refreshed 2026-08-31"
+  "sources_note": ""
  },
  "fef38f90-b82c-4c47-b377-6dcb9b1a3020": {
-  "initiative": "Enable accountants to complete VAT submissions via double-entry GL",
-  "health": "unknown",
+  "health": null,
   "exec_summary": "",
   "whats_changed": [],
   "notes": [],
   "risks": [],
   "projects": [],
-  "decisions": [],
+  "decisions": {
+   "log": []
+  },
   "open_questions": [],
   "next_steps": [],
   "meetings": [],
   "resources": {
-   "url": "https://linear.app/nenotechnology/initiative/enable-accountants-to-complete-vat-submissions-using-neno-double-entry-089e47b575e8"
+   "linear_url": ""
   },
-  "sources_note": "Refreshed 2026-08-31"
+  "sources_note": ""
  },
  "cb65425b-cc3d-4f8a-8164-5849f594d708": {
-  "initiative": "Build data by onboarding 5 additional customers",
-  "health": "unknown",
+  "health": null,
   "exec_summary": "",
   "whats_changed": [],
   "notes": [],
   "risks": [],
   "projects": [],
-  "decisions": [],
+  "decisions": {
+   "log": []
+  },
   "open_questions": [],
   "next_steps": [],
   "meetings": [],
-  "resources": {},
-  "sources_note": "Hidden from board; refreshed 2026-08-31"
+  "resources": {
+   "linear_url": ""
+  },
+  "sources_note": ""
  }
 }
