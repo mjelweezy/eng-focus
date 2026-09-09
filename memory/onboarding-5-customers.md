@@ -1,6 +1,6 @@
 # Running context — Build data by onboarding 5 additional customers
 _Initiative: cb65425b · maintained by the daily job + Matthew_
-_Last updated: 2026-08-30
+_Last updated: 2026-09-09
 
 ## Decisions
 - [2026-06-22] Onboarding is a simple hardcoded checklist — a backend boolean/timestamp per step that hides when complete. (source: Granola)
@@ -86,6 +86,10 @@ _Last updated: 2026-08-30
 - [2026-08-28] Yaroslav is capturing an '{other platform} -> Exact' migration playbook while Venla migrates a customer off Yuki, with the stated intent of building up the knowledge of what accountants normally do by hand to audit state and migrate data - hours of work - into an agentic playbook, then substituting neno for Exact as the destination. (source: Slack #accounting-mvp, 28 Aug 2026)
 - [2026-08-25] Sane onboarding agreed: existing Excel records are imported and matched to GL accounts so the ledger starts clean; the customer works in the neno platform while Exact runs behind it as the system of record; each chapter lead gets a dedicated payment card tied to a cost centre with a rolling spend cap, larger transactions needing Alexander's approval; cost centres roll out within two weeks and invoicing is ad hoc per agreement. (source: Granola - Matthew / Andries - Call different branches, 25 Aug 2026)
 - [2026-08-24] Propular's bookkeeping migration has not started and is not urgent - Dale has had no time since launch - and bills and expenses can be sent to neno ahead of the VAT submission. (source: Granola - Chat with Matthew (Dale Owen), 24 Aug 2026)
+- [2026-09-09] Aerosilicon is onboarded directly to neno - the first customer not routed via Exact first. (source: Granola - Product roadmap + planning Q3 & Q4, 3 Sep 2026)
+- [2026-09-09] Phoenix Labs is the next ledger customer target (little or no revenue, some AP); the aim is more than one customer on the ledger by quarter-end, with Phoenix plus a handful more, potentially four in total. (source: Granola - Manual journal entries, 8 Sep 2026)
+- [2026-09-09] Nebor discussed onboarding but is unlikely to switch before Q3 ends; October is the realistic start, and its invoicing automation requirement depends on neno's invoicing MCP/API, with WeFact API v2 as the interim route. (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026)
+- [2026-09-09] Four of the five Linear projects under this initiative are now terminal: Onboarding Actions for the Next Five Customers, Multi-Client Exact Online Connections and Feature re-provisioning for non Swan customers are Completed, and Additional changes for go-live is Canceled. Only 'Enable customers to connect external bank accounts and view their transactions' (In Progress, lead dima) remains live. (source: Linear, 9 Sep 2026)
 
 ## Open questions
 - [open] Onboarding stepper is a placeholder until the new transactions UI is ready. (owner: Euge)
@@ -129,6 +133,7 @@ _Last updated: 2026-08-30
 - [med] (2026-08-19) neno invoicing still carries the WeFact-parity gaps that gate migration: invoice reminders unbuilt, no payment link on invoices, no past-due indicator, the cancelled state not triggering, decimal and negative quantities/prices unsupported, credit-note presentation wrong, and no multi-currency for the one cohort customer invoicing in USD. Frederique was closing the MVP issues on 19 Aug, but engineers are stretched. (source: Granola - Freddy <> Matthew, 12 Aug; Daily stand up, 19 Aug; Linear NEO-1915/1937/1948/1951/1952/1961/1963/1973/1975/1976)
 
 - [2026-08-27] Run the Nano card eligibility precheck for Sane's stichting structure; set up a Slack channel with Sane, Sienna and the payroll/employer-registration contacts. (owner: Matthew) (source: Granola - Matthew/Andries call different branches, 25 Aug 2026)
+- [low] (2026-09-09) The initiative is effectively complete as scoped - four of five projects terminal - while new-customer onboarding has moved into the ledger-generalisation programme. Worth deciding whether to close it or re-scope it. (source: Linear, 9 Sep 2026)
 
 ## Next steps
 - Design the user-journey screens + an Ocean Ionics-specific homepage. (owner: Euge)
@@ -170,6 +175,8 @@ _Last updated: 2026-08-30
 - [2026-08-19] Hold the 30-minute invoicing MVP planning call agreed for the morning of 20 Aug; Nick wants visibility on the outlook. (owner: Matthew/Frederique) (source: Granola - Daily stand up, 19 Aug)
 - [2026-08-30] Run the card eligibility precheck for Sane and report back. (owner: Matthew) (source: Granola - Matthew / Andries - Call different branches, 25 Aug 2026)
 - [2026-08-30] Schedule the Kenya kickoff, Thursday 3 September preferred, and share the Sue call recording and prototype link with Frederique. (owner: Matthew) (source: Granola - Matthew / Frederique kick off expense management, 25 Aug 2026)
+- [2026-09-09] Send Mark the Phoenix Labs shape from Maria so the required ledger generalisation can be assessed. (owner: Matthew) (source: Granola - Manual journal entries, 8 Sep 2026)
+- [2026-09-09] Confirm Stripe open-banking timing with Nebor and share the WeFact API v2 documentation. (owner: Matthew) (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project's auto-maintained block._

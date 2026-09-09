@@ -1,6 +1,6 @@
 # Running context — Centralise customer data
 _Initiative: e78d13c9-27d8-494e-9c3b-8a264412e471 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-30
+_Last updated: 2026-09-09
 
 > New initiative created 30 Jul 2026 from the Q3 roadmap deck's "Centralise the data" goal: one
 > system for every customer's data. Covers basic reporting, structured profiles for services
@@ -33,6 +33,12 @@ _Last updated: 2026-08-30
 - [2026-08-27] Accountant homepage: a platform metrics page was added to the accountant dashboard (mirrors on TV/Atlas); the accountant tasks page was agreed to be redesigned onto the user-facing task screen design, with a Linear ticket to be filed under Bookkeeping Improvements and assigned to Dima; quick filters for accountants agreed (filter by client with open task count, dropdown not chips, first card open by default); glass effect confirmed accountant-only screens should diverge from customer UI and not get the glass treatment. (source: Granola - Platform/accountant UI sessions, week of 24 Aug 2026)
 - [2026-08-28] Reporting scope is under commercial pressure from e-commerce prospects: three deals raised in #tech-team (~EUR 45k combined ACV) want inventory visibility inside financial reporting, live inventory valuation, COGS tracking down to the purchase batch and gross-margin analysis, and a fourth wants Neno reporting data pulled into his own dashboard over MCP. Matthew's read, not yet a decision: neno is more likely to integrate with best-in-class e-commerce tooling that already solves inventory - as POS tooling like Tebi does for horeca - than to build inventory management itself, and this needs discovery. (source: Slack #tech-team, 28 Aug 2026)
 - [2026-08-26] Natural-language invoicing is being explored as a prototype: typing "send invoice to <customer>" in the search bar opens the composer inline, and the preferred direction is to move that to full screen with the chat on the left and a live invoice preview on the right. Not committed; the surrounding invoicing UI improvements are ticketed in Linear under "Invoicing Improvements" for Dima. (source: Granola - Matthew / Euge: Coolest meeting of the week, 26 Aug 2026)
+- [2026-09-09] Accountant review UI requirements settled at the 4 Sep discovery session: the trial balance needs account-number and classification columns, standard balance-sheet ordering, account drill-down to transactions, CSV export and prior-quarter/prior-year comparatives; the balance sheet and P&L need flexible date ranges, month/quarter/YTD shortcuts, comparatives and drill-down through accounts to transactions and source documents. Functional, paper-like clarity is prioritised over a stylised interface. (project: Custom reporting for Neno customers) (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
+- [2026-09-09] The compliance views (trial balance, balance sheet, P&L) are treated as the foundation for forecasting; forecasting itself stays separate and spreadsheet-based for now. A monthly balance sheet and P&L are the client-facing outputs, typically sent just after month-end. (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
+- [2026-09-09] Design and project documentation is to be centralised in Linear as the source of truth. (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
+- [2026-09-09] Task UI direction agreed. Customer-facing: a send button instead of attach/cancel, task-type titles, improved message styling, a more compact info table and truncated long threads. Accountant-facing: a client filter with open-task counts, dropdown/checkbox selection, the first task open by default, and reconciliation links for specific payments. (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
+- [2026-09-09] A mobile companion app is committed for end of Q3 with tasks, transaction view and bill upload only, explicitly excluding invoice creation, multi-field forms and desktop parity. Dima's mobile work (NEO-2256, NEO-2257, NEO-2258) runs on the untracked 'Mobile App' project. (source: Granola - Product roadmap + planning Q3 & Q4, 3 Sep 2026; Linear)
+- [2026-09-09] Expense management V1 committed: pay unpaid bills from neno, with the extraction-feedback UI and payment flows built first. Approval flows, full reimbursements and cost centres are later or separate work, and line items plus likely GL-account proposals are excluded from the first extraction-feedback pass. (source: Granola - Product roadmap + planning Q3 & Q4, 3 Sep 2026)
 
 ## Open questions
 - [open] Which data points do customers want glanceable on the home page? Ask DP before sharing the current design, to avoid premature sign-off. (owner: Matthew) (source: Granola - Review reporting, 3 Aug)
@@ -48,6 +54,8 @@ _Last updated: 2026-08-30
 
 - [2026-08-27] Reporting header treatment ('Powered by Neno') still not signed off by Nick; Euge timeboxed to 2 hours on variants - if all are rejected this needs escalation. (project: Custom reporting for Neno customers) (source: Granola, week of 24 Aug 2026)
 - [open] How much of the inventory-management and inventory-reporting space should neno slice off itself versus integrate with existing e-commerce tooling? Needs discovery before Q4, when e-commerce becomes a focus vertical. (owner: Matthew) (source: Slack #tech-team, 28 Aug 2026)
+- [open] No accountant-homepage discussion was captured this window, and the 'persistent homepage' board item has had no recorded movement since 4 Aug. Is it still committed for the period? (owner: Matthew) (source: run review, 2026-09-09)
+- [open] 'Structured profiles for services customers' likewise had no recorded movement in the window and still has no Linear project. (owner: Matthew) (source: run review, 2026-09-09)
 
 ## Risks
 
@@ -70,6 +78,9 @@ _Last updated: 2026-08-30
 - [2026-08-28] Matthew to meet Max next week on the API/MCP roadmap and the e-commerce reporting asks (inventory, COGS, margin). (owner: Matthew) (source: Slack #tech-team, 28 Aug 2026)
 - [2026-08-30] Scope a CSV export of filtered or searched transactions and validate the need with customers beyond Dale, who screenshotted transactions by hand to complete an audit. (owner: Matthew) (source: Granola - Chat with Matthew (Dale Owen), 24 Aug 2026)
 - [2026-08-30] Euge starts the expense-management designs in the week of 31 August, after reviewing the Moss/Suu walkthrough. (owner: Euge) (source: Granola - Matthew / Euge: Coolest meeting of the week, 26 Aug 2026)
+- [2026-09-09] Euge to assign the task-improvement tickets and update the designs; Matthew to review the Linear structure against the slide deck and align with Dima. (owner: Eugenia/Matthew) (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
+- [2026-09-09] Start the trial-balance and balance-sheet UI designs; continue discovery with Chani on her return. (owner: Design) (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
+- [2026-09-09] Prepare app-store assets for the mobile companion app, give Coen a production-only demo sandbox, and schedule a stakeholder session on trust/automation messaging. (owner: Matthew/Coen) (source: Granola - Product roadmap + planning Q3 & Q4, 3 Sep 2026)
 
 ## Projects (filed in Linear)
 - [2026-07-30] Attached existing project "Custom reporting for Neno customers" (basic reporting). "Structured profiles for services customers" and "Onboarding actions for off-platform tasks" have no Linear project yet - listed as text items on the board only.
@@ -101,12 +112,19 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 _Expanded 2026-08-20 from Linear (18 Aug). Custom reporting for Neno customers is Backlog, so this publishes into its managed description block._
 - (project: Custom reporting for Neno customers) Demo mode must accept a CSV import so the sample report is built from the prospect's own figures rather than generic sample data. (source: Linear NEO-1953, 18 Aug 2026)
 - (project: Custom reporting for Neno customers) Reporting is presented in EUR for all customers, with FX conversion applied at the ledger level rather than per report. (source: Granola - Reporting/platform sync, week of 24 Aug 2026)
+_Expanded 2026-09-09 from the 4 Sep Accountant Review UIs discovery session. Custom reporting for Neno customers is Backlog, so these would publish into its managed description block._
+- (project: Custom reporting for Neno customers) The trial balance must show account-number and classification columns in standard balance-sheet order, allow drill-down from an account to its transactions, export to CSV, and offer prior-quarter and prior-year comparatives. (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
+- (project: Custom reporting for Neno customers) The balance sheet and P&L must support flexible date ranges with month/quarter/YTD shortcuts, comparatives, and drill-down through accounts to transactions and on to source documents. (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
+- (project: Custom reporting for Neno customers) The accountant review surface is a hierarchy - GL detail feeds the trial balance, which feeds the balance sheet and income statement - and must prioritise functional, paper-like clarity and correct figures over stylisation. (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
+- (project: Custom reporting for Neno customers) The balance-sheet hierarchy must include fixed assets, with standard account ordering, account classifications, and drill-down to transactions and source documents. (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
 
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._
 
 - [2026-08-19] Structured customer profiles for services customers - a customer overview screen with multiple contacts per organisation, matching what WeFact offers - is a board text item under this initiative with no Linear project, and it overlaps Frederique's HubSpot-backed profile view; needs Matthew's attribution. (source: Granola - Freddy <> Matthew, 12 Aug; Granola - Matthew / Euge, 19 Aug)
 - [2026-08-30] Export the filtered/searched transaction list as CSV, so a customer can complete an audit without screenshotting rows by hand. This is a transaction-list export rather than the management report covered by "Custom reporting for Neno customers" (NEO-2017 covers the report itself), so it cannot be confidently filed there; needs Matthew's attribution. (source: Granola - Chat with Matthew (Dale Owen), 24 Aug 2026)
+- [2026-09-09] Mobile companion app scope for end of Q3 (tasks, transaction view, bill upload; no invoice creation, multi-field forms or desktop parity). The work sits on the untracked 'Mobile App' project (5300eb9d); needs Matthew's attribution. (source: Granola - Product roadmap + planning Q3 & Q4, 3 Sep 2026)
+- [2026-09-09] Expense management V1 (pay unpaid bills from neno; extraction-feedback UI and payment flows first) sits on the untracked Bills & Expenses / expense-management work with no project under this initiative; needs Matthew's attribution. (source: Granola - Product roadmap + planning Q3 & Q4, 3 Sep 2026)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

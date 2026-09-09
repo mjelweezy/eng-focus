@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping data
 _Initiative: 0f26a21f-cd9b-47e4-9678-a3c5107a1fa0 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-30
+_Last updated: 2026-09-09
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the external
 > data integrations feeding neno's books: Numbrs, Stripe, Shopify, Shopify Payments, WeFact,
@@ -26,6 +26,12 @@ _Last updated: 2026-08-30
 - [2026-08-28] A sign bug that would have increased rather than reduced the amount owed in Exact was found and fixed with a test. It had gone unnoticed because the automated tests simulate Exact rather than talking to it; both this and the instalment question only surfaced once the code was pointed at a real administration - the argument for doing that before any client is switched on. (project: Payroll (Numbrs integration)) (source: Linear project update, 21 Aug 2026)
 - [2026-08-28] Stripe moved from an undiscussed 'later' item to active discovery. Being unable to receive payments through Stripe on the neno side is blocking a prospect, and Matthew said neno would look directly at the problem 'starting today' and decide whether to let accountants manage Stripe balances manually on the platform for now so it stops being a blocker to board this type of customer. (source: Slack #tech-team, 28 Aug 2026)
 - [2026-08-28] Payroll pushes to Exact now retry a failed push and stop once it is hopeless rather than retrying indefinitely (NEO-1821, completed by Adam). Six further payroll tickets - A2, B2, C1, C2, D1 and F1 - sit In Review, and NEO-2012 (matching payroll payables in Exact without a relation) is in progress. (source: Linear NEO-1821 / Payroll (Numbrs integration), 28 Aug 2026)
+- [2026-09-09] The Numbrs payroll integration is now described externally as live and worth signposting on the website - a step on from the 28 Aug position that payroll was switched on for no client. Adam's NEO-2228 (show a payroll run as 'posted externally' and let an operator link the matching Exact entry) is In Progress. (project: Payroll (Numbrs integration)) (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026; Linear NEO-2228)
+- [2026-09-09] Stripe is named as the next integration on the roadmap. neno does not yet have Stripe via open banking, and interim access is view-only for accountants to export weekly. Wise and ING already connect directly through open banking; Stripe sits outside that coverage. (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026)
+- [2026-09-09] WeFact is positioned as the immediate bridge while neno's own invoicing API/MCP is in progress: WeFact API v2 can trigger invoices and submit expenses from n8n, and its docs are to be shared with Nebor. The invoicing MCP/API is second priority behind the read-first public API, targeted for early Q4. (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026; Product roadmap + planning Q3 & Q4, 3 Sep 2026)
+- [2026-09-09] PEPPOL: direct debit through the Peppol e-invoicing network is described to customers as 'coming soon'; no build decision was recorded. (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026)
+- [2026-09-09] MCP goes to beta in roughly two weeks, initially AP-focused - unmatched transactions, bills, tasks and document submission - with reporting JSON for balance sheet and P&L expected within a couple of weeks. The API/MCP is the intended route for customers to connect systems such as WooCommerce and CRMs rather than waiting for first-party integrations. (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026; MCP, 2 Sep 2026)
+- [2026-09-09] Shopify and Shopify Payments were not discussed in any meeting in the window and remain undiscussed 'later' items. (source: run review, 2026-09-09)
 
 ## Open questions
 - [open] (carried forward) Payroll design not yet discussed — open design area for a future session. (project: Payroll (Numbrs integration))
@@ -42,6 +48,8 @@ _Last updated: 2026-08-30
 - [open] An accountant needs to settle two payroll points: whether to enable Exact's 'track open items' setting on payroll accounts (off by default), and which account absorbs small differences when a payment does not exactly match what was owed. (owner: Accounting) (project: Payroll (Numbrs integration)) (source: Linear project update, 21 Aug 2026)
 - [open] When should the cost of an approved-but-unpaid payroll run first land? Today such a run does not appear in Exact at all, because the first payment is what carries it across; written up separately. (project: Payroll (Numbrs integration)) (source: Linear project update, 21 Aug 2026)
 - [open] Should accountants be able to manage Stripe balances manually on neno as an interim unblock, and is invoice creation via a public MCP the first surface neno exposes? Matthew put roughly a two-week horizon on clearer timelines. (owner: Matthew) (source: Slack #tech-team, 28 Aug 2026)
+- [open] When does Stripe arrive via open banking, and does the interim view-only weekly export satisfy the customers it is currently blocking? Nebor asked for confirmation of the timing. (owner: Matthew) (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026)
+- [open] Does the invoicing MCP/API land early enough in Q4 for reseller-style prospects to choose it over the WeFact bridge? Nebor is unlikely to switch before Q3 ends, with October the realistic start. (owner: Matthew) (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026)
 
 ## Risks
 _None carried forward yet — see source-of-truth.md for pre-split risk history._
@@ -51,6 +59,7 @@ _None carried forward yet — see source-of-truth.md for pre-split risk history.
 - [med] (2026-08-19) The WeFact work that unblocks this initiative sits entirely on "Neno Services Onboarding", a project attached to no initiative, so the board's own "later" items (PEPPOL, Neno invoicing improvements, Stripe, Shopify, Shopify Payments, WeFact Invoicing) show no movement while the real integration work runs outside the initiative. (source: Linear, 18-19 Aug)
 - [med] (2026-08-28) Payroll is switched on for no client, and the two remaining blockers are not engineering: the payroll provider's credentials must be installed in the production environment, and each client must stop having payroll typed into Exact by hand before neno starts sending it, or they get it twice. (source: Linear project update, 21 Aug 2026)
 - [med] (2026-08-28) The inability to receive payments through Stripe is now a live commercial blocker; inventory/COGS visibility and API/MCP access are recurring asks across roughly EUR 45k of e-commerce pipeline raised in #tech-team. (source: Slack #tech-team, 28 Aug 2026)
+- [med] (2026-09-09) The board's 'later' items for this initiative (PEPPOL, Neno invoicing improvements, Stripe, Shopify, Shopify Payments, WeFact Invoicing) still have no Linear projects, while the integration conversation has moved to an API/MCP surface whose Linear project - Neno MCP (1b5a53b0) - sits under no initiative at all and is where Art's week of work landed. (source: Linear, 9 Sep 2026)
 
 ## Next steps
 - [2026-07-15] (carried forward) Matthew to grab CSV examples from Numbrs customers to understand the payroll reconciliation shape. (owner: Matthew) (source: Granola/tldv - stand-up, 15 Jul)
@@ -59,6 +68,8 @@ _None carried forward yet — see source-of-truth.md for pre-split risk history.
 - [2026-08-10] Frederique to complete Swan sandbox ID verification to unlock full neno feature access, and run a comparison of the neno monorepo/Linear against WeFact's public pages to catch commercially promoted features neno may be missing. (owner: Frederique) (source: Granola - kick off wefact/neno invoicing, 10 Aug)
 - [2026-08-28] Install the Nmbrs credentials in production and agree the per-client 'stop typing payroll into Exact' cutover before switching any client on. (owner: Adam) (source: Linear project update, 21 Aug 2026)
 - [2026-08-28] Decide whether accountants can manage Stripe balances manually on neno as an interim unblock. (owner: Matthew) (source: Slack #tech-team, 28 Aug 2026)
+- [2026-09-09] Confirm Stripe open-banking timing for Nebor, share the WeFact API v2 documentation, and align on the early-Q4 invoicing MCP/API release. (owner: Matthew) (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026)
+- [2026-09-09] Art to commit the September MCP scope and scope the MCP tools and public API endpoints. (owner: Art) (source: Granola - MCP, 2 Sep 2026)
 
 ## Projects (filed in Linear)
 - [2026-07-30] Attached to this new initiative: Payroll (Numbrs integration), Third-party wallet transaction import (MVP). New backlog items from the Q3 roadmap deck not yet filed as Linear projects: Shopify, Shopify Payments, WeFact Invoicing, PEPPOL invoicing, Generic platform balance imports.
@@ -81,6 +92,8 @@ _Tagged requirements the daily job publishes into each Linear project's auto-mai
 
 _Expanded 2026-08-30 from Linear (NEO-1821, 28 Aug). Payroll (Numbrs integration) is Backlog, so this publishes into its managed description block._
 - (project: Payroll (Numbrs integration)) A failed payroll push to Exact retries and stops once it is hopeless, rather than retrying indefinitely. (source: Linear NEO-1821, 28 Aug 2026)
+_Expanded 2026-09-09 from Linear (NEO-2228). Payroll (Numbrs integration) is Backlog, so this would publish into its managed description block._
+- (project: Payroll (Numbrs integration)) A payroll run posted outside neno must be shown as 'posted externally', and an operator must be able to link the matching Exact entry to it. (source: Linear NEO-2228, 9 Sep 2026)
 
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._

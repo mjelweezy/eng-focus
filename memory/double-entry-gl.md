@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-08-30
+_Last updated: 2026-09-09
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -83,6 +83,12 @@ _Last updated: 2026-08-30
 - [2026-08-27] Multi-currency: all ledger entries write to Exact in EUR for now, with FX conversion applied for reporting; a USD account is kept separate while active. Whether Exact's ledger can actually handle multi-currency properly is unconfirmed with Yako, and FX write-offs need Jean Lava's input once accounting is involved. (source: Granola - Multi-Currency in Exact, 26 Aug 2026)
 - [2026-08-27] Discovered a Linear project under this initiative not on the board: 'Close out the ledger's first production run' (has active issues from Mark and Dima on grouped-match settlement and missing booked bills) - flagged to Matthew as needs-triage rather than added to the board. (source: Linear, 2026-08-27)
 - [2026-08-28] VAT submission work moved from feature to dataset: the VAT Submission Feature (NEO-1779) completed 27 Aug, and Joel is now collecting roughly ten Nextens VAT submission PDFs from the accounting team - Venla is supplying them - to build a dataset for auto-extracting VAT task fields from an uploaded Nextens PDF (NEO-2094, In Progress). (source: Slack #accounting-mvp, 27 Aug 2026; Linear NEO-1779/NEO-2094)
+- [2026-09-09] VAT submission from neno was DROPPED as a Q3 company goal in the Q3/Q4 roadmap planning; the board card and its 30 Sep target still read as though the 5-customer Q3 filing is committed. (source: Granola - Product roadmap + planning Q3 & Q4, 3 Sep 2026)
+- [2026-09-09] September focus shifts from Ocean Ionics alone to generalising the ledger for multiple accounts and customers, aiming for more than one customer running on the ledger by quarter-end; Exact stays mirrored alongside neno rather than moving downstream yet. (project: Start writing to neno's double-entry GL) (source: Granola - Product Planning, 2 Sep 2026; Manual journal entries, 8 Sep 2026)
+- [2026-09-09] Phoenix Labs is the next ledger customer target - a simple profile with little or no revenue and some AP - with Phoenix plus a handful more, potentially four in total, by quarter-end. Aerosilicon is already onboarded directly to neno, the first customer not routed via Exact first. (source: Granola - Manual journal entries, 8 Sep 2026; Product roadmap + planning Q3 & Q4, 3 Sep 2026)
+- [2026-09-09] Manual journal entries are deprioritised until ledger generalisation is done, and the sequence is flipped: build the ledger views first, then manual entries, so entries can be inspected as they are created. NEO-2263 ('Spike: settle the ten open decisions before manual journal entries are built') completed 8 Sep on the untracked 'Manual Journal Entries' project (9b5e2891). (source: Granola - Manual journal entries, 8 Sep 2026; Linear NEO-2263)
+- [2026-09-09] Multi-currency confirmed as previously proposed: ledger entries are written and reported in EUR with FX conversion applied, and currencies stay separated while the USD account is active. (source: Granola - Multi-Currency in Exact, 26 Aug 2026; Product Planning, 2 Sep 2026)
+- [2026-09-09] NEO-2221 ('Ledger knowledgebase states the source-of-truth plan as truth conditions and invariants', Mark) completed 8 Sep on 'Close out the ledger's first production run'; NEO-2178 (ledger events scheduler hardening) completed 7 Sep on the same project. (source: Linear NEO-2221/NEO-2178, 7-8 Sep 2026)
 
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)
@@ -123,6 +129,10 @@ _Last updated: 2026-08-30
 - [open] The Ocean Ionics fork - backfill neno's ledger from Exact and take source-of-truth status from a clean cut-off, or keep filing in Exact - was due to be reconvened by Mark and Matthew on Friday 14 August. No outcome appeared in Linear, Slack or Granola this run. (owner: Mark/Matthew)
 
 - [2026-08-27] Ocean Ionics has no hard cutover date - neno and Exact totals will not fully align without a backfill of historical data using external proof followed by a clean cutover; Q2 items Andrew reconciled in Exact are not yet confirmed or closed in neno. (source: Granola - Mark <> Wildkamp / Backfill & Manual Entries, 19 and 24 Aug 2026)
+- [open] How should the AGL support multiple accounts per customer, in particular multiple bank accounts? This gates the September generalisation goal. (owner: Mark) (source: Granola - Manual journal entries, 8 Sep 2026)
+- [open] Are invoice dates used consistently across ledger bookings, and do payroll runs and approved invoices emit correctly to Exact? Named as ledger gaps alongside static account mapping. (owner: Mark) (source: Granola - Manual journal entries, 8 Sep 2026)
+- [open] What should the restored truth conditions and their attached invariants be after the recent bug-fixing drift? A truth-conditions review session is scheduled after the Wednesday stand-up. (owner: Mark/Matthew) (source: Granola - Manual journal entries, 8 Sep 2026)
+- [open] Can Exact's ledger actually handle the intended multi-currency approach, and how must FX effects be written off once accounting is involved? Awaiting Yako and Jean Lava. (owner: Matthew) (source: Granola - Multi-Currency in Exact, 26 Aug 2026)
 
 ## Risks
 - [high] Spike code (~13k lines, Claude-generated) took liberties with DB writes; atomicity and no-overlapping-bookings must be guaranteed before productionising. Review under way this week (Mark/Matthew). (source: Granola — Next Steps AGL)
@@ -146,6 +156,8 @@ _Last updated: 2026-08-30
 
 - [2026-08-27] Matthew to make the trial balance comparison page useful: link journal lines back to source bills and surface bank transaction detail alongside ledger bookings. (owner: Matthew) (source: Granola - Backfill & Manual Entries, 24 Aug 2026)
 - [2026-08-27] Matthew to contact Marloes about setting up automatic Gmail bill forwarding for Ocean Ionics (current manual forwarding is causing gaps), and to follow up on the backlog of open tasks and unresolved bills. (owner: Matthew) (source: Granola - Mark <> Wildkamp, 19 Aug 2026)
+- [med] (2026-09-09) The ledger gap analysis names three generalisation blockers - static account mapping, inconsistent use of invoice dates, and actions that may not emit correctly to Exact - and the gap-analysis document itself has not yet been shared. (source: Granola - Manual journal entries, 8 Sep 2026)
+- [med] (2026-09-09) With Q3 VAT submission dropped as a company goal the pressure behind the Ocean Ionics backfill-vs-Exact fork drops, but the fork is still undecided and the board card still carries a 30 Sep VAT target - the board and the roadmap now disagree. (source: Granola - Product roadmap + planning Q3 & Q4, 3 Sep 2026)
 
 ## Next steps
 - [2026-06-23] DP to compile full reporting requirements list. (owner: DP, due ASAP)
@@ -183,6 +195,11 @@ _Last updated: 2026-08-30
 - [2026-08-19] Hold the separate Matthew/Dmytro catch-up on manual entries. (owner: Matthew/Dmytro) (source: Granola - Daily stand up, 19 Aug)
 - [2026-08-28] Joel to assemble the Nextens VAT submission PDF dataset from Venla and land NEO-2094 (auto-extract VAT task fields from an uploaded Nextens PDF). (owner: Joel) (source: Slack #accounting-mvp, 27 Aug 2026)
 - [2026-08-30] Add cost centres to the existing bookings so a post-month-close overview by GL account and cost centre becomes possible; the bookings are already there, the cost centres are not. (owner: Matthew) (source: Granola - Matthew / Andries - Call different branches, 25 Aug 2026)
+- [2026-09-09] Mark to share the ledger gap-analysis document. (owner: Mark) (source: Granola - Manual journal entries, 8 Sep 2026)
+- [2026-09-09] Matthew to send Mark the Phoenix Labs shape (from Maria) so Mark can assess the ledger generalisation required. (owner: Matthew) (source: Granola - Manual journal entries, 8 Sep 2026)
+- [2026-09-09] Matthew to share the Three Amigos recording and update Yaroslav on the September ledger-focus shift. (owner: Matthew) (source: Granola - Product roadmap + planning Q3 & Q4, 3 Sep 2026)
+- [2026-09-09] Hold the truth-conditions review session after the Wednesday stand-up. (owner: Mark/Matthew) (source: Granola - Manual journal entries, 8 Sep 2026)
+- [2026-09-09] Matthew to consult DP and Yako, brief Jean Lava and consolidate services-team input before closing the multi-currency strategy. (owner: Matthew) (source: Granola - Multi-Currency in Exact, 26 Aug 2026)
 
 ## Requirements by project
 _Tagged requirements the daily job publishes into each Linear project (this project is In Progress, so they are posted as a proposed comment, not auto-applied)._
@@ -241,6 +258,10 @@ _Expanded 2026-07-22 from the 21 Jul production go-live (#accounting-mvp). Proje
 _Expanded 2026-08-15 from #accounting-mvp (14 Aug). Project is In Progress, so posted as a proposed comment, not auto-applied._
 - (project: Start writing to neno's double-entry GL) VAT code semantics stay at 21% for the ledger and the VAT return, while document-side reconciliation treats reverse_charge, import_vat and intra_eu_acquisition as effective 0% - net = base, VAT = 0, gross = base - so the reconciler is told the treatment, not just the letter. (source: Slack #accounting-mvp (Mark), 14 Aug 2026; Linear NEO-1890)
 - (project: Start writing to neno's double-entry GL) purchase-entry-sync must keep posting `VATCode: item.vatCode` verbatim to Exact and must not convert these codes to 0%, because Exact applies its own treatment from its own code definition and a 0% would drop the reverse-charge legs on Exact's side. (source: Slack #accounting-mvp (Mark), 14 Aug 2026)
+_Expanded 2026-09-09 from the 2-8 Sep planning and ledger sessions. Start writing to neno's double-entry GL is In Progress, so these are for a proposed comment rather than the description._
+- (project: Start writing to neno's double-entry GL) The ledger must generalise beyond a single workspace: support multiple accounts per customer - in particular multiple bank accounts - so more than one customer can run on it. (source: Granola - Manual journal entries, 8 Sep 2026)
+- (project: Start writing to neno's double-entry GL) Invoice dates must be used consistently across ledger bookings, and every action that should reach Exact (payroll runs, approved invoices) must actually emit. (source: Granola - Manual journal entries, 8 Sep 2026)
+- (project: Start writing to neno's double-entry GL) Ledger entries are written and reported in EUR with FX conversion applied, keeping currencies separated while a foreign-currency (USD) account is active. (source: Granola - Multi-Currency in Exact, 26 Aug 2026)
 
 ## Unfiled requirements (needs attribution)
 - [2026-08-27] Ledger event model is now locked (queue books solely from payload facts at booking time, no post-hoc source lookup; edit-and-rebook requires two explicit steps) but it is unclear whether this requirement belongs to 'Start writing to neno's double-entry GL' or 'Close out the ledger's first production run' - both projects touch booking/edit flow. Left unfiled for Matthew to attribute. (source: Granola - Backfill & Manual Entries, 24 Aug 2026)
@@ -252,6 +273,8 @@ _New requirements the job could not confidently assign to a project under this i
 - [2026-08-14] Onboarding transition-date rules for customers migrating from Exact: a defined transition date per customer; Swan, Open Banking, WeFact and NMBRS cut off from Exact and enabled on neno on that date; Exact spillover cleaned out and neno backfilled to the transition date; reconciliation routed by transaction date relative to the transition date, with the two modes never overlapping on one transaction; and the neno interfaces plus the matching engine changed to follow the rules. This spans the AGL, the matching engine and customer onboarding, and Yaroslav explicitly opened it for alignment with Mark rather than filing it - so it cannot be confidently attributed to "Start writing to neno's double-entry GL" or to a project under the onboarding initiative; needs Matthew's attribution. (source: Slack #tech-team (Yaroslav), 14 Aug)
 
 - [2026-08-19] Bulk/direct-debit matching and bill search: a single lump direct debit that settles several prior-week invoices needs a multi-invoice summing mechanism, because the reconciliation API surfaces only one best match; and the bill-search drawer must stop truncating results at volume and should rank suggested bills by invoice date relative to the transaction date. Filed in Linear as NEO-1972 on the "Transaction Matching" project, which sits under no tracked initiative; needs Matthew's attribution. (source: Granola - Mark <> Wildkamp, 19 Aug; Linear NEO-1972)
+- [2026-09-09] Ledger views (trial balance, balance sheet, P&L, GL detail, asset register) must be built before manual journal entries so entries can be visually validated as they are created. The work spans the untracked 'Manual Journal Entries' project (9b5e2891) and the accountant review-UI/reporting surface, so it cannot be confidently filed to 'Start writing to neno's double-entry GL'; needs Matthew's attribution. (source: Granola - Manual journal entries, 8 Sep 2026; Accountant Review UIs: Discovery Session, 4 Sep 2026)
+- [2026-09-09] Generalising the AGL for additional simple AP-only clients has its own Linear project, 'Generalize AGL for other simple AP-only clients' (a17d7c22), attached to no initiative - so the September generalisation requirements cannot be filed under a tracked initiative; needs Matthew's attribution. (source: Linear, 9 Sep 2026)
 
 ## Notes / manual context
 <!-- Matthew's chat-fed context lands here, tagged (Matthew). Surfaced on the page by default. -->

@@ -1,40 +1,152 @@
 {
- "generated_at": "2026-09-01T04:07:11.591276Z",
- "projects": {},
+ "generated_at": "2026-09-09T06:09:23.833Z",
+ "projects": {
+  "2731244b-71c8-44d1-b6bf-ae9434135d05": {
+   "status": "Backlog",
+   "owner": "Adam",
+   "gone": false
+  },
+  "b2f06e1b-57d3-4ced-9a3c-daf042c02df0": {
+   "status": "In Progress",
+   "owner": "Joel",
+   "gone": false
+  },
+  "9dead622-60da-42fc-b4a1-bbc3a2ce606b": {
+   "status": "Canceled",
+   "owner": null,
+   "gone": true
+  },
+  "6c262f19-7934-4641-ba14-6ff937127454": {
+   "status": "Canceled",
+   "owner": null,
+   "gone": true
+  },
+  "4ce20eb5-9845-4fa3-b1a9-8f9c8b949a3e": {
+   "status": "Canceled",
+   "owner": null,
+   "gone": true
+  },
+  "78f1d5fa-1b8d-4699-a4c4-69fd20ca7d34": {
+   "status": "Canceled",
+   "owner": null,
+   "gone": true
+  },
+  "97add946-ef4d-4f20-8dce-93892999fbfa": {
+   "status": "Backlog",
+   "owner": "Dima",
+   "gone": false
+  },
+  "0383a752-0a73-4bce-b0aa-77379e4f27cf": {
+   "status": "In Progress",
+   "owner": "Mark",
+   "gone": false
+  },
+  "fa87aac7-1ef5-4587-8f18-2f4c30cc9406": {
+   "status": "Planned",
+   "owner": "Ihor",
+   "gone": false
+  }
+ },
  "needs_triage": {
   "0f26a21f-cd9b-47e4-9678-a3c5107a1fa0": [],
   "b508d2b3-f876-4068-beec-e3c9899dd8c4": [],
   "e78d13c9-27d8-494e-9c3b-8a264412e471": [],
-  "fef38f90-b82c-4c47-b377-6dcb9b1a3020": [],
+  "fef38f90-b82c-4c47-b377-6dcb9b1a3020": [
+   {
+    "id": "7dd3c843-6a3b-499f-8b4f-725d6166e88f",
+    "name": "Close out the ledger's first production run"
+   }
+  ],
   "cb65425b-cc3d-4f8a-8164-5849f594d708": []
  },
  "engineers": [
   {
    "name": "Dima",
+   "initial": "D",
+   "color": "#5e6ad2",
    "groups": [
     {
-     "initiative": null,
-     "project": null,
-     "issues": [
+     "initiative": "Make accountants more efficient during onboarding and customer collaboration",
+     "projects": [
       {
-       "id": "NEO-2030",
-       "title": "Show customer response timestamps and open task files in bill review f",
-       "status": "In Progress"
+       "name": "Custom reporting for Neno customers",
+       "issues": [
+        {
+         "id": "NEO-1895",
+         "title": "Management report: indigo pie palette and denser PDF typography",
+         "status": "In Progress"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "initiative": "__none__",
+     "projects": [
+      {
+       "name": "Bills & Expenses Page",
+       "issues": [
+        {
+         "id": "NEO-2276",
+         "title": "Customer bill panel: wrong supplier VAT number, empty Net, and the lan",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1958",
+         "title": "Update onboarding actions to reference and point to \"Bills & Expenses,",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1957",
+         "title": "Move forwarding email banner from Vault to Bills & Expenses",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-2258",
+         "title": "Mobile app: replace Vault with a Bills & expenses page (parity with we",
+         "status": "Done"
+        }
+       ]
       },
       {
-       "id": "NEO-2032",
-       "title": "Add direct navigation from task detail to linked transaction or bill",
-       "status": "In Progress"
+       "name": "Bookkeeping Improvements",
+       "issues": [
+        {
+         "id": "NEO-2030",
+         "title": "Show customer response timestamps and open task files in bill review f",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-2032",
+         "title": "Add direct navigation from task detail to linked transaction or bill",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-2026",
+         "title": "Mark clarification tasks completed after replying or uploading documen",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-2033",
+         "title": "Keep closed task history visible in bill and transaction drawers",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-2034",
+         "title": "Close open transaction tasks when Allocate to G/L books the transactio",
+         "status": "Todo"
+        }
+       ]
       },
       {
-       "id": "NEO-1912",
-       "title": "Bills and Expenses page for the customer (MVP scope)",
-       "status": "In Progress"
-      },
-      {
-       "id": "NEO-2026",
-       "title": "Mark clarification tasks completed after replying or uploading documen",
-       "status": "Todo"
+       "name": "Mobile App",
+       "issues": [
+        {
+         "id": "NEO-2256",
+         "title": "Create separate Apple & Google apps for sandbox deployment",
+         "status": "In Progress"
+        }
+       ]
       }
      ]
     }
@@ -42,19 +154,203 @@
   },
   {
    "name": "Mark",
-   "groups": []
+   "initial": "M",
+   "color": "#4cb782",
+   "groups": [
+    {
+     "initiative": "Enable accountants to complete VAT submissions via double-entry GL",
+     "projects": [
+      {
+       "name": "Close out the ledger's first production run",
+       "issues": [
+        {
+         "id": "NEO-2221",
+         "title": "Ledger knowledgebase states the source-of-truth plan as truth conditio",
+         "status": "Done"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "initiative": "Ocean Ionics: Full AP Loop",
+     "projects": [
+      {
+       "name": "Exact Online Integration",
+       "issues": [
+        {
+         "id": "NEO-857",
+         "title": "Automated daily Exact sync job",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "Ocean Ionics sandbox testing",
+       "issues": [
+        {
+         "id": "NEO-1143",
+         "title": "Bills can sync to Exact without being reconciled, with no signal to th",
+         "status": "Todo"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "initiative": "__none__",
+     "projects": [
+      {
+       "name": "BV Sequence 2: Flow Improvements",
+       "issues": [
+        {
+         "id": "NEO-426",
+         "title": "Plug leak to prevent unpaid BV incorporation",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "__none__",
+       "issues": [
+        {
+         "id": "NEO-1825",
+         "title": "Task lifecycle logs have no message, so they render as a raw JSON blob",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-999",
+         "title": "Remove `neno_wt_` prefix from worktree database names",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-291",
+         "title": "Gmail ingest NenoError re-write",
+         "status": "Todo"
+        }
+       ]
+      }
+     ]
+    }
+   ]
   },
   {
    "name": "Joel",
+   "initial": "J",
+   "color": "#f2994a",
    "groups": [
     {
-     "initiative": null,
-     "project": null,
-     "issues": [
+     "initiative": "Org + Platform Maturity",
+     "projects": [
       {
-       "id": "NEO-2104",
-       "title": "Route API traffic through Cloudflare (proxy flip + origin lock)",
-       "status": "Todo"
+       "name": "Bastion onboarding + setup",
+       "issues": [
+        {
+         "id": "NEO-1701",
+         "title": "Pentest H2 - File-type allowlist is client-side only on vault + bill u",
+         "status": "In Review"
+        },
+        {
+         "id": "NEO-1705",
+         "title": "Pentest M2 (VLN13) - Two overlapping auth credentials; Swan session ou",
+         "status": "In Review"
+        },
+        {
+         "id": "NEO-1703",
+         "title": "Pentest H4 - No malware scanning on user-uploaded files",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1313",
+         "title": "Harden deploy-api-cloud-run env_vars path against YAML/sed injection",
+         "status": "Todo"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "initiative": "Source of truth for all bookkeeping activity",
+     "projects": [
+      {
+       "name": "End-to-end AR reconciliation",
+       "issues": [
+        {
+         "id": "NEO-1560",
+         "title": "SPIKE: Exploratory frontend changes for AR",
+         "status": "In Progress"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "initiative": "__none__",
+     "projects": [
+      {
+       "name": "Bas S.: Post-Incorporation UX improvements",
+       "issues": [
+        {
+         "id": "NEO-1009",
+         "title": "Banking onboarding not showing all bvs as options to open a bank accou",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "Platform",
+       "issues": [
+        {
+         "id": "NEO-2236",
+         "title": "Replace Serverless VPC Access connectors with Direct VPC egress, keepi",
+         "status": "In Review"
+        }
+       ]
+      },
+      {
+       "name": "VAT Submission Tasks",
+       "issues": [
+        {
+         "id": "NEO-2094",
+         "title": "Auto-extract VAT task fields from uploaded Nextens PDF",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1778",
+         "title": "M7.1a: Run a real quarter for Ocean Ionics",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "__none__",
+       "issues": [
+        {
+         "id": "NEO-1906",
+         "title": "Admin task close returns 500 for unsubmitted reconciliation task",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1964",
+         "title": "Mark an outbound invoice as paid when reconciliation matches it to a b",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1710",
+         "title": "WhatsApp auth eval: flaky fail on 'card_x sees scoped empty when reque",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1408",
+         "title": "Hide the terms-template dropdown on the quote builder (templates are i",
+         "status": "In Review"
+        },
+        {
+         "id": "NEO-1480",
+         "title": "WhatsApp agent-info emits a double-+ phone number and a non-canonical ",
+         "status": "In Progress"
+        }
+       ]
       }
      ]
     }
@@ -62,15 +358,36 @@
   },
   {
    "name": "Ihor",
+   "initial": "I",
+   "color": "#14b8a6",
    "groups": [
     {
-     "initiative": null,
-     "project": null,
-     "issues": [
+     "initiative": "__none__",
+     "projects": [
       {
-       "id": "NEO-2144",
-       "title": "Show depreciation details for selected asset lines",
-       "status": "Done"
+       "name": "Platform",
+       "issues": [
+        {
+         "id": "NEO-2233",
+         "title": "Bill worker: bounded retries, fair scheduling and per-instance concurr",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "__none__",
+       "issues": [
+        {
+         "id": "NEO-2099",
+         "title": "Stop tracking generated Pothos types",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1738",
+         "title": "Send confirmation email to customer after confirming Gmail forwarding",
+         "status": "In Progress"
+        }
+       ]
       }
      ]
     }
@@ -78,20 +395,106 @@
   },
   {
    "name": "Art",
+   "initial": "A",
+   "color": "#e5484d",
    "groups": [
     {
-     "initiative": null,
-     "project": null,
-     "issues": [
+     "initiative": "__none__",
+     "projects": [
       {
-       "id": "NEO-2148",
-       "title": "Make the review panel the single place a supplier is created or linked",
-       "status": "In Review"
+       "name": "Bookkeeping Improvements",
+       "issues": [
+        {
+         "id": "NEO-1826",
+         "title": "Lift residual routing (write-off) cap and update terminology",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1972",
+         "title": "Bill search and suggested bills need deterministic ranking and scalabl",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-1927",
+         "title": "Booked bill line items remain editable when an expanded line survives ",
+         "status": "Todo"
+        }
+       ]
       },
       {
-       "id": "NEO-2146",
-       "title": "Accepting the supplier we recommended is counted as typing it in",
-       "status": "Done"
+       "name": "Neno Brain",
+       "issues": [
+        {
+         "id": "NEO-1501",
+         "title": "Authenticate Anthropic API from Cloud Run via Workload Identity Federa",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "Neno MCP",
+       "issues": [
+        {
+         "id": "NEO-2191",
+         "title": "C1: Per-call MCP traces with client identity and OpenTelemetry spans",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-2190",
+         "title": "B1: Tool descriptions for weaker models plus a Sonnet-driven MCP eval ",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-2189",
+         "title": "A2: MCP adapter over the agent registry and the tools for three use ca",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-2243",
+         "title": "A3: Magic-link login does not return the user to the OAuth consent pag",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "Smart Bill Review",
+       "issues": [
+        {
+         "id": "NEO-2278",
+         "title": "Bill extraction cleanup: comment density, duplication, dead code",
+         "status": "In Review"
+        },
+        {
+         "id": "NEO-1798",
+         "title": "Line VAT rate is 39% because extraction returns nothing, not because i",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-1905",
+         "title": "Render banking feature components from fixtures, so a design round is ",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "Unified Review Queue",
+       "issues": [
+        {
+         "id": "NEO-2148",
+         "title": "Make the review panel the single place a supplier is created or linked",
+         "status": "In Progress"
+        }
+       ]
+      },
+      {
+       "name": "__none__",
+       "issues": [
+        {
+         "id": "NEO-1856",
+         "title": "Add a merge queue for PRs to main",
+         "status": "In Progress"
+        }
+       ]
       }
      ]
     }
@@ -99,20 +502,51 @@
   },
   {
    "name": "Adam",
+   "initial": "A",
+   "color": "#a855f7",
    "groups": [
     {
-     "initiative": null,
-     "project": null,
-     "issues": [
+     "initiative": "Platform Improvements",
+     "projects": [
       {
-       "id": "NEO-2147",
-       "title": "One Product Performance page, on the Quality page's bones",
-       "status": "In Progress"
-      },
+       "name": "Wednesday Sweeps",
+       "issues": [
+        {
+         "id": "NEO-2153",
+         "title": "A scheduled-send test dated itself and expired on 2026-09-01",
+         "status": "In Progress"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "initiative": "Source of truth for all bookkeeping data",
+     "projects": [
       {
-       "id": "NEO-2143",
-       "title": "Payroll settlement follows the approval, not the native ledger",
-       "status": "In Progress"
+       "name": "Payroll (Numbrs integration)",
+       "issues": [
+        {
+         "id": "NEO-2228",
+         "title": "Payroll runs: show \"posted externally\" and let an operator link an Exa",
+         "status": "In Progress"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "initiative": "__none__",
+     "projects": [
+      {
+       "name": "Platform",
+       "issues": [
+        {
+         "id": "NEO-2120",
+         "title": "Bind parameters and generate row types for the metric queries behind P",
+         "status": "In Review"
+        }
+       ]
       }
      ]
     }
