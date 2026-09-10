@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-09T06:09:23.833Z",
+ "generated_at": "2026-09-10T07:13:17.535Z",
  "projects": {
   "2731244b-71c8-44d1-b6bf-ae9434135d05": {
    "status": "Backlog",
@@ -100,11 +100,6 @@
          "id": "NEO-1957",
          "title": "Move forwarding email banner from Vault to Bills & Expenses",
          "status": "In Progress"
-        },
-        {
-         "id": "NEO-2258",
-         "title": "Mobile app: replace Vault with a Bills & expenses page (parity with we",
-         "status": "Done"
         }
        ]
       },
@@ -157,21 +152,6 @@
    "initial": "M",
    "color": "#4cb782",
    "groups": [
-    {
-     "initiative": "Enable accountants to complete VAT submissions via double-entry GL",
-     "projects": [
-      {
-       "name": "Close out the ledger's first production run",
-       "issues": [
-        {
-         "id": "NEO-2221",
-         "title": "Ledger knowledgebase states the source-of-truth plan as truth conditio",
-         "status": "Done"
-        }
-       ]
-      }
-     ]
-    },
     {
      "initiative": "Ocean Ionics: Full AP Loop",
      "projects": [
@@ -303,7 +283,7 @@
         {
          "id": "NEO-2236",
          "title": "Replace Serverless VPC Access connectors with Direct VPC egress, keepi",
-         "status": "In Review"
+         "status": "Done"
         }
        ]
       },
@@ -365,12 +345,12 @@
      "initiative": "__none__",
      "projects": [
       {
-       "name": "Platform",
+       "name": "Fixed Assets & Depreciation Schedules",
        "issues": [
         {
-         "id": "NEO-2233",
-         "title": "Bill worker: bounded retries, fair scheduling and per-instance concurr",
-         "status": "Done"
+         "id": "NEO-2089",
+         "title": "Support day-level starts and partial depreciation periods",
+         "status": "In Review"
         }
        ]
       },
@@ -386,6 +366,11 @@
          "id": "NEO-1738",
          "title": "Send confirmation email to customer after confirming Gmail forwarding",
          "status": "In Progress"
+        },
+        {
+         "id": "NEO-2274",
+         "title": "Support manual bill failure handling from the mobile app on iPhone",
+         "status": "Done"
         }
        ]
       }
@@ -435,9 +420,19 @@
        "name": "Neno MCP",
        "issues": [
         {
-         "id": "NEO-2191",
-         "title": "C1: Per-call MCP traces with client identity and OpenTelemetry spans",
-         "status": "Todo"
+         "id": "NEO-2294",
+         "title": "Return complete operational lists by default, with pagination for over",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-2295",
+         "title": "get_invoice_summary answers ten when there are thirty-nine",
+         "status": "In Progress"
+        },
+        {
+         "id": "NEO-2291",
+         "title": "upload_bill takes the document inline, so the client shrinks the bill ",
+         "status": "In Progress"
         },
         {
          "id": "NEO-2190",
@@ -445,13 +440,23 @@
          "status": "Todo"
         },
         {
-         "id": "NEO-2189",
-         "title": "A2: MCP adapter over the agent registry and the tools for three use ca",
+         "id": "NEO-2191",
+         "title": "C1: Per-call MCP traces with client identity and OpenTelemetry spans",
          "status": "Done"
         },
         {
-         "id": "NEO-2243",
-         "title": "A3: Magic-link login does not return the user to the OAuth consent pag",
+         "id": "NEO-2293",
+         "title": "list_open_tasks does not say what a task is about",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-2283",
+         "title": "A7: The four MCP tools A2 deferred, without which two of the three use",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-2282",
+         "title": "A8: Row scoping on the MCP surface hides company data from the user MC",
          "status": "Done"
         }
        ]
@@ -468,11 +473,6 @@
          "id": "NEO-1798",
          "title": "Line VAT rate is 39% because extraction returns nothing, not because i",
          "status": "In Progress"
-        },
-        {
-         "id": "NEO-1905",
-         "title": "Render banking feature components from fixtures, so a design round is ",
-         "status": "Done"
         }
        ]
       },
@@ -528,7 +528,7 @@
        "issues": [
         {
          "id": "NEO-2228",
-         "title": "Payroll runs: show \"posted externally\" and let an operator link an Exa",
+         "title": "Payroll runs: show \"posted externally\" and let an operator link a matc",
          "status": "In Progress"
         }
        ]

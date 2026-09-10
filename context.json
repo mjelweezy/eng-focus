@@ -1,19 +1,19 @@
 {
- "generated_at": "2026-09-09T06:17:15Z",
+ "generated_at": "2026-09-10T07:16:53Z",
  "lookback_days": 14,
  "initiatives": {
   "0f26a21f-cd9b-47e4-9678-a3c5107a1fa0": {
    "title": "Source of truth for all bookkeeping data",
    "health": "On track",
    "target_date": null,
-   "exec_summary": "Payroll is the only committed item and it moved: the Numbrs integration is now described externally as live, and Adam is building the 'posted externally' state so an operator can link a run to its matching Exact entry. Everything else on the card is still a 'later' text item with no Linear project. The centre of gravity this fortnight was the API/MCP surface rather than first-party connectors: MCP goes to beta in about two weeks, AP-first, with reporting JSON close behind, and WeFact API v2 is the interim bridge for customers who want invoicing automation now. Stripe is named as the next integration but is not yet available through open banking, and its absence is a live commercial blocker.",
+   "exec_summary": "Payroll is still the only committed item and it has not moved further: the Numbrs integration is described externally as live, and Adam's NEO-2228 ('posted externally' plus an operator link to the matching Exact entry) remains In Progress. Everything else on the card is a 'later' text item with no Linear project. The week's real integration work was the Neno MCP surface, which closed its entire A-series on 9 September - OAuth grants, row scoping, the four deferred tools, task context and per-call tracing - and moved straight into response-shape fixes. That surface is how customers are being told to connect systems in place of first-party connectors, and it still sits on a Linear project attached to no initiative. Stripe remains named as next and still unavailable through open banking.",
    "whats_changed": [
-    "Numbrs payroll described as live and signpostable on the website; NEO-2228 (show a run as 'posted externally' and link the matching Exact entry) In Progress with Adam.",
-    "Stripe confirmed as the next integration on the roadmap; still not available via open banking, interim access is a view-only weekly export for accountants.",
-    "WeFact positioned as the immediate bridge - WeFact API v2 can trigger invoices and submit expenses from n8n; docs to go to Nebor.",
-    "MCP beta expected in roughly two weeks (unmatched transactions, bills, tasks, document submission), with balance-sheet and P&L reporting JSON within a couple of weeks.",
-    "PEPPOL direct debit described to customers as 'coming soon'; no build decision recorded.",
-    "Shopify and Shopify Payments were not discussed at all in the window."
+    "Neno MCP closed its A-series on 9 Sep: NEO-2282 (row scoping), NEO-2283 (the four deferred tools), NEO-2293 (task context in list_open_tasks) and NEO-2191 (per-call traces with client identity and OpenTelemetry spans) all completed.",
+    "MCP work moved on to response shape: NEO-2291 (inline document upload forcing clients to shrink the bill), NEO-2294 (complete lists by default with pagination) and NEO-2295 (invoice-summary undercounting) all In Progress with Art.",
+    "Numbrs payroll unchanged since 8 Sep: described as live and signpostable; NEO-2228 still In Progress with Adam.",
+    "Stripe still the named next integration, still not available via open banking; interim access remains a view-only weekly export.",
+    "WeFact API v2 remains the interim bridge for customers wanting invoicing automation now; docs still to go to Nebor.",
+    "PEPPOL, Shopify, Shopify Payments and Neno invoicing improvements: no movement and no discussion in the window."
    ],
    "notes": [],
    "risks": [
@@ -153,6 +153,11 @@
      "text": "Shopify and Shopify Payments were not discussed in any meeting in the window and remain undiscussed 'later' items.",
      "date": "2026-09-09",
      "source": "run review, 2026-09-09"
+    },
+    {
+     "text": "The Neno MCP A-series closed out in a single day - NEO-2282 (row scoping), NEO-2283 (the four deferred tools), NEO-2293 (task context in list_open_tasks) and NEO-2191 (per-call traces with client identity and OpenTelemetry spans) all completed 9 Sep - and the work moved straight into response-shape fixes (NEO-2291 inline document upload, NEO-2294 list completeness with pagination, NEO-2295 invoice-summary counts). This is the integration surface the board's 'later' items are being answered by, and it is still on a Linear project attached to no initiative.",
+     "date": "2026-09-10",
+     "source": "Linear, 9 Sep 2026"
     }
    ],
    "open_questions": [
@@ -274,20 +279,20 @@
      "url": "https://linear.app/nenotechnology/initiative/source-of-truth-for-all-bookkeeping-data-b8e639c8bc40"
     }
    ],
-   "sources_note": "Linear (issues, projects, status updates) and Granola. Slack was not readable this run - the search tool was declined during the unattended scheduled run - so any #accounting-mvp / #tech-team material from 26 Aug to 9 Sep is missing from this refresh."
+   "sources_note": "Linear (issues, projects, status updates) and Granola. Slack was not readable this run - the search tool was declined during the unattended scheduled run - so any #accounting-mvp / #tech-team material from 27 Aug to 10 Sep is missing from this refresh."
   },
   "b508d2b3-f876-4068-beec-e3c9899dd8c4": {
    "title": "Source of truth for all bookkeeping activity",
    "health": "At risk",
    "target_date": null,
-   "exec_summary": "The substantive movement this fortnight was the 4 September accountant review UI discovery session, which fixed the compliance-view scope at trial balance, balance sheet, income statement and GL detail, with drill-down through accounts to transactions and source documents. Against that, the initiative's own Linear projects remain almost entirely dormant: four of them are Canceled, End-to-end AR reconciliation carries one in-progress spike, and every piece of live bookkeeping work - fixed assets, bill review, transaction matching, credit notes - is running on projects attached to no tracked initiative. The board and Linear have now disagreed for three consecutive runs.",
+   "exec_summary": "The 9 September Matthew / Euge session added the accountant-side bookkeeping detail behind the 4 September review-UI scope: GL-account assignment and VAT confirmation happen independently of payment, neither blocks it, and the match is auto-booked once payment is made. Task handling was named as needing a redesign so customers can raise bookkeeping tasks and accountants can answer them. Against that, the initiative's own Linear projects remain dormant - four Canceled, one in-progress spike on End-to-end AR reconciliation - and the live depreciation work moved again on Ihor's untracked Fixed Assets project rather than on the tracked, Canceled 'Depreciation schedules'. The board and Linear have now disagreed for four consecutive runs.",
    "whats_changed": [
-    "Accountant review UI scope settled (4 Sep): trial balance, balance sheet, income statement, GL detail; hierarchy GL detail -> trial balance -> balance sheet / income statement; paper-like clarity over stylisation.",
-    "Reporting and adjustments removed from the Q3/Q4 roadmap deck and reserved for the Haga hack sprint.",
-    "End-to-end AR described as working end to end (reconciliation, VAT coding, ledger, Exact export), pending accounting-team verification in Exact.",
-    "Accruals confirmed as still manual; two possible assists discussed, neither committed.",
-    "Ihor's untracked Fixed Assets & Depreciation Schedules project consolidated 11 milestones into six - register foundation and safe Exact posting complete, bill-to-asset workflow 81% - and stays At Risk.",
-    "No new credit-note or related-party discussion appeared in the window."
+    "Accountant flow settled (9 Sep): GL accounts are assigned and VAT confirmed independently of payment, neither blocks it, and the match auto-books after payment.",
+    "Task handling flagged for redesign so customers can raise bookkeeping tasks and accountants can see and reply to them.",
+    "Depreciation moved again off the tracked project: NEO-2089 (day-level starts and partial depreciation periods, Ihor) is In Review on the untracked Fixed Assets & Depreciation Schedules project.",
+    "End-to-end AR reconciliation unchanged - still only NEO-1560, Joel's exploratory frontend spike.",
+    "No new credit-note, accrual or related-party activity in the window.",
+    "The four Canceled tracked projects (Depreciation schedules, Credit note processing, Related-parties register, Accruals) are unchanged and still carried as committed items on the board."
    ],
    "notes": [
     {
@@ -363,7 +368,7 @@
      "name": "Depreciation schedules",
      "status": "Canceled",
      "owner": null,
-     "summary": "Canceled in Linear on 20 Aug; all live depreciation work runs on the untracked Fixed Assets & Depreciation Schedules project.",
+     "summary": "Canceled in Linear on 20 Aug; all live depreciation work runs on the untracked Fixed Assets & Depreciation Schedules project, where NEO-2089 (day-level starts, partial periods) went to In Review on 9 Sep.",
      "blockers": [
       "Board still carries this as a committed item"
      ]
@@ -567,6 +572,16 @@
      "text": "Ihor's untracked 'Fixed Assets & Depreciation Schedules' project consolidated 11 milestones into six: the asset-register foundation and safe Exact posting stages are complete, the bill-to-asset workflow is 81% done with NEO-2025 the remaining approval-enforcement gap, and migration readiness plus accounting parity is the next gate. The project remains At Risk.",
      "date": "2026-09-09",
      "source": "Linear project updates, Fixed Assets & Depreciation Schedules, 31 Aug 2026"
+    },
+    {
+     "text": "Andres's accountant flow assigns GL accounts and confirms VAT independently of payment - neither blocks the payment - and the system auto-books the match once payment has been made.",
+     "date": "2026-09-10",
+     "source": "Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026"
+    },
+    {
+     "text": "Depreciation work continues entirely off the tracked (Canceled) 'Depreciation schedules' project: NEO-2089 (day-level starts and partial depreciation periods, Ihor) moved to In Review on the untracked 'Fixed Assets & Depreciation Schedules' project.",
+     "date": "2026-09-10",
+     "source": "Linear NEO-2089, 9 Sep 2026"
     }
    ],
    "open_questions": [
@@ -649,6 +664,10 @@
     {
      "text": "Credit-note direction is now split three ways - the tracked 'Credit note processing (AR & AP)' project is Canceled, the 27 Aug ticket went to the untracked Bookkeeping Improvements project, and no new credit-note discussion appeared in the window. Which surface owns it?",
      "owner": "Matthew"
+    },
+    {
+     "text": "Task handling needs redesigning so customers can raise bookkeeping tasks themselves and accountants can see and reply to them in one place.",
+     "owner": "Eugenia"
     }
    ],
    "next_steps": [
@@ -725,6 +744,11 @@
    ],
    "meetings": [
     {
+     "title": "Matthew / Euge: Coolest meeting of the week",
+     "date": "2026-09-09",
+     "summary": "Accountant flow for GL assignment and VAT confirmation; task-handling redesign; partial payments still undesigned."
+    },
+    {
      "title": "Accountant Review UIs: Discovery Session",
      "date": "2026-09-04",
      "summary": "Scope and requirements for trial balance, balance sheet, income statement and GL detail; accruals and fixed assets discussed."
@@ -741,21 +765,21 @@
      "url": "https://linear.app/nenotechnology/initiative/source-of-truth-for-all-bookkeeping-activity-5bc71f1a5359"
     }
    ],
-   "sources_note": "Linear (issues, projects, status updates) and Granola. Slack was not readable this run - the search tool was declined during the unattended scheduled run - so any #accounting-mvp / #tech-team material from 26 Aug to 9 Sep is missing from this refresh."
+   "sources_note": "Linear (issues, projects, status updates) and Granola. Slack was not readable this run - the search tool was declined during the unattended scheduled run - so any #accounting-mvp / #tech-team material from 27 Aug to 10 Sep is missing from this refresh."
   },
   "e78d13c9-27d8-494e-9c3b-8a264412e471": {
    "title": "Make accountants more efficient during onboarding and customer collaboration",
    "health": "On track",
    "target_date": null,
-   "exec_summary": "This was the initiative's strongest fortnight. The 4 September discovery session produced a concrete requirement set for the accountant review surface - trial balance, balance sheet and P&L with comparatives, flexible periods, classifications, CSV export and drill-down to source documents - and the Q3/Q4 planning session committed two adjacent pieces of scope: a mobile companion app by end of Q3 (tasks, transactions, bill upload only) and expense management V1 built around paying unpaid bills from neno. Dima is carrying most of the delivery. The two remaining board text items, structured profiles and the persistent homepage, had no recorded movement in the window.",
+   "exec_summary": "A second strong week. The 9 September Matthew / Euge session narrowed the accountant review surface from the 4 September requirement set to a firm MVP: exactly four screens - trial balance, P&L, balance sheet and GL detail - modelled on QuickBooks, with month-on-month comparison, better export and account creation from the screen as the priorities, and forecasting, anomaly detection and founder dashboards explicitly out. Adjacent decisions landed on cost centres defaulting from the uploader's profile and on moving chart-of-accounts management out of Exact and into neno once the four screens exist. Validation is now scheduled: a card sort with Atlas accountants plus neno app user testing from the end of the week of 14 September. Structured profiles and the persistent homepage still show no movement.",
    "whats_changed": [
-    "Accountant review UI requirements captured in detail on 4 Sep (columns, ordering, comparatives, CSV export, drill-down to transactions and source documents).",
-    "Compliance views positioned as the foundation for forecasting; forecasting stays separate and spreadsheet-based.",
-    "Task UI direction agreed for both the customer-facing and accountant-facing screens.",
-    "Mobile companion app committed for end of Q3 - tasks, transaction view and bill upload only; Dima shipped the Bills & Expenses parity page and PostHog RN SDK.",
-    "Expense management V1 committed: pay unpaid bills from neno, extraction-feedback UI and payment flows first.",
-    "Design and project documentation to be centralised in Linear as the source of truth.",
-    "No movement recorded on structured profiles for services customers or the persistent homepage."
+    "Accountant review MVP fixed at four screens - trial balance, P&L, balance sheet, GL detail - with QuickBooks as the reference; forecasting, anomaly detection and founder dashboards ruled out of MVP.",
+    "Priorities within those screens named: month-on-month comparison, improved export, and creating an account from the screen.",
+    "Cost centres to default from the uploader's profile, with admins assigning them on the Teams page and overrides monitored.",
+    "Chart-of-accounts management to move out of Exact into neno once the four review screens are built.",
+    "Validation scheduled: card sort with Atlas accountants and neno app user testing from the end of the week of 14 Sep; screen content to be checked with Chani and DP.",
+    "Custom reporting for Neno customers unchanged in Linear - still Backlog, still NEO-1895 as the only in-progress issue.",
+    "Structured profiles for services customers and the persistent homepage again recorded no movement."
    ],
    "notes": [],
    "risks": [
@@ -777,7 +801,7 @@
      "name": "Custom reporting for Neno customers",
      "status": "Backlog",
      "owner": "Dima",
-     "summary": "Custom per-customer financial reports. NEO-1895 (indigo pie palette, denser PDF typography) in progress; the 4 Sep session adds the trial balance / balance sheet / P&L requirement set.",
+     "summary": "Custom per-customer financial reports. NEO-1895 (indigo pie palette, denser PDF typography) in progress; the 4 and 9 Sep sessions fix the MVP at four screens - trial balance, P&L, balance sheet and GL detail.",
      "blockers": [
       "Reporting header treatment ('Powered by Neno') still not signed off by Nick"
      ]
@@ -928,6 +952,26 @@
      "text": "Expense management V1 committed: pay unpaid bills from neno, with the extraction-feedback UI and payment flows built first. Approval flows, full reimbursements and cost centres are later or separate work, and line items plus likely GL-account proposals are excluded from the first extraction-feedback pass.",
      "date": "2026-09-09",
      "source": "Granola - Product roadmap + planning Q3 & Q4, 3 Sep 2026"
+    },
+    {
+     "text": "Accountant review UI MVP is fixed at four screens - trial balance, P&L, balance sheet and GL detail - with QuickBooks as the UI reference. Month-on-month comparison, improved export and creating an account from the screen are the priorities; forecasting, anomaly detection and founder dashboards are out of MVP, and screen content is to be validated with Chani and DP.",
+     "date": "2026-09-10",
+     "source": "Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026"
+    },
+    {
+     "text": "Cost centres default from the uploader's profile, admins assign them on the Teams page, and overrides are monitored.",
+     "date": "2026-09-10",
+     "source": "Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026"
+    },
+    {
+     "text": "A card sort with Atlas accountants starts at the end of the week commencing 14 Sep, alongside neno app user testing.",
+     "date": "2026-09-10",
+     "source": "Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026"
+    },
+    {
+     "text": "Chart-of-accounts management, which lives in Exact today, moves into neno after the four accountant review screens are built.",
+     "date": "2026-09-10",
+     "source": "Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026"
     }
    ],
    "open_questions": [
@@ -978,6 +1022,18 @@
     {
      "text": "'Structured profiles for services customers' likewise had no recorded movement in the window and still has no Linear project.",
      "owner": "Matthew"
+    },
+    {
+     "text": "Is a GL account always proposed on a bill line? If not, the review UI needs a \"no recommendation yet\" state and an explanation of why.",
+     "owner": "Matthew/Art"
+    },
+    {
+     "text": "What is the purpose of Ashley's pre-approval review step, and should confident extraction auto-advance past it?",
+     "owner": "Eugenia"
+    },
+    {
+     "text": "Partial-payment handling is undesigned and needs a real invoice example before design starts.",
+     "owner": "Eugenia"
     }
    ],
    "next_steps": [
@@ -1060,9 +1116,24 @@
      "text": "Prepare app-store assets for the mobile companion app, give Coen a production-only demo sandbox, and schedule a stakeholder session on trust/automation messaging.",
      "owner": "Matthew/Coen",
      "due": "2026-09-09"
+    },
+    {
+     "text": "Euge to ask Ashley about the review step, update the prototype, task screen, Teams cost centres and transaction side panel, find a partial-payment example, and start the Atlas card sorting.",
+     "owner": "Eugenia",
+     "due": "2026-09-10"
+    },
+    {
+     "text": "Matthew to check with Art on GL-account recommendations and loop Jeroen into the glass-effect implementation plan.",
+     "owner": "Matthew",
+     "due": "2026-09-10"
     }
    ],
    "meetings": [
+    {
+     "title": "Matthew / Euge: Coolest meeting of the week",
+     "date": "2026-09-09",
+     "summary": "Accountant review MVP narrowed to four screens; cost centres on the Teams page; chart of accounts to move into neno; card sort scheduled."
+    },
     {
      "title": "Accountant Review UIs: Discovery Session",
      "date": "2026-09-04",
@@ -1085,20 +1156,20 @@
      "url": "https://linear.app/nenotechnology/initiative/make-accountants-more-efficient-during-onboarding-and-customer-d0aa599c2497"
     }
    ],
-   "sources_note": "Linear (issues, projects, status updates) and Granola. Slack was not readable this run - the search tool was declined during the unattended scheduled run - so any #accounting-mvp / #tech-team material from 26 Aug to 9 Sep is missing from this refresh."
+   "sources_note": "Linear (issues, projects, status updates) and Granola. Slack was not readable this run - the search tool was declined during the unattended scheduled run - so any #accounting-mvp / #tech-team material from 27 Aug to 10 Sep is missing from this refresh."
   },
   "fef38f90-b82c-4c47-b377-6dcb9b1a3020": {
    "title": "Enable accountants to complete VAT submissions via double-entry GL",
    "health": "At risk",
    "target_date": "2026-09-30",
-   "exec_summary": "The initiative's headline goal changed this fortnight: VAT submission from neno was dropped as a Q3 company goal at the 3 September roadmap session, while the board card still carries a 30 September target for filing Q3 VAT for five customers. September's focus is now generalising the ledger so more than one customer can run on it, with Phoenix Labs the next target and Aerosilicon already onboarded directly to neno. Manual journal entries are deprioritised behind ledger views. Three named gaps block generalisation - static account mapping, inconsistent invoice-date use, and actions that may not emit correctly to Exact - and the gap-analysis document has not been shared yet. The Ocean Ionics backfill-versus-Exact fork remains undecided.",
+   "exec_summary": "No new ledger session this week, so the position from 8-9 September stands: VAT submission from neno was dropped as a Q3 company goal while the board card still carries a 30 September target for filing Q3 VAT for five customers, and September's focus is generalising the ledger so more than one customer can run on it. Phoenix Labs is the next target and Aerosilicon is already onboarded directly to neno. The one addition this run is sequencing: chart-of-accounts management, held in Exact today, moves into neno only after the four accountant review screens exist - putting the ledger's own account management behind the review surface. The three named generalisation gaps are unchanged and the gap-analysis document is still unshared.",
    "whats_changed": [
-    "VAT submission from neno dropped as a Q3 company goal (3 Sep roadmap session) - the board card and its 30 Sep target now disagree with the roadmap.",
-    "September focus shifted to generalising the ledger for multiple accounts and customers, targeting more than one customer on it by quarter-end.",
-    "Phoenix Labs named as the next ledger customer; Aerosilicon already onboarded directly to neno, the first not routed via Exact.",
-    "Manual journal entries deprioritised; sequence flipped to ledger views first. NEO-2263 (spike settling the ten open decisions) completed 8 Sep on the untracked Manual Journal Entries project.",
-    "Multi-currency confirmed: write and report in EUR with FX conversion, currencies kept separate while the USD account is active.",
-    "NEO-2221 (ledger knowledgebase as truth conditions and invariants) and NEO-2178 (ledger events scheduler hardening) completed on Close out the ledger's first production run."
+    "Chart-of-accounts management, in Exact today, is to move into neno once the four accountant review screens (trial balance, P&L, balance sheet, GL detail) are built.",
+    "No new ledger or manual-journal session in the window; the 8 Sep generalisation plan is unchanged.",
+    "VAT submission from neno remains dropped as a Q3 company goal while the board card keeps its 30 Sep target - the disagreement is now a week old.",
+    "Both projects unchanged in Linear: Start writing to neno's double-entry GL and Close out the ledger's first production run are both In Progress under Mark, with no issue movement in the last 36 hours.",
+    "'Close out the ledger's first production run' is still not placed on the board and remains the only needs-triage item.",
+    "The ledger gap-analysis document has still not been shared."
    ],
    "notes": [
     {
@@ -1570,6 +1641,11 @@
      "text": "NEO-2221 ('Ledger knowledgebase states the source-of-truth plan as truth conditions and invariants', Mark) completed 8 Sep on 'Close out the ledger's first production run'; NEO-2178 (ledger events scheduler hardening) completed 7 Sep on the same project.",
      "date": "2026-09-09",
      "source": "Linear NEO-2221/NEO-2178, 7-8 Sep 2026"
+    },
+    {
+     "text": "Chart-of-accounts management, held in Exact today, is to move into neno once the four accountant review screens (trial balance, P&L, balance sheet, GL detail) are built - sequencing the ledger's own account management behind the review surface.",
+     "date": "2026-09-10",
+     "source": "Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026"
     }
    ],
    "open_questions": [
@@ -1860,6 +1936,11 @@
    ],
    "meetings": [
     {
+     "title": "Matthew / Euge: Coolest meeting of the week",
+     "date": "2026-09-09",
+     "summary": "Chart-of-accounts management to move from Exact into neno after the four accountant review screens are built."
+    },
+    {
      "title": "Manual journal entries",
      "date": "2026-09-08",
      "summary": "Ledger generalisation ahead of manual entries; Phoenix Labs as the next customer; ledger gaps and the truth-conditions review."
@@ -1886,18 +1967,19 @@
      "url": "https://linear.app/nenotechnology/initiative/enable-accountants-to-complete-vat-submissions-using-neno-double-entry-089e47b575e8"
     }
    ],
-   "sources_note": "Linear (issues, projects, status updates) and Granola. Slack was not readable this run - the search tool was declined during the unattended scheduled run - so any #accounting-mvp / #tech-team material from 26 Aug to 9 Sep is missing from this refresh."
+   "sources_note": "Linear (issues, projects, status updates) and Granola. Slack was not readable this run - the search tool was declined during the unattended scheduled run - so any #accounting-mvp / #tech-team material from 27 Aug to 10 Sep is missing from this refresh."
   },
   "cb65425b-cc3d-4f8a-8164-5849f594d708": {
    "title": "Build data by onboarding 5 additional customers",
    "health": "On track",
    "target_date": null,
-   "exec_summary": "Hidden from the board but still synced. The initiative is effectively finished as scoped: four of its five Linear projects are now terminal, leaving only the external-bank-account connection work in progress under Dima. New-customer onboarding has moved into the ledger-generalisation programme - Aerosilicon is live directly on neno, Phoenix Labs is the next ledger target, and Nebor is unlikely to switch before October. Worth a decision on whether to close or re-scope this initiative.",
+   "exec_summary": "Hidden from the board but still synced, and unchanged this run. The initiative is effectively finished as scoped: four of its five Linear projects are terminal, leaving only the external-bank-account connection work in progress under Dima. New-customer onboarding has moved into the ledger-generalisation programme - Aerosilicon is live directly on neno, Phoenix Labs is the next ledger target, and Nebor is unlikely to switch before October. The decision on whether to close or re-scope this initiative is still open.",
    "whats_changed": [
-    "Aerosilicon onboarded directly to neno - the first customer not routed via Exact first.",
-    "Phoenix Labs named as the next ledger customer; the aim is Phoenix plus a handful more, potentially four in total, by quarter-end.",
-    "Nebor discussed onboarding but is unlikely to switch before Q3 ends; October is the realistic start, gated on the invoicing MCP/API.",
-    "Four of five Linear projects under this initiative are now Completed or Canceled."
+    "No new material in the window; the 8-9 Sep position stands.",
+    "Aerosilicon remains the first customer onboarded directly to neno rather than via Exact.",
+    "Phoenix Labs remains the next ledger customer, with a handful more - potentially four in total - targeted by quarter-end.",
+    "Nebor still unlikely to switch before Q3 ends; October is the realistic start, gated on the invoicing MCP/API.",
+    "Four of five Linear projects under this initiative remain Completed or Canceled."
    ],
    "notes": [
     {
@@ -2608,7 +2690,7 @@
      "url": "https://linear.app/nenotechnology/initiative/build-data-by-onboarding-5-additional-customers-on-neno-16777b88b5d7"
     }
    ],
-   "sources_note": "Linear (issues, projects, status updates) and Granola. Slack was not readable this run - the search tool was declined during the unattended scheduled run - so any #accounting-mvp / #tech-team material from 26 Aug to 9 Sep is missing from this refresh."
+   "sources_note": "Linear (issues, projects, status updates) and Granola. Slack was not readable this run - the search tool was declined during the unattended scheduled run - so any #accounting-mvp / #tech-team material from 27 Aug to 10 Sep is missing from this refresh."
   }
  }
 }

@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping data
 _Initiative: 0f26a21f-cd9b-47e4-9678-a3c5107a1fa0 · maintained by the daily job + Matthew_
-_Last updated: 2026-09-09
+_Last updated: 2026-09-10
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the external
 > data integrations feeding neno's books: Numbrs, Stripe, Shopify, Shopify Payments, WeFact,
@@ -32,6 +32,7 @@ _Last updated: 2026-09-09
 - [2026-09-09] PEPPOL: direct debit through the Peppol e-invoicing network is described to customers as 'coming soon'; no build decision was recorded. (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026)
 - [2026-09-09] MCP goes to beta in roughly two weeks, initially AP-focused - unmatched transactions, bills, tasks and document submission - with reporting JSON for balance sheet and P&L expected within a couple of weeks. The API/MCP is the intended route for customers to connect systems such as WooCommerce and CRMs rather than waiting for first-party integrations. (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026; MCP, 2 Sep 2026)
 - [2026-09-09] Shopify and Shopify Payments were not discussed in any meeting in the window and remain undiscussed 'later' items. (source: run review, 2026-09-09)
+- [2026-09-10] The Neno MCP A-series closed out in a single day - NEO-2282 (row scoping), NEO-2283 (the four deferred tools), NEO-2293 (task context in list_open_tasks) and NEO-2191 (per-call traces with client identity and OpenTelemetry spans) all completed 9 Sep - and the work moved straight into response-shape fixes (NEO-2291 inline document upload, NEO-2294 list completeness with pagination, NEO-2295 invoice-summary counts). This is the integration surface the board's 'later' items are being answered by, and it is still on a Linear project attached to no initiative. (source: Linear, 9 Sep 2026)
 
 ## Open questions
 - [open] (carried forward) Payroll design not yet discussed — open design area for a future session. (project: Payroll (Numbrs integration))

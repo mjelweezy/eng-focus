@@ -1,6 +1,6 @@
 # Running context — Enable VAT submissions via double-entry GL
 _Initiative: fef38f90 · maintained by the daily job + Matthew_
-_Last updated: 2026-09-09
+_Last updated: 2026-09-10
 
 ## Decisions
 - [2026-06-22] Insert-only ledger architecture with reversals — no direct edits to journal entries; corrections reverse and rebook. (source: Granola — Next Steps AGL with Mark)
@@ -89,6 +89,7 @@ _Last updated: 2026-09-09
 - [2026-09-09] Manual journal entries are deprioritised until ledger generalisation is done, and the sequence is flipped: build the ledger views first, then manual entries, so entries can be inspected as they are created. NEO-2263 ('Spike: settle the ten open decisions before manual journal entries are built') completed 8 Sep on the untracked 'Manual Journal Entries' project (9b5e2891). (source: Granola - Manual journal entries, 8 Sep 2026; Linear NEO-2263)
 - [2026-09-09] Multi-currency confirmed as previously proposed: ledger entries are written and reported in EUR with FX conversion applied, and currencies stay separated while the USD account is active. (source: Granola - Multi-Currency in Exact, 26 Aug 2026; Product Planning, 2 Sep 2026)
 - [2026-09-09] NEO-2221 ('Ledger knowledgebase states the source-of-truth plan as truth conditions and invariants', Mark) completed 8 Sep on 'Close out the ledger's first production run'; NEO-2178 (ledger events scheduler hardening) completed 7 Sep on the same project. (source: Linear NEO-2221/NEO-2178, 7-8 Sep 2026)
+- [2026-09-10] Chart-of-accounts management, held in Exact today, is to move into neno once the four accountant review screens (trial balance, P&L, balance sheet, GL detail) are built - sequencing the ledger's own account management behind the review surface. (source: Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026)
 
 ## Open questions
 - [open] Belgium gapless-ledger requirement — does it constrain day-to-day ledger architecture or only closed-period exports/reporting? Not resolved in the 23 Jun session. (source: Granola — DP session)

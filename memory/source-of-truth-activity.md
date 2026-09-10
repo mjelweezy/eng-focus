@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping activity
 _Initiative: b508d2b3-f876-4068-beec-e3c9899dd8c4 · maintained by the daily job + Matthew_
-_Last updated: 2026-09-09
+_Last updated: 2026-09-10
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the
 > accountant-performed bookkeeping actions: AR reconciliation, credit notes, accruals,
@@ -48,6 +48,8 @@ _Last updated: 2026-09-09
 - [2026-09-09] End-to-end AR - reconciliation, VAT coding, ledger and Exact export - is described as working, pending accounting-team verification in Exact. The only live issue on the project is Joel's NEO-1560 frontend spike. (project: End-to-end AR reconciliation) (source: Granola, week of 1 Sep 2026; Linear NEO-1560)
 - [2026-09-09] Accruals remain manual, tracked through accountant knowledge and external spreadsheets. Two assists were discussed and neither committed: suggesting an accrual for an unusual cost, and prompting a reversal when a cost arrives matching a prior accrual. (project: Accruals) (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
 - [2026-09-09] Ihor's untracked 'Fixed Assets & Depreciation Schedules' project consolidated 11 milestones into six: the asset-register foundation and safe Exact posting stages are complete, the bill-to-asset workflow is 81% done with NEO-2025 the remaining approval-enforcement gap, and migration readiness plus accounting parity is the next gate. The project remains At Risk. (source: Linear project updates, Fixed Assets & Depreciation Schedules, 31 Aug 2026)
+- [2026-09-10] Andres's accountant flow assigns GL accounts and confirms VAT independently of payment - neither blocks the payment - and the system auto-books the match once payment has been made. (source: Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026)
+- [2026-09-10] Depreciation work continues entirely off the tracked (Canceled) 'Depreciation schedules' project: NEO-2089 (day-level starts and partial depreciation periods, Ihor) moved to In Review on the untracked 'Fixed Assets & Depreciation Schedules' project. (source: Linear NEO-2089, 9 Sep 2026)
 
 ## Open questions
 - [open] (carried forward) Full reporting requirements list still being compiled by DP. (project: Financial reporting)
@@ -79,6 +81,7 @@ _Last updated: 2026-09-09
 - [open] How should neno determine whether an incoming bill is already paid or still unpaid? Today it is decided by hand by the accountant, and Phase 1 of the bills-and-expenses pay flow depends on the answer. (owner: Matthew) (source: Granola - Matthew / Frederique kick off expense management, 25 Aug 2026)
 - [open] Does the tracked, Canceled 'Depreciation schedules' card retire in favour of Ihor's untracked 'Fixed Assets & Depreciation Schedules', now that the latter has consolidated its milestones and holds all the live work? Carried from 28 Aug, still unanswered. (owner: Matthew) (source: Linear, 31 Aug 2026)
 - [open] Credit-note direction is now split three ways - the tracked 'Credit note processing (AR & AP)' project is Canceled, the 27 Aug ticket went to the untracked Bookkeeping Improvements project, and no new credit-note discussion appeared in the window. Which surface owns it? (owner: Matthew) (source: Granola/Linear review, 26 Aug - 9 Sep 2026)
+- [open] Task handling needs redesigning so customers can raise bookkeeping tasks themselves and accountants can see and reply to them in one place. (owner: Eugenia) (source: Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026)
 
 ## Risks
 - [med] (carried forward) Scope is broad and unsequenced; nothing staffed yet beyond AR reconciliation.
