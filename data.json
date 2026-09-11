@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-10T07:13:17.535Z",
+ "generated_at": "2026-09-11T04:06:03Z",
  "projects": {
   "2731244b-71c8-44d1-b6bf-ae9434135d05": {
    "status": "Backlog",
@@ -84,42 +84,12 @@
      "initiative": "__none__",
      "projects": [
       {
-       "name": "Bills & Expenses Page",
-       "issues": [
-        {
-         "id": "NEO-2276",
-         "title": "Customer bill panel: wrong supplier VAT number, empty Net, and the lan",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1958",
-         "title": "Update onboarding actions to reference and point to \"Bills & Expenses,",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-1957",
-         "title": "Move forwarding email banner from Vault to Bills & Expenses",
-         "status": "In Progress"
-        }
-       ]
-      },
-      {
        "name": "Bookkeeping Improvements",
        "issues": [
         {
-         "id": "NEO-2030",
-         "title": "Show customer response timestamps and open task files in bill review f",
+         "id": "NEO-2082",
+         "title": "A re-sent document never links its task file to the deduped bill",
          "status": "In Progress"
-        },
-        {
-         "id": "NEO-2032",
-         "title": "Add direct navigation from task detail to linked transaction or bill",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-2026",
-         "title": "Mark clarification tasks completed after replying or uploading documen",
-         "status": "Todo"
         },
         {
          "id": "NEO-2033",
@@ -127,9 +97,34 @@
          "status": "Todo"
         },
         {
-         "id": "NEO-2034",
-         "title": "Close open transaction tasks when Allocate to G/L books the transactio",
-         "status": "Todo"
+         "id": "NEO-2032",
+         "title": "Add direct navigation from task detail to linked transaction or bill",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-2030",
+         "title": "Show customer response timestamps and open task files in bill review f",
+         "status": "Done"
+        }
+       ]
+      },
+      {
+       "name": "Bills & Expenses Page",
+       "issues": [
+        {
+         "id": "NEO-2276",
+         "title": "Customer bill panel: wrong supplier VAT number, empty Net, and the lan",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1958",
+         "title": "Update onboarding actions to reference and point to \"Bills & Expenses,",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-1957",
+         "title": "Move forwarding email banner from Vault to Bills & Expenses",
+         "status": "Done"
         }
        ]
       },
@@ -139,7 +134,7 @@
         {
          "id": "NEO-2256",
          "title": "Create separate Apple & Google apps for sandbox deployment",
-         "status": "In Progress"
+         "status": "Done"
         }
        ]
       }
@@ -180,6 +175,16 @@
     {
      "initiative": "__none__",
      "projects": [
+      {
+       "name": "Generalize AGL for other simple AP-only clients",
+       "issues": [
+        {
+         "id": "NEO-2289",
+         "title": "Map Exact VAT codes to Neno VAT parameters at chart sync, and configur",
+         "status": "In Progress"
+        }
+       ]
+      },
       {
        "name": "BV Sequence 2: Flow Improvements",
        "issues": [
@@ -231,11 +236,6 @@
          "status": "In Review"
         },
         {
-         "id": "NEO-1705",
-         "title": "Pentest M2 (VLN13) - Two overlapping auth credentials; Swan session ou",
-         "status": "In Review"
-        },
-        {
          "id": "NEO-1703",
          "title": "Pentest H4 - No malware scanning on user-uploaded files",
          "status": "Todo"
@@ -244,6 +244,11 @@
          "id": "NEO-1313",
          "title": "Harden deploy-api-cloud-run env_vars path against YAML/sed injection",
          "status": "Todo"
+        },
+        {
+         "id": "NEO-1705",
+         "title": "Pentest M2 (VLN13) - Two overlapping auth credentials; Swan session ou",
+         "status": "Done"
         }
        ]
       }
@@ -268,26 +273,6 @@
      "initiative": "__none__",
      "projects": [
       {
-       "name": "Bas S.: Post-Incorporation UX improvements",
-       "issues": [
-        {
-         "id": "NEO-1009",
-         "title": "Banking onboarding not showing all bvs as options to open a bank accou",
-         "status": "Todo"
-        }
-       ]
-      },
-      {
-       "name": "Platform",
-       "issues": [
-        {
-         "id": "NEO-2236",
-         "title": "Replace Serverless VPC Access connectors with Direct VPC egress, keepi",
-         "status": "Done"
-        }
-       ]
-      },
-      {
        "name": "VAT Submission Tasks",
        "issues": [
         {
@@ -298,6 +283,31 @@
         {
          "id": "NEO-1778",
          "title": "M7.1a: Run a real quarter for Ocean Ionics",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "Platform",
+       "issues": [
+        {
+         "id": "NEO-2234",
+         "title": "CI runner pool: scale to zero, restore the documented ceiling, slim th",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-2287",
+         "title": "Delete legacy Serverless VPC Access connectors after Direct VPC egress",
+         "status": "Todo"
+        }
+       ]
+      },
+      {
+       "name": "Bas S.: Post-Incorporation UX improvements",
+       "issues": [
+        {
+         "id": "NEO-1009",
+         "title": "Banking onboarding not showing all bvs as options to open a bank accou",
          "status": "Todo"
         }
        ]
@@ -321,14 +331,19 @@
          "status": "In Progress"
         },
         {
+         "id": "NEO-1480",
+         "title": "WhatsApp agent-info emits a double-+ phone number and a non-canonical ",
+         "status": "In Progress"
+        },
+        {
          "id": "NEO-1408",
          "title": "Hide the terms-template dropdown on the quote builder (templates are i",
          "status": "In Review"
         },
         {
-         "id": "NEO-1480",
-         "title": "WhatsApp agent-info emits a double-+ phone number and a non-canonical ",
-         "status": "In Progress"
+         "id": "NEO-2309",
+         "title": "Three OAuth callback tests from NEO-1705 fail on every developer machi",
+         "status": "Done"
         }
        ]
       }
@@ -366,11 +381,6 @@
          "id": "NEO-1738",
          "title": "Send confirmation email to customer after confirming Gmail forwarding",
          "status": "In Progress"
-        },
-        {
-         "id": "NEO-2274",
-         "title": "Support manual bill failure handling from the mobile app on iPhone",
-         "status": "Done"
         }
        ]
       }
@@ -386,6 +396,66 @@
     {
      "initiative": "__none__",
      "projects": [
+      {
+       "name": "Smart Bill Review",
+       "issues": [
+        {
+         "id": "NEO-2278",
+         "title": "Bill extraction cleanup: comment density, duplication, dead code",
+         "status": "In Review"
+        },
+        {
+         "id": "NEO-1798",
+         "title": "Line VAT rate is 39% because extraction returns nothing, not because i",
+         "status": "In Progress"
+        }
+       ]
+      },
+      {
+       "name": "Unified Review Queue",
+       "issues": [
+        {
+         "id": "NEO-2148",
+         "title": "Make the review panel the single place a supplier is created or linked",
+         "status": "In Progress"
+        }
+       ]
+      },
+      {
+       "name": "Neno MCP",
+       "issues": [
+        {
+         "id": "NEO-2314",
+         "title": "A photo that fits the cap is forbidden from the one route that works",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-2190",
+         "title": "B1: Tool descriptions for weaker models plus a Sonnet-driven MCP eval ",
+         "status": "Todo"
+        },
+        {
+         "id": "NEO-2291",
+         "title": "upload_bill takes the document inline, so the client shrinks the bill ",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-2310",
+         "title": "The staged upload URL points at a host the first-party client cannot r",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-2294",
+         "title": "Return complete operational lists by default, with pagination for over",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-2295",
+         "title": "get_invoice_summary answers ten when there are thirty-nine",
+         "status": "Done"
+        }
+       ]
+      },
       {
        "name": "Bookkeeping Improvements",
        "issues": [
@@ -417,82 +487,17 @@
        ]
       },
       {
-       "name": "Neno MCP",
-       "issues": [
-        {
-         "id": "NEO-2294",
-         "title": "Return complete operational lists by default, with pagination for over",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-2295",
-         "title": "get_invoice_summary answers ten when there are thirty-nine",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-2291",
-         "title": "upload_bill takes the document inline, so the client shrinks the bill ",
-         "status": "In Progress"
-        },
-        {
-         "id": "NEO-2190",
-         "title": "B1: Tool descriptions for weaker models plus a Sonnet-driven MCP eval ",
-         "status": "Todo"
-        },
-        {
-         "id": "NEO-2191",
-         "title": "C1: Per-call MCP traces with client identity and OpenTelemetry spans",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-2293",
-         "title": "list_open_tasks does not say what a task is about",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-2283",
-         "title": "A7: The four MCP tools A2 deferred, without which two of the three use",
-         "status": "Done"
-        },
-        {
-         "id": "NEO-2282",
-         "title": "A8: Row scoping on the MCP surface hides company data from the user MC",
-         "status": "Done"
-        }
-       ]
-      },
-      {
-       "name": "Smart Bill Review",
-       "issues": [
-        {
-         "id": "NEO-2278",
-         "title": "Bill extraction cleanup: comment density, duplication, dead code",
-         "status": "In Review"
-        },
-        {
-         "id": "NEO-1798",
-         "title": "Line VAT rate is 39% because extraction returns nothing, not because i",
-         "status": "In Progress"
-        }
-       ]
-      },
-      {
-       "name": "Unified Review Queue",
-       "issues": [
-        {
-         "id": "NEO-2148",
-         "title": "Make the review panel the single place a supplier is created or linked",
-         "status": "In Progress"
-        }
-       ]
-      },
-      {
        "name": "__none__",
        "issues": [
         {
          "id": "NEO-1856",
          "title": "Add a merge queue for PRs to main",
          "status": "In Progress"
+        },
+        {
+         "id": "NEO-2312",
+         "title": "MCP OAuth tests fail on any machine whose .env predates the preview ke",
+         "status": "Done"
         }
        ]
       }
@@ -527,9 +532,14 @@
        "name": "Payroll (Numbrs integration)",
        "issues": [
         {
+         "id": "NEO-2315",
+         "title": "Payroll tab is empty for every client, and ignores what Exact already ",
+         "status": "Done"
+        },
+        {
          "id": "NEO-2228",
          "title": "Payroll runs: show \"posted externally\" and let an operator link a matc",
-         "status": "In Progress"
+         "status": "Done"
         }
        ]
       }
@@ -545,6 +555,21 @@
          "id": "NEO-2120",
          "title": "Bind parameters and generate row types for the metric queries behind P",
          "status": "In Review"
+        }
+       ]
+      },
+      {
+       "name": "__none__",
+       "issues": [
+        {
+         "id": "NEO-2311",
+         "title": "Drop the consent picker from Nmbrs assignment and list companies direc",
+         "status": "Done"
+        },
+        {
+         "id": "NEO-2308",
+         "title": "Cancelled browser requests reach Sentry as errors and page the escalat",
+         "status": "Done"
         }
        ]
       }

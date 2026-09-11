@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping activity
 _Initiative: b508d2b3-f876-4068-beec-e3c9899dd8c4 · maintained by the daily job + Matthew_
-_Last updated: 2026-09-10
+_Last updated: 2026-09-11
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the
 > accountant-performed bookkeeping actions: AR reconciliation, credit notes, accruals,
@@ -50,6 +50,7 @@ _Last updated: 2026-09-10
 - [2026-09-09] Ihor's untracked 'Fixed Assets & Depreciation Schedules' project consolidated 11 milestones into six: the asset-register foundation and safe Exact posting stages are complete, the bill-to-asset workflow is 81% done with NEO-2025 the remaining approval-enforcement gap, and migration readiness plus accounting parity is the next gate. The project remains At Risk. (source: Linear project updates, Fixed Assets & Depreciation Schedules, 31 Aug 2026)
 - [2026-09-10] Andres's accountant flow assigns GL accounts and confirms VAT independently of payment - neither blocks the payment - and the system auto-books the match once payment has been made. (source: Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026)
 - [2026-09-10] Depreciation work continues entirely off the tracked (Canceled) 'Depreciation schedules' project: NEO-2089 (day-level starts and partial depreciation periods, Ihor) moved to In Review on the untracked 'Fixed Assets & Depreciation Schedules' project. (source: Linear NEO-2089, 9 Sep 2026)
+- [2026-09-11] Clarify-link bill uploads now route into bill extraction, and an accountant task completes when the customer replies and reopens on a further reply. Dima shipped the routing fix for new submissions; historical Clarify documents still need backfilling. (source: Granola - Tasks Troubleshooting, 10 Sep 2026)
 
 ## Open questions
 - [open] (carried forward) Full reporting requirements list still being compiled by DP. (project: Financial reporting)
@@ -99,6 +100,7 @@ _Last updated: 2026-09-10
 - [high] (2026-08-28) Four of this initiative's Linear projects - Depreciation schedules, Credit note processing (AR & AP), Related-parties register and Accruals - are now Canceled in Linear, while the board still carries three of them as August commitments and the live work on the same subjects runs on untracked projects (Fixed Assets & Depreciation Schedules, Bookkeeping Improvements). The board and Linear now disagree about what is committed. (source: Linear, 20-27 Aug 2026)
 - [med] (2026-08-28) Ihor's 27 Aug update moved Fixed Assets & Depreciation Schedules to At risk. Read-only research across 97 visible Exact administrations found seven native assets in four of them and five gaps before scheduled projection can be activated: Exact uses class-specific mappings for historical cost, accumulated depreciation and depreciation expense; native depreciation entries were dated month-end and used journal 95 rather than the generic memorial journal 90; existing schedules included opening depreciation and a partial first period; current registration cannot import an asset without a neno bill line; and there is no cutover or reconciliation control preventing overlapping Exact and neno depreciation. A new Milestone 11 tracks that work before NEO-2011 can activate. (source: Linear project update, Fixed Assets & Depreciation Schedules, 27 Aug 2026)
 - [high] (2026-09-09) Nothing moved on this initiative's own Linear projects this run. Four are Canceled, End-to-end AR reconciliation carries a single in-progress spike, and all the live bookkeeping-activity work is again on untracked projects - Smart Bill Review, Unified Review Queue, Bookkeeping Improvements, Transaction Matching and Fixed Assets & Depreciation Schedules. The board's committed items and Linear have now disagreed for three consecutive weeks. (source: Linear issue activity, 26 Aug - 9 Sep 2026)
+- [med] The task-review surface carries a cluster of UX defects found on 10 Sep and not yet ticketed: multi-bill comparison layout, supplier-name mismatch, unreliable search, filters that do not persist, scroll reset after approval, the latest customer reply not shown, and an unnecessary interim "Open Transaction" dialog. (source: Granola - Tasks Troubleshooting, 10 Sep 2026)
 
 ## Next steps
 - [carried forward] DP to compile the full reporting requirements list. (owner: DP, ASAP) (project: Financial reporting)
@@ -116,6 +118,9 @@ _Last updated: 2026-09-10
 - [2026-08-30] Confirm whether the four Canceled Linear projects (Depreciation schedules, Credit note processing, Related-parties register, Accruals) are a deliberate de-scope; the board still carries three of them as August commitments. Carried from 28 Aug, still open. (owner: Matthew) (source: Linear, 20-25 Aug 2026)
 - [2026-09-09] Start the trial-balance and balance-sheet UI designs; continue discovery with Chani on her return. (owner: Design/Matthew) (source: Granola - Accountant Review UIs: Discovery Session, 4 Sep 2026)
 - [2026-09-09] Resolve the four Canceled tracked projects against the board for the third run running - either reopen them or retire the cards. (owner: Matthew) (source: Linear, 20 Aug - 9 Sep 2026)
+- [2026-09-11] Matthew to raise tickets for the task and bill-review UX bugs found in the 10 Sep session, and file a ticket to backfill historical Clarify documents into bill extraction. (owner: Matthew) (source: Granola - Tasks Troubleshooting, 10 Sep 2026)
+- [2026-09-11] Andries to investigate the EUR 46.28 July transaction left over from the session; two Amazon bills (EUR 74 and EUR 7.71) were matched to a single EUR 81.71 payment, and the old July tasks already allocated to GL were closed by hand. (owner: Andries) (source: Granola - Tasks Troubleshooting, 10 Sep 2026)
+- [2026-09-11] Sync Ocean Ionics into the preview environment and then reconvene to walk the full task list - task-review testing is blocked without it. No owner was named in the notes. (source: Granola - Daily stand up, 10 Sep 2026)
 
 ## Projects (filed in Linear)
 - [2026-07-30] Attached to this new initiative: Financial reporting, Credit note processing (AR & AP), Related-parties register, Depreciation schedules, Accruals, Native team features & permissions, Customer project creation & management, Bookkeeping bug-fixes, End-to-end AR reconciliation. New backlog items from the Q3 roadmap deck not yet filed as Linear projects: Investment & loan booking, Corrections/memorandums, Inter-company payments, Backfill bookings to AGL, Opening balances for AGL.

@@ -1,6 +1,6 @@
 # Running context — Centralise customer data
 _Initiative: e78d13c9-27d8-494e-9c3b-8a264412e471 · maintained by the daily job + Matthew_
-_Last updated: 2026-09-10
+_Last updated: 2026-09-11
 
 > New initiative created 30 Jul 2026 from the Q3 roadmap deck's "Centralise the data" goal: one
 > system for every customer's data. Covers basic reporting, structured profiles for services
@@ -43,6 +43,7 @@ _Last updated: 2026-09-10
 - [2026-09-10] Cost centres default from the uploader's profile, admins assign them on the Teams page, and overrides are monitored. (source: Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026)
 - [2026-09-10] A card sort with Atlas accountants starts at the end of the week commencing 14 Sep, alongside neno app user testing. (source: Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026)
 - [2026-09-10] Chart-of-accounts management, which lives in Exact today, moves into neno after the four accountant review screens are built. (source: Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026)
+- [2026-09-11] Atlas reporting comparatives settled per report: the P&L carries current month and year-to-date and adds prior year (confirmed as heavily used), and the balance sheet adds prior quarter. All four sheets are reachable in one click, comparison options are shown upfront, and debit/credit are distinguished by brackets with colour coding to follow. Drill-down from any category into the GL detail view was well received. (project: Custom reporting for Neno customers) (source: Granola - Atlas financial reporting pages, 10 Sep 2026)
 
 ## Open questions
 - [open] Which data points do customers want glanceable on the home page? Ask DP before sharing the current design, to avoid premature sign-off. (owner: Matthew) (source: Granola - Review reporting, 3 Aug)
@@ -90,6 +91,7 @@ _Last updated: 2026-09-10
 - [2026-09-09] Prepare app-store assets for the mobile companion app, give Coen a production-only demo sandbox, and schedule a stakeholder session on trust/automation messaging. (owner: Matthew/Coen) (source: Granola - Product roadmap + planning Q3 & Q4, 3 Sep 2026)
 - [2026-09-10] Euge to ask Ashley about the review step, update the prototype, task screen, Teams cost centres and transaction side panel, find a partial-payment example, and start the Atlas card sorting. (owner: Eugenia) (source: Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026)
 - [2026-09-10] Matthew to check with Art on GL-account recommendations and loop Jeroen into the glass-effect implementation plan. (owner: Matthew) (source: Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026)
+- [2026-09-11] Eugenia to share the next design iteration with the client, adding year-to-date and prior year on the P&L, prior quarter on the balance sheet, and debit/credit colour coding. (owner: Eugenia) (source: Granola - Atlas financial reporting pages, 10 Sep 2026)
 
 ## Projects (filed in Linear)
 - [2026-07-30] Attached existing project "Custom reporting for Neno customers" (basic reporting). "Structured profiles for services customers" and "Onboarding actions for off-platform tasks" have no Linear project yet - listed as text items on the board only.
@@ -129,6 +131,11 @@ _Expanded 2026-09-09 from the 4 Sep Accountant Review UIs discovery session. Cus
 _Expanded 2026-09-10 from the 9 Sep Matthew / Euge session. Custom reporting for Neno customers is Backlog, so these would publish into its managed description block._
 - (project: Custom reporting for Neno customers) The accountant review MVP is exactly four screens - trial balance, P&L, balance sheet and GL detail - modelled on QuickBooks; forecasting, anomaly detection and founder dashboards are explicitly out of scope for the MVP. (source: Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026)
 - (project: Custom reporting for Neno customers) The review screens must support month-on-month comparison, an improved export, and creating a new account directly from the screen. (source: Granola - Matthew / Euge: Coolest meeting of the week, 9 Sep 2026)
+_Expanded 2026-09-11 from the 10 Sep Atlas financial reporting pages design session. Custom reporting for Neno customers is Backlog, so these would publish into its managed description block._
+- (project: Custom reporting for Neno customers) The P&L must offer a current-month view and a year-to-date view, and must carry a prior-year comparative. (source: Granola - Atlas financial reporting pages, 10 Sep 2026)
+- (project: Custom reporting for Neno customers) The balance sheet must carry a prior-quarter comparative. (source: Granola - Atlas financial reporting pages, 10 Sep 2026)
+- (project: Custom reporting for Neno customers) All four review sheets must be reachable in one click, with comparison options shown upfront and the period and comparison choices set per report. (source: Granola - Atlas financial reporting pages, 10 Sep 2026)
+- (project: Custom reporting for Neno customers) Debit and credit must be visually distinguished on the reporting pages - brackets today, with colour coding added in the next iteration. (source: Granola - Atlas financial reporting pages, 10 Sep 2026)
 
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._

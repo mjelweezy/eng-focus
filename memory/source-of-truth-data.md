@@ -1,6 +1,6 @@
 # Running context — Source of truth for all bookkeeping data
 _Initiative: 0f26a21f-cd9b-47e4-9678-a3c5107a1fa0 · maintained by the daily job + Matthew_
-_Last updated: 2026-09-10
+_Last updated: 2026-09-11
 
 > Split out of `source-of-truth.md` (initiative ce07f00e) on 30 Jul 2026. Covers the external
 > data integrations feeding neno's books: Numbrs, Stripe, Shopify, Shopify Payments, WeFact,
@@ -33,6 +33,7 @@ _Last updated: 2026-09-10
 - [2026-09-09] MCP goes to beta in roughly two weeks, initially AP-focused - unmatched transactions, bills, tasks and document submission - with reporting JSON for balance sheet and P&L expected within a couple of weeks. The API/MCP is the intended route for customers to connect systems such as WooCommerce and CRMs rather than waiting for first-party integrations. (source: Granola - Nebor x Neno (APIs/Integrations), 8 Sep 2026; MCP, 2 Sep 2026)
 - [2026-09-09] Shopify and Shopify Payments were not discussed in any meeting in the window and remain undiscussed 'later' items. (source: run review, 2026-09-09)
 - [2026-09-10] The Neno MCP A-series closed out in a single day - NEO-2282 (row scoping), NEO-2283 (the four deferred tools), NEO-2293 (task context in list_open_tasks) and NEO-2191 (per-call traces with client identity and OpenTelemetry spans) all completed 9 Sep - and the work moved straight into response-shape fixes (NEO-2291 inline document upload, NEO-2294 list completeness with pagination, NEO-2295 invoice-summary counts). This is the integration surface the board's 'later' items are being answered by, and it is still on a Linear project attached to no initiative. (source: Linear, 9 Sep 2026)
+- [2026-09-11] Payroll (Numbrs) closed three defects on 10 Sep, all Adam's: the payroll tab rendering empty for every client and ignoring what Exact had already settled (NEO-2315), showing an externally-posted payroll run and letting an operator link the matching Exact entry (NEO-2228), and dropping the consent picker from Nmbrs company assignment (NEO-2311). (source: Linear, 10 Sep 2026)
 
 ## Open questions
 - [open] (carried forward) Payroll design not yet discussed — open design area for a future session. (project: Payroll (Numbrs integration))
@@ -95,6 +96,9 @@ _Expanded 2026-08-30 from Linear (NEO-1821, 28 Aug). Payroll (Numbrs integration
 - (project: Payroll (Numbrs integration)) A failed payroll push to Exact retries and stops once it is hopeless, rather than retrying indefinitely. (source: Linear NEO-1821, 28 Aug 2026)
 _Expanded 2026-09-09 from Linear (NEO-2228). Payroll (Numbrs integration) is Backlog, so this would publish into its managed description block._
 - (project: Payroll (Numbrs integration)) A payroll run posted outside neno must be shown as 'posted externally', and an operator must be able to link the matching Exact entry to it. (source: Linear NEO-2228, 9 Sep 2026)
+_Expanded 2026-09-11 from Linear (NEO-2315, NEO-2311, 10 Sep). Payroll (Numbrs integration) is Backlog, so these would publish into its managed description block._
+- (project: Payroll (Numbrs integration)) The payroll tab must be populated for every client and must take account of what Exact has already settled, rather than rendering empty. (source: Linear NEO-2315, 10 Sep 2026)
+- (project: Payroll (Numbrs integration)) Assigning a client in Nmbrs lists the available companies directly, with no intermediate consent picker. (source: Linear NEO-2311, 10 Sep 2026)
 
 ## Unfiled requirements (needs attribution)
 _New requirements the job couldn't confidently assign to a project land here for Matthew to file._
